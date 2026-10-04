@@ -26,6 +26,14 @@ def model_value(c):
 def setup():
     m=configure()
     sketches={s['name']:s for s in m['sketches']}
+    # The old reference invented a 2 mm tall stationary nose and omitted the
+    # output shaft. Keep the supplier-sized case/ears, omit that unsupported
+    # nose, and verify the real shaft/nose as an incoming interface requirement.
+    next(f for f in m['document']['history']['features'] if f['id']==10)['suppressed']=True
+    for group in ('definitions','occurrences'):
+        for item in m['assembly']['component_structure'][group]:
+            if item.get('component_id',item['id'])==3:
+                item['name']='INJS035-360 case reference - shaft and nose unmodeled'
     sketches['Sketch101']['snapshot']['entities'][0][1]['radius']=14.0
     next(e for e in m['extrudes'] if e['feature_id']==293)['extent']['distance']=5.0
     # The 28 mm flange fits within the journal-size rear chamber. No broad
@@ -85,10 +93,11 @@ def main():
         c.call('cad_load_project_model',{'model_json':json.dumps(setup())})
         rear_pads(c)
         Builder(c).revolve('Direct adapter integral press-fit boss',
-            [(146.0,HEAD_ACCESS/2),(HEAD_SEAT_Y,HEAD_ACCESS/2),
+            [(BOSS_ROOT_Y,HEAD_ACCESS/2),(HEAD_SEAT_Y,HEAD_ACCESS/2),
              (HEAD_SEAT_Y,UNDERHEAD_RELIEF_DIAMETER/2),
              (HEAD_SEAT_Y+UNDERHEAD_RELIEF_DEPTH,SCREW_CLEARANCE/2),
-             (PILOT_REAR_Y,SCREW_CLEARANCE/2),(PILOT_REAR_Y,8),(146.0,8)],'join',[216])
+             (PILOT_REAR_Y,SCREW_CLEARANCE/2),(PILOT_REAR_Y,BOSS_DIAMETER/2),
+             (BOSS_TRANSITION_END_Y,BOSS_DIAMETER/2),(BOSS_ROOT_Y,14)],'join',[216])
         Builder(c).revolve('Plain round press-fit pilot and shaft-tip seat',pilot_profile(),'cut',[216])
         m=model_value(c)
         m,cleanup=clean_checked(c,m,221)
@@ -112,22 +121,32 @@ def main():
             'interface':'Undersized round PETG pilot; metal splines form engagement; M3 center screw retains axially',
             'adapter_dimensions_mm':{
                 'square_peg':14,'peg_corner_radius':1,'peg_length':11.6,
-                'flange_diameter':28,'flange_thickness':5,'spline_boss_diameter':16,
+                'flange_diameter':28,'flange_thickness':5,'spline_boss_diameter':BOSS_DIAMETER,
+                'minimum_bore_radial_wall':(BOSS_DIAMETER-PILOT_DIAMETER-2*PILOT_LEAD_IN)/2,
+                'straight_bore_radial_wall':(BOSS_DIAMETER-PILOT_DIAMETER)/2,
+                'boss_root_transition':'2 mm axial / 2 mm radial broad taper into the 28 mm flange',
                 'press_fit_pilot_diameter':PILOT_DIAMETER,'press_fit_pilot_depth':PILOT_DEPTH,
                 'straight_pilot_length':PILOT_DEPTH-PILOT_LEAD_IN,'entry_chamfer':PILOT_LEAD_IN,
                 'screw_clearance':SCREW_CLEARANCE,'head_access_diameter':HEAD_ACCESS,
                 'underhead_relief_diameter':UNDERHEAD_RELIEF_DIAMETER,
                 'underhead_relief_depth':UNDERHEAD_RELIEF_DEPTH,
                 'seat_to_shaft_tip_annular_web':SHAFT_TIP_SEAT_Y-HEAD_SEAT_Y},
-            'shaft_reference_only':{'assumed_tip_y':148.7,'assumed_shoulder_y':150.7,
+            'horn_depth_reference':{'family':'Hitec H25T (nominal 6 mm / 25 tooth)',
+                'manufacturer_horn_depth_mm':3.70,'source_url':H25T_DEPTH_SOURCE,
+                'source_printed_page':75,'scope':'Manufacturer family reference; INJORA publishes diameter/tooth count but not axial spline exposure.'},
+            'shaft_reference_only':{'assumed_tip_y':SHAFT_TIP_SEAT_Y,
+                'nominal_case_face_y':CASE_FACE_REFERENCE_Y,
                 'nominal_tip_to_case_body_face_from_supplier_image':4.0,
                 'image_derivation':'41.5 mm overall minus 37.5 mm case height; nominal inference, not exposed-spline length',
                 'dimensions_image_url':'https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720',
                 'nominal_axial_overlap':PILOT_DEPTH,'nominal_straight_engagement':PILOT_DEPTH-PILOT_LEAD_IN,
                 'nominal_tip_to_bore_bottom_gap':0,
                 'positive_axial_stop':'Rotating shaft tip seats on bore floor annulus surrounding center-screw passage',
-                'nominal_boss_to_stationary_nose_gap':150.7-PILOT_REAR_Y,
-                'nose_clearance_min_if_exposed_spline_at_least_2_mm_and_print_depth_within_0_1':.2,
+                'nominal_boss_to_case_face_gap':CASE_FACE_REFERENCE_Y-PILOT_REAR_Y,
+                'required_exposure_to_nearest_stationary_surface_min':REQUIRED_EXPOSED_SHAFT_MIN,
+                'stationary_clearance_min_if_exposure_and_print_depth_pass':MIN_STATIONARY_CLEARANCE,
+                'unsupported_2_mm_stationary_nose_removed_from_reference':True,
+                'purchased_shaft_and_nose_collision_verified':False,
                 'actual_shaft_tip_contact_verified':False,
                 'warning':'Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.'},
             'center_screw_inspection':screw_stack(),
@@ -162,7 +181,7 @@ def main():
                 'scripts/design_parameters.py','scripts/release_drawings.py','direct-drive-verification.json'],
             'physical_acceptance':['Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.',
                 'Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.',
-                'Measure actual exposed spline length and stationary nose clearance; maximize overlap while preserving at least 0.20 mm nose clearance.',
+                f'Measure actual exposure from shaft tip to the nearest stationary nose/case surface: at least {REQUIRED_EXPOSED_SHAFT_MIN:.2f} mm is required for the 3.70 +/-0.10 mm socket and 0.20 mm minimum stationary clearance.',
                 'Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.',
                 'Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.',
                 'Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength.']}

@@ -13,10 +13,13 @@
     "peg_length": 11.6,
     "flange_diameter": 28,
     "flange_thickness": 5,
-    "spline_boss_diameter": 16,
+    "spline_boss_diameter": 24.0,
+    "minimum_bore_radial_wall": 9.0,
+    "straight_bore_radial_wall": 9.15,
+    "boss_root_transition": "2 mm axial / 2 mm radial broad taper into the 28 mm flange",
     "press_fit_pilot_diameter": 5.7,
-    "press_fit_pilot_depth": 1.7,
-    "straight_pilot_length": 1.55,
+    "press_fit_pilot_depth": 3.7,
+    "straight_pilot_length": 3.5500000000000003,
     "entry_chamfer": 0.15,
     "screw_clearance": 3.4,
     "head_access_diameter": 6.4,
@@ -24,20 +27,30 @@
     "underhead_relief_depth": 0.3,
     "seat_to_shaft_tip_annular_web": 2.5999999999999943
   },
+  "horn_depth_reference": {
+    "family": "Hitec H25T (nominal 6 mm / 25 tooth)",
+    "manufacturer_horn_depth_mm": 3.7,
+    "source_url": "https://shop.multiplex-rc.de/userdata/files/HITEC%20SERVO%20ACTUATOR%20HORN%20%26%20SPLINE%20TECHNICAL%20DATA%20SHEET_v3_0_1_26C.pdf",
+    "source_printed_page": 75,
+    "scope": "Manufacturer family reference; INJORA publishes diameter/tooth count but not axial spline exposure."
+  },
   "shaft_reference_only": {
     "assumed_tip_y": 148.7,
-    "assumed_shoulder_y": 150.7,
-    "nominal_axial_overlap": 1.7,
-    "nominal_straight_engagement": 1.55,
-    "nominal_tip_to_bore_bottom_gap": 0,
-    "positive_axial_stop": "Rotating shaft tip seats on bore floor annulus surrounding center-screw passage",
-    "nominal_boss_to_stationary_nose_gap": 0.30000000000001137,
-    "nose_clearance_min_if_exposed_spline_at_least_2_mm_and_print_depth_within_0_1": 0.2,
-    "actual_shaft_tip_contact_verified": false,
-    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.",
+    "nominal_case_face_y": 152.7,
     "nominal_tip_to_case_body_face_from_supplier_image": 4.0,
     "image_derivation": "41.5 mm overall minus 37.5 mm case height; nominal inference, not exposed-spline length",
-    "dimensions_image_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720"
+    "dimensions_image_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720",
+    "nominal_axial_overlap": 3.7,
+    "nominal_straight_engagement": 3.5500000000000003,
+    "nominal_tip_to_bore_bottom_gap": 0,
+    "positive_axial_stop": "Rotating shaft tip seats on bore floor annulus surrounding center-screw passage",
+    "nominal_boss_to_case_face_gap": 0.30000000000001137,
+    "required_exposure_to_nearest_stationary_surface_min": 4.0,
+    "stationary_clearance_min_if_exposure_and_print_depth_pass": 0.2,
+    "unsupported_2_mm_stationary_nose_removed_from_reference": true,
+    "purchased_shaft_and_nose_collision_verified": false,
+    "actual_shaft_tip_contact_verified": false,
+    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack."
   },
   "center_screw_inspection": {
     "screw": "M3 x 6 ISO4762/DIN912 envelope, full thread; verify factory thread compatibility",
@@ -87,8 +100,8 @@
   },
   "cleanup": {
     "features_before": 120,
-    "features_after": 118,
-    "removed_inactive_features": 2,
+    "features_after": 115,
+    "removed_inactive_features": 5,
     "suppressed_features_remaining": 0,
     "rebuilt_mesh_geometry_identical": true
   },
@@ -204,7 +217,7 @@
   "physical_acceptance": [
     "Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.",
     "Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.",
-    "Measure actual exposed spline length and stationary nose clearance; maximize overlap while preserving at least 0.20 mm nose clearance.",
+    "Measure actual exposure from shaft tip to the nearest stationary nose/case surface: at least 4.00 mm is required for the 3.70 +/-0.10 mm socket and 0.20 mm minimum stationary clearance.",
     "Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.",
     "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
     "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
@@ -216,6 +229,10 @@
     "head_seat_to_tip_annular_seat_measured_mm": 2.5999999999999943,
     "underhead_relief_measured": true,
     "temporary_screw_geometry_saved_to_design": false,
+    "boss_diameter_mesh_measured_mm": 24.0,
+    "pilot_diameter_mesh_measured_mm": 5.7,
+    "pilot_depth_mm": 3.6999999999999886,
+    "straight_bore_radial_wall_mm": 9.15,
     "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
     "actual_servo_thread_depth_verified": false
   },
@@ -225,14 +242,16 @@
       "desktop_schema": 7,
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
-      "drawing_sheets": 0
+      "drawing_sheets": 0,
+      "reader_mode": "isolated desktop executable headless"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
       "desktop_schema": 7,
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
-      "drawing_sheets": 0
+      "drawing_sheets": 0,
+      "reader_mode": "isolated desktop executable headless"
     }
   ],
   "print_checks": {
@@ -310,7 +329,7 @@
         "material": "PETG",
         "color_name": "Adapter gray",
         "color_hex": "#BEC3CA",
-        "volume_mm3": 5599.659413639572,
+        "volume_mm3": 7673.944633877921,
         "plate_bounds_mm": [
           [
             214.0,
@@ -320,10 +339,10 @@
           [
             241.982597,
             196.99129599999998,
-            20.900000000000006
+            22.900000000000006
           ]
         ],
-        "triangle_count": 1848
+        "triangle_count": 1974
       },
       {
         "name": "PLA - Full wear sleeve",
@@ -353,7 +372,7 @@
         "name": "PETG - Round press-fit square adapter",
         "closed": true,
         "connected_components": 1,
-        "volume_mm3": 5599.659413639572,
+        "volume_mm3": 7673.944633877921,
         "bounds_mm": [
           [
             7.999999999999998,
@@ -363,7 +382,7 @@
           [
             35.982597,
             35.991296,
-            20.900000000000006
+            22.900000000000006
           ]
         ]
       }
@@ -373,17 +392,17 @@
         "name": "PETG - Round press fit A - bore 5.60",
         "closed": true,
         "connected_components": 1,
-        "volume_mm3": 740.0646556813939,
+        "volume_mm3": 2730.5822107074077,
         "bounds_mm": [
           [
-            8.0,
+            8.000000000000002,
             8.0,
             0.0
           ],
           [
-            23.9950266,
-            23.990055599999998,
-            4.0
+            31.992540000000005,
+            31.985083,
+            6.3
           ]
         ]
       },
@@ -391,17 +410,17 @@
         "name": "PETG - Round press fit B - bore 5.70",
         "closed": true,
         "connected_components": 1,
-        "volume_mm3": 738.5549015674982,
+        "volume_mm3": 2727.300276189996,
         "bounds_mm": [
           [
-            31.0,
+            38.0,
             8.0,
             0.0
           ],
           [
-            46.99502700000001,
-            23.990055599999998,
-            4.0
+            61.992541,
+            31.985083,
+            6.3
           ]
         ]
       },
@@ -409,17 +428,17 @@
         "name": "PETG - Round press fit C - bore 5.80",
         "closed": true,
         "connected_components": 1,
-        "volume_mm3": 737.0184244506551,
+        "volume_mm3": 2723.9604413363063,
         "bounds_mm": [
           [
-            54.0,
+            68.0,
             8.0,
             0.0
           ],
           [
-            69.995026,
-            23.990055599999998,
-            4.0
+            91.99253999999999,
+            31.985083,
+            6.3
           ]
         ]
       },
@@ -427,27 +446,37 @@
         "name": "PETG - Round press fit D - bore 5.90",
         "closed": true,
         "connected_components": 1,
-        "volume_mm3": 735.4553303979952,
+        "volume_mm3": 2720.5626213625173,
         "bounds_mm": [
           [
-            77.0,
+            98.0,
             8.0,
             0.0
           ],
           [
-            92.995023,
-            23.990055599999998,
-            4.0
+            121.99253999999999,
+            31.985083,
+            6.3
           ]
         ]
       }
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "1d02b09bd8d6c213dc27fa32200a7a55da8b26f6fea281e9df7953a2788dbcf0",
-    "garden-auger-direct-drive.3mf": "4b5ac95a767cbdcecd200e2b56d9493aeb1abef73e5406a128659c4254a1db0c",
-    "garden-auger-direct-adapter.3mf": "baa78c20ecc3c6e3f91216f6bcf150a4bce54300a59a1952da48065811b9f194",
-    "garden-auger-press-fit.nbcad": "2e2d1d398b2b42a63e35c8794412e3191644926993912ac6353f06bf00d1c481",
-    "garden-auger-press-fit.3mf": "306389a4e850542575ddfdfc5637837d83ad902f66f5cf5fb81fa6a10a2ea89d"
+    "garden-auger-direct-drive.nbcad": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
+    "garden-auger-direct-drive.3mf": "b099d6a9a3e9b41f12d384df714f96e48186946764206d40a9d3fd2af953efd2",
+    "garden-auger-direct-adapter.3mf": "ca3915ca531b1c89cf36f6197f6cc213c2b4d40f9349b167f821c3eeab4a55f5",
+    "garden-auger-press-fit.nbcad": "1a06f426c96bec44d4c068cdb0d9ecc0536e7e3dc5fad8364fab70211c6e9c93",
+    "garden-auger-press-fit.3mf": "af14c9dbb859ad89319f829b0bf5289c1a56c968c02057b8800098083f75b66e"
+  },
+  "unchanged_print_parts": {
+    "base_commit": "67f98447cec65db2f3aa4fdaa0aa48d3b58e9f48",
+    "four_stls_byte_identical": true,
+    "sha256": {
+      "petg-housing-upper.stl": "521a24857ef83bcd512a850e418f49c8ad47d2982cdd950046bc361611e133b5",
+      "petg-housing-lower.stl": "b05e6d1d84b00d87e5532ff8b03ed4a332a7c60a5da203171ba6f7574acdb992",
+      "petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
+      "pla-full-wear-sleeve.stl": "25ff8f30a090660195c08f6ad4ff97a948a2160f9836350a0d83923b1d0be638"
+    }
   }
 }

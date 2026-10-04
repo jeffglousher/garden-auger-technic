@@ -2,12 +2,18 @@
 PILOT_DIAMETER=5.70
 PILOT_TRIAL_DIAMETERS=[5.60,5.70,5.80,5.90]
 SHAFT_TIP_SEAT_Y=148.70
-# The internal servo reference assumes 2 mm exposed spline. Preserve 0.30 mm
-# nominal clearance from its stationary nose. Increase engagement only after
-# measuring the actual exposed length and checking the installed drive stack.
-PILOT_DEPTH=1.70
+# Hitec's H25T manufacturer drawing specifies 3.70 mm horn spline depth
+# (2026 horn/spline technical data sheet, printed page 75). This is the
+# selected family reference, not an INJORA-published axial shaft dimension.
+PILOT_DEPTH=3.70
 PILOT_REAR_Y=SHAFT_TIP_SEAT_Y+PILOT_DEPTH
 PILOT_LEAD_IN=.15
+BOSS_DIAMETER=24.0
+BOSS_ROOT_Y=146.0
+BOSS_TRANSITION_END_Y=148.0
+CASE_FACE_REFERENCE_Y=SHAFT_TIP_SEAT_Y+4.0
+MIN_STATIONARY_CLEARANCE=.20
+H25T_DEPTH_SOURCE='https://shop.multiplex-rc.de/userdata/files/HITEC%20SERVO%20ACTUATOR%20HORN%20%26%20SPLINE%20TECHNICAL%20DATA%20SHEET_v3_0_1_26C.pdf'
 HEAD_SEAT_Y=146.10
 SCREW_CLEARANCE=3.40
 HEAD_ACCESS=6.40
@@ -18,6 +24,7 @@ SCREW_MEASURED_LENGTH_RANGE=[5.90,6.10]
 SEAT_TO_TIP_ACCEPTANCE=[2.40,2.80]
 USABLE_THREAD_DEPTH_MIN=4.00
 PRINT_TOLERANCE=.10
+REQUIRED_EXPOSED_SHAFT_MIN=PILOT_DEPTH+PRINT_TOLERANCE+MIN_STATIONARY_CLEARANCE
 
 
 def pilot_profile(diameter=PILOT_DIAMETER,front=SHAFT_TIP_SEAT_Y,depth=PILOT_DEPTH):

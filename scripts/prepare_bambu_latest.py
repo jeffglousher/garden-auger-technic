@@ -1,7 +1,7 @@
 """Place the current five solids on four single-filament Bambu X2D plates.
 
-Keep the saved Bambu filament and process profiles. Geometry is read from that
-project and compared with the canonical direct-drive export before packaging.
+Keep the saved Bambu filament and process profiles. Refresh geometry from the
+canonical direct-drive export, then verify it before packaging.
 Run with: uv run --no-project --with numpy --with trimesh python scripts/prepare_bambu_latest.py
 Use --verify-only after saving the project in Bambu Studio.
 """
@@ -114,9 +114,47 @@ def add_metadata(parent, key, value):
     ET.SubElement(parent, "metadata", key=key, value=str(value))
 
 
+def refresh_geometry(entries, config, parts):
+    canonical = ET.fromstring(read_zip(CANONICAL)["3D/3dmodel.model"])
+    expected = {o.get("name"): mesh_arrays(o) for o in canonical.findall("{*}resources/{*}object")}
+    assert set(parts) == set(expected) == set(EXPECTED_FILAMENT)
+    for name, part in parts.items():
+        vertices, faces = expected[name]
+        center = (vertices.min(axis=0) + vertices.max(axis=0)) / 2
+        vertices = vertices - center
+        model = ET.fromstring(entries[part["mesh_path"]])
+        mesh = model.find(".//{*}mesh")
+        mesh.clear()
+        vertex_node = ET.SubElement(mesh, f"{{{CORE}}}vertices")
+        triangle_node = ET.SubElement(mesh, f"{{{CORE}}}triangles")
+        for point in vertices:
+            ET.SubElement(vertex_node, f"{{{CORE}}}vertex",
+                          dict(zip(("x", "y", "z"), (f"{x:.12g}" for x in point))))
+        for face in faces:
+            ET.SubElement(triangle_node, f"{{{CORE}}}triangle",
+                          dict(zip(("v1", "v2", "v3"), (str(int(x)) for x in face))))
+        entries[part["mesh_path"]] = ET.tostring(model, encoding="utf-8", xml_declaration=True)
+        part.update(vertices=vertices, faces=faces)
+        obj = next(o for o in config.findall("object") if o.get("id") == part["object_id"])
+        obj.find("metadata[@face_count]").set("face_count", str(len(faces)))
+        subpart = obj.find("part")
+        subpart.find("mesh_stat").set("face_count", str(len(faces)))
+        for axis, value in zip(("x", "y", "z"), center):
+            subpart.find(f"metadata[@key='source_offset_{axis}']").set("value", f"{value:.12g}")
+        if name == "PETG - Square adapter":
+            for key, value in {"wall_loops": 6, "sparse_infill_density": "100%",
+                               "sparse_infill_pattern": "zig-zag"}.items():
+                node = obj.find(f"metadata[@key='{key}']")
+                if node is None:
+                    add_metadata(obj, key, value)
+                else:
+                    node.set("value", str(value))
+
+
 def build():
-    entries = read_zip(SOURCE)
+    entries = read_zip(TARGET if TARGET.exists() else SOURCE)
     model, config, parts = project_parts(entries)
+    refresh_geometry(entries, config, parts)
     geometry_checks(parts)
     settings = json.loads(entries["Metadata/project_settings.config"])
     assert settings["filament_type"] == ["PETG", "PETG", "PETG", "PLA"]
@@ -131,6 +169,15 @@ def build():
         config.remove(old)
     build_node = model.find("{*}build")
     items = {i.get("objectid"): i for i in build_node.findall("{*}item")}
+    # A saved project may contain extra instances of a part. This canonical
+    # five-part package has exactly one print instance of each current solid.
+    for item in list(build_node):
+        build_node.remove(item)
+    for part in parts.values():
+        build_node.append(items[part["object_id"]])
+    old_assemble = config.find("assemble")
+    if old_assemble is not None:
+        config.remove(old_assemble)
     for index, (label, definitions) in enumerate(PLATES):
         origin = np.array([(index % 2)*307.2, -(index // 2)*307.2, 0.])
         plate = ET.Element("plate")
@@ -174,11 +221,17 @@ def verify():
     entries = read_zip(TARGET)
     model, config, parts = project_parts(entries)
     geometry = geometry_checks(parts)
+    adapter_config = next(o for o in config.findall("object")
+                          if metadata(o).get("name") == "PETG - Square adapter")
+    strength = metadata(adapter_config)
+    assert strength["wall_loops"] == "6" and strength["sparse_infill_density"] == "100%"
+    assert strength["sparse_infill_pattern"] == "zig-zag"
     settings = json.loads(entries["Metadata/project_settings.config"])
     assert settings["filament_type"] == ["PETG", "PETG", "PETG", "PLA"]
     assert settings["enable_prime_tower"] == "0"
     assert settings["print_sequence"] == "by layer"
     items = {i.get("objectid"): i for i in model.findall("{*}build/{*}item")}
+    assert len(model.findall("{*}build/{*}item")) == len(items) == 5
     by_id = {p["object_id"]: (name, p) for name, p in parts.items()}
     assigned = []
     plates = config.findall("plate")
@@ -223,6 +276,8 @@ def verify():
         "layout_overrides": {"print_sequence": "by layer", "prime_tower": False,
                              "primary_nozzle_for_each_single_filament_plate": True},
         "all_five_parts_on_single_filament_plates": True,
+        "adapter_strength_override": {"wall_loops": 6, "infill_density_percent": 100,
+                                      "infill_pattern": "zig-zag"},
         "scope": "Geometry and plate-layout verification; physical fit and load qualification remain in README.",
     }
     (ROOT/"bambu-latest-verification.json").write_text(json.dumps(report, indent=2)+"\n")

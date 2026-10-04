@@ -1,0 +1,37 @@
+{
+  "application": "noBS CAD native desktop",
+  "source_project": "garden-auger-direct-drive.nbcad",
+  "source_project_sha256": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
+  "method": "Native CAD project loaded into an isolated inspection document; captured desktop views.",
+  "inspection_script": "scripts/adapter_revision_views.py",
+  "canonical_project_changed_by_inspection": false,
+  "display_only_operations": [
+    "Hide other bodies and all sketches/datums",
+    "Raise adapter above grid",
+    "Rotate for rear view",
+    "Cut axial half-section in temporary document"
+  ],
+  "composite": "adapter-revision.png",
+  "composite_method": "Crop and uniformly scale rear/section captures; add captions from verified dimensions.",
+  "composite_crop_rectangles": {
+    "adapter-rear.png": [
+      500,
+      280,
+      1040,
+      770
+    ],
+    "adapter-section.jpg": [
+      565,
+      245,
+      1065,
+      750
+    ]
+  },
+  "captures_sha256": {
+    "adapter-front.png": "8055f56ff653fc2a3d0a10ad83f268e84d7acecb6058e1e3af1f2396e8ab1874",
+    "adapter-rear.png": "af715debe7b733b0c2b9034a3282c697c34bed9c28875d6807ff08bbaaa056ab",
+    "adapter-section.jpg": "07ce63ca60d4920985a9987c8ae47fd8e358fff655da9769a25b8b3e45bbf70a"
+  },
+  "composite_sha256": "9feb7c4b71735ea07a6101b22b8ffbbcc5abb36127104027acd8ee79f3b58483",
+  "physical_interface_scope": "Manufacturer family depth reference; real INJORA shaft/nose and thread depth require inspection."
+}

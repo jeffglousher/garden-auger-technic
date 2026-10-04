@@ -22,10 +22,16 @@ def main():
     body=next(b for b in scene['bodies'] if b['id']==216)['mesh']
     mesh=trimesh.Trimesh(vertices=np.array(body['positions']).reshape(-1,3),
         faces=np.array(body['indices']).reshape(-1,3),process=False)
+    radial=mesh.copy();radial.vertices=radial.vertices[:,[1,2,0]]
+    section=vertical_hits(radial,[PILOT_REAR_Y-.3,0])
+    assert np.allclose(section,[-BOSS_DIAMETER/2,-PILOT_DIAMETER/2,
+                                PILOT_DIAMETER/2,BOSS_DIAMETER/2],atol=.002),section
     # Use the existing ray helper with Y as its depth coordinate.
     mesh.vertices=mesh.vertices[:,[0,2,1]]
     assert not vertical_hits(mesh,[0,0]),'Center screw / driver passage blocked'
     assert not vertical_hits(mesh,[1.6,0]),'M3 shaft envelope blocked'
+    pilot_wall=vertical_hits(mesh,[PILOT_DIAMETER/2+.25,0])
+    assert np.allclose(pilot_wall[-2:],[HEAD_SEAT_Y,PILOT_REAR_Y],atol=.0002),pilot_wall
     seat=vertical_hits(mesh,[2.1,0])
     assert np.allclose(seat,[HEAD_SEAT_Y,SHAFT_TIP_SEAT_Y],atol=.0002),seat
     neck=vertical_hits(mesh,[1.9,0])
@@ -56,6 +62,10 @@ def main():
         'center_axis_passage_open':True,'screw_shaft_envelope_passage_open':True,
         'head_seat_to_tip_annular_seat_measured_mm':seat[1]-seat[0],
         'underhead_relief_measured':True,'temporary_screw_geometry_saved_to_design':False,
+        'boss_diameter_mesh_measured_mm':section[-1]-section[0],
+        'pilot_diameter_mesh_measured_mm':section[2]-section[1],
+        'pilot_depth_mm':PILOT_REAR_Y-SHAFT_TIP_SEAT_Y,
+        'straight_bore_radial_wall_mm':section[-1]-section[2],
         'servo_cavity_excluded':'Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.',
         'actual_servo_thread_depth_verified':False}
     r['center_screw_inspection']=screw_stack()

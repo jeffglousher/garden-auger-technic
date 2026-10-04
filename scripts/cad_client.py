@@ -12,7 +12,7 @@ class CadClient:
     def __init__(self, executable: Path | None = None, arguments: list[str] | None = None):
         executable = executable or Path(os.environ['LOCALAPPDATA']) / 'nbcad/mcp/nbcad-mcp.exe'
         self.process = subprocess.Popen(
-            [str(executable),*(arguments or [])], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            [str(executable),*(arguments if arguments is not None else ['--headless'])], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL, text=True, encoding='utf-8',
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0,
         )

@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from PIL import Image,ImageDraw
 from render_common import font
-from direct_drive_parameters import HEAD_SEAT_Y,SHAFT_TIP_SEAT_Y,PILOT_REAR_Y
+from direct_drive_parameters import HEAD_SEAT_Y,SHAFT_TIP_SEAT_Y,PILOT_REAR_Y,CASE_FACE_REFERENCE_Y
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -33,9 +33,8 @@ def main():
                 ((148.7,2.95),(148.7,-2.95)),((152.7,2.95),(152.7,-2.95))]:
         dashed(a,b,accent)
     dashed((140,0),(154,0),(86,106,123),1)
-    # This marks the front surface of the existing reference servo nose,
-    # not a qualified manufacturer shaft shoulder or threaded cavity.
-    dashed((150.7,-4.5),(150.7,4.5),(94,118,143),2)
+    # The supplier image implies this case face; its nose is not dimensioned.
+    dashed((CASE_FACE_REFERENCE_Y,-4.5),(CASE_FACE_REFERENCE_Y,4.5),(94,118,143),2)
     def dim(a,b,z,label):
         ax,ay=tr((a,z));bx,by=tr((b,z))
         q.line([(ax,ay),(bx,by)],fill=muted,width=2)
@@ -47,6 +46,7 @@ def main():
         q.rectangle((x-6,ay-37,x+width+6,ay-10),fill=(24,28,34))
         q.text((x,ay-36),label,font=font(20,True),fill=ink)
     dim(HEAD_SEAT_Y,SHAFT_TIP_SEAT_Y,3.75,'2.60 seat stack')
+    dim(SHAFT_TIP_SEAT_Y,PILOT_REAR_Y,2.85,'3.70 horn depth')
     dim(HEAD_SEAT_Y,HEAD_SEAT_Y+6,-3.6,'6.00 under-head length')
     dim(SHAFT_TIP_SEAT_Y,HEAD_SEAT_Y+6,-2.05,'3.40 insertion')
     q.text((26,586),'Light gray: PETG section    Blue: screw envelope    Dashed gold: hypothetical shaft / 4.00 mm usable depth',font=font(18),fill=muted)
@@ -56,7 +56,7 @@ def main():
     for i,note in enumerate(notes):d.text((1170,195+i*47),note,font=font(22),fill=muted)
     d.text((1170,518),'Positive axial stop',font=font(24,True),fill=ink)
     d.text((1170,562),'Shaft tip on bore floor',font=font(20),fill=muted)
-    d.text((1170,601),'Nose gap: 0.30 mm',font=font(20),fill=muted)
+    d.text((1170,601),'Case gap: 0.30 nominal',font=font(20),fill=muted)
     d.text((1170,637),'Reference dimensions',font=font(19),fill=accent)
     d.line((35,794,1565,794),fill=(56,70,84),width=2)
     d.text((40,825),'M3 x 6 is a trial length. These incoming inspections are required:',font=font(25,True),fill=ink)

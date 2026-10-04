@@ -18,8 +18,10 @@ Use only a factory-compatible M3 center screw at the adapter; inspect actual sha
 No spline teeth are printed. The metal servo teeth form engagement in an undersized round PETG pilot.
 Print A/B/C/D press-fit coupons first: bores 5.60/5.70/5.80/5.90 mm. Start with D, the largest bore.
 Full adapter uses the provisional 5.70 mm bore B. Change its native pilot sketch to the physically selected fit.
-Pilot depth 1.70 mm includes 0.15 mm lead-in. Shaft tip bears on the annular bore floor.
-Reference stationary nose gap 0.30 mm; physical exposed spline length and nose geometry must be measured.
+Pilot depth 3.70 mm follows Hitec H25T manufacturer horn-depth reference; includes 0.15 mm lead-in.
+Boss OD24 mm with broad tapered root; bore wall 9.15 mm straight / 9.00 mm at entry.
+Shaft tip bears on annular bore floor. Require >=4.00 mm exposure to nearest stationary surface.
+Nominal case-face gap 0.30 mm assumes 4.00 mm tip-to-case distance; actual INJORA nose is unmodeled.
 Center M3x6 trial: measured length 5.90-6.10, seat-to-shaft-tip 2.40-2.80, usable thread depth at least 4.00 mm.
 This gives 3.10-3.70 mm thread entry and at least 0.30 mm tip room, conditional on all measurements.
 M3 head 5.5 x3.0 clears 6.40 mm access; 3.40 passage and 4.00 x0.30 underhead relief clear screw neck.
@@ -44,7 +46,7 @@ def small_plate(source,target,coupons=False):
         mesh=mesh_from_object(obj)
         assert component_count(mesh)==1
         vertices=mesh.vertices@rotation.T
-        translation=np.array([8+i*23,8,0])-vertices.min(axis=0)
+        translation=np.array([8+i*30,8,0])-vertices.min(axis=0)
         bounds=np.array([vertices.min(axis=0),vertices.max(axis=0)])+translation
         assert np.all(bounds[0]>=0) and np.all(bounds[1,:2]<256)
         diameter=PILOT_TRIAL_DIAMETERS[i] if coupons else None

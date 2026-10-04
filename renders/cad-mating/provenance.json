@@ -1,6 +1,8 @@
 {
   "application": "noBS CAD 0.2.2",
   "source_project": "garden-auger-direct-drive.nbcad",
+  "source_commit": "67f98447cec65db2f3aa4fdaa0aa48d3b58e9f48",
+  "historical_scope": "Captures precede the 3.70 mm socket / 24 mm boss revision. Adapter views are superseded; bearing, capture and chassis geometry are unchanged.",
   "method": "Analytic STEP exports imported into temporary native CAD review documents; desktop screenshots cropped and labeled.",
   "canonical_project_changed": false,
   "display_only_operations": [
