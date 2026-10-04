@@ -1,0 +1,9 @@
+{
+  "image": "bambu-print-layout.png",
+  "method": "Native Bambu Studio screenshot after saving the current printing settings",
+  "project": "garden-auger-bambu-latest.3mf",
+  "project_sha256": "de38f17c04f04eebf94e406576ceecc195841c99823338554f24b179835232e1",
+  "model_geometry_and_bed_placement_verification": "bambu-latest-verification.json",
+  "layer_height_mm": 0.2,
+  "support_interface_material": "PLA"
+}

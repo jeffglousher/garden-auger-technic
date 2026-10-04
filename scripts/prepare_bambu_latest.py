@@ -1,4 +1,4 @@
-"""Place the current five solids on four single-filament Bambu X2D plates.
+"""Place the current five solids on four Bambu X2D plates grouped by model filament.
 
 Keep the saved Bambu filament and process profiles. Refresh geometry from the
 canonical direct-drive export, then verify it before packaging.
@@ -20,7 +20,6 @@ import trimesh
 from print_packer import component_count
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "garden-auger-bambu-review.3mf"
 TARGET = ROOT / "garden-auger-bambu-latest.3mf"
 CANONICAL = ROOT / "garden-auger-direct-drive.3mf"
 CORE = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"
@@ -152,7 +151,9 @@ def refresh_geometry(entries, config, parts):
 
 
 def build():
-    entries = read_zip(TARGET if TARGET.exists() else SOURCE)
+    if not TARGET.exists():
+        raise FileNotFoundError('Restore garden-auger-bambu-latest.3mf from Git before rebuilding; it holds the saved printer, filament and process profiles.')
+    entries = read_zip(TARGET)
     model, config, parts = project_parts(entries)
     refresh_geometry(entries, config, parts)
     geometry_checks(parts)
@@ -265,6 +266,7 @@ def verify():
     proof = json.loads((ROOT/"direct-drive-verification.json").read_text())
     for filename, expected_hash in proof["artifact_sha256"].items():
         assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest() == expected_hash, filename
+    interface_filament = int(settings.get("support_interface_filament", "0"))
     report = {
         "project": TARGET.name, "sha256": hashlib.sha256(TARGET.read_bytes()).hexdigest(),
         "canonical_export": CANONICAL.name, "canonical_artifact_hashes_verified": True,
@@ -272,10 +274,18 @@ def verify():
         "filament_types": settings["filament_type"], "filament_profiles": settings["filament_settings_id"],
         "filament_colors": settings["filament_colour"], "printer": settings["printer_settings_id"],
         "process_profile": settings["print_settings_id"], "prime_tower": False,
+        "layer_height_mm": float(settings["layer_height"]),
+        "support_settings": {"enabled": settings.get("enable_support") == "1",
+                             "type": settings.get("support_type"),
+                             "base_filament": int(settings.get("support_filament", "0")),
+                             "interface_filament": interface_filament,
+                             "interface_material": settings["filament_type"][interface_filament-1] if interface_filament else "same as model",
+                             "top_z_distance_mm": float(settings.get("support_top_z_distance", "0")),
+                             "scope": "Each plate has one model filament; support interfaces can add another material."},
         "saved_filament_and_process_profiles_preserved": True,
         "layout_overrides": {"print_sequence": "by layer", "prime_tower": False,
                              "primary_nozzle_for_each_single_filament_plate": True},
-        "all_five_parts_on_single_filament_plates": True,
+        "all_five_parts_on_plates_with_one_model_filament": True,
         "adapter_strength_override": {"wall_loops": 6, "infill_density_percent": 100,
                                       "infill_pattern": "zig-zag"},
         "scope": "Geometry and plate-layout verification; physical fit and load qualification remain in README.",
