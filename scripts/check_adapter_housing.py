@@ -67,7 +67,9 @@ def main():
                               'drive_axis_radial_offset_max_mm': MAX_DRIVE_AXIS_OFFSET},
         'native_ideal_geometry_checks': checks,
         'scope': 'Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. Actual purchased servo shaft/nose clearance remains unverified.',
-        'unchanged_print_parts': audit['unchanged_print_parts']}
+        'nesting_revision': audit.get('nested_housing', {}),
+        'housing_change_required_for_adapter_depth': False,
+        'housing_geometry_updated_for_print_simplicity': bool(audit.get('nested_housing'))}
     (ROOT / 'adapter-housing-verification.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({'nominal_mm': report['nominal_mm'],
                       'conditional_minimum_mm': report['conditional_minimum_mm'],

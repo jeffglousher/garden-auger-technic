@@ -1,5 +1,7 @@
 {
   "reference_commit": "1bbea83dbba876a7f3629b148710857aaf4017f0",
+  "compared_project_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
+  "scope": "Historical history-only refactor; the later nesting revision intentionally changes housing solids.",
   "reference_project_sha256": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
   "current_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "housing_before": {
@@ -22,7 +24,7 @@
     "housing_checks": [
       {
         "body_id": 26,
-        "reference_step_sha256": "759b0f60d1289891bccf732d17e34169a80dc9deb3836bd09e78f203d5092c4c",
+        "reference_step_sha256": "71e25b014713c7b291266905efda90c3a66b00d75f84619a88984e4c4c27cf80",
         "new_minus_old": {
           "native_boolean_residual_empty": true
         },
@@ -34,7 +36,7 @@
       },
       {
         "body_id": 46,
-        "reference_step_sha256": "6e1de2baf32054b23edddf26961868428be1ff2883f0762ca6c458179ea1730a",
+        "reference_step_sha256": "f8aaddf099aa0fb7e71297a93097a252289e5c7edd6618eb811bbdfbacf73981",
         "new_minus_old": {
           "native_boolean_residual_empty": true
         },

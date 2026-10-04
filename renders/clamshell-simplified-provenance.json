@@ -1,7 +1,8 @@
 {
   "image": "clamshell-simplified.png",
-  "method": "Raster rendering of native rebuilt CAD mesh; actual axial sketch below",
+  "method": "Raster rendering of historical native CAD mesh; actual axial sketch below",
   "source_project": "garden-auger-direct-drive.nbcad",
+  "source_project_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "source_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "verification": "housing-simplification-verification.json"
 }

@@ -1,4 +1,4 @@
-"""Verify the current history refactor against its committed CAD baseline."""
+"""Repeat the historical history-only comparison, before the nesting revision."""
 import argparse
 import hashlib
 import io
@@ -12,6 +12,7 @@ from housing_simplification import housing_counts, verify_housing
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = '1bbea83dbba876a7f3629b148710857aaf4017f0'
+REFACTORED = '50f789bd5b35e472b28f56a7ee5f9c3b94a52469'
 
 
 def model(data):
@@ -22,10 +23,11 @@ def model(data):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--reference-commit', default=BASELINE)
+    parser.add_argument('--project-commit', default=REFACTORED)
     args = parser.parse_args()
     name = 'garden-auger-direct-drive.nbcad'
     previous = subprocess.check_output(['git', 'show', f'{args.reference_commit}:{name}'], cwd=ROOT)
-    current = (ROOT / name).read_bytes()
+    current = subprocess.check_output(['git', 'show', f'{args.project_commit}:{name}'], cwd=ROOT)
     before, after = model(previous), model(current)
     with CadClient() as client:
         checks = verify_housing(client, before, after)
@@ -37,9 +39,12 @@ def main():
     for path in prints:
         relative = path.relative_to(ROOT).as_posix()
         old = subprocess.check_output(['git', 'show', f'{args.reference_commit}:{relative}'], cwd=ROOT)
-        assert old == path.read_bytes(), f'Print artifact changed: {relative}'
+        compared = subprocess.check_output(['git', 'show', f'{args.project_commit}:{relative}'], cwd=ROOT)
+        assert old == compared, f'Print artifact changed: {relative}'
         retained[relative] = hashlib.sha256(old).hexdigest()
     report = {'reference_commit': args.reference_commit,
+        'compared_project_commit': args.project_commit,
+        'scope': 'Historical history-only refactor; the later nesting revision intentionally changes housing solids.',
         'reference_project_sha256': hashlib.sha256(previous).hexdigest(),
         'current_project_sha256': hashlib.sha256(current).hexdigest(),
         'housing_before': housing_counts(before), 'housing_after': housing_counts(after),

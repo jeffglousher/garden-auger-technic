@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
+  "source_project_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
   "housing_change_required_for_this_adapter_revision": false,
   "print_progress_known": false,
   "nominal_mm": {
@@ -222,14 +222,139 @@
     }
   ],
   "scope": "Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. Actual purchased servo shaft/nose clearance remains unverified.",
-  "unchanged_print_parts": {
-    "base_commit": "67f98447cec65db2f3aa4fdaa0aa48d3b58e9f48",
-    "four_stls_byte_identical": true,
-    "sha256": {
-      "petg-housing-upper.stl": "521a24857ef83bcd512a850e418f49c8ad47d2982cdd950046bc361611e133b5",
-      "petg-housing-lower.stl": "b05e6d1d84b00d87e5532ff8b03ed4a332a7c60a5da203171ba6f7574acdb992",
-      "petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
-      "pla-full-wear-sleeve.stl": "25ff8f30a090660195c08f6ad4ff97a948a2160f9836350a0d83923b1d0be638"
+  "nesting_revision": {
+    "finished_housing_geometry_changed": true,
+    "housing_before": {
+      "solid_operations": 26,
+      "sketches": 18,
+      "datum_planes": 5,
+      "history_entries": 49
+    },
+    "housing_after": {
+      "solid_operations": 25,
+      "sketches": 17,
+      "datum_planes": 5,
+      "history_entries": 47
+    },
+    "removed_history_entries": 2,
+    "axial_profile_vertices_before": 16,
+    "axial_profile_vertices_after": 12,
+    "removed_geometry": [
+      "Separate diameter 33 front-entry counterbore",
+      "Two housing tapers around the collar roots",
+      "20.8 mm tall internal connector parking pocket"
+    ],
+    "retained_geometry": [
+      "Both integral collar thrust-stop planes and opening diameters",
+      "Loose PLA sleeve seat and both sleeve stop planes",
+      "29.6 mm rear journal/adapter chamber",
+      "Servo case and ear pockets",
+      "Clamshell locating pins/sockets",
+      "M3 screw seats and ruthex insert pilots"
+    ],
+    "wire_channel": {
+      "height_mm": 8.0,
+      "outlet_width_mm": 5.2,
+      "case_side_boot_bay_y_mm": [
+        180.6,
+        191.2
+      ],
+      "assembly": "Lay cable in split seam; keep JR connector outside housing",
+      "physical_boot_fit_verified": false,
+      "reference_photo_url": "https://www.injora.com/cdn/shop/files/1_5_af7067ed-c672-4de7-882a-37d01068c61d.jpg?v=1787641003&width=720",
+      "scope": "Boot allowance is a design envelope; supplier does not dimension the boot."
+    },
+    "geometry_verification": {
+      "finished_housing_geometry_identical_to_previous": false,
+      "other_body_mesh_arrays_identical": true,
+      "unchanged_body_ids": [
+        1,
+        15,
+        90,
+        216,
+        221
+      ],
+      "materials_and_assembly_placements_preserved": true,
+      "collar_stop_y_mm": [
+        113.7,
+        117.3
+      ],
+      "collar_opening_diameters_mm": [
+        31.2,
+        31.0
+      ],
+      "collar_end_float_nominal_mm": 0.6,
+      "sleeve_stop_y_mm": [
+        120.3,
+        131.2
+      ],
+      "sleeve_end_float_nominal_mm": 0.5,
+      "native_faces": {
+        "26": {
+          "before": 101,
+          "after": 95
+        },
+        "46": {
+          "before": 98,
+          "after": 92
+        }
+      },
+      "sleeve_capture_and_journal_offset_checks": [
+        {
+          "sleeve_translation_mm": -0.29,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": 0.19,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": -0.31,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "sleeve_translation_mm": 0.21,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            -0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            -0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        }
+      ]
     }
-  }
+  },
+  "housing_change_required_for_adapter_depth": false,
+  "housing_geometry_updated_for_print_simplicity": true
 }

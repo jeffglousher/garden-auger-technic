@@ -1,13 +1,27 @@
 {
   "project": "garden-auger-bambu-latest.3mf",
-  "sha256": "9b623e6a741bb11c2f9f7ef2cc2b5d55fe8cc33e0911599b19f23432f98da8d0",
+  "sha256": "b19e2f408d3bcb71ff35d314e07b6a223f09ed4e09b18faec9c00281b263f9bf",
   "canonical_export": "garden-auger-direct-drive.3mf",
   "canonical_artifact_hashes_verified": true,
   "geometry": [
     {
+      "name": "PETG - One-piece auger",
+      "vertices": 9807,
+      "triangles": 19610,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 3.824999993184974e-06
+    },
+    {
+      "name": "PETG - Housing lower",
+      "vertices": 1794,
+      "triangles": 3584,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 1.900000022203585e-06
+    },
+    {
       "name": "PETG - Housing upper",
-      "vertices": 2579,
-      "triangles": 5170,
+      "vertices": 2443,
+      "triangles": 4898,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 1.900000022203585e-06
     },
@@ -24,20 +38,6 @@
       "triangles": 756,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 8.000000022434506e-07
-    },
-    {
-      "name": "PETG - Housing lower",
-      "vertices": 1930,
-      "triangles": 3856,
-      "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 1.900000022203585e-06
-    },
-    {
-      "name": "PETG - One-piece auger",
-      "vertices": 9807,
-      "triangles": 19610,
-      "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 3.824999993184974e-06
     }
   ],
   "plates": [
@@ -45,23 +45,11 @@
       "plate": 1,
       "name": "PETG - Housing halves",
       "parts": [
-        "PETG - Housing lower",
-        "PETG - Housing upper"
+        "PETG - Housing upper",
+        "PETG - Housing lower"
       ],
       "filament": 1,
       "bounds_mm": [
-        [
-          [
-            28.0,
-            136.0000008,
-            0.0
-          ],
-          [
-            228.0,
-            234.5999992,
-            24.0
-          ]
-        ],
         [
           [
             28.0,
@@ -72,6 +60,18 @@
             228.0,
             122.5999992,
             27.2000008
+          ]
+        ],
+        [
+          [
+            28.0,
+            136.0000008,
+            0.0
+          ],
+          [
+            228.0,
+            234.5999992,
+            24.0
           ]
         ]
       ]

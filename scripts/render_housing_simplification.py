@@ -1,19 +1,25 @@
-"""Render actual rebuilt CAD meshes and the shared revolve sketch."""
+"""Render the historical history-only refactor from its pinned CAD revision."""
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 
 from PIL import Image, ImageDraw
 from render_common import framed, triangles, font
+from cad_client import CadClient
+from native_render_source import native_render_source
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    scene = json.loads((ROOT / '.build/direct-drive/scene.json').read_text())
-    model = json.loads((ROOT / '.build/direct-drive/model.json').read_text())
     proof = json.loads((ROOT / 'housing-simplification-verification.json').read_text())
+    source = subprocess.check_output(['git', 'show',
+        f"{proof['compared_project_commit']}:garden-auger-direct-drive.nbcad"], cwd=ROOT)
+    assert hashlib.sha256(source).hexdigest() == proof['current_project_sha256']
+    with CadClient() as client:
+        model, scene = native_render_source(client, source)
     bodies = {b['id']: b for b in scene['bodies']}
     image = Image.new('RGB', (1600, 1080), (17, 21, 27))
     d = ImageDraw.Draw(image)
@@ -50,9 +56,10 @@ def main():
            font=font(21), fill='#B8C8D8')
     path = ROOT / 'renders/clamshell-simplified.png'
     image.save(path)
-    provenance = {'image': path.name, 'method': 'Raster rendering of native rebuilt CAD mesh; actual axial sketch below',
+    provenance = {'image': path.name, 'method': 'Raster rendering of historical native CAD mesh; actual axial sketch below',
         'source_project': 'garden-auger-direct-drive.nbcad',
-        'source_project_sha256': hashlib.sha256((ROOT / 'garden-auger-direct-drive.nbcad').read_bytes()).hexdigest(),
+        'source_project_commit': proof['compared_project_commit'],
+        'source_project_sha256': hashlib.sha256(source).hexdigest(),
         'verification': 'housing-simplification-verification.json'}
     (ROOT / 'renders/clamshell-simplified-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
     print('Rebuilt housing halves and shared axial revolve profile rendered', flush=True)

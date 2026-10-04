@@ -13,6 +13,7 @@ from cad_build import Builder, profile, save_project
 from build_model import configure, rear_pads
 from model_cleanup import clean_checked
 from housing_simplification import simplify_housing, verify_housing
+from nested_housing import nest_housing, verify_nesting
 from direct_drive_parameters import *
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -104,7 +105,8 @@ def main():
         m,cleanup=clean_checked(c,m,221)
         simpler,housing_cleanup=simplify_housing(m)
         housing_cleanup['geometry_verification']=verify_housing(c,m,simpler)
-        m=simpler
+        m,nesting=nest_housing(simpler)
+        nesting['geometry_verification']=verify_nesting(c,simpler,m)
         for o in m['assembly']['component_structure']['occurrences']:
             if o['component_id']==14:o['name']='Round pilot press-fit square adapter - fit prototype'
         c.call('cad_load_project_model',{'model_json':json.dumps(m)})
@@ -161,6 +163,7 @@ def main():
                 'tip_bottom_gap_min':1.05,'hub_flange_gap_min':.75,
                 'note':'Conditional on printed +/-0.10 mm critical limits and measured installed flange location.'},
             'cleanup':cleanup,'housing_simplification':housing_cleanup,
+            'nested_housing':nesting,
             'preflight':preflight,'assembly_checks':checks,
             'torque':{'published_stall_Nm':35*9.80665*.01,
                 'tangential_force_at_5_9_mm_diameter_N':35*9.80665*.01/.00295,
