@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
+  "source_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "housing_change_required_for_this_adapter_revision": false,
   "print_progress_known": false,
   "nominal_mm": {

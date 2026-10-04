@@ -105,6 +105,81 @@
     "suppressed_features_remaining": 0,
     "rebuilt_mesh_geometry_identical": true
   },
+  "housing_simplification": {
+    "features_before": 115,
+    "features_after": 83,
+    "housing_before": {
+      "solid_operations": 41,
+      "sketches": 28,
+      "datum_planes": 12,
+      "history_entries": 81
+    },
+    "housing_after": {
+      "solid_operations": 26,
+      "sketches": 18,
+      "datum_planes": 5,
+      "history_entries": 49
+    },
+    "retired_solid_operations": [
+      44,
+      47,
+      52,
+      89,
+      200,
+      202,
+      232,
+      234,
+      242,
+      244,
+      266,
+      270,
+      273,
+      274,
+      279
+    ],
+    "removed_features_including_sketches_and_planes": 32,
+    "suppressed_features_remaining": 0,
+    "geometry_verification": {
+      "method": "Native analytic STEP/BREP boolean subtraction in both directions",
+      "scope": "Finished housing geometry, at CAD kernel precision",
+      "housing_checks": [
+        {
+          "body_id": 26,
+          "reference_step_sha256": "632c74bda03ea983b894f97dec61cc27133efc6fbb4525c05bb57c98a8efcb59",
+          "new_minus_old": {
+            "native_boolean_residual_empty": true
+          },
+          "old_minus_new": {
+            "native_boolean_residual_empty": true
+          },
+          "native_faces_before": 101,
+          "native_faces_after": 101
+        },
+        {
+          "body_id": 46,
+          "reference_step_sha256": "6cbff1310ffafbbf9378ff43af57e304044675c669247c9234f9ded301fca242",
+          "new_minus_old": {
+            "native_boolean_residual_empty": true
+          },
+          "old_minus_new": {
+            "native_boolean_residual_empty": true
+          },
+          "native_faces_before": 98,
+          "native_faces_after": 98
+        }
+      ],
+      "unchanged_other_body_ids": [
+        1,
+        15,
+        90,
+        216,
+        221
+      ],
+      "other_body_mesh_arrays_identical": true,
+      "material_appearances_and_assembly_identical": true,
+      "temporary_comparison_bodies_saved": false
+    }
+  },
   "preflight": {
     "_disclosure": {
       "active_focus": "print",
@@ -463,7 +538,7 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
+    "garden-auger-direct-drive.nbcad": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
     "garden-auger-direct-drive.3mf": "b099d6a9a3e9b41f12d384df714f96e48186946764206d40a9d3fd2af953efd2",
     "garden-auger-direct-adapter.3mf": "ca3915ca531b1c89cf36f6197f6cc213c2b4d40f9349b167f821c3eeab4a55f5",
     "garden-auger-press-fit.nbcad": "1a06f426c96bec44d4c068cdb0d9ecc0536e7e3dc5fad8364fab70211c6e9c93",
@@ -478,5 +553,6 @@
       "petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
       "pla-full-wear-sleeve.stl": "25ff8f30a090660195c08f6ad4ff97a948a2160f9836350a0d83923b1d0be638"
     }
-  }
+  },
+  "retained_print_geometry_verification": "housing-simplification-verification.json"
 }

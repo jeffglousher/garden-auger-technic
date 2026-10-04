@@ -4,6 +4,16 @@ The current [direct-drive CAD](garden-auger-direct-drive.nbcad) uses **one gray 
 
 ![Round press-fit adapter](renders/direct-drive-adapter.png)
 
+## Simplified clamshell construction
+
+The current direct-drive housing uses **49 history entries instead of 81** (40% fewer), with **26 solid operations instead of 41**. The entire assembly history drops from 115 to 83 entries. Three overlapping rectangular housing extrusions become one stepped footprint extrusion. The front openings join the existing collar, sleeve, journal and adapter chamber in **one shared revolve cut**. One symmetric wire-exit cut serves both halves. Repeated cuts, cuts subsequently filled back in, duplicate reference planes and unused sketches are removed. The remaining mirrored extensions preserve the existing housing and alignment surfaces.
+
+![Simplified native housing and shared revolve profile](renders/clamshell-simplified.png)
+
+The [native geometry comparison](housing-simplification-verification.json) checks the new solid minus the committed old solid, and the old solid minus the new solid, for **both halves**. All four analytic boolean residuals are empty at CAD kernel precision. Other body meshes, assembly placements and material appearances are identical. Insert pockets, servo mounting surfaces, clamshell locators and the deeper adapter clearances therefore retain their existing geometry. No housing reprint is required because of this history cleanup; actual printing progress is unknown.
+
+The existing STLs and complete Bambu project are **byte-identical** to the previous release and remain compatible with the simplified CAD. `scripts/build_direct_drive.py` now applies and verifies this simplification during regeneration. To repeat the committed-baseline check, run `scripts/check_housing_simplification.py`; render the rebuilt halves and actual axial sketch with `scripts/render_housing_simplification.py`. [Render provenance](renders/clamshell-simplified-provenance.json) identifies the current CAD file.
+
 ## Research and design choice
 
 [Firsthand builders](https://www.reddit.com/r/3Dprinting/comments/pm04eb) report using a slightly undersized round hole instead of printing miniature spline teeth; another [PETG/FDM discussion](https://www.reddit.com/r/robotics/comments/sh8ooa) recommends the same approach. These are maker reports, not a 35 kg·cm qualification. A [primary Botball study](https://ecer.pria.at/archive/ecer-2026/papers/Replacing_Botball_Kit_Parts_with_3D_Prints.pdf) reports that a PLA horn could not reproduce the fine shaft engagement and failed to transmit torque. Its material and servo differ from ours.
