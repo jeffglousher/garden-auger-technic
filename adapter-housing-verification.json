@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
+  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
   "housing_change_required_for_this_adapter_revision": false,
   "print_progress_known": false,
   "nominal_mm": {
@@ -241,7 +241,7 @@
     "axial_profile_vertices_after": 12,
     "removed_geometry": [
       "Separate diameter 33 front-entry counterbore",
-      "Two housing tapers around the collar roots",
+      "Two housing tapers around the collar roots (one flight-clearance entrance taper retained)",
       "20.8 mm tall internal connector parking pocket"
     ],
     "retained_geometry": [
@@ -252,6 +252,25 @@
       "Clamshell locating pins/sockets",
       "M3 screw seats and ruthex insert pilots"
     ],
+    "flight_entry": {
+      "entry_diameter_mm": 33.2,
+      "collar_stop_opening_diameter_mm": 31.2,
+      "taper_length_mm": 5.9,
+      "additional_profile_vertices": 0,
+      "reason": "Clear the complete last flight, including permitted radial offset and axial travel."
+    },
+    "servo_pockets": {
+      "case_length_mm": 40.8,
+      "case_width_mm": 20.8,
+      "ear_capture_span_mm": 3.1,
+      "ear_thickness_reference_mm": 2.7,
+      "ear_axial_float_nominal_mm": 0.4,
+      "previous_ear_axial_float_nominal_mm": 1.8,
+      "ear_cut_moved_after_extensions": true,
+      "dimension_authority": "User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.",
+      "drawing_dimensions_user_confirmed": true,
+      "printed_assembly_fit_verified": false
+    },
     "wire_channel": {
       "height_mm": 8.0,
       "outlet_width_mm": 5.2,

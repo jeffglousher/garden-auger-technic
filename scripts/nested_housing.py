@@ -7,15 +7,19 @@ from model_cleanup import prune
 from housing_simplification import housing_counts
 
 FRONT_THROAT_DIAMETER = 31.2
+FRONT_ENTRY_DIAMETER = 33.2
 REAR_COLLAR_THROAT_DIAMETER = 31.0
 CABLE_CHANNEL_HEIGHT = 8.0
+SERVO_EAR_POCKET_REAR_Y = 168.4
+SERVO_EAR_POCKET_DEPTH = 3.1
 
 
 def nesting_profile():
     # Keep the two collar stop planes and their original opening diameters.
-    # Constant throats clear the auger's strong collar-root blends without
-    # reproducing the blend geometry as more tapers/steps in the housing.
-    return [(107.8, 0), (107.8, FRONT_THROAT_DIAMETER / 2),
+    # One entrance taper clears the last flight at the permitted shaft offset.
+    # Keep the smaller collar-stop opening: enlarging the entire throat would
+    # reduce the thrust collar's retaining overlap. No extra profile step.
+    return [(107.8, 0), (107.8, FRONT_ENTRY_DIAMETER / 2),
         (113.7, FRONT_THROAT_DIAMETER / 2), (113.7, 17.8),
         (117.3, 17.8), (117.3, REAR_COLLAR_THROAT_DIAMETER / 2),
         (120.3, REAR_COLLAR_THROAT_DIAMETER / 2), (120.3, 17.8),
@@ -33,6 +37,27 @@ def nest_housing(original):
     name = 'Nested collar and sleeve seats - one revolve cut'
     features[301]['name'] = name
     next(r for r in model['revolves'] if r['feature_id'] == 301)['name'] = name
+
+    # The user's confirmed drawing is authoritative: 40 by 20 mm case.
+    # Retain 0.4 mm per-side printed fitting allowance.
+    case = sketches['Sketch45']
+    profile(case, [(-30.4, -10.4), (10.4, -10.4),
+                   (10.4, 10.4), (-30.4, 10.4)])
+    features[131]['name'] = extrudes[131]['name'] = 'Servo case pocket - 40.8 by 20.8'
+    ears = sketches['Sketch62']
+    # Retain the two native rectangular loops and their profile order.
+    ears['basis']['origin'][1] = SERVO_EAR_POCKET_REAR_Y
+    plane = next(p for p in model['datum_planes'] if p['datum_id'] == ears['plane']['datum_id'])
+    plane['basis']['origin'][1] = SERVO_EAR_POCKET_REAR_Y
+    plane['source']['distance'] = -SERVO_EAR_POCKET_REAR_Y
+    extrudes[183]['extent']['distance'] = SERVO_EAR_POCKET_DEPTH
+    features[183]['name'] = extrudes[183]['name'] = 'Servo ears - final cut after housing extensions'
+    # An extension previously filled the outer 0.5 mm of the right ear pocket.
+    # Reorder the existing cut after those joins instead of adding another cut.
+    history = model['document']['history']['features']
+    ear_cut = next(f for f in history if f['id'] == 183)
+    history.remove(ear_cut)
+    history.insert(next(i for i, f in enumerate(history) if f['id'] == 277) + 1, ear_cut)
 
     # The connector stays outside. Lay the cable into the open clamshell seam.
     # Keep a short bay at the photographed case-side cable boot, then turn
@@ -56,12 +81,24 @@ def nest_housing(original):
         'axial_profile_vertices_before': before_vertices,
         'axial_profile_vertices_after': len(nesting_profile()),
         'removed_geometry': ['Separate diameter 33 front-entry counterbore',
-            'Two housing tapers around the collar roots',
+            'Two housing tapers around the collar roots (one flight-clearance entrance taper retained)',
             '20.8 mm tall internal connector parking pocket'],
         'retained_geometry': ['Both integral collar thrust-stop planes and opening diameters',
             'Loose PLA sleeve seat and both sleeve stop planes',
             '29.6 mm rear journal/adapter chamber', 'Servo case and ear pockets',
             'Clamshell locating pins/sockets', 'M3 screw seats and ruthex insert pilots'],
+        'flight_entry': {'entry_diameter_mm': FRONT_ENTRY_DIAMETER,
+            'collar_stop_opening_diameter_mm': FRONT_THROAT_DIAMETER,
+            'taper_length_mm': 5.9, 'additional_profile_vertices': 0,
+            'reason': 'Clear the complete last flight, including permitted radial offset and axial travel.'},
+        'servo_pockets': {'case_length_mm': 40.8, 'case_width_mm': 20.8,
+            'ear_capture_span_mm': SERVO_EAR_POCKET_DEPTH,
+            'ear_thickness_reference_mm': 2.7, 'ear_axial_float_nominal_mm': .4,
+            'previous_ear_axial_float_nominal_mm': 1.8,
+            'ear_cut_moved_after_extensions': True,
+            'dimension_authority': 'User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.',
+            'drawing_dimensions_user_confirmed': True,
+            'printed_assembly_fit_verified': False},
         'wire_channel': {'height_mm': CABLE_CHANNEL_HEIGHT,
             'outlet_width_mm': 5.2, 'case_side_boot_bay_y_mm': [180.6, 191.2],
             'assembly': 'Lay cable in split seam; keep JR connector outside housing',
@@ -110,9 +147,9 @@ def verify_nesting(client, before, after):
             client.call('assembly_set_occurrence_pose', {'occurrence_id': auger,
                 'local_pose': {'translation': [dx, 0, dz], 'rotation': [0, 0, 0, 1]}})
             result = client.call('assembly_interference_check', {'clearance_threshold_mm': .01})
-            pairs = [p for p in result['pairs'] if 15 in {p['body_a'], p['body_b']}
+            pairs = [p for p in result['pairs'] if bool({15, 90} & {p['body_a'], p['body_b']})
                      and bool({26, 46} & {p['body_a'], p['body_b']})]
-            assert result['exact'] and len(pairs) == 2
+            assert result['exact'] and len(pairs) == 4
             assert not any(p['interfering'] for p in pairs), (dx, dz, pairs)
             checks.append({'auger_axis_offset_xz_mm': [dx, dz], 'exact': True,
                            'auger_housing_overlap_mm3': 0})

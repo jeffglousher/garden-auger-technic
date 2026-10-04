@@ -50,7 +50,8 @@
     "unsupported_2_mm_stationary_nose_removed_from_reference": true,
     "purchased_shaft_and_nose_collision_verified": false,
     "actual_shaft_tip_contact_verified": false,
-    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack."
+    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.",
+    "dimensioned_tip_to_case_stack_user_confirmed": true
   },
   "center_screw_inspection": {
     "screw": "M3 x 6 ISO4762/DIN912 envelope, full thread; verify factory thread compatibility",
@@ -145,7 +146,7 @@
       "housing_checks": [
         {
           "body_id": 26,
-          "reference_step_sha256": "977be4f50811dcf1289b0a81fa21b90a7ffed5389e900ce55faeab0e27cf1f49",
+          "reference_step_sha256": "9977ee3216c517ddfeccdb45084d9f3bbb1261b8ee6c78207ef05d9ac6f66a89",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -157,7 +158,7 @@
         },
         {
           "body_id": 46,
-          "reference_step_sha256": "ce91cdbd305614d97b5d7bb358e318d4411d2f111665b7e6b90bf0c2ccef6a37",
+          "reference_step_sha256": "6f4b266eb7c6f9e8921386e1b6db86fa9823c30adabf04fee3de85f79cd4ef05",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -199,7 +200,7 @@
     "axial_profile_vertices_after": 12,
     "removed_geometry": [
       "Separate diameter 33 front-entry counterbore",
-      "Two housing tapers around the collar roots",
+      "Two housing tapers around the collar roots (one flight-clearance entrance taper retained)",
       "20.8 mm tall internal connector parking pocket"
     ],
     "retained_geometry": [
@@ -210,6 +211,25 @@
       "Clamshell locating pins/sockets",
       "M3 screw seats and ruthex insert pilots"
     ],
+    "flight_entry": {
+      "entry_diameter_mm": 33.2,
+      "collar_stop_opening_diameter_mm": 31.2,
+      "taper_length_mm": 5.9,
+      "additional_profile_vertices": 0,
+      "reason": "Clear the complete last flight, including permitted radial offset and axial travel."
+    },
+    "servo_pockets": {
+      "case_length_mm": 40.8,
+      "case_width_mm": 20.8,
+      "ear_capture_span_mm": 3.1,
+      "ear_thickness_reference_mm": 2.7,
+      "ear_axial_float_nominal_mm": 0.4,
+      "previous_ear_axial_float_nominal_mm": 1.8,
+      "ear_cut_moved_after_extensions": true,
+      "dimension_authority": "User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.",
+      "drawing_dimensions_user_confirmed": true,
+      "printed_assembly_fit_verified": false
+    },
     "wire_channel": {
       "height_mm": 8.0,
       "outlet_width_mm": 5.2,
@@ -425,7 +445,7 @@
   "physical_acceptance": [
     "Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.",
     "Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.",
-    "Measure actual exposure from shaft tip to the nearest stationary nose/case surface: at least 4.00 mm is required for the 3.70 +/-0.10 mm socket and 0.20 mm minimum stationary clearance.",
+    "The user-confirmed diagram gives 4.00 mm tip-to-case-face distance. Inspect the printed socket depth (3.70 +/-0.10 mm) so at least 0.20 mm clearance remains.",
     "Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.",
     "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
     "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
@@ -457,7 +477,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 187072.20229883216,
+        "volume_mm3": 187146.50472546023,
         "plate_bounds_mm": [
           [
             8.0,
@@ -470,7 +490,7 @@
             27.2
           ]
         ],
-        "triangle_count": 4898
+        "triangle_count": 4928
       },
       {
         "name": "PETG - Housing lower",
@@ -479,7 +499,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 188299.99309823685,
+        "volume_mm3": 188374.29552486495,
         "plate_bounds_mm": [
           [
             8.0,
@@ -492,7 +512,7 @@
             24.0
           ]
         ],
-        "triangle_count": 3584
+        "triangle_count": 3614
       },
       {
         "name": "PETG - One-piece auger",
@@ -657,8 +677,8 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
-    "garden-auger-direct-drive.3mf": "21f92a46f556df92019d22af700512e5fa05b8af49381f0ec1108822441481c4",
+    "garden-auger-direct-drive.nbcad": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+    "garden-auger-direct-drive.3mf": "c903f4e074ee2ca72b1835e3c1536994d0dff80caba999fa5fce9d2b75d00d51",
     "garden-auger-direct-adapter.3mf": "ca3915ca531b1c89cf36f6197f6cc213c2b4d40f9349b167f821c3eeab4a55f5",
     "garden-auger-press-fit.nbcad": "1a06f426c96bec44d4c068cdb0d9ecc0536e7e3dc5fad8364fab70211c6e9c93",
     "garden-auger-press-fit.3mf": "af14c9dbb859ad89319f829b0bf5289c1a56c968c02057b8800098083f75b66e"
@@ -676,6 +696,15 @@
     "straight_bore_radial_wall_mm": 9.15,
     "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
     "actual_servo_thread_depth_verified": false
+  },
+  "hardware_dimension_authority": {
+    "source": "User-supplied dimensioned servo diagram; user confirms it is accurate",
+    "case_length_mm": 40,
+    "case_width_mm": 20,
+    "mounting_ear_thickness_mm": 2.7,
+    "overall_tip_to_rear_mm": 41.5,
+    "case_face_to_rear_mm": 37.5,
+    "nominal_tip_to_case_face_mm": 4
   },
   "housing_geometry_release_verification": "housing-nesting-verification.json"
 }

@@ -1,43 +1,43 @@
 {
   "project": "garden-auger-bambu-latest.3mf",
-  "sha256": "de38f17c04f04eebf94e406576ceecc195841c99823338554f24b179835232e1",
+  "sha256": "343196aae41c305c611784c2149fcc497d45e03f425dc83a3a70194b2f5dadf0",
   "canonical_export": "garden-auger-direct-drive.3mf",
   "canonical_artifact_hashes_verified": true,
   "geometry": [
     {
       "name": "PETG - Housing upper",
-      "vertices": 2443,
-      "triangles": 4898,
+      "vertices": 2458,
+      "triangles": 4928,
       "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 1.900000022203585e-06
+      "maximum_shape_difference_mm": 2.842170943040401e-14
     },
     {
       "name": "PETG - Square adapter",
       "vertices": 987,
       "triangles": 1974,
       "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 5.000000005139782e-07
+      "maximum_shape_difference_mm": 1.7763568394002505e-14
     },
     {
       "name": "PETG - One-piece auger",
       "vertices": 9807,
       "triangles": 19610,
       "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 3.824999993184974e-06
+      "maximum_shape_difference_mm": 4.629976957382098e-14
     },
     {
       "name": "PETG - Housing lower",
-      "vertices": 1794,
-      "triangles": 3584,
+      "vertices": 1809,
+      "triangles": 3614,
       "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 1.900000022203585e-06
+      "maximum_shape_difference_mm": 2.842170943040401e-14
     },
     {
       "name": "PLA - Full wear sleeve",
       "vertices": 378,
       "triangles": 756,
       "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 8.000000022434506e-07
+      "maximum_shape_difference_mm": 1.4210854715202004e-14
     }
   ],
   "plates": [
@@ -53,24 +53,24 @@
         [
           [
             28.0,
-            24.000000799999995,
+            24.0,
             0.0
           ],
           [
             228.0,
-            122.5999992,
-            27.2000008
+            122.6,
+            27.2
           ]
         ],
         [
           [
             28.0,
-            136.0000008,
+            136.0,
             0.0
           ],
           [
             228.0,
-            234.5999992,
+            234.60000000000002,
             24.0
           ]
         ]
@@ -86,14 +86,14 @@
       "bounds_mm": [
         [
           [
-            111.00000040000003,
-            55.000001499999996,
+            111.0,
+            55.0,
             0.0
           ],
           [
-            144.98943360000004,
-            199.6999985,
-            33.9788704
+            144.9894332,
+            199.69999981,
+            33.9788685
           ]
         ]
       ]
@@ -108,14 +108,14 @@
       "bounds_mm": [
         [
           [
-            113.9999993,
-            113.9999996,
+            114.0,
+            114.0,
             0.0
           ],
           [
-            141.9825967,
-            141.99129639999998,
-            22.8999996
+            141.982597,
+            141.99129599999998,
+            22.9
           ]
         ]
       ]
@@ -130,14 +130,14 @@
       "bounds_mm": [
         [
           [
-            110.00000040000003,
-            110.00000069999999,
+            110.00000000000006,
+            110.0,
             0.0
           ],
           [
-            143.98943360000004,
-            143.9788673,
-            10.39999962
+            143.98943400000002,
+            143.97886799999998,
+            10.4
           ]
         ]
       ]
@@ -185,6 +185,21 @@
     "wall_loops": 6,
     "infill_density_percent": 100,
     "infill_pattern": "zig-zag"
+  },
+  "housing_strength_override": {
+    "wall_loops": 6,
+    "infill_density_percent": 30,
+    "infill_pattern": "gyroid",
+    "top_shell_layers": 6,
+    "bottom_shell_layers": 6
+  },
+  "future_auger_strength_override": {
+    "wall_loops": 6,
+    "infill_density_percent": 40,
+    "infill_pattern": "gyroid",
+    "top_shell_layers": 6,
+    "bottom_shell_layers": 6,
+    "current_running_job_changed": false
   },
   "scope": "Geometry and plate-layout verification; physical fit and load qualification remain in README."
 }

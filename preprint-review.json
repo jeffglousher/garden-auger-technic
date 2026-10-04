@@ -1,0 +1,2565 @@
+{
+  "source_project": "garden-auger-direct-drive.nbcad",
+  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+  "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
+  "reference_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
+  "confirmed_prior_flight_interference": [
+    {
+      "auger_translation_mm": [
+        0.5,
+        0,
+        0
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": true,
+          "minimum_clearance_mm": 1.4832596229087938e-14,
+          "overlap_volume_mm3": 0.013880472269879842
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.8002179229093408e-12,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "auger_translation_mm": [
+        0.5,
+        0.3,
+        0
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": true,
+          "minimum_clearance_mm": 1.2878587085651816e-14,
+          "overlap_volume_mm3": 0.21434842151191047
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.8002179229093406e-12,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "revised_motion_checks": [
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.105869218361332,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.105869218361332,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.2892801546290498,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.105869218361334,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.9094095421779707,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.105869218361332,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6266679386890723,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6266679386890723,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.0780858850729187,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.760521894744107,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.7769091761367983,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0979964804977802,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.597573216654603,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.597573216654603,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.5813026737133193,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.4491188104716046,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        -0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 4.098981062218934,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0979964804976634,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0979964804977802,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.2136501671063438,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.2344791762316834,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.30000000000000077,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.449118810471688,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.8478132106991008,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.597573216654602,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.131773130994489,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0979964804976639,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.3522820882445763,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.7605218947440296,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999893,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        -0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.975998075333467,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6266679386890723,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0544714688051107,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0544714688051107,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.039727888356512,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0544714688051098,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.6295296657613547,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0544714688051096,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.5615021899878767,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.5615021899878767,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.7995747605636534,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.7020038232947378,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.486545605817326,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0464349576866665,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.5474407476223386,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.5474407476223386,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.3627287914782666,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.3989863414393433,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.832851232557292,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0465238623508188,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0464349576866612,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.167009031037104,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.9879837292858131,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.30000000000000077,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.3989863414394283,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.5686356968102055,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.54744074762234,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        -0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0761940630660147,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0465238623508188,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        -0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.1008090874614465,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.7020038232946534,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999893,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0,
+        -0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.6958130327452934,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999716,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.5615021899878768,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0043389997728487,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0043389997728487,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.8046462208777576,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0043389997728494,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.3526167300973273,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0043389997728498,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.5113697209556183,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.5113697209556183,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.5280590825395262,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6518713542624754,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.1974056807208053,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.9963024886543999,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.4973082785900802,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.4973082785900802,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 2.162989144122057,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.34885387240708,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        -0.5,
+        0.3,
+        0
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.571624458792379,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.9963913933185607,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.9963024886544033,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.1219165862321847,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.7572242212393756,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.30000000000000077,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.3488538724071675,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.292599131864372,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.4973082785900802,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.0261502557713065,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.9963913933185607,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 45,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 1.8628307258800092,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6518713542623922,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.29999999999999893,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "translation_mm": [
+        0,
+        0.3,
+        -0.5
+      ],
+      "common_rotation_deg": 90,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 3.4184876782995524,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 15,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 90,
+          "interfering": false,
+          "minimum_clearance_mm": 0.511369720955616,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "interfering": false,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "motion_check_count": 45,
+  "motion_check_scope": "45 exact B-rep poses: 0/45/90 degree rotations, 0/0.5 mm cardinal offsets and +/-0.30 mm axial travel. Additional continuous-rotation entrance check uses the conservative flight surface bound below.",
+  "minimum_sampled_flight_to_housing_clearance_mm": 0.511369720955616,
+  "continuous_rotation_flight_entry_bound": {
+    "method": "Minimum vertex gap on clipped triangular flight surface against the linear axisymmetric entrance; radial offset applied in every direction by the triangle inequality.",
+    "rearward_travel_mm": 0.3,
+    "radial_offset_mm": 0.5,
+    "minimum_surface_bound_mm": 0.5186626610169505,
+    "printed_surface_allowance_each_mm": 0.1,
+    "conditional_minimum_gap_mm": 0.21866266101695048,
+    "scope": "Complete final flight at the housing entrance; not a load or wear qualification.",
+    "native_verification_deflection_mm": 0.02,
+    "manufacturing_export_deflection_mm": 0.08
+  },
+  "nominal_servo_case_and_ear_clearance": [
+    {
+      "body_a": 26,
+      "body_b": 1,
+      "interfering": false,
+      "minimum_clearance_mm": 0.1999999999999318,
+      "overlap_volume_mm3": 0.0
+    },
+    {
+      "body_a": 46,
+      "body_b": 1,
+      "interfering": false,
+      "minimum_clearance_mm": 0.1999999999999318,
+      "overlap_volume_mm3": 0.0
+    }
+  ],
+  "clamshell_closure_path": [
+    {
+      "upper_lift_mm": 12,
+      "no_interference": true,
+      "exact": true
+    },
+    {
+      "upper_lift_mm": 6,
+      "no_interference": true,
+      "exact": true
+    },
+    {
+      "upper_lift_mm": 3.5,
+      "no_interference": true,
+      "exact": true
+    },
+    {
+      "upper_lift_mm": 0.5,
+      "no_interference": true,
+      "exact": true
+    },
+    {
+      "upper_lift_mm": 0,
+      "no_interference": true,
+      "exact": true
+    }
+  ],
+  "heat_set_inserts_and_screws": [
+    {
+      "center_xy_mm": [
+        27.0,
+        118.5
+      ],
+      "pilot_diameter_mm": 4,
+      "pilot_depth_mm": 6.7,
+      "radial_wall_sample_min_mm": 4.7,
+      "wall_min_with_dimensional_allowance_mm": 4.4750000000000005,
+      "wall_section_samples": 57,
+      "screw_passage_open": true,
+      "head_seat_height_mm": 8.0,
+      "screw_length_mm": 12,
+      "nominal_insert_engagement_mm": 4.0,
+      "nominal_pilot_bottom_room_mm": 2.7
+    },
+    {
+      "center_xy_mm": [
+        -27.0,
+        118.5
+      ],
+      "pilot_diameter_mm": 4,
+      "pilot_depth_mm": 6.7,
+      "radial_wall_sample_min_mm": 4.7,
+      "wall_min_with_dimensional_allowance_mm": 4.4750000000000005,
+      "wall_section_samples": 57,
+      "screw_passage_open": true,
+      "head_seat_height_mm": 8.0,
+      "screw_length_mm": 12,
+      "nominal_insert_engagement_mm": 4.0,
+      "nominal_pilot_bottom_room_mm": 2.7
+    },
+    {
+      "center_xy_mm": [
+        -36.0,
+        196.8
+      ],
+      "pilot_diameter_mm": 4,
+      "pilot_depth_mm": 6.7,
+      "radial_wall_sample_min_mm": 5.274300984275724,
+      "wall_min_with_dimensional_allowance_mm": 5.049300984275725,
+      "wall_section_samples": 57,
+      "screw_passage_open": true,
+      "head_seat_height_mm": 12.7,
+      "screw_length_mm": 18,
+      "nominal_insert_engagement_mm": 5.300000000000001,
+      "nominal_pilot_bottom_room_mm": 1.3999999999999995
+    },
+    {
+      "center_xy_mm": [
+        16.0,
+        196.8
+      ],
+      "pilot_diameter_mm": 4,
+      "pilot_depth_mm": 6.7,
+      "radial_wall_sample_min_mm": 4.677366238852436,
+      "wall_min_with_dimensional_allowance_mm": 4.452366238852436,
+      "wall_section_samples": 57,
+      "screw_passage_open": true,
+      "head_seat_height_mm": 12.7,
+      "screw_length_mm": 18,
+      "nominal_insert_engagement_mm": 5.300000000000001,
+      "nominal_pilot_bottom_room_mm": 1.3999999999999995
+    }
+  ],
+  "native_preflight": {
+    "_disclosure": {
+      "active_focus": "print",
+      "advertised": true,
+      "mode": "dynamic",
+      "pack": "print",
+      "state": "active"
+    },
+    "appearances_assigned": 7,
+    "bodies_missing_appearance": [],
+    "body_count": 7,
+    "body_ids": [
+      1,
+      15,
+      26,
+      46,
+      90,
+      216,
+      221
+    ],
+    "hints": [
+      "Ready for solid_export_3mf (preferred) or solid_export_stl / solid_export_step."
+    ],
+    "ok": true,
+    "timeline_errors": []
+  },
+  "retained_non_housing_stls": {
+    "print-parts/direct-drive/petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
+    "print-parts/direct-drive/petg-square-adapter.stl": "cd63733709a283cca79c52e2665774266adf8fa2206e66b4e0c13d3450b78ae6",
+    "print-parts/direct-drive/pla-full-wear-sleeve.stl": "25ff8f30a090660195c08f6ad4ff97a948a2160f9836350a0d83923b1d0be638",
+    "print-parts/direct-drive/press-fit-a-5.60.stl": "2521c039af150e1316abe76c3e43cf6ed4d552e521fe5b9776003477109fb0a5",
+    "print-parts/direct-drive/press-fit-b-5.70.stl": "9ecfcbace6195bb7b1c9324649967062b62a9cbc42945ab2e3f31e0d36c080e9",
+    "print-parts/direct-drive/press-fit-c-5.80.stl": "78488df8533baa9340057a364c7e7c84135ef96395dd15e3e55f662edfc0dc45",
+    "print-parts/direct-drive/press-fit-d-5.90.stl": "a42debf7edc4c99f3549ceb98f355e344bed7cf49e773a15b52e3681c70c5e41"
+  },
+  "unchanged_feature_count": true,
+  "current_feature_count": 81,
+  "hardware_dimension_authority": "User-confirmed accurate servo diagram: 40 by 20 mm case, 2.7 mm ears and shown shaft/case stack.",
+  "unresolved_physical_checks": [
+    "Cable boot envelope is not dimensioned in the servo diagram",
+    "Usable shaft thread depth and physically selected press-fit pilot",
+    "Installed adapter position and alignment, printed running fits, loaded torque and wear"
+  ],
+  "readiness": "Corrected housing geometry; final hardware fit and load acceptance remain physical checks.",
+  "bambu_slice_verification": "bambu-slice-verification.json",
+  "print_settings_verification": "bambu-latest-verification.json"
+}

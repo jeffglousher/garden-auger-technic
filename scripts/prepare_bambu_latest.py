@@ -140,9 +140,16 @@ def refresh_geometry(entries, config, parts):
         subpart.find("mesh_stat").set("face_count", str(len(faces)))
         for axis, value in zip(("x", "y", "z"), center):
             subpart.find(f"metadata[@key='source_offset_{axis}']").set("value", f"{value:.12g}")
-        if name == "PETG - Square adapter":
-            for key, value in {"wall_loops": 6, "sparse_infill_density": "100%",
-                               "sparse_infill_pattern": "zig-zag"}.items():
+        strength = ({"wall_loops": 6, "sparse_infill_density": "100%",
+                     "sparse_infill_pattern": "zig-zag"} if name == "PETG - Square adapter" else
+                    {"wall_loops": 6, "sparse_infill_density": "40%",
+                     "sparse_infill_pattern": "gyroid", "top_shell_layers": 6,
+                     "bottom_shell_layers": 6} if name == "PETG - One-piece auger" else
+                    {"wall_loops": 6, "sparse_infill_density": "30%",
+                     "sparse_infill_pattern": "gyroid", "top_shell_layers": 6,
+                     "bottom_shell_layers": 6} if name.startswith("PETG - Housing") else {})
+        if strength:
+            for key, value in strength.items():
                 node = obj.find(f"metadata[@key='{key}']")
                 if node is None:
                     add_metadata(obj, key, value)
@@ -163,7 +170,8 @@ def build():
     # The housing halves share a bed. Complete each layer across both halves
     # instead of sweeping the gantry past one completed, tall part.
     settings["print_sequence"] = "by layer"
-    # Every plate contains one filament, using the primary nozzle.
+    # Model filaments use the primary nozzle. The saved support-interface
+    # material and nozzle assignments remain process settings.
     settings["filament_map"] = ["1"] * 4
     settings["filament_nozzle_map"] = ["0"] * 4
     for old in config.findall("plate"):
@@ -227,6 +235,17 @@ def verify():
     strength = metadata(adapter_config)
     assert strength["wall_loops"] == "6" and strength["sparse_infill_density"] == "100%"
     assert strength["sparse_infill_pattern"] == "zig-zag"
+    for obj in config.findall("object"):
+        if metadata(obj).get("name", "").startswith("PETG - Housing"):
+            housing = metadata(obj)
+            assert housing["wall_loops"] == "6" and housing["sparse_infill_density"] == "30%"
+            assert housing["sparse_infill_pattern"] == "gyroid"
+            assert housing["top_shell_layers"] == housing["bottom_shell_layers"] == "6"
+        elif metadata(obj).get("name") == "PETG - One-piece auger":
+            auger = metadata(obj)
+            assert auger["wall_loops"] == "6" and auger["sparse_infill_density"] == "40%"
+            assert auger["sparse_infill_pattern"] == "gyroid"
+            assert auger["top_shell_layers"] == auger["bottom_shell_layers"] == "6"
     settings = json.loads(entries["Metadata/project_settings.config"])
     assert settings["filament_type"] == ["PETG", "PETG", "PETG", "PLA"]
     assert settings["enable_prime_tower"] == "0"
@@ -288,6 +307,13 @@ def verify():
         "all_five_parts_on_plates_with_one_model_filament": True,
         "adapter_strength_override": {"wall_loops": 6, "infill_density_percent": 100,
                                       "infill_pattern": "zig-zag"},
+        "housing_strength_override": {"wall_loops": 6, "infill_density_percent": 30,
+                                      "infill_pattern": "gyroid", "top_shell_layers": 6,
+                                      "bottom_shell_layers": 6},
+        "future_auger_strength_override": {"wall_loops": 6, "infill_density_percent": 40,
+                                          "infill_pattern": "gyroid", "top_shell_layers": 6,
+                                          "bottom_shell_layers": 6,
+                                          "current_running_job_changed": False},
         "scope": "Geometry and plate-layout verification; physical fit and load qualification remain in README.",
     }
     (ROOT/"bambu-latest-verification.json").write_text(json.dumps(report, indent=2)+"\n")

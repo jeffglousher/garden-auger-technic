@@ -1,0 +1,8 @@
+{
+  "image": "housing-preprint-review.png",
+  "method": "Native CAD mesh render plus actual entrance/ear sketch coordinates",
+  "source_project": "garden-auger-direct-drive.nbcad",
+  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+  "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
+  "reference_project_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209"
+}
