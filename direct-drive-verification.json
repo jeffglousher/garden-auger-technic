@@ -1,0 +1,453 @@
+{
+  "status": "round pilot press-fit prototype; physical shaft geometry and torque capacity unqualified",
+  "servo": "INJORA INJS035-360, published 5.9 mm / 25T output",
+  "removed_hardware": [
+    "Separate metal servo horn",
+    "4 x M4 horn mounting screws"
+  ],
+  "remaining_adapter_hardware": "one factory-compatible M3 center screw",
+  "interface": "Undersized round PETG pilot; metal splines form engagement; M3 center screw retains axially",
+  "adapter_dimensions_mm": {
+    "square_peg": 14,
+    "peg_corner_radius": 1,
+    "peg_length": 11.6,
+    "flange_diameter": 28,
+    "flange_thickness": 5,
+    "spline_boss_diameter": 16,
+    "press_fit_pilot_diameter": 5.7,
+    "press_fit_pilot_depth": 1.7,
+    "straight_pilot_length": 1.55,
+    "entry_chamfer": 0.15,
+    "screw_clearance": 3.4,
+    "head_access_diameter": 6.4,
+    "underhead_relief_diameter": 4.0,
+    "underhead_relief_depth": 0.3,
+    "seat_to_shaft_tip_annular_web": 2.5999999999999943
+  },
+  "shaft_reference_only": {
+    "assumed_tip_y": 148.7,
+    "assumed_shoulder_y": 150.7,
+    "nominal_axial_overlap": 1.7,
+    "nominal_straight_engagement": 1.55,
+    "nominal_tip_to_bore_bottom_gap": 0,
+    "positive_axial_stop": "Rotating shaft tip seats on bore floor annulus surrounding center-screw passage",
+    "nominal_boss_to_stationary_nose_gap": 0.30000000000001137,
+    "nose_clearance_min_if_exposed_spline_at_least_2_mm_and_print_depth_within_0_1": 0.2,
+    "actual_shaft_tip_contact_verified": false,
+    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.",
+    "nominal_tip_to_case_body_face_from_supplier_image": 4.0,
+    "image_derivation": "41.5 mm overall minus 37.5 mm case height; nominal inference, not exposed-spline length",
+    "dimensions_image_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720"
+  },
+  "center_screw_inspection": {
+    "screw": "M3 x 6 ISO4762/DIN912 envelope, full thread; verify factory thread compatibility",
+    "nominal_length_under_head_mm": 6.0,
+    "length_acceptance_measured_mm": [
+      5.9,
+      6.1
+    ],
+    "seat_to_tip_nominal_mm": 2.5999999999999943,
+    "seat_to_tip_acceptance_mm": [
+      2.4,
+      2.8
+    ],
+    "nominal_thread_entry_length_mm": 3.4000000000000057,
+    "thread_entry_length_min_mm": 3.1000000000000005,
+    "thread_entry_length_max_mm": 3.6999999999999997,
+    "required_usable_thread_depth_mm": 4.0,
+    "nominal_bottom_room_if_usable_depth_4_mm": 0.5999999999999943,
+    "minimum_bottom_room_if_inspections_pass_mm": 0.30000000000000027,
+    "head_envelope_diameter_mm": 5.5,
+    "head_envelope_height_mm": 3.0,
+    "head_access_diameter_mm": 6.4,
+    "head_radial_clearance_nominal_mm": 0.4500000000000002,
+    "head_radial_clearance_min_with_print_allowance_mm": 0.40000000000000036,
+    "shaft_passage_diameter_mm": 3.4,
+    "shaft_radial_clearance_nominal_mm": 0.19999999999999996,
+    "shaft_radial_clearance_min_with_print_allowance_mm": 0.1499999999999999,
+    "underhead_relief_diameter_mm": 4.0,
+    "underhead_relief_depth_mm": 0.3,
+    "limitation": "Thread entry length is not a guarantee of full-thread engagement. INJORA does not publish entry chamfer, thread depth or factory screw length; inspect actual screw and usable thread."
+  },
+  "square_fit_stack": {
+    "required_flange_face_y": [
+      140.95,
+      141.25
+    ],
+    "required_flange_face_from_front_chassis_thrust_stop": [
+      27.25,
+      27.55
+    ],
+    "required_drive_axis_offset_max": 0.5,
+    "engagement_min": 9.35,
+    "engagement_max": 10.85,
+    "tip_bottom_gap_min": 1.05,
+    "hub_flange_gap_min": 0.75,
+    "note": "Conditional on printed +/-0.10 mm critical limits and measured installed flange location."
+  },
+  "cleanup": {
+    "features_before": 120,
+    "features_after": 118,
+    "removed_inactive_features": 2,
+    "suppressed_features_remaining": 0,
+    "rebuilt_mesh_geometry_identical": true
+  },
+  "preflight": {
+    "_disclosure": {
+      "active_focus": "print",
+      "advertised": true,
+      "mode": "dynamic",
+      "pack": "print",
+      "state": "active"
+    },
+    "appearances_assigned": 7,
+    "bodies_missing_appearance": [],
+    "body_count": 7,
+    "body_ids": [
+      1,
+      15,
+      26,
+      46,
+      90,
+      216,
+      221
+    ],
+    "hints": [
+      "Ready for solid_export_3mf (preferred) or solid_export_stl / solid_export_step."
+    ],
+    "ok": true,
+    "timeline_errors": []
+  },
+  "assembly_checks": [
+    {
+      "auger_shift_mm": 0,
+      "common_rotation_deg": 0,
+      "exact": true,
+      "unintended_overlap": false
+    },
+    {
+      "auger_shift_mm": -0.3,
+      "common_rotation_deg": 0,
+      "exact": true,
+      "unintended_overlap": false
+    },
+    {
+      "auger_shift_mm": 0.3,
+      "common_rotation_deg": 0,
+      "exact": true,
+      "unintended_overlap": false
+    },
+    {
+      "auger_shift_mm": 0,
+      "common_rotation_deg": 45,
+      "exact": true,
+      "unintended_overlap": false
+    },
+    {
+      "auger_shift_mm": 0,
+      "common_rotation_deg": 90,
+      "exact": true,
+      "unintended_overlap": false
+    },
+    {
+      "auger_shift_mm": -0.31,
+      "chassis_blocks_overtravel": true,
+      "exact": true
+    },
+    {
+      "auger_shift_mm": 0.31,
+      "chassis_blocks_overtravel": true,
+      "exact": true
+    }
+  ],
+  "torque": {
+    "published_stall_Nm": 3.4323274999999995,
+    "tangential_force_at_5_9_mm_diameter_N": 1163.500847457627,
+    "printed_adapter_load_rating": "not established; requires bench qualification"
+  },
+  "manufacturing_controls": {
+    "datum_A": "rotating shaft-tip annular seating plane Y=148.7",
+    "datum_B": "round pilot derived axis",
+    "square": "14 / R1 BASIC; total surface profile 0.10 to A|B, free clocking",
+    "seat": "flatness 0.10; seating-location extrema included in axial inspection",
+    "press_fit": "5.70 trial bore; choose from physically tested round-pilot coupons, no certified fit allowance yet"
+  },
+  "research_sources": [
+    {
+      "url": "https://www.reddit.com/r/3Dprinting/comments/pm04eb",
+      "evidence": "Firsthand maker report: undersized round hole pressed onto metal servo splines; no published torque qualification."
+    },
+    {
+      "url": "https://www.reddit.com/r/robotics/comments/sh8ooa",
+      "evidence": "Maker discussion suggests round press-fit for FDM PETG; low-torque context, not a 35 kg.cm qualification."
+    },
+    {
+      "url": "https://ecer.pria.at/archive/ecer-2026/papers/Replacing_Botball_Kit_Parts_with_3D_Prints.pdf",
+      "evidence": "Primary study reports failure to reproduce functional fine spline engagement in a PLA printed horn; different servo/material."
+    },
+    {
+      "url": "https://www.injora.com/products/injora-injs035-360-35kg-waterproof-digital-servo-360-steering-winch-wheel-for-rc",
+      "evidence": "Manufacturer publishes 5.9 mm /25T, 35 kg.cm at 6V, and M3 spool mounting screw, but no shaft thread depth or screw length."
+    },
+    {
+      "url": "https://in.misumi-ec.com/vona2/detail/110310861029/?HissuCode=E-BOX-GSCB3-10",
+      "evidence": "Manufacturer M3 screw envelope: 5.5 mm head diameter, 3 mm head height, 2.5 mm hex."
+    }
+  ],
+  "internal_documentation_checked": [
+    "README.md",
+    "scripts/audit_dimensions.py",
+    "scripts/design_parameters.py",
+    "scripts/release_drawings.py",
+    "direct-drive-verification.json"
+  ],
+  "physical_acceptance": [
+    "Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.",
+    "Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.",
+    "Measure actual exposed spline length and stationary nose clearance; maximize overlap while preserving at least 0.20 mm nose clearance.",
+    "Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.",
+    "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
+    "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
+  ],
+  "center_screw_cad_check": {
+    "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,
+    "center_axis_passage_open": true,
+    "screw_shaft_envelope_passage_open": true,
+    "head_seat_to_tip_annular_seat_measured_mm": 2.5999999999999943,
+    "underhead_relief_measured": true,
+    "temporary_screw_geometry_saved_to_design": false,
+    "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
+    "actual_servo_thread_depth_verified": false
+  },
+  "desktop_compatibility": [
+    {
+      "file": "garden-auger-direct-drive.nbcad",
+      "desktop_schema": 7,
+      "all_mesh_vertices_and_triangles_identical": true,
+      "materials_preserved": true,
+      "drawing_sheets": 0
+    },
+    {
+      "file": "garden-auger-press-fit.nbcad",
+      "desktop_schema": 7,
+      "all_mesh_vertices_and_triangles_identical": true,
+      "materials_preserved": true,
+      "drawing_sheets": 0
+    }
+  ],
+  "print_checks": {
+    "assembly": [
+      {
+        "name": "PETG - Housing upper",
+        "closed": true,
+        "connected_components": 1,
+        "material": "PETG",
+        "color_name": "Chassis yellow",
+        "color_hex": "#E5AE3C",
+        "volume_mm3": 186881.5837570004,
+        "plate_bounds_mm": [
+          [
+            8.0,
+            8.0,
+            0.0
+          ],
+          [
+            208.0,
+            106.6,
+            27.2
+          ]
+        ],
+        "triangle_count": 5170
+      },
+      {
+        "name": "PETG - Housing lower",
+        "closed": true,
+        "connected_components": 1,
+        "material": "PETG",
+        "color_name": "Chassis yellow",
+        "color_hex": "#E5AE3C",
+        "volume_mm3": 188112.0000556485,
+        "plate_bounds_mm": [
+          [
+            8.0,
+            116.0,
+            0.0
+          ],
+          [
+            208.0,
+            214.6,
+            24.00000000000027
+          ]
+        ],
+        "triangle_count": 3856
+      },
+      {
+        "name": "PETG - One-piece auger",
+        "closed": true,
+        "connected_components": 1,
+        "material": "PETG",
+        "color_name": "Auger orange",
+        "color_hex": "#D57E37",
+        "volume_mm3": 47408.83245165515,
+        "plate_bounds_mm": [
+          [
+            214.0,
+            8.0,
+            0.0
+          ],
+          [
+            247.9894332,
+            152.69999981,
+            33.978868500000004
+          ]
+        ],
+        "triangle_count": 19610
+      },
+      {
+        "name": "PETG - Square adapter",
+        "closed": true,
+        "connected_components": 1,
+        "material": "PETG",
+        "color_name": "Adapter gray",
+        "color_hex": "#BEC3CA",
+        "volume_mm3": 5599.659413639572,
+        "plate_bounds_mm": [
+          [
+            214.0,
+            169.0,
+            0.0
+          ],
+          [
+            241.982597,
+            196.99129599999998,
+            20.900000000000006
+          ]
+        ],
+        "triangle_count": 1848
+      },
+      {
+        "name": "PLA - Full wear sleeve",
+        "closed": true,
+        "connected_components": 1,
+        "material": "PLA",
+        "color_name": "Wear sleeve teal",
+        "color_hex": "#37AAA1",
+        "volume_mm3": 2732.445737126063,
+        "plate_bounds_mm": [
+          [
+            214.0,
+            207.0,
+            0.0
+          ],
+          [
+            247.98943400000002,
+            240.978868,
+            10.400000000000006
+          ]
+        ],
+        "triangle_count": 756
+      }
+    ],
+    "adapter": [
+      {
+        "name": "PETG - Round press-fit square adapter",
+        "closed": true,
+        "connected_components": 1,
+        "volume_mm3": 5599.659413639572,
+        "bounds_mm": [
+          [
+            7.999999999999998,
+            8.0,
+            0.0
+          ],
+          [
+            35.982597,
+            35.991296,
+            20.900000000000006
+          ]
+        ]
+      }
+    ],
+    "coupons": [
+      {
+        "name": "PETG - Round press fit A - bore 5.60",
+        "closed": true,
+        "connected_components": 1,
+        "volume_mm3": 740.0646556813939,
+        "bounds_mm": [
+          [
+            8.0,
+            8.0,
+            0.0
+          ],
+          [
+            23.9950266,
+            23.990055599999998,
+            4.0
+          ]
+        ]
+      },
+      {
+        "name": "PETG - Round press fit B - bore 5.70",
+        "closed": true,
+        "connected_components": 1,
+        "volume_mm3": 738.5549015674982,
+        "bounds_mm": [
+          [
+            31.0,
+            8.0,
+            0.0
+          ],
+          [
+            46.99502700000001,
+            23.990055599999998,
+            4.0
+          ]
+        ]
+      },
+      {
+        "name": "PETG - Round press fit C - bore 5.80",
+        "closed": true,
+        "connected_components": 1,
+        "volume_mm3": 737.0184244506551,
+        "bounds_mm": [
+          [
+            54.0,
+            8.0,
+            0.0
+          ],
+          [
+            69.995026,
+            23.990055599999998,
+            4.0
+          ]
+        ]
+      },
+      {
+        "name": "PETG - Round press fit D - bore 5.90",
+        "closed": true,
+        "connected_components": 1,
+        "volume_mm3": 735.4553303979952,
+        "bounds_mm": [
+          [
+            77.0,
+            8.0,
+            0.0
+          ],
+          [
+            92.995023,
+            23.990055599999998,
+            4.0
+          ]
+        ]
+      }
+    ]
+  },
+  "artifact_sha256": {
+    "garden-auger-direct-drive.nbcad": "1d02b09bd8d6c213dc27fa32200a7a55da8b26f6fea281e9df7953a2788dbcf0",
+    "garden-auger-direct-drive.3mf": "4b5ac95a767cbdcecd200e2b56d9493aeb1abef73e5406a128659c4254a1db0c",
+    "garden-auger-direct-adapter.3mf": "baa78c20ecc3c6e3f91216f6bcf150a4bce54300a59a1952da48065811b9f194",
+    "garden-auger-press-fit.nbcad": "2e2d1d398b2b42a63e35c8794412e3191644926993912ac6353f06bf00d1c481",
+    "garden-auger-press-fit.3mf": "306389a4e850542575ddfdfc5637837d83ad902f66f5cf5fb81fa6a10a2ea89d"
+  }
+}

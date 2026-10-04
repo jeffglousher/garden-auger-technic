@@ -1,0 +1,175 @@
+{
+  "project": "garden-auger-bambu-latest.3mf",
+  "sha256": "f4e8e3a58b825c47ce6338b81899344c6a3fb92f2e51d732e55921cffac6b55b",
+  "canonical_export": "garden-auger-direct-drive.3mf",
+  "canonical_artifact_hashes_verified": true,
+  "geometry": [
+    {
+      "name": "PETG - Housing lower",
+      "vertices": 1930,
+      "triangles": 3856,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 8.400000020003517e-06
+    },
+    {
+      "name": "PETG - Square adapter",
+      "vertices": 924,
+      "triangles": 1848,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 9.159999994290402e-06
+    },
+    {
+      "name": "PLA - Full wear sleeve",
+      "vertices": 378,
+      "triangles": 756,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 3.8099999999374745e-06
+    },
+    {
+      "name": "PETG - Housing upper",
+      "vertices": 2579,
+      "triangles": 5170,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 8.400000005792663e-06
+    },
+    {
+      "name": "PETG - One-piece auger",
+      "vertices": 9807,
+      "triangles": 19610,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 5.264999998644271e-06
+    }
+  ],
+  "plates": [
+    {
+      "plate": 1,
+      "name": "PETG - Housing halves",
+      "parts": [
+        "PETG - Housing lower",
+        "PETG - Housing upper"
+      ],
+      "filament": 1,
+      "bounds_mm": [
+        [
+          [
+            28.0,
+            135.9999998,
+            0.0
+          ],
+          [
+            228.0,
+            234.59999820000002,
+            24.0
+          ]
+        ],
+        [
+          [
+            28.0,
+            24.0,
+            0.0
+          ],
+          [
+            228.0,
+            122.5999984,
+            27.2000008
+          ]
+        ]
+      ]
+    },
+    {
+      "plate": 2,
+      "name": "PETG - One-piece auger",
+      "parts": [
+        "PETG - One-piece auger"
+      ],
+      "filament": 2,
+      "bounds_mm": [
+        [
+          [
+            111.00000040000003,
+            54.9999995,
+            0.0
+          ],
+          [
+            144.98943360000004,
+            199.6999965,
+            33.9788666
+          ]
+        ]
+      ]
+    },
+    {
+      "plate": 3,
+      "name": "PETG - Square adapter",
+      "parts": [
+        "PETG - Square adapter"
+      ],
+      "filament": 3,
+      "bounds_mm": [
+        [
+          [
+            114.0000003,
+            113.9999996,
+            0.0
+          ],
+          [
+            141.98259769999999,
+            141.99129639999998,
+            20.8999938
+          ]
+        ]
+      ]
+    },
+    {
+      "plate": 4,
+      "name": "PLA - Wear sleeve",
+      "parts": [
+        "PLA - Full wear sleeve"
+      ],
+      "filament": 4,
+      "bounds_mm": [
+        [
+          [
+            110.00000040000003,
+            109.99999969999999,
+            0.0
+          ],
+          [
+            143.98943360000004,
+            143.9788663,
+            10.40000152
+          ]
+        ]
+      ]
+    }
+  ],
+  "filament_types": [
+    "PETG",
+    "PETG",
+    "PETG",
+    "PLA"
+  ],
+  "filament_profiles": [
+    "Bambu PETG Basic @BBL X2D 0.4 nozzle",
+    "Bambu PETG Basic @BBL X2D 0.4 nozzle",
+    "Bambu PETG Basic @BBL X2D 0.4 nozzle",
+    "Bambu PLA Glow @BBL X2D 0.4 nozzle"
+  ],
+  "filament_colors": [
+    "#034638",
+    "#FF671F",
+    "#FFFFFF",
+    "#DCF478"
+  ],
+  "printer": "Bambu Lab X2D 0.4 nozzle",
+  "process_profile": "0.16mm High Quality @BBL X2D",
+  "prime_tower": false,
+  "saved_filament_and_process_profiles_preserved": true,
+  "layout_overrides": {
+    "print_sequence": "by layer",
+    "prime_tower": false,
+    "primary_nozzle_for_each_single_filament_plate": true
+  },
+  "all_five_parts_on_single_filament_plates": true,
+  "scope": "Geometry and plate-layout verification; physical fit and load qualification remain in README."
+}
