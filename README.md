@@ -22,6 +22,8 @@ The revised pilot is **Ø5.70 ×3.70 deep**, with a 0.15 mm entry chamfer and **
 
 The adapter has a **Ø24 boss**, enlarged from Ø16, with a broad 2 mm axial/radial taper into the Ø28 ×5 flange. Plastic wall is **9.15 mm radially along the straight bore**, 9.00 mm at the entry chamfer (8.90 mm minimum under the stated ±0.10 diameter limits). The annular seat-to-screw-seat web stays **2.60 mm**; **Ø4.00 ×0.30 underhead relief** clears the screw neck. The rear chassis chamber stays Ø29.6. Square-drive geometry and location, housing halves, auger, and sleeve are unchanged; **only the adapter needs replacement** if the other four parts are already printed.
 
+The [adapter-to-housing recheck](adapter-housing-verification.json) uses the saved native assembly, including both housing halves. The existing Ø29.6 chamber leaves **2.80 mm nominal radial boss clearance**, **0.80 mm nominal radial flange clearance**, and **0.60 mm nominal clearance behind the adapter**. With ±0.10 mm critical printed dimensions, ±0.15 mm installed axial position and at most 0.50 mm radial axis offset, the conditional minima are **2.20, 0.20 and 0.25 mm**, respectively. The housing does not need resizing for this adapter revision. This describes file compatibility; the user's progress printing individual parts is unknown. Actual servo shaft/nose clearance remains a separate physical inspection.
+
 ## Center screw verification
 
 Use an **M3 ×6 full-thread center screw as the nominal trial**, length measured under the head. The [M3 screw envelope](https://in.misumi-ec.com/vona2/detail/110310861029/?HissuCode=E-BOX-GSCB3-10) has a Ø5.5 ×3.0 head and 2.5 mm hex. Inspect factory thread/pitch compatibility and the actual dimensions; do not assume the supplied INJORA screw is 6 mm long.

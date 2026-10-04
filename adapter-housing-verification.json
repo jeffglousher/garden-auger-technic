@@ -1,0 +1,235 @@
+{
+  "source_project": "garden-auger-direct-drive.nbcad",
+  "source_project_sha256": "365ca251b616a3f0b84998f70bd11eea3ec3a277f73e354a804592b980bff3d9",
+  "housing_change_required_for_this_adapter_revision": false,
+  "print_progress_known": false,
+  "nominal_mm": {
+    "housing_chamber_diameter": 29.6,
+    "boss_radial_clearance": 2.8000000000000007,
+    "flange_radial_clearance": 0.8000000000000007,
+    "adapter_rear_y": 152.39999999999998,
+    "housing_chamber_end_y": 153.0,
+    "adapter_rear_to_housing_wall_gap": 0.6000000000000227
+  },
+  "conditional_minimum_mm": {
+    "boss_radial_clearance": 2.2000000000000006,
+    "flange_radial_clearance": 0.20000000000000073,
+    "adapter_rear_to_housing_wall_gap": 0.25000000000001704
+  },
+  "acceptance_limits": {
+    "printed_diameters_and_axial_extrema_plus_minus_mm": 0.1,
+    "installed_adapter_axial_plus_minus_mm": 0.15000000000000568,
+    "drive_axis_radial_offset_max_mm": 0.5
+  },
+  "native_ideal_geometry_checks": [
+    {
+      "adapter_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.6000000000000227,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0.5,
+        -0.15000000000000568,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        -0.5,
+        -0.15000000000000568,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0,
+        -0.15000000000000568,
+        0.5
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.7500000000000284,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0,
+        -0.15000000000000568,
+        -0.5
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.7500000000000284,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0.5,
+        0.15000000000000568,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        -0.5,
+        0.15000000000000568,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0,
+        0.15000000000000568,
+        0.5
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.45000000000001705,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "adapter_translation_mm": [
+        0,
+        0.15000000000000568,
+        -0.5
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.45000000000001705,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 216,
+          "minimum_clearance_mm": 0.3000000000000007,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "scope": "Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. Actual purchased servo shaft/nose clearance remains unverified.",
+  "unchanged_print_parts": {
+    "base_commit": "67f98447cec65db2f3aa4fdaa0aa48d3b58e9f48",
+    "four_stls_byte_identical": true,
+    "sha256": {
+      "petg-housing-upper.stl": "521a24857ef83bcd512a850e418f49c8ad47d2982cdd950046bc361611e133b5",
+      "petg-housing-lower.stl": "b05e6d1d84b00d87e5532ff8b03ed4a332a7c60a5da203171ba6f7574acdb992",
+      "petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
+      "pla-full-wear-sleeve.stl": "25ff8f30a090660195c08f6ad4ff97a948a2160f9836350a0d83923b1d0be638"
+    }
+  }
+}
