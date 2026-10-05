@@ -5,13 +5,19 @@ import json
 from cad_build import profile
 from model_cleanup import prune
 from housing_simplification import housing_counts
+from design_parameters import REAR_ADAPTER_CHAMBER_END_Y
+from servo_dimensions import (
+    CASE_LEFT_X,CASE_RIGHT_X,CASE_WIDTH,CASE_CLEARANCE,
+    CASE_POCKET_FRONT_Y,CASE_POCKET_REAR_Y,EAR_POCKET_FRONT_Y,EAR_POCKET_REAR_Y,
+    EAR_THICKNESS,EAR_UNDERSIDE_TO_REAR,set_plane_origin,
+)
 
 FRONT_THROAT_DIAMETER = 31.2
 FRONT_ENTRY_DIAMETER = 33.2
 REAR_COLLAR_THROAT_DIAMETER = 31.0
 CABLE_CHANNEL_HEIGHT = 8.0
-SERVO_EAR_POCKET_REAR_Y = 168.4
-SERVO_EAR_POCKET_DEPTH = 3.1
+SERVO_EAR_POCKET_REAR_Y = EAR_POCKET_REAR_Y
+SERVO_EAR_POCKET_DEPTH = EAR_POCKET_REAR_Y-EAR_POCKET_FRONT_Y
 
 
 def nesting_profile():
@@ -23,7 +29,8 @@ def nesting_profile():
         (113.7, FRONT_THROAT_DIAMETER / 2), (113.7, 17.8),
         (117.3, 17.8), (117.3, REAR_COLLAR_THROAT_DIAMETER / 2),
         (120.3, REAR_COLLAR_THROAT_DIAMETER / 2), (120.3, 17.8),
-        (131.2, 17.8), (131.2, 14.8), (153, 14.8), (153, 0)]
+        (131.2, 17.8), (131.2, 14.8),
+        (REAR_ADAPTER_CHAMBER_END_Y, 14.8), (REAR_ADAPTER_CHAMBER_END_Y, 0)]
 
 
 def nest_housing(original):
@@ -38,12 +45,16 @@ def nest_housing(original):
     features[301]['name'] = name
     next(r for r in model['revolves'] if r['feature_id'] == 301)['name'] = name
 
-    # The user's confirmed drawing is authoritative: 40 by 20 mm case.
-    # Retain 0.4 mm per-side printed fitting allowance.
+    # The drawing says 40 mm; its catalog row gives a larger 40.5 mm length.
+    # Clear the larger length with 0.4 mm per-side allowance, holding the
+    # stated output-axis-to-right-edge datum at 10 mm.
     case = sketches['Sketch45']
-    profile(case, [(-30.4, -10.4), (10.4, -10.4),
-                   (10.4, 10.4), (-30.4, 10.4)])
-    features[131]['name'] = extrudes[131]['name'] = 'Servo case pocket - 40.8 by 20.8'
+    left=CASE_LEFT_X-CASE_CLEARANCE;right=CASE_RIGHT_X+CASE_CLEARANCE
+    half=CASE_WIDTH/2+CASE_CLEARANCE
+    profile(case, [(left,-half),(right,-half),(right,half),(left,half)])
+    set_plane_origin(model,['Sketch45'],1,CASE_POCKET_REAR_Y)
+    extrudes[131]['extent']['distance']=CASE_POCKET_REAR_Y-CASE_POCKET_FRONT_Y
+    features[131]['name'] = extrudes[131]['name'] = 'Servo case pocket - 41.3 by 20.8; 40.0 axial span'
     ears = sketches['Sketch62']
     # Retain the two native rectangular loops and their profile order.
     ears['basis']['origin'][1] = SERVO_EAR_POCKET_REAR_Y
@@ -91,12 +102,16 @@ def nest_housing(original):
             'collar_stop_opening_diameter_mm': FRONT_THROAT_DIAMETER,
             'taper_length_mm': 5.9, 'additional_profile_vertices': 0,
             'reason': 'Clear the complete last flight, including permitted radial offset and axial travel.'},
-        'servo_pockets': {'case_length_mm': 40.8, 'case_width_mm': 20.8,
+        'servo_pockets': {'case_length_mm': right-left, 'case_width_mm':2*half,
+            'case_axial_span_mm':CASE_POCKET_REAR_Y-CASE_POCKET_FRONT_Y,
+            'case_pocket_y_mm':[CASE_POCKET_FRONT_Y,CASE_POCKET_REAR_Y],
+            'ear_pocket_y_mm':[EAR_POCKET_FRONT_Y,EAR_POCKET_REAR_Y],
             'ear_capture_span_mm': SERVO_EAR_POCKET_DEPTH,
-            'ear_thickness_reference_mm': 2.7, 'ear_axial_float_nominal_mm': .4,
-            'previous_ear_axial_float_nominal_mm': 1.8,
+            'ear_thickness_reference_mm': EAR_THICKNESS, 'ear_axial_float_nominal_mm': .4,
+            'ear_underside_to_rear_reference_mm':EAR_UNDERSIDE_TO_REAR,
+            'ear_datum_correction_mm':-2.7,
             'ear_cut_moved_after_extensions': True,
-            'dimension_authority': 'User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.',
+            'dimension_authority': 'User supplied drawing: 41.5 tip-to-rear, 37.5 case height, 24.7 underside-of-ear-to-rear, 2.7 ear thickness. Design clears the larger 40.5 mm case length in its catalog row.',
             'drawing_dimensions_user_confirmed': True,
             'printed_assembly_fit_verified': False},
         'wire_channel': {'height_mm': CABLE_CHANNEL_HEIGHT,

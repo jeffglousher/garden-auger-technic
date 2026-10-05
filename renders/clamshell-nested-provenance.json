@@ -2,7 +2,7 @@
   "image": "clamshell-nested.png",
   "method": "Raster rendering of native CAD meshes and actual axial sketches",
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
   "before_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "reference_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "verification": "housing-nesting-verification.json"

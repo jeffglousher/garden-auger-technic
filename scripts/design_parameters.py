@@ -32,6 +32,35 @@ HOUSING_RING_CAVITY=35.6
 REAR_SCREW_Y=196.8
 PRINT_SIZE_TOLERANCE=.10
 MAX_DRIVE_AXIS_OFFSET=.50
+# Ear face allowance 0.20 + printed stop-face extrema 0.10 + adapter's
+# shaft-seat-to-flange extrema 0.10. Inspect these actual functional faces.
+INSTALLED_ADAPTER_AXIAL_TOLERANCE=.40
+REAR_ADAPTER_CHAMBER_END_Y=153.6
+
+
+def square_fit_stack():
+    """Conservative extrema stack; each named surface allowance counted once."""
+    collar_shift=max(COLLAR_FRONT-HOUSING_FRONT_STOP,
+                     HOUSING_REAR_STOP-COLLAR_REAR)+2*PRINT_SIZE_TOLERANCE
+    socket_face=collar_shift+PRINT_SIZE_TOLERANCE
+    peg_tip=INSTALLED_ADAPTER_AXIAL_TOLERANCE+PRINT_SIZE_TOLERANCE
+    engagement=139.5-PEG_TIP_Y
+    return {'required_flange_face_y':[PEG_ROOT_Y-INSTALLED_ADAPTER_AXIAL_TOLERANCE,
+                                      PEG_ROOT_Y+INSTALLED_ADAPTER_AXIAL_TOLERANCE],
+        'required_flange_face_from_front_chassis_thrust_stop':[
+            PEG_ROOT_Y-HOUSING_FRONT_STOP-INSTALLED_ADAPTER_AXIAL_TOLERANCE,
+            PEG_ROOT_Y-HOUSING_FRONT_STOP+INSTALLED_ADAPTER_AXIAL_TOLERANCE],
+        'required_drive_axis_offset_max':MAX_DRIVE_AXIS_OFFSET,
+        'engagement_min':engagement-socket_face-peg_tip,
+        'engagement_max':engagement+socket_face+peg_tip,
+        'tip_bottom_gap_min':PEG_TIP_Y-(139.5-SOCKET_DEPTH)-socket_face-peg_tip,
+        'hub_flange_gap_min':PEG_ROOT_Y-139.5-socket_face-INSTALLED_ADAPTER_AXIAL_TOLERANCE,
+        'auger_motion_extrema_mm':[-collar_shift,collar_shift],
+        'socket_functional_face_location_allowance_mm':socket_face,
+        'adapter_peg_tip_location_allowance_mm':peg_tip,
+        'installed_adapter_axial_allowance_derivation':
+            '0.20 nominal ear-face gap +0.10 printed stop-face extrema +0.10 adapter seat-to-flange extrema =0.40 mm',
+        'note':'Conditional on +/-0.10 mm critical printed functional-face extrema; nominal hardware dimensions follow the supplied drawing. Inspect finished surfaces and installed alignment.'}
 
 
 def housing_profile():
@@ -39,4 +68,4 @@ def housing_profile():
     return [(110.9,0),(110.9,14.8),(112.9,14.8),(113.7,15.6),
             (113.7,17.8),(117.3,17.8),(117.3,15.5),(118.5,14.8),
             (120.3,14.8),(120.3,17.8),(131.2,17.8),(131.2,14.8),
-            (153,14.8),(153,0)]
+            (REAR_ADAPTER_CHAMBER_END_Y,14.8),(REAR_ADAPTER_CHAMBER_END_Y,0)]

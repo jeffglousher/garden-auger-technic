@@ -25,7 +25,12 @@ def main():
     assert all(not f['suppressed'] and f['status']['state'] == 'ok'
                for f in model['document']['history']['features'])
     assert audit['preflight']['ok'] and not audit['preflight']['timeline_errors']
-    assert model['assembly'] == before['assembly']
+    # Purchased-servo reference names/dimensions can be corrected without
+    # changing any actual component placement or printed-part membership.
+    def placements(assembly):
+        return {o['id']:(o['component_id'],o['parent_occurrence_id'],o['local_pose'])
+                for o in assembly['component_structure']['occurrences']}
+    assert placements(model['assembly']) == placements(before['assembly'])
     assert model['body_appearances'] == before['body_appearances']
     nesting = audit['nested_housing']
     assert nesting['geometry_verification']['other_body_mesh_arrays_identical']
@@ -48,7 +53,7 @@ def main():
         'updated_housing_stl_sha256': changed, 'unchanged_other_stl_sha256': retained,
         'whole_project_history_before': len(before['document']['history']['features']),
         'whole_project_history_after': len(model['document']['history']['features']),
-        'compatibility': 'Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with the flight-clearance entrance taper and restored 3.10 mm servo-ear pocket.'}
+        'compatibility': 'Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with drawing-correct ear datums at Y162.6/165.7, 41.3 by 20.8 case pocket and the retained flight-clearance entrance taper.'}
     (ROOT / 'housing-nesting-verification.json').write_text(json.dumps(report, indent=2) + '\n')
     audit['housing_geometry_release_verification'] = 'housing-nesting-verification.json'
     (ROOT / 'direct-drive-verification.json').write_text(json.dumps(audit, indent=2) + '\n')

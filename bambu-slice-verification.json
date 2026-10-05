@@ -1,7 +1,8 @@
 {
   "source_project": "garden-auger-bambu-latest.3mf",
-  "source_project_sha256": "343196aae41c305c611784c2149fcc497d45e03f425dc83a3a70194b2f5dadf0",
-  "native_slicer": "Bambu Studio 02.08.02.61",
+  "source_project_sha256": "6bda95508146d4ade3b93678b20e02b1bb8ffe881240c1d9914885a2337a867d",
+  "sliced_input_sha256": "60bcda7d6ac33d2ea8fd59686d061f66c86816143af64cb27ee567396fff2f7a",
+  "native_slicer": "BambuStudio 02.08.02.61",
   "command_scope": "Local --slice 0; no printer commands sent",
   "native_exit_code": 0,
   "all_four_plates_have_gcode": true,
@@ -12,8 +13,8 @@
         "PETG - Housing upper",
         "PETG - Housing lower"
       ],
-      "time_seconds": 45420,
-      "filament_weight_g": 261.86,
+      "time_seconds": 45429,
+      "filament_weight_g": 261.85,
       "outside_printable_area": false,
       "support_used": true,
       "filaments": [
@@ -22,8 +23,8 @@
           "tray_info_idx": "GFG00",
           "type": "PETG",
           "color": "#034638",
-          "used_m": "85.99",
-          "used_g": "258.53",
+          "used_m": "85.98",
+          "used_g": "258.52",
           "group_id": "0",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -48,7 +49,7 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 12h 31m 51s; total estimated time: 12h 37m 0s\n; total layer number: 136\n; total filament length [mm] : 85987.80,1099.00\n; total filament volume [cm^3] : 206824.89,2643.40\n; total filament weight [g] : 258.53,3.33\n; model label id: 102,108\n; object max height: 27.20,24.00\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 27.20\n; filament: 1,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 12h 32m 0s; total estimated time: 12h 37m 9s\n; total layer number: 136\n; total filament length [mm] : 85983.78,1099.00\n; total filament volume [cm^3] : 206815.24,2643.40\n; total filament weight [g] : 258.52,3.33\n; model label id: 102,108\n; object max height: 27.20,24.00\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 27.20\n; filament: 1,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
     },
     {
       "plate": 2,
@@ -91,7 +92,7 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 3h 18m 35s; total estimated time: 3h 23m 43s\n; total layer number: 170\n; total filament length [mm] : 15119.74,323.59\n; total filament volume [cm^3] : 36367.23,778.33\n; total filament weight [g] : 45.46,0.98\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 34.00\n; filament: 2,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 3h 18m 35s; total estimated time: 3h 23m 43s\n; total layer number: 170\n; total filament length [mm] : 15119.73,323.59\n; total filament volume [cm^3] : 36367.22,778.33\n; total filament weight [g] : 45.46,0.98\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 34.00\n; filament: 2,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
     },
     {
       "plate": 3,
@@ -165,5 +166,8 @@
       "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 7m 16s; total estimated time: 12m 25s\n; total layer number: 52\n; total filament length [mm] : 858.71\n; total filament volume [cm^3] : 2065.44\n; total filament weight [g] : 2.60\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 10.40\n; filament: 4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
     }
   ],
-  "sliced_export_sha256": "48c57eccea5aa34a06a4ddfab76c77be26be98de6853500fe0d4dbb2de4f2e7c"
+  "sliced_export_sha256": "e3526c1bccb071d99b47fceb66a45a7113067234ec919f77743089e0c66c4954",
+  "final_project_gcode_embedded": false,
+  "native_preview_and_slice_statistics_refreshed": true,
+  "all_geometry_and_printer_filament_process_settings_byte_identical_to_sliced_input": true
 }

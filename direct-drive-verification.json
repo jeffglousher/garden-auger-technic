@@ -35,6 +35,10 @@
     "scope": "Manufacturer family reference; INJORA publishes diameter/tooth count but not axial spline exposure."
   },
   "shaft_reference_only": {
+    "nominal_tip_y": 148.7,
+    "dimensioned_tip_to_case_stack_user_confirmed": true,
+    "dimensional_authority": "User-confirmed accurate INJORA dimensioned diagram",
+    "local_dimensions_image": "source/references/user-servo-fit-diagram.png",
     "nominal_case_face_y": 152.7,
     "nominal_tip_to_case_body_face_from_supplier_image": 4.0,
     "image_derivation": "41.5 mm tip-to-rear minus 37.5 mm case-face-to-rear = 4.0 mm nominal tip-to-case-face distance",
@@ -49,10 +53,6 @@
     "unsupported_2_mm_stationary_nose_removed_from_reference": true,
     "purchased_shaft_and_nose_collision_verified": false,
     "actual_shaft_tip_contact_verified": false,
-    "dimensioned_tip_to_case_stack_user_confirmed": true,
-    "nominal_tip_y": 148.7,
-    "dimensional_authority": "User-confirmed accurate INJORA dimensioned diagram",
-    "local_dimensions_image": "source/references/injora-injs035-360-dimensions.jpg",
     "scope": "The confirmed diagram controls nominal case/ear and tip-to-case dimensions. The rotating shaft and internal thread are not modeled; inspect printed seating and usable internal screw depth."
   },
   "center_screw_inspection": {
@@ -87,19 +87,26 @@
   },
   "square_fit_stack": {
     "required_flange_face_y": [
-      140.95,
-      141.25
+      140.7,
+      141.5
     ],
     "required_flange_face_from_front_chassis_thrust_stop": [
-      27.25,
-      27.55
+      26.999999999999993,
+      27.79999999999999
     ],
     "required_drive_axis_offset_max": 0.5,
-    "engagement_min": 9.35,
-    "engagement_max": 10.85,
-    "tip_bottom_gap_min": 1.05,
-    "hub_flange_gap_min": 0.75,
-    "note": "Conditional on printed +/-0.10 mm critical limits and measured installed flange location."
+    "engagement_min": 8.900000000000002,
+    "engagement_max": 11.099999999999998,
+    "tip_bottom_gap_min": 0.9000000000000028,
+    "hub_flange_gap_min": 0.5999999999999971,
+    "auger_motion_extrema_mm": [
+      -0.49999999999999717,
+      0.49999999999999717
+    ],
+    "socket_functional_face_location_allowance_mm": 0.5999999999999972,
+    "adapter_peg_tip_location_allowance_mm": 0.5,
+    "installed_adapter_axial_allowance_derivation": "0.20 nominal ear-face gap +0.10 printed stop-face extrema +0.10 adapter seat-to-flange extrema =0.40 mm",
+    "note": "Conditional on +/-0.10 mm critical printed functional-face extrema; nominal hardware dimensions follow the supplied drawing. Inspect finished surfaces and installed alignment."
   },
   "cleanup": {
     "features_before": 120,
@@ -148,7 +155,7 @@
       "housing_checks": [
         {
           "body_id": 26,
-          "reference_step_sha256": "9977ee3216c517ddfeccdb45084d9f3bbb1261b8ee6c78207ef05d9ac6f66a89",
+          "reference_step_sha256": "9934653af1d1a31638b3acfdf20dd064f8b13ca01ad4be35f294445de01aa745",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -160,7 +167,7 @@
         },
         {
           "body_id": 46,
-          "reference_step_sha256": "6f4b266eb7c6f9e8921386e1b6db86fa9823c30adabf04fee3de85f79cd4ef05",
+          "reference_step_sha256": "8f45294e4ccea3ba5fd0950a231fc9f5456af1d46f7dc4e7041262468c778adb",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -221,14 +228,24 @@
       "reason": "Clear the complete last flight, including permitted radial offset and axial travel."
     },
     "servo_pockets": {
-      "case_length_mm": 40.8,
+      "case_length_mm": 41.3,
       "case_width_mm": 20.8,
-      "ear_capture_span_mm": 3.1,
+      "case_axial_span_mm": 40.0,
+      "case_pocket_y_mm": [
+        151.7,
+        191.7
+      ],
+      "ear_pocket_y_mm": [
+        162.60000000000002,
+        165.7
+      ],
+      "ear_capture_span_mm": 3.099999999999966,
       "ear_thickness_reference_mm": 2.7,
       "ear_axial_float_nominal_mm": 0.4,
-      "previous_ear_axial_float_nominal_mm": 1.8,
+      "ear_underside_to_rear_reference_mm": 24.7,
+      "ear_datum_correction_mm": -2.7,
       "ear_cut_moved_after_extensions": true,
-      "dimension_authority": "User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.",
+      "dimension_authority": "User supplied drawing: 41.5 tip-to-rear, 37.5 case height, 24.7 underside-of-ear-to-rear, 2.7 ear thickness. Design clears the larger 40.5 mm case length in its catalog row.",
       "drawing_dimensions_user_confirmed": true,
       "printed_assembly_fit_verified": false
     },
@@ -358,6 +375,346 @@
     "hints": [
       "Ready for solid_export_3mf (preferred) or solid_export_stl / solid_export_step."
     ],
+    "layout": {
+      "bed": {
+        "margin_mm": 0.0,
+        "name": "Bambu X2D",
+        "nozzle_mode": "main",
+        "origin_mm": [
+          0.0,
+          0.0
+        ],
+        "printable_regions": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              256.0,
+              0.0
+            ],
+            [
+              256.0,
+              256.0
+            ],
+            [
+              0.0,
+              256.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              256.0,
+              0.0
+            ],
+            [
+              256.0,
+              256.0
+            ],
+            [
+              0.0,
+              256.0
+            ]
+          ]
+        ],
+        "size_mm": [
+          256.0,
+          256.0,
+          261.0
+        ],
+        "source": {
+          "files": {
+            "resources/profiles/BBL/machine/Bambu Lab X2D 0.4 nozzle.json": "7bfa994c9e0233ffac9e7bb20ea65a45aacee2d6106db9af1ff58c06ae42eabb",
+            "resources/profiles/BBL/machine/fdm_bbl_3dp_002_common.json": "98b41984e0edd3e3a80b65ff3bb7d3d8677c5e1fb265599966a2ea1d65538703",
+            "resources/profiles/BBL/machine/fdm_machine_common.json": "26ef8ee697849323e67d8e1a9026c175cebe3397e38c5091dddb5cd3fc52e94c"
+          },
+          "profile": "resources/profiles/BBL/machine/Bambu Lab X2D 0.4 nozzle.json",
+          "repository": "bambulab/BambuStudio",
+          "revision": "da8b44ee34dd349f2ae0df3f1cbae366df482354"
+        }
+      },
+      "clearance_mm": 2.0,
+      "excluded_instances": 0,
+      "issues": [
+        {
+          "code": "below_bed",
+          "message": "Body1 (occurrence 3) extends below the bed.",
+          "occurrence_ids": [
+            3
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body1 (occurrence 3) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            3
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body26 (occurrence 6) extends below the bed.",
+          "occurrence_ids": [
+            6
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body26 (occurrence 6) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            6
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body46 (occurrence 7) extends below the bed.",
+          "occurrence_ids": [
+            7
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body46 (occurrence 7) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            7
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body15 (occurrence 8) extends below the bed.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body15 (occurrence 8) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body90 (occurrence 8) extends below the bed.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body90 (occurrence 8) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body216 (occurrence 14) extends below the bed.",
+          "occurrence_ids": [
+            14
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body216 (occurrence 14) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            14
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body221 (occurrence 16) extends below the bed.",
+          "occurrence_ids": [
+            16
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body221 (occurrence 16) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 1 / occurrence 3 and body 26 / occurrence 6; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            3,
+            6
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 1 / occurrence 3 and body 46 / occurrence 7; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            3,
+            7
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 46 / occurrence 7; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            7
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 15 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 15 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 216 / occurrence 14 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            14,
+            16
+          ]
+        }
+      ],
+      "overlap_check": "Conservative transformed mesh bounds; warnings are possible intersections, not exact solid collisions.",
+      "printable_groups": 6,
+      "printable_instances": 7,
+      "proposal_fits": true,
+      "proposed_translations": [
+        {
+          "occurrence_id": 8,
+          "translation": [
+            17.0,
+            5.199999809265137,
+            17.0
+          ]
+        },
+        {
+          "occurrence_id": 6,
+          "translation": [
+            136.0,
+            -107.9000015258789,
+            3.200000047683716
+          ]
+        },
+        {
+          "occurrence_id": 7,
+          "translation": [
+            100.0,
+            38.79999828338623,
+            24.0
+          ]
+        },
+        {
+          "occurrence_id": 3,
+          "translation": [
+            74.0,
+            -52.100001525878895,
+            10.000000000000002
+          ]
+        },
+        {
+          "occurrence_id": 14,
+          "translation": [
+            108.0,
+            -28.900001525878906,
+            14.0
+          ]
+        },
+        {
+          "occurrence_id": 16,
+          "translation": [
+            141.0,
+            -20.0,
+            17.0
+          ]
+        }
+      ]
+    },
     "ok": true,
     "timeline_errors": []
   },
@@ -447,11 +804,26 @@
   "physical_acceptance": [
     "Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.",
     "Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.",
-    "The user-confirmed diagram gives 4.00 mm tip-to-case-face distance. Inspect the printed socket depth (3.70 +/-0.10 mm) so at least 0.20 mm clearance remains.",
+    "Use the confirmed 4.00 mm nominal tip-to-case stack; inspect the printed 3.70 +/-0.10 mm socket to retain at least 0.20 mm case-face clearance.",
     "Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.",
     "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
     "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
   ],
+  "servo_drawing_fit_verification": "servo-fit-verification.json",
+  "center_screw_cad_check": {
+    "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,
+    "center_axis_passage_open": true,
+    "screw_shaft_envelope_passage_open": true,
+    "head_seat_to_tip_annular_seat_measured_mm": 2.5999999999999943,
+    "underhead_relief_measured": true,
+    "temporary_screw_geometry_saved_to_design": false,
+    "boss_diameter_mesh_measured_mm": 24.0,
+    "pilot_diameter_mesh_measured_mm": 5.7,
+    "pilot_depth_mm": 3.6999999999999886,
+    "straight_bore_radial_wall_mm": 9.15,
+    "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
+    "actual_servo_thread_depth_verified": false
+  },
   "desktop_compatibility": [
     {
       "file": "garden-auger-direct-drive.nbcad",
@@ -459,7 +831,8 @@
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
-      "reader_mode": "isolated desktop executable headless"
+      "reader_mode": "isolated desktop executable headless",
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
@@ -467,7 +840,8 @@
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
-      "reader_mode": "isolated desktop executable headless"
+      "reader_mode": "isolated desktop executable headless",
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
     }
   ],
   "print_checks": {
@@ -479,7 +853,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 187146.50472546023,
+        "volume_mm3": 186880.95691587668,
         "plate_bounds_mm": [
           [
             8.0,
@@ -501,7 +875,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 188374.29552486495,
+        "volume_mm3": 188108.96884455057,
         "plate_bounds_mm": [
           [
             8.0,
@@ -679,34 +1053,11 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
-    "garden-auger-direct-drive.3mf": "b73141a8dff67ffd0b28f6ae1ca61449df7a14b2d35a8721a8b46d52b76bcab8",
-    "garden-auger-direct-adapter.3mf": "1462ed68015ca3f96916bd86b5039dab78984aff2f1e3b3009132ea8b5f19693",
-    "garden-auger-press-fit.nbcad": "1a06f426c96bec44d4c068cdb0d9ecc0536e7e3dc5fad8364fab70211c6e9c93",
-    "garden-auger-press-fit.3mf": "4e0c95c98db83e4d41443d88079803c3a1f2b8ab7f642fd177200c3b027ade4e"
-  },
-  "center_screw_cad_check": {
-    "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,
-    "center_axis_passage_open": true,
-    "screw_shaft_envelope_passage_open": true,
-    "head_seat_to_tip_annular_seat_measured_mm": 2.5999999999999943,
-    "underhead_relief_measured": true,
-    "temporary_screw_geometry_saved_to_design": false,
-    "boss_diameter_mesh_measured_mm": 24.0,
-    "pilot_diameter_mesh_measured_mm": 5.7,
-    "pilot_depth_mm": 3.6999999999999886,
-    "straight_bore_radial_wall_mm": 9.15,
-    "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
-    "actual_servo_thread_depth_verified": false
-  },
-  "hardware_dimension_authority": {
-    "source": "User-supplied dimensioned servo diagram; user confirms it is accurate",
-    "case_length_mm": 40,
-    "case_width_mm": 20,
-    "mounting_ear_thickness_mm": 2.7,
-    "overall_tip_to_rear_mm": 41.5,
-    "case_face_to_rear_mm": 37.5,
-    "nominal_tip_to_case_face_mm": 4
+    "garden-auger-direct-drive.nbcad": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
+    "garden-auger-direct-drive.3mf": "a8e1749be65dfd0a7788df3197f18ec85f2c9d813de7fcc574491f1376e0af66",
+    "garden-auger-direct-adapter.3mf": "3f83fbd230169e82ea9795e2341fb7c046676a48ab655dc7d7a144c2d0c8b2f4",
+    "garden-auger-press-fit.nbcad": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
+    "garden-auger-press-fit.3mf": "78a4615bfd1eda186963a09e6e4fcaede4268503b8db1ee04f06bf36606fca9e"
   },
   "housing_geometry_release_verification": "housing-nesting-verification.json"
 }

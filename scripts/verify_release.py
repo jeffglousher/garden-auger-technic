@@ -31,9 +31,15 @@ def main():
     bambu=read('bambu-latest-verification.json')
     expected[bambu['project']]=bambu['sha256']
     for report in ('adapter-housing-verification.json','housing-nesting-verification.json',
-                   'preprint-review.json','bambu-slice-verification.json'):
+                   'preprint-review.json','servo-fit-verification.json','bambu-slice-verification.json'):
         proof=read(report)
         assert expected[proof['source_project']]==proof['source_project_sha256'], report
+    for report in ('renders/housing-preprint-provenance.json',
+                   'renders/clamshell-nested-provenance.json',
+                   'renders/bambu-print-layout-provenance.json'):
+        proof=read(report)
+        assert expected[proof['source_project']]==proof['source_project_sha256'],report
+        checked_path(f"renders/{proof['image']}")
     for name,proof in read('source/references/provenance.json').items():
         expected[f'source/references/{name}']=proof['sha256']
     captures=read('renders/cad-depth/provenance.json')
@@ -66,6 +72,7 @@ def main():
     assert all(not f['suppressed'] and f['status']['state']=='ok' for f in features)
     assert read('direct-drive-verification.json')['shaft_reference_only']['dimensioned_tip_to_case_stack_user_confirmed']
     assert read('bambu-slice-verification.json')['all_four_plates_have_gcode']
+    assert read('servo-fit-verification.json')['old_reference_produced_false_clearance_pass']
     print(json.dumps({'verified_file_hashes':len(expected),'intact_release_archives':archives,
                       'valid_local_documentation_links':links,'active_cad_features':len(features),
                       'bambu_project_sha256':bambu['sha256']},indent=2))

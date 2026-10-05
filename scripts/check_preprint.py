@@ -204,7 +204,7 @@ def main():
         'native_preflight': preflight, 'retained_non_housing_stls': retained,
         'unchanged_feature_count': len(model['document']['history']['features']) == len(reference['document']['history']['features']),
         'current_feature_count': len(model['document']['history']['features']),
-        'hardware_dimension_authority': 'User-confirmed accurate servo diagram: 40 by 20 mm case, 2.7 mm ears and shown shaft/case stack.',
+        'hardware_dimension_authority': 'User drawing: 41.5 tip-to-rear, 37.5 case axial height, 24.7 ear UNDERSIDE to rear, 2.7 ear thickness. The case pocket clears the larger catalog plan length 40.5 with 0.4 per-side allowance.',
         'unresolved_physical_checks': ['Cable boot envelope is not dimensioned in the servo diagram',
             'Usable shaft thread depth and physically selected press-fit pilot',
             'Installed adapter position and alignment, printed running fits, loaded torque and wear'],

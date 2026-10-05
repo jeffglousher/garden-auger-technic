@@ -13,6 +13,7 @@ from direct_drive_parameters import (
     HEAD_ACCESS, HEAD_SEAT_Y, UNDERHEAD_RELIEF_DIAMETER,
     UNDERHEAD_RELIEF_DEPTH, SCREW_CLEARANCE,
 )
+from servo_dimensions import configure_reference
 
 
 def rounded_square(sketch,width,radius):
@@ -77,7 +78,7 @@ def configure():
         if o['component_id']==3:o['local_pose']['translation'][1]=SERVO_TRANSLATION_Y
     m['document']['name']='Garden auger - round pilot direct press-fit prototype'
     m['drawings']['sheets']=[]
-    return m
+    return configure_reference(m)
 
 
 def rear_pads(c):

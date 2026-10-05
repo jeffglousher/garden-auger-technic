@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
   "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
   "reference_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
   "confirmed_prior_flight_interference": [
@@ -78,7 +78,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999997,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -99,7 +99,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999995,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -130,7 +130,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000007,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -151,7 +151,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999986,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -182,7 +182,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000002,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -203,7 +203,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000004,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -567,7 +567,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877162,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -598,7 +598,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.30000000000000077,
+          "minimum_clearance_mm": 0.29999999999999893,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -619,7 +619,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877167,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -671,7 +671,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -702,7 +702,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877165,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -754,7 +754,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877147,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -775,7 +775,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.29999999999999893,
+          "minimum_clearance_mm": 0.3000000000000007,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -806,7 +806,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -858,7 +858,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999997,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -879,7 +879,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999995,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -910,7 +910,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000007,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -931,7 +931,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999986,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -962,7 +962,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000002,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -983,7 +983,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000004,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1347,7 +1347,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877162,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1378,7 +1378,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.30000000000000077,
+          "minimum_clearance_mm": 0.29999999999999893,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1399,7 +1399,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877167,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1451,7 +1451,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1482,7 +1482,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877165,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1534,7 +1534,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877147,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1555,7 +1555,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.29999999999999893,
+          "minimum_clearance_mm": 0.3000000000000007,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1586,7 +1586,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1638,7 +1638,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999997,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1659,7 +1659,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999995,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1690,7 +1690,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000007,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1711,7 +1711,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.7999999999999986,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1742,7 +1742,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000002,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -1763,7 +1763,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8000000000000004,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -2127,7 +2127,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877162,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -2158,7 +2158,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.30000000000000077,
+          "minimum_clearance_mm": 0.29999999999999893,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -2179,7 +2179,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877167,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -2231,7 +2231,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -2262,7 +2262,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877165,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -2314,7 +2314,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877147,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -2335,7 +2335,7 @@
           "body_a": 46,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.29999999999999893,
+          "minimum_clearance_mm": 0.3000000000000007,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -2366,7 +2366,7 @@
           "body_a": 26,
           "body_b": 216,
           "interfering": false,
-          "minimum_clearance_mm": 0.6000000000000227,
+          "minimum_clearance_mm": 0.8084435373877166,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -2401,11 +2401,11 @@
     "rearward_travel_mm": 0.3,
     "radial_offset_mm": 0.5,
     "minimum_surface_bound_mm": 0.5186626610169505,
-    "printed_surface_allowance_each_mm": 0.1,
-    "conditional_minimum_gap_mm": 0.21866266101695048,
-    "scope": "Complete final flight at the housing entrance; not a load or wear qualification.",
     "native_verification_deflection_mm": 0.02,
-    "manufacturing_export_deflection_mm": 0.08
+    "manufacturing_export_deflection_mm": 0.08,
+    "printed_surface_allowance_each_mm": 0.1,
+    "conditional_minimum_gap_mm": 0.21866266101695042,
+    "scope": "Complete final flight at the housing entrance; not a load or wear qualification."
   },
   "nominal_servo_case_and_ear_clearance": [
     {
@@ -2490,8 +2490,8 @@
       ],
       "pilot_diameter_mm": 4,
       "pilot_depth_mm": 6.7,
-      "radial_wall_sample_min_mm": 5.274300984275724,
-      "wall_min_with_dimensional_allowance_mm": 5.049300984275725,
+      "radial_wall_sample_min_mm": 4.912491595761514,
+      "wall_min_with_dimensional_allowance_mm": 4.687491595761514,
       "wall_section_samples": 57,
       "screw_passage_open": true,
       "head_seat_height_mm": 12.7,
@@ -2539,6 +2539,346 @@
     "hints": [
       "Ready for solid_export_3mf (preferred) or solid_export_stl / solid_export_step."
     ],
+    "layout": {
+      "bed": {
+        "margin_mm": 0.0,
+        "name": "Bambu X2D",
+        "nozzle_mode": "main",
+        "origin_mm": [
+          0.0,
+          0.0
+        ],
+        "printable_regions": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              256.0,
+              0.0
+            ],
+            [
+              256.0,
+              256.0
+            ],
+            [
+              0.0,
+              256.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              256.0,
+              0.0
+            ],
+            [
+              256.0,
+              256.0
+            ],
+            [
+              0.0,
+              256.0
+            ]
+          ]
+        ],
+        "size_mm": [
+          256.0,
+          256.0,
+          261.0
+        ],
+        "source": {
+          "files": {
+            "resources/profiles/BBL/machine/Bambu Lab X2D 0.4 nozzle.json": "7bfa994c9e0233ffac9e7bb20ea65a45aacee2d6106db9af1ff58c06ae42eabb",
+            "resources/profiles/BBL/machine/fdm_bbl_3dp_002_common.json": "98b41984e0edd3e3a80b65ff3bb7d3d8677c5e1fb265599966a2ea1d65538703",
+            "resources/profiles/BBL/machine/fdm_machine_common.json": "26ef8ee697849323e67d8e1a9026c175cebe3397e38c5091dddb5cd3fc52e94c"
+          },
+          "profile": "resources/profiles/BBL/machine/Bambu Lab X2D 0.4 nozzle.json",
+          "repository": "bambulab/BambuStudio",
+          "revision": "da8b44ee34dd349f2ae0df3f1cbae366df482354"
+        }
+      },
+      "clearance_mm": 2.0,
+      "excluded_instances": 0,
+      "issues": [
+        {
+          "code": "below_bed",
+          "message": "Body1 (occurrence 3) extends below the bed.",
+          "occurrence_ids": [
+            3
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body1 (occurrence 3) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            3
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body26 (occurrence 6) extends below the bed.",
+          "occurrence_ids": [
+            6
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body26 (occurrence 6) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            6
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body46 (occurrence 7) extends below the bed.",
+          "occurrence_ids": [
+            7
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body46 (occurrence 7) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            7
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body15 (occurrence 8) extends below the bed.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body15 (occurrence 8) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body90 (occurrence 8) extends below the bed.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body90 (occurrence 8) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            8
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body216 (occurrence 14) extends below the bed.",
+          "occurrence_ids": [
+            14
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body216 (occurrence 14) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            14
+          ]
+        },
+        {
+          "code": "below_bed",
+          "message": "Body221 (occurrence 16) extends below the bed.",
+          "occurrence_ids": [
+            16
+          ]
+        },
+        {
+          "code": "outside_bed",
+          "message": "Body221 (occurrence 16) exceeds the configured usable envelope.",
+          "occurrence_ids": [
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 1 / occurrence 3 and body 26 / occurrence 6; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            3,
+            6
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 1 / occurrence 3 and body 46 / occurrence 7; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            3,
+            7
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 46 / occurrence 7; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            7
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 15 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 26 / occurrence 6 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            6,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 15 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 46 / occurrence 7 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            7,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 90 / occurrence 8; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            8
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 216 / occurrence 14; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            14
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 15 / occurrence 8 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            8,
+            16
+          ]
+        },
+        {
+          "code": "possible_overlap",
+          "message": "Bounds overlap for body 216 / occurrence 14 and body 221 / occurrence 16; this may be intentional multipart geometry.",
+          "occurrence_ids": [
+            14,
+            16
+          ]
+        }
+      ],
+      "overlap_check": "Conservative transformed mesh bounds; warnings are possible intersections, not exact solid collisions.",
+      "printable_groups": 6,
+      "printable_instances": 7,
+      "proposal_fits": true,
+      "proposed_translations": [
+        {
+          "occurrence_id": 8,
+          "translation": [
+            17.0,
+            5.199999809265137,
+            17.0
+          ]
+        },
+        {
+          "occurrence_id": 6,
+          "translation": [
+            136.0,
+            -107.9000015258789,
+            3.200000047683716
+          ]
+        },
+        {
+          "occurrence_id": 7,
+          "translation": [
+            100.0,
+            38.79999828338623,
+            24.0
+          ]
+        },
+        {
+          "occurrence_id": 3,
+          "translation": [
+            74.0,
+            -52.100001525878895,
+            10.000000000000002
+          ]
+        },
+        {
+          "occurrence_id": 14,
+          "translation": [
+            108.0,
+            -28.900001525878906,
+            14.0
+          ]
+        },
+        {
+          "occurrence_id": 16,
+          "translation": [
+            141.0,
+            -20.0,
+            17.0
+          ]
+        }
+      ]
+    },
     "ok": true,
     "timeline_errors": []
   },
@@ -2553,13 +2893,11 @@
   },
   "unchanged_feature_count": true,
   "current_feature_count": 81,
-  "hardware_dimension_authority": "User-confirmed accurate servo diagram: 40 by 20 mm case, 2.7 mm ears and shown shaft/case stack.",
+  "hardware_dimension_authority": "User drawing: 41.5 tip-to-rear, 37.5 case axial height, 24.7 ear UNDERSIDE to rear, 2.7 ear thickness. The case pocket clears the larger catalog plan length 40.5 with 0.4 per-side allowance.",
   "unresolved_physical_checks": [
     "Cable boot envelope is not dimensioned in the servo diagram",
     "Usable shaft thread depth and physically selected press-fit pilot",
     "Installed adapter position and alignment, printed running fits, loaded torque and wear"
   ],
-  "readiness": "Corrected housing geometry; final hardware fit and load acceptance remain physical checks.",
-  "bambu_slice_verification": "bambu-slice-verification.json",
-  "print_settings_verification": "bambu-latest-verification.json"
+  "readiness": "Corrected housing geometry; final hardware fit and load acceptance remain physical checks."
 }

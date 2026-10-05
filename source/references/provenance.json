@@ -2,7 +2,7 @@
   "injora-injs035-360-dimensions.jpg": {
     "source_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720",
     "sha256": "1f4be1a7e5897377edcc63bb2eff03389b450ac424b0202ec656de4758da8d5f",
-    "authority": "User confirmed this dimensioned diagram is accurate; use the drawing dimensions over contradictory summary text.",
+    "authority": "Earlier manufacturer diagram, retained as source evidence. The latest user attachment controls the corrected ear datum; clear the larger 40.5 mm catalog plan length.",
     "dimensions_mm": {
       "case_length": 40,
       "case_width": 20,
@@ -12,9 +12,14 @@
       "output_axis_from_right_case_edge": 10,
       "shaft_tip_to_rear": 41.5,
       "case_face_to_rear": 37.5,
-      "derived_nominal_tip_to_case_face": 4.0
+      "derived_nominal_tip_to_case_face": 4.0,
+      "ear_underside_to_rear": 24.7
     },
-    "not_dimensioned": ["Internal shaft thread depth", "Factory center-screw length", "Cable boot envelope"]
+    "not_dimensioned": [
+      "Internal shaft thread depth",
+      "Factory center-screw length",
+      "Cable boot envelope"
+    ]
   },
   "hitec-horn-spline-2026.pdf": {
     "source_url": "https://shop.multiplex-rc.de/userdata/files/HITEC%20SERVO%20ACTUATOR%20HORN%20%26%20SPLINE%20TECHNICAL%20DATA%20SHEET_v3_0_1_26C.pdf",
@@ -22,5 +27,31 @@
     "printed_page": 75,
     "reference": "H25T nominal 6 mm / 25-tooth family; manufacturer horn spline depth 3.7 mm.",
     "scope": "Depth design reference, not a universal servo standard or the INJORA internal spline/thread drawing."
+  },
+  "user-servo-fit-diagram.png": {
+    "source": "User attachment 1000015289.png, supplied 2026-10-05",
+    "attachment_id": "f2141286-c619-4851-a1e2-0215337617f7-a0d6c4ab-5bc0-40fe-84ba-c5c4abc7f572",
+    "sha256": "ab486b6b1cc1210e08689b5c02129df5093c12a18e12dcaa06483c0e13982168",
+    "dimensions_mm": {
+      "drawing_case_length": 40,
+      "catalog_plan_length_cleared": 40.5,
+      "case_width": 20,
+      "tip_to_rear": 41.5,
+      "case_axial_height": 37.5,
+      "ear_underside_to_rear": 24.7,
+      "ear_thickness": 2.7,
+      "ear_span": 56,
+      "mount_hole_center_spacing": 49,
+      "shaft_from_right_case_edge": 10
+    },
+    "datum_interpretation": "24.7 starts at underside/rear face of ear. Ear front is 41.5-24.7-2.7=14.1 behind shaft tip; ear rear is 16.8 behind tip.",
+    "variant_note": "Image is labeled INJS035-270. Earlier retained INJS035-360 diagram shows the same mechanical datums. Geometry review does not change the requested 360-degree drive or certify the electrical mode of the actual servo.",
+    "catalog_summary_scope": "40.5 x20 x40.5 is the image catalog summary; it does not replace the independently dimensioned 37.5 case axial height and 41.5 shaft-tip stack. The larger 40.5 plan length is used as the clearance envelope.",
+    "not_dimensioned": [
+      "Cable boot envelope",
+      "Internal shaft thread depth",
+      "Mounting slot widths/radii",
+      "Factory center-screw length"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
+  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
   "reference_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "reference_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "revision": "Finished housing cavities simplified for printed nesting",
@@ -43,14 +43,24 @@
       "reason": "Clear the complete last flight, including permitted radial offset and axial travel."
     },
     "servo_pockets": {
-      "case_length_mm": 40.8,
+      "case_length_mm": 41.3,
       "case_width_mm": 20.8,
-      "ear_capture_span_mm": 3.1,
+      "case_axial_span_mm": 40.0,
+      "case_pocket_y_mm": [
+        151.7,
+        191.7
+      ],
+      "ear_pocket_y_mm": [
+        162.60000000000002,
+        165.7
+      ],
+      "ear_capture_span_mm": 3.099999999999966,
       "ear_thickness_reference_mm": 2.7,
       "ear_axial_float_nominal_mm": 0.4,
-      "previous_ear_axial_float_nominal_mm": 1.8,
+      "ear_underside_to_rear_reference_mm": 24.7,
+      "ear_datum_correction_mm": -2.7,
       "ear_cut_moved_after_extensions": true,
-      "dimension_authority": "User confirms supplied dimensioned diagram is accurate: 40 by 20 mm case, 2.7 mm ears, 41.5 overall / 37.5 case stack.",
+      "dimension_authority": "User supplied drawing: 41.5 tip-to-rear, 37.5 case height, 24.7 underside-of-ear-to-rear, 2.7 ear thickness. Design clears the larger 40.5 mm case length in its catalog row.",
       "drawing_dimensions_user_confirmed": true,
       "printed_assembly_fit_verified": false
     },
@@ -206,7 +216,8 @@
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
-      "reader_mode": "isolated desktop executable headless"
+      "reader_mode": "isolated desktop executable headless",
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
@@ -214,12 +225,13 @@
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
-      "reader_mode": "isolated desktop executable headless"
+      "reader_mode": "isolated desktop executable headless",
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
     }
   ],
   "updated_housing_stl_sha256": {
-    "print-parts/direct-drive/petg-housing-lower.stl": "e37b1ab4489c3190707eca9ceee56230d2220daa3791e423556a5da902203ce2",
-    "print-parts/direct-drive/petg-housing-upper.stl": "9f25b273c716d9a1b86f0b596407e8db22878d192191fb0624a597a8d31dea66"
+    "print-parts/direct-drive/petg-housing-lower.stl": "f4778587a78a0d23b658c68527239a48a0407601514ba2d8c82558f1437c375e",
+    "print-parts/direct-drive/petg-housing-upper.stl": "7ec80099e3a4dbb2490f35b1198a2f4a8e69169a9b10a4faa06a51e636dc2591"
   },
   "unchanged_other_stl_sha256": {
     "print-parts/direct-drive/petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
@@ -232,5 +244,5 @@
   },
   "whole_project_history_before": 83,
   "whole_project_history_after": 81,
-  "compatibility": "Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with the flight-clearance entrance taper and restored 3.10 mm servo-ear pocket."
+  "compatibility": "Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with drawing-correct ear datums at Y162.6/165.7, 41.3 by 20.8 case pocket and the retained flight-clearance entrance taper."
 }

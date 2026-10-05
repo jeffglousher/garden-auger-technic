@@ -16,6 +16,7 @@ from model_cleanup import clean_checked
 from housing_simplification import simplify_housing, verify_housing
 from nested_housing import nest_housing, verify_nesting
 from direct_drive_parameters import *
+from design_parameters import square_fit_stack
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'.build/direct-drive'
@@ -110,7 +111,7 @@ def main():
             'shaft_reference_only':{'nominal_tip_y':SHAFT_TIP_SEAT_Y,
                 'dimensioned_tip_to_case_stack_user_confirmed':True,
                 'dimensional_authority':'User-confirmed accurate INJORA dimensioned diagram',
-                'local_dimensions_image':'source/references/injora-injs035-360-dimensions.jpg',
+                'local_dimensions_image':'source/references/user-servo-fit-diagram.png',
                 'nominal_case_face_y':CASE_FACE_REFERENCE_Y,
                 'nominal_tip_to_case_body_face_from_supplier_image':4.0,
                 'image_derivation':'41.5 mm tip-to-rear minus 37.5 mm case-face-to-rear = 4.0 mm nominal tip-to-case-face distance',
@@ -126,12 +127,7 @@ def main():
                 'actual_shaft_tip_contact_verified':False,
                 'scope':'The confirmed diagram controls nominal case/ear and tip-to-case dimensions. The rotating shaft and internal thread are not modeled; inspect printed seating and usable internal screw depth.'},
             'center_screw_inspection':screw_stack(),
-            'square_fit_stack':{'required_flange_face_y':[140.95,141.25],
-                'required_flange_face_from_front_chassis_thrust_stop':[27.25,27.55],
-                'required_drive_axis_offset_max':.5,
-                'engagement_min':9.35,'engagement_max':10.85,
-                'tip_bottom_gap_min':1.05,'hub_flange_gap_min':.75,
-                'note':'Conditional on printed +/-0.10 mm critical limits and measured installed flange location.'},
+            'square_fit_stack':square_fit_stack(),
             'cleanup':cleanup,'housing_simplification':housing_cleanup,
             'nested_housing':nesting,
             'preflight':preflight,'assembly_checks':checks,
