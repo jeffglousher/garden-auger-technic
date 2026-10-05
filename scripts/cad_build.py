@@ -6,18 +6,12 @@ The previous editable project is retained as the construction baseline.
 
 from __future__ import annotations
 
-import base64
 import json
-import math
 from pathlib import Path
-import shutil
 import zipfile
-
-from cad_client import CadClient
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / 'source/auger-construction.nbcad'
-PROJECT = ROOT / 'garden-auger-drive.nbcad'
 
 
 def profile(sketch: dict, points: list[tuple[float, float]], arcs: dict | None = None):

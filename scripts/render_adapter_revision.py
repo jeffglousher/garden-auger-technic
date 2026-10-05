@@ -35,7 +35,7 @@ def main():
     draw.text((35, 887), f"Straight bore wall: {dims['straight_bore_radial_wall']:.2f} mm radial", font=font(24), fill=muted)
     draw.text((835, 845), f"Socket: {dims['press_fit_pilot_depth']:.2f} mm deep (was 1.70 mm)", font=font(26, True), fill=ink)
     draw.text((835, 887), 'Square and M3 screw-seat positions preserved', font=font(24), fill=muted)
-    draw.text((35, 952), 'Hitec H25T depth reference; actual INJORA shaft requires >=4.00 mm exposure. Physical fit/load unqualified.', font=font(22), fill=accent)
+    draw.text((35, 952), 'Hitec H25T depth reference; confirmed INJORA tip-to-case stack 4.00 mm. Printed fit/load unqualified.', font=font(22), fill=accent)
     canvas.save(OUT / 'adapter-revision.png')
     captures = ['adapter-front.png', 'adapter-rear.png', 'adapter-section.jpg']
     proof = {
@@ -52,7 +52,7 @@ def main():
         'composite_crop_rectangles': crops,
         'captures_sha256': {name: hashlib.sha256((OUT / name).read_bytes()).hexdigest() for name in captures},
         'composite_sha256': hashlib.sha256((OUT / 'adapter-revision.png').read_bytes()).hexdigest(),
-        'physical_interface_scope': 'Manufacturer family depth reference; real INJORA shaft/nose and thread depth require inspection.',
+        'physical_interface_scope': 'Manufacturer family depth reference; nominal INJORA stack follows the confirmed diagram. Inspect printed seating and internal screw depth.',
     }
     (OUT / 'provenance.json').write_text(json.dumps(proof, indent=2) + '\n')
     print('Native CAD revision views presented and provenance recorded')

@@ -56,7 +56,6 @@ def main():
     report = {'source_project': source.name,
         'source_project_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
         'housing_change_required_for_this_adapter_revision': False,
-        'print_progress_known': False,
         'nominal_mm': {'housing_chamber_diameter': diameter, 'boss_radial_clearance': boss_gap,
                        'flange_radial_clearance': flange_gap, 'adapter_rear_y': adapter_rear_y,
                        'housing_chamber_end_y': rear_y, 'adapter_rear_to_housing_wall_gap': axial_gap},
@@ -66,7 +65,7 @@ def main():
                               'installed_adapter_axial_plus_minus_mm': installed_axial,
                               'drive_axis_radial_offset_max_mm': MAX_DRIVE_AXIS_OFFSET},
         'native_ideal_geometry_checks': checks,
-        'scope': 'Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. Actual purchased servo shaft/nose clearance remains unverified.',
+        'scope': 'Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. The user-confirmed diagram controls the nominal servo stack; physical printed seating and internal screw depth require inspection.',
         'nesting_revision': audit.get('nested_housing', {}),
         'housing_change_required_for_adapter_depth': False,
         'housing_geometry_updated_for_print_simplicity': bool(audit.get('nested_housing'))}

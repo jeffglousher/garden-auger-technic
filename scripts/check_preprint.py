@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 import numpy as np
 import trimesh
 
-from audit_dimensions import section_segments, segment_distance, vertical_hits
+from geometry_measurements import section_segments, segment_distance, vertical_hits
 from cad_client import CadClient
 from print_packer import mesh_from_object
 

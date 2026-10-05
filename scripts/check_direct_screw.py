@@ -9,7 +9,7 @@ import numpy as np
 import trimesh
 from cad_client import CadClient
 from cad_build import Builder
-from audit_dimensions import vertical_hits
+from geometry_measurements import vertical_hits
 from direct_drive_parameters import *
 
 ROOT=Path(__file__).resolve().parents[1]

@@ -33,5 +33,5 @@
     "adapter-section.jpg": "07ce63ca60d4920985a9987c8ae47fd8e358fff655da9769a25b8b3e45bbf70a"
   },
   "composite_sha256": "9feb7c4b71735ea07a6101b22b8ffbbcc5abb36127104027acd8ee79f3b58483",
-  "physical_interface_scope": "Manufacturer family depth reference; real INJORA shaft/nose and thread depth require inspection."
+  "physical_interface_scope": "Manufacturer family depth reference; nominal INJORA stack follows the confirmed diagram. Inspect printed seating and internal screw depth."
 }

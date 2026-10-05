@@ -33,7 +33,7 @@ def main():
                 ((148.7,2.95),(148.7,-2.95)),((152.7,2.95),(152.7,-2.95))]:
         dashed(a,b,accent)
     dashed((140,0),(154,0),(86,106,123),1)
-    # The supplier image implies this case face; its nose is not dimensioned.
+    # The user-confirmed dimensioned diagram locates this nominal case face.
     dashed((CASE_FACE_REFERENCE_Y,-4.5),(CASE_FACE_REFERENCE_Y,4.5),(94,118,143),2)
     def dim(a,b,z,label):
         ax,ay=tr((a,z));bx,by=tr((b,z))

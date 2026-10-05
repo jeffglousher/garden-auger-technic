@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 from PIL import Image, ImageDraw
 from render_common import framed, triangles, shifted, banner, font, parts_sheet
-from direct_drive_parameters import PILOT_DEPTH,BOSS_DIAMETER,REQUIRED_EXPOSED_SHAFT_MIN
+from direct_drive_parameters import PILOT_DEPTH,BOSS_DIAMETER
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -40,7 +40,7 @@ def main():
     d.text((40,924),'Center screw clamps the annular seat onto the rotating shaft tip. No printed spline teeth.',font=font(24),fill=(182,198,211))
     d.text((40,978),f'Pilot: 5.70 trial bore x {PILOT_DEPTH:.2f} deep  |  Boss OD{BOSS_DIAMETER:.0f}, 9.15 wall  |  M3 x 6 trial screw',font=font(24),fill=(220,232,244))
     d.text((40,1020),'Round fit coupons A / B / C / D: 5.60 / 5.70 / 5.80 / 5.90 mm. Start with D.',font=font(24),fill=(182,198,211))
-    d.text((40,1060),f'H25T manufacturer depth reference: 3.70 mm. Actual shaft exposure must be at least {REQUIRED_EXPOSED_SHAFT_MIN:.2f} mm.',font=font(23),fill=(182,198,211))
+    d.text((40,1060),'H25T depth reference: 3.70 mm. Confirmed INJORA diagram: 4.00 mm nominal tip-to-case distance.',font=font(23),fill=(182,198,211))
     d.text((40,1124),'At 35 kg.cm stall torque, strength cannot be inferred from a snug fit. Qualify the printed adapter.',font=font(23,True),fill=(238,188,96))
     image.save(out/'direct-drive-adapter.png')
     print('Direct-drive adapter, all parts and exploded CAD geometry rendered',flush=True)

@@ -1,4 +1,4 @@
-"""Package the direct-drive prototype without changing release B artifacts."""
+"""Package the current direct-drive assembly, adapter and fit coupons."""
 import hashlib
 import json
 from pathlib import Path
@@ -20,8 +20,8 @@ Print A/B/C/D press-fit coupons first: bores 5.60/5.70/5.80/5.90 mm. Start with 
 Full adapter uses the provisional 5.70 mm bore B. Change its native pilot sketch to the physically selected fit.
 Pilot depth 3.70 mm follows Hitec H25T manufacturer horn-depth reference; includes 0.15 mm lead-in.
 Boss OD24 mm with broad tapered root; bore wall 9.15 mm straight / 9.00 mm at entry.
-Shaft tip bears on annular bore floor. Require >=4.00 mm exposure to nearest stationary surface.
-Nominal case-face gap 0.30 mm assumes 4.00 mm tip-to-case distance; actual INJORA nose is unmodeled.
+Shaft tip bears on annular bore floor. The confirmed INJORA diagram gives 4.00 mm nominal tip-to-case distance.
+Nominal case-face gap is 0.30 mm; inspect the printed 3.70 +/-0.10 socket to retain at least 0.20 mm clearance.
 Center M3x6 trial: measured length 5.90-6.10, seat-to-shaft-tip 2.40-2.80, usable thread depth at least 4.00 mm.
 This gives 3.10-3.70 mm thread entry and at least 0.30 mm tip room, conditional on all measurements.
 M3 head 5.5 x3.0 clears 6.40 mm access; 3.40 passage and 4.00 x0.30 underhead relief clear screw neck.
@@ -30,7 +30,8 @@ Printed torque capacity, creep, wear and service life have not been qualified.
 Keep the 14 mm square and 28 mm auger hub; integral collar retained only by clamshell.
 Native CAD and portable 3MF material/color metadata are explicit; select actual slicer profiles.
 Chassis uses 4 ruthex RX-M3x5.7 inserts, 2 M3x12 front and 2 M3x18 rear screws.
-Separate PLA and PETG printing avoids filament changes and purge.
+The portable package stores geometry, materials and placement; use garden-auger-bambu-latest.3mf for saved printer/process settings.
+The Bambu project groups model filaments by plate, but PLA support interfaces on PETG plates can require filament changes and purge.
 '''
 
 
@@ -68,7 +69,7 @@ def small_plate(source,target,coupons=False):
 
 def main():
     report={'assembly':pack(OUT/'assembly-raw.3mf',ROOT/'garden-auger-direct-drive.3mf',
-        individual_dir='print-parts/direct-drive',material_plates=False,print_notes=NOTES),
+        individual_dir='print-parts/direct-drive',print_notes=NOTES),
         'adapter':small_plate(OUT/'adapter-raw.3mf',ROOT/'garden-auger-direct-adapter.3mf'),
         'coupons':small_plate(OUT/'coupons-raw.3mf',ROOT/'garden-auger-press-fit.3mf',coupons=True)}
     proof=json.loads((ROOT/'direct-drive-verification.json').read_text())

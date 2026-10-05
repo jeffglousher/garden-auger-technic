@@ -2,7 +2,6 @@
   "source_project": "garden-auger-direct-drive.nbcad",
   "source_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
   "housing_change_required_for_this_adapter_revision": false,
-  "print_progress_known": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,
     "boss_radial_clearance": 2.8000000000000007,
@@ -221,7 +220,7 @@
       ]
     }
   ],
-  "scope": "Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. Actual purchased servo shaft/nose clearance remains unverified.",
+  "scope": "Adapter against both printed housing halves. Minimum gaps require the stated printed and installed acceptance limits. The user-confirmed diagram controls the nominal servo stack; physical printed seating and internal screw depth require inspection.",
   "nesting_revision": {
     "finished_housing_geometry_changed": true,
     "housing_before": {

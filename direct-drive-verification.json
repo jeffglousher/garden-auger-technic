@@ -1,5 +1,5 @@
 {
-  "status": "round pilot press-fit prototype; physical shaft geometry and torque capacity unqualified",
+  "status": "round pilot press-fit prototype; confirmed nominal servo diagram; printed fit and torque capacity unqualified",
   "servo": "INJORA INJS035-360, published 5.9 mm / 25T output",
   "removed_hardware": [
     "Separate metal servo horn",
@@ -35,10 +35,9 @@
     "scope": "Manufacturer family reference; INJORA publishes diameter/tooth count but not axial spline exposure."
   },
   "shaft_reference_only": {
-    "assumed_tip_y": 148.7,
     "nominal_case_face_y": 152.7,
     "nominal_tip_to_case_body_face_from_supplier_image": 4.0,
-    "image_derivation": "41.5 mm overall minus 37.5 mm case height; nominal inference, not exposed-spline length",
+    "image_derivation": "41.5 mm tip-to-rear minus 37.5 mm case-face-to-rear = 4.0 mm nominal tip-to-case-face distance",
     "dimensions_image_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720",
     "nominal_axial_overlap": 3.7,
     "nominal_straight_engagement": 3.5500000000000003,
@@ -50,8 +49,11 @@
     "unsupported_2_mm_stationary_nose_removed_from_reference": true,
     "purchased_shaft_and_nose_collision_verified": false,
     "actual_shaft_tip_contact_verified": false,
-    "warning": "Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.",
-    "dimensioned_tip_to_case_stack_user_confirmed": true
+    "dimensioned_tip_to_case_stack_user_confirmed": true,
+    "nominal_tip_y": 148.7,
+    "dimensional_authority": "User-confirmed accurate INJORA dimensioned diagram",
+    "local_dimensions_image": "source/references/injora-injs035-360-dimensions.jpg",
+    "scope": "The confirmed diagram controls nominal case/ear and tip-to-case dimensions. The rotating shaft and internal thread are not modeled; inspect printed seating and usable internal screw depth."
   },
   "center_screw_inspection": {
     "screw": "M3 x 6 ISO4762/DIN912 envelope, full thread; verify factory thread compatibility",
@@ -437,9 +439,9 @@
   ],
   "internal_documentation_checked": [
     "README.md",
-    "scripts/audit_dimensions.py",
+    "scripts/geometry_measurements.py",
     "scripts/design_parameters.py",
-    "scripts/release_drawings.py",
+    "source/references/provenance.json",
     "direct-drive-verification.json"
   ],
   "physical_acceptance": [
@@ -678,10 +680,10 @@
   },
   "artifact_sha256": {
     "garden-auger-direct-drive.nbcad": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
-    "garden-auger-direct-drive.3mf": "c903f4e074ee2ca72b1835e3c1536994d0dff80caba999fa5fce9d2b75d00d51",
-    "garden-auger-direct-adapter.3mf": "ca3915ca531b1c89cf36f6197f6cc213c2b4d40f9349b167f821c3eeab4a55f5",
+    "garden-auger-direct-drive.3mf": "b73141a8dff67ffd0b28f6ae1ca61449df7a14b2d35a8721a8b46d52b76bcab8",
+    "garden-auger-direct-adapter.3mf": "1462ed68015ca3f96916bd86b5039dab78984aff2f1e3b3009132ea8b5f19693",
     "garden-auger-press-fit.nbcad": "1a06f426c96bec44d4c068cdb0d9ecc0536e7e3dc5fad8364fab70211c6e9c93",
-    "garden-auger-press-fit.3mf": "af14c9dbb859ad89319f829b0bf5289c1a56c968c02057b8800098083f75b66e"
+    "garden-auger-press-fit.3mf": "4e0c95c98db83e4d41443d88079803c3a1f2b8ab7f642fd177200c3b027ade4e"
   },
   "center_screw_cad_check": {
     "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,

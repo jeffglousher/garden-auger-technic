@@ -63,5 +63,112 @@
     "garden-auger-press-fit.3mf",
     "garden-auger-press-fit.nbcad"
   ],
-  "history_recovery": "git show 04abed1:<path>"
+  "history_recovery": "git show 04abed1:<path>",
+  "current_builder_and_local_cleanup": {
+    "baseline_commit": "08cf922260b661bfc58faad1f2e62decf3efcea3",
+    "removed_obsolete_script_paths": [
+      "scripts/audit_dimensions.py",
+      "scripts/build_model.py",
+      "scripts/cad_mating_views.py",
+      "scripts/cad_review.py",
+      "scripts/check_captured.py",
+      "scripts/pack_captured.py",
+      "scripts/release_drawings.py",
+      "scripts/render_cad_mating.py",
+      "scripts/render_captured.py",
+      "scripts/render_mating.py"
+    ],
+    "recover_tracked_files": "git show 08cf922:<path>; all removed tracked files remain in repository history",
+    "selected_design": "Direct PETG round press-fit adapter, loose full PLA sleeve, clamshell retention; confirmed INJORA diagram controls nominal dimensions",
+    "source_geometry_and_original_supplier_evidence_preserved": true,
+    "new_preserved_references": [
+      "source/references/injora-injs035-360-dimensions.jpg",
+      "source/references/hitec-horn-spline-2026.pdf"
+    ],
+    "original_binary_assets_checked": 31,
+    "original_binary_assets_byte_identical": 28,
+    "portable_package_notes_updates": [
+      {
+        "file": "garden-auger-direct-drive.3mf",
+        "before_sha256": "c903f4e074ee2ca72b1835e3c1536994d0dff80caba999fa5fce9d2b75d00d51",
+        "after_sha256": "b73141a8dff67ffd0b28f6ae1ca61449df7a14b2d35a8721a8b46d52b76bcab8",
+        "only_changed_entry": "Metadata/print-notes.txt",
+        "all_geometry_and_material_entries_identical": true
+      },
+      {
+        "file": "garden-auger-direct-adapter.3mf",
+        "before_sha256": "ca3915ca531b1c89cf36f6197f6cc213c2b4d40f9349b167f821c3eeab4a55f5",
+        "after_sha256": "1462ed68015ca3f96916bd86b5039dab78984aff2f1e3b3009132ea8b5f19693",
+        "only_changed_entry": "Metadata/print-notes.txt",
+        "all_geometry_and_material_entries_identical": true
+      },
+      {
+        "file": "garden-auger-press-fit.3mf",
+        "before_sha256": "af14c9dbb859ad89319f829b0bf5289c1a56c968c02057b8800098083f75b66e",
+        "after_sha256": "4e0c95c98db83e4d41443d88079803c3a1f2b8ab7f642fd177200c3b027ade4e",
+        "only_changed_entry": "Metadata/print-notes.txt",
+        "all_geometry_and_material_entries_identical": true
+      }
+    ],
+    "construction_input_model_identical": true,
+    "isolated_native_rebuild": {
+      "rebuild_all_native_mesh_arrays_identical": true,
+      "native_body_ids": [
+        1,
+        15,
+        26,
+        46,
+        90,
+        216,
+        221
+      ],
+      "assembly_placement_identical": true,
+      "materials_and_colors_identical": true,
+      "active_features": 81
+    },
+    "isolated_packaging_check": {
+      "repacked_three_geometry_material_and_placement_xml_payloads_identical": true,
+      "exporter_branding_only_difference": "Installed executable changed Application/Title from noBS CAD to Limo CAD",
+      "all_nine_stls_byte_identical": true,
+      "shared_measurement_helpers_pass_native_screw_check": true
+    },
+    "isolated_schema_7_desktop_reader_check": [
+      {
+        "file": "garden-auger-direct-drive.nbcad",
+        "desktop_schema": 7,
+        "all_mesh_vertices_and_triangles_identical": true,
+        "materials_preserved": true,
+        "drawing_sheets": 0,
+        "reader_mode": "isolated desktop executable headless",
+        "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
+      },
+      {
+        "file": "garden-auger-press-fit.nbcad",
+        "desktop_schema": 7,
+        "all_mesh_vertices_and_triangles_identical": true,
+        "materials_preserved": true,
+        "drawing_sheets": 0,
+        "reader_mode": "isolated desktop executable headless",
+        "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
+      }
+    ],
+    "local_generated_file_cleanup": {
+      "deleted_local_files": 291,
+      "deleted_local_bytes": 418350654,
+      "checked_target_count": 100,
+      "protected_live_cad_identifiers": 6,
+      "retained": "current raw exports, native slice evidence, source references, published issue snapshots, dependency cache and live document caches",
+      "removed_targets_matching_live_identifiers": 0,
+      "final_regenerated_python_cache": "Small regenerated scripts/__pycache__ remains ignored; automatic approval review blocked its final deletion with no reason beyond blocked by policy."
+    },
+    "git_state": {
+      "local_branches": [
+        "main"
+      ],
+      "worktrees": 1,
+      "extra_branches_or_worktrees_present": false,
+      "other_team_worktrees_modified": false
+    },
+    "remaining_acceptance": "Printed fit/seating, usable internal center-screw depth, cable boot clearance and loaded torque/creep/wear feedback."
+  }
 }

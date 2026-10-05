@@ -1,7 +1,8 @@
-"""Round pilot press-fit prototype; retain release B as metal-horn fallback.
+"""Build the current round pilot press-fit prototype.
 
 The metal servo splines form their engagement into an undersized PETG bore.
-No tiny spline teeth are printed. Actual shaft and screw fit remain unverified.
+No tiny spline teeth are printed. Nominal servo dimensions use the confirmed
+diagram; printed fit, internal screw depth and load capacity require inspection.
 """
 import base64
 import json
@@ -9,8 +10,8 @@ import math
 from pathlib import Path
 
 from cad_client import CadClient
-from cad_build import Builder, profile, save_project
-from build_model import configure, rear_pads
+from cad_build import Builder, save_project
+from construction_setup import configure, rear_pads
 from model_cleanup import clean_checked
 from housing_simplification import simplify_housing, verify_housing
 from nested_housing import nest_housing, verify_nesting
@@ -26,41 +27,7 @@ def model_value(c):
 
 
 def setup():
-    m=configure()
-    sketches={s['name']:s for s in m['sketches']}
-    # The old reference invented a 2 mm tall stationary nose and omitted the
-    # output shaft. Keep the supplier-sized case/ears, omit that unsupported
-    # nose, and verify the real shaft/nose as an incoming interface requirement.
-    next(f for f in m['document']['history']['features'] if f['id']==10)['suppressed']=True
-    for group in ('definitions','occurrences'):
-        for item in m['assembly']['component_structure'][group]:
-            if item.get('component_id',item['id'])==3:
-                item['name']='INJS035-360 case reference - shaft and nose unmodeled'
-    sketches['Sketch101']['snapshot']['entities'][0][1]['radius']=14.0
-    next(e for e in m['extrudes'] if e['feature_id']==293)['extent']['distance']=5.0
-    # The 28 mm flange fits within the journal-size rear chamber. No broad
-    # metal-horn cavity or four M4 mounting features are needed.
-    profile(sketches['Chassis integral thrust stops and journal seat'],
-        [(110.9,0),(110.9,14.8),(112.9,14.8),(113.7,15.6),
-         (113.7,17.8),(117.3,17.8),(117.3,15.5),(118.5,14.8),
-         (120.3,14.8),(120.3,17.8),(131.2,17.8),(131.2,14.8),
-         (153,14.8),(153,0)])
-    old='Metal horn pilot and center screw head relief'
-    new='Direct adapter axial screw access and head seat'
-    sketches[old]['name']=new
-    profile(sketches[old],[(129.3,0),(129.3,HEAD_ACCESS/2),(HEAD_SEAT_Y,HEAD_ACCESS/2),
-        (HEAD_SEAT_Y,UNDERHEAD_RELIEF_DIAMETER/2),
-        (HEAD_SEAT_Y+UNDERHEAD_RELIEF_DEPTH,SCREW_CLEARANCE/2),
-        (HEAD_SEAT_Y+UNDERHEAD_RELIEF_DEPTH,0)])
-    for r in m['revolves']:
-        if r['sketch_name']==old:r['sketch_name']=new
-    for f in m['document']['history']['features']:
-        if f['name']==old:f['name']=new
-    m['document']['name']='Garden auger - round pilot direct press-fit prototype'
-    # Release B's drawings describe a separate horn and must not accompany
-    # this different connection. Its release drawing stays intact.
-    m['drawings']['sheets']=[]
-    return m
+    return configure()
 
 
 def check_assembly(c,m):
@@ -120,7 +87,7 @@ def main():
             r=c.call('solid_export_3mf',{'body_ids':ids,'scope':'definition',
                 'linear_deflection':.08,'angular_deflection':.2,'slicer_target':'bambu_studio'})
             (OUT/name).write_bytes(base64.b64decode(r['bytes_base64']))
-        report={'status':'round pilot press-fit prototype; physical shaft geometry and torque capacity unqualified',
+        report={'status':'round pilot press-fit prototype; confirmed nominal servo diagram; printed fit and torque capacity unqualified',
             'servo':'INJORA INJS035-360, published 5.9 mm / 25T output',
             'removed_hardware':['Separate metal servo horn','4 x M4 horn mounting screws'],
             'remaining_adapter_hardware':'one factory-compatible M3 center screw',
@@ -140,10 +107,13 @@ def main():
             'horn_depth_reference':{'family':'Hitec H25T (nominal 6 mm / 25 tooth)',
                 'manufacturer_horn_depth_mm':3.70,'source_url':H25T_DEPTH_SOURCE,
                 'source_printed_page':75,'scope':'Manufacturer family reference; INJORA publishes diameter/tooth count but not axial spline exposure.'},
-            'shaft_reference_only':{'assumed_tip_y':SHAFT_TIP_SEAT_Y,
+            'shaft_reference_only':{'nominal_tip_y':SHAFT_TIP_SEAT_Y,
+                'dimensioned_tip_to_case_stack_user_confirmed':True,
+                'dimensional_authority':'User-confirmed accurate INJORA dimensioned diagram',
+                'local_dimensions_image':'source/references/injora-injs035-360-dimensions.jpg',
                 'nominal_case_face_y':CASE_FACE_REFERENCE_Y,
                 'nominal_tip_to_case_body_face_from_supplier_image':4.0,
-                'image_derivation':'41.5 mm overall minus 37.5 mm case height; nominal inference, not exposed-spline length',
+                'image_derivation':'41.5 mm tip-to-rear minus 37.5 mm case-face-to-rear = 4.0 mm nominal tip-to-case-face distance',
                 'dimensions_image_url':'https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720',
                 'nominal_axial_overlap':PILOT_DEPTH,'nominal_straight_engagement':PILOT_DEPTH-PILOT_LEAD_IN,
                 'nominal_tip_to_bore_bottom_gap':0,
@@ -154,7 +124,7 @@ def main():
                 'unsupported_2_mm_stationary_nose_removed_from_reference':True,
                 'purchased_shaft_and_nose_collision_verified':False,
                 'actual_shaft_tip_contact_verified':False,
-                'warning':'Exposed shaft length/shoulder geometry are not specified by INJORA; this is not a verified shaft stack.'},
+                'scope':'The confirmed diagram controls nominal case/ear and tip-to-case dimensions. The rotating shaft and internal thread are not modeled; inspect printed seating and usable internal screw depth.'},
             'center_screw_inspection':screw_stack(),
             'square_fit_stack':{'required_flange_face_y':[140.95,141.25],
                 'required_flange_face_from_front_chassis_thrust_stop':[27.25,27.55],
@@ -185,11 +155,11 @@ def main():
                  'evidence':'Manufacturer publishes 5.9 mm /25T, 35 kg.cm at 6V, and M3 spool mounting screw, but no shaft thread depth or screw length.'},
                 {'url':'https://in.misumi-ec.com/vona2/detail/110310861029/?HissuCode=E-BOX-GSCB3-10',
                  'evidence':'Manufacturer M3 screw envelope: 5.5 mm head diameter, 3 mm head height, 2.5 mm hex.'}],
-            'internal_documentation_checked':['README.md','scripts/audit_dimensions.py',
-                'scripts/design_parameters.py','scripts/release_drawings.py','direct-drive-verification.json'],
+            'internal_documentation_checked':['README.md','scripts/geometry_measurements.py',
+                'scripts/design_parameters.py','source/references/provenance.json','direct-drive-verification.json'],
             'physical_acceptance':['Start with largest round-pilot coupon; select a snug seat without splitting or damaging the servo bearings.',
                 'Inspect metal teeth formed into the PETG bore. Do not use the center screw as a press to force an over-tight pilot.',
-                f'Measure actual exposure from shaft tip to the nearest stationary nose/case surface: at least {REQUIRED_EXPOSED_SHAFT_MIN:.2f} mm is required for the 3.70 +/-0.10 mm socket and 0.20 mm minimum stationary clearance.',
+                'Use the confirmed 4.00 mm nominal tip-to-case stack; inspect the printed 3.70 +/-0.10 mm socket to retain at least 0.20 mm case-face clearance.',
                 'Confirm shaft tip bears on the annular seat and the adapter never clamps on the stationary servo nose.',
                 'Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.',
                 'Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength.']}

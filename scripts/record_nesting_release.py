@@ -48,8 +48,7 @@ def main():
         'updated_housing_stl_sha256': changed, 'unchanged_other_stl_sha256': retained,
         'whole_project_history_before': len(before['document']['history']['features']),
         'whole_project_history_after': len(model['document']['history']['features']),
-        'print_progress_known': False,
-        'compatibility': 'Existing auger, adapter and sleeve fit both housing revisions. Earlier housings remain usable; new housings provide the simpler cavities.'}
+        'compatibility': 'Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with the flight-clearance entrance taper and restored 3.10 mm servo-ear pocket.'}
     (ROOT / 'housing-nesting-verification.json').write_text(json.dumps(report, indent=2) + '\n')
     audit['housing_geometry_release_verification'] = 'housing-nesting-verification.json'
     (ROOT / 'direct-drive-verification.json').write_text(json.dumps(audit, indent=2) + '\n')
