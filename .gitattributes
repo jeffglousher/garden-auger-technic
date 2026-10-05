@@ -1,0 +1,3 @@
+# Preserve native SVG export bytes for recorded artifact hashes.
+renders/cad-fit-dimensions.svg -text
+renders/cad-fit-clearances.svg -text

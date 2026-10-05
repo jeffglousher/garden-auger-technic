@@ -4,6 +4,8 @@ The current [direct-drive CAD](garden-auger-direct-drive.nbcad) uses **one gray 
 
 [Current design decisions](docs/design-decisions.md) record the confirmed hardware dimensions and selected construction. Print feedback remains pending. Run `py scripts/verify_release.py` to check the current files and their verification hashes without rebuilding or changing them.
 
+The [direct CAD tool review](docs/cad-tool-validation.md) records the live Limo CAD results and limitations. Open [garden-auger-fit-inspection.limo](garden-auger-fit-inspection.limo) for the native schema-10 inspection copy with two associative measurement sheets and an open mating-surface view. Its geometry matches the canonical print source; drawing and presentation metadata are added only to that inspection copy. The native tool confirms nominal dimensions and exact assembled clearance, while automatic GD&T stack validation, absent hardware details and physical print fit remain outside its checks.
+
 ![Round press-fit adapter](renders/direct-drive-adapter.png)
 
 ## Housing corrected after the physical fit test

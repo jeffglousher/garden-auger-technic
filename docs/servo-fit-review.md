@@ -41,6 +41,8 @@ The integral collar retains both thrust stops and 0.6 mm nominal total end float
 
 ## Evidence and delivery
 
+The subsequent [direct CAD tool review](cad-tool-validation.md) distinguishes native tool results from separately derived tolerance bounds. Its [inspection project](../garden-auger-fit-inspection.limo) contains associative nominal measurements; its [raw results](../cad-tool-validation.json) retain the tool's warnings and limitations.
+
 The [independent servo fit regression](../servo-fit-verification.json) recreates the old failure from literal drawing dimensions, rather than reusing production parameters. It confirms the old erroneous reference passed, while the correct envelope collided with both halves. The corrected native solids pass **23 fit/end-stop checks**, **6 lower-half insertion poses** and **5 upper-half closure poses**. The two beyond-limit poses correctly encounter the ear stops. The final document contains no inspection probe or temporary screw body.
 
 The [component review](../preprint-review.json) passes **45 native motion poses** covering complete auger geometry, adapter motion, closure and hardware. The [adapter review](../adapter-housing-verification.json) passes nine installed-position checks. Canonical meshes, closed connected print solids, native schema-7 desktop round trips, material/pose preservation and the seven unchanged non-housing STLs are recorded in [release verification](../direct-drive-verification.json), [nesting verification](../housing-nesting-verification.json) and [Bambu layout verification](../bambu-latest-verification.json). [Native Bambu slice verification](../bambu-slice-verification.json) records the refreshed four-plate check.

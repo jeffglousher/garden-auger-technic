@@ -30,6 +30,9 @@ def main():
     expected.update(nesting['unchanged_other_stl_sha256'])
     bambu=read('bambu-latest-verification.json')
     expected[bambu['project']]=bambu['sha256']
+    native_review=read('cad-tool-validation.json')
+    assert expected[native_review['source_project']]==native_review['source_project_sha256']
+    expected.update(native_review['artifact_sha256'])
     for report in ('adapter-housing-verification.json','housing-nesting-verification.json',
                    'preprint-review.json','servo-fit-verification.json','bambu-slice-verification.json'):
         proof=read(report)
@@ -50,10 +53,10 @@ def main():
         assert hashlib.sha256(checked_path(name).read_bytes()).hexdigest()==digest, f'Hash mismatch: {name}'
     archives=0
     for name in expected:
-        if Path(name).suffix.lower() in ('.nbcad','.3mf'):
+        if Path(name).suffix.lower() in ('.nbcad','.limo','.3mf'):
             with zipfile.ZipFile(checked_path(name)) as archive:
                 assert archive.testzip() is None, name
-                if name.endswith('.nbcad'):
+                if Path(name).suffix.lower() in ('.nbcad','.limo'):
                     assert 'model.json' in archive.namelist(), name
                 else:
                     assert '3D/3dmodel.model' in archive.namelist(), name
