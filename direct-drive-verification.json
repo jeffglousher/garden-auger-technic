@@ -688,7 +688,7 @@
           "translation": [
             100.0,
             38.79999828338623,
-            24.0
+            20.600000381469727
           ]
         },
         {
@@ -828,21 +828,23 @@
   "desktop_compatibility": [
     {
       "file": "garden-auger-direct-drive.nbcad",
+      "source_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
       "desktop_schema": 7,
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
       "reader_mode": "isolated desktop executable headless",
-      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\Limo-CAD.exe"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
+      "source_sha256": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
       "desktop_schema": 7,
       "all_mesh_vertices_and_triangles_identical": true,
       "materials_preserved": true,
       "drawing_sheets": 0,
       "reader_mode": "isolated desktop executable headless",
-      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\noBS-CAD.exe"
+      "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\Limo-CAD.exe"
     }
   ],
   "print_checks": {
@@ -854,7 +856,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 186851.3306391337,
+        "volume_mm3": 92740.36664484751,
         "plate_bounds_mm": [
           [
             8.0,
@@ -864,10 +866,10 @@
           [
             208.0,
             106.6,
-            27.2
+            23.8
           ]
         ],
-        "triangle_count": 4930
+        "triangle_count": 5458
       },
       {
         "name": "PETG - Housing lower",
@@ -876,7 +878,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 188079.34256780765,
+        "volume_mm3": 92166.24673776123,
         "plate_bounds_mm": [
           [
             8.0,
@@ -886,10 +888,10 @@
           [
             208.0,
             214.6,
-            24.0
+            20.6
           ]
         ],
-        "triangle_count": 3616
+        "triangle_count": 3648
       },
       {
         "name": "PETG - One-piece auger",
@@ -1054,11 +1056,115 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
-    "garden-auger-direct-drive.3mf": "b4097f104637a0624691e1fa289680e683f956e7c9cc404f21c8ad12d043926d",
+    "garden-auger-direct-drive.nbcad": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
+    "garden-auger-direct-drive.3mf": "72fc42eb8aa47cfa1df096b32428b81e989334cdac51b90a728fb5270a115126",
     "garden-auger-direct-adapter.3mf": "3f83fbd230169e82ea9795e2341fb7c046676a48ab655dc7d7a144c2d0c8b2f4",
     "garden-auger-press-fit.nbcad": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
     "garden-auger-press-fit.3mf": "78a4615bfd1eda186963a09e6e4fcaede4268503b8db1ee04f06bf36606fca9e"
   },
-  "housing_geometry_release_verification": "housing-nesting-verification.json"
+  "housing_geometry_release_verification": "housing-nesting-verification.json",
+  "thin_housing": {
+    "nominal_minimum_exterior_wall_mm": 2.8,
+    "servo_floor_mm": 2.8,
+    "servo_section_total_depth_mm": 26.4,
+    "bearing_section_total_depth_mm": 41.2,
+    "history_before": 81,
+    "history_after": 73,
+    "removed_history_entries": 8,
+    "preserved_screw_head_seats_z_mm": [
+      8,
+      12.7
+    ],
+    "scope": "Exterior floor and side-wall reduction. Local bearing, ear and fastener transitions retain extra stock.",
+    "native_geometry_verification": {
+      "finished_housing_geometry_identical_to_previous": false,
+      "other_body_mesh_arrays_identical": true,
+      "unchanged_body_ids": [
+        1,
+        15,
+        90,
+        216,
+        221
+      ],
+      "materials_and_assembly_placements_preserved": true,
+      "collar_stop_y_mm": [
+        113.7,
+        117.3
+      ],
+      "collar_opening_diameters_mm": [
+        31.2,
+        31.0
+      ],
+      "collar_end_float_nominal_mm": 0.6,
+      "sleeve_stop_y_mm": [
+        120.3,
+        131.2
+      ],
+      "sleeve_end_float_nominal_mm": 0.5,
+      "native_faces": {
+        "26": {
+          "before": 95,
+          "after": 107
+        },
+        "46": {
+          "before": 92,
+          "after": 97
+        }
+      },
+      "sleeve_capture_and_journal_offset_checks": [
+        {
+          "sleeve_translation_mm": -0.29,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": 0.19,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": -0.31,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "sleeve_translation_mm": 0.21,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            -0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            -0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        }
+      ]
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+  "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
   "baseline_commit": "6816a19f59809b0960d3e3b408ffa8cbd29a3a23",
   "baseline_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
   "root_cause": "24.7 mm was applied to the upper ear face instead of the underside, shifting reference ears and housing slots rearward by 2.7 mm. Mount-hole envelope centers were also 52 instead of 49 mm apart.",
@@ -658,7 +658,7 @@
           "body_b": 231,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 1.4699999999987372
+          "overlap_volume_mm3": 1.4699999999987368
         }
       ],
       "case": "Ear stops block excess axial motion"
@@ -1197,7 +1197,7 @@
           "translation": [
             100.0,
             38.79999828338623,
-            24.0
+            20.600000381469727
           ]
         },
         {

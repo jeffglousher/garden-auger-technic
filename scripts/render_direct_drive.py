@@ -5,12 +5,14 @@ import tempfile
 from PIL import Image, ImageDraw
 from render_common import framed, triangles, shifted, banner, font, parts_sheet
 from direct_drive_parameters import PILOT_DEPTH,BOSS_DIAMETER
+from cad_client import CadClient
+from native_render_source import native_render_source
 
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    scene=json.loads((ROOT/'.build/direct-drive/scene.json').read_text())
-    model=json.loads((ROOT/'.build/direct-drive/model.json').read_text())
+    with CadClient() as client:
+        model,scene=native_render_source(client,(ROOT/'garden-auger-direct-drive.nbcad').read_bytes())
     servo_y=next(o['local_pose']['translation'][1] for o in model['assembly']['component_structure']['occurrences'] if o['component_id']==3)
     colors={1:(75,98,119),26:(229,174,60),46:(229,174,60),15:(213,126,55),
             90:(213,126,55),216:(190,195,202),221:(55,170,161)}

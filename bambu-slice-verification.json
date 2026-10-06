@@ -1,7 +1,7 @@
 {
   "source_project": "garden-auger-bambu-latest.3mf",
-  "source_project_sha256": "3b119415817c71263f21cd264a985f92e05ea44144e5b7a4c963067ee1dfb17e",
-  "sliced_input_sha256": "cafa53f0fb6f687440dfc7f3d3abb7d04e6421f11d24b2b06ed067719928e364",
+  "source_project_sha256": "61aea9c5dbd2cd73c17b936f2840dba24f7aa2b0734a115a114eb391ba813ff2",
+  "sliced_input_sha256": "b64cf8a033351ed955a1bb174d82fcc01306f9b364c381a216baa4aa42ca5825",
   "native_slicer": "BambuStudio 02.08.02.61",
   "command_scope": "Local --slice 0; no printer commands sent",
   "native_exit_code": 0,
@@ -13,8 +13,8 @@
         "PETG - Housing upper",
         "PETG - Housing lower"
       ],
-      "time_seconds": 45433,
-      "filament_weight_g": 261.78,
+      "time_seconds": 24638,
+      "filament_weight_g": 202.83,
       "outside_printable_area": false,
       "support_used": true,
       "filaments": [
@@ -23,8 +23,8 @@
           "tray_info_idx": "GFG00",
           "type": "PETG",
           "color": "#034638",
-          "used_m": "85.96",
-          "used_g": "258.45",
+          "used_m": "63.81",
+          "used_g": "191.85",
           "group_id": "0",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -38,8 +38,8 @@
           "tray_info_idx": "GFA12",
           "type": "PLA",
           "color": "#DCF478",
-          "used_m": "1.10",
-          "used_g": "3.33",
+          "used_m": "3.62",
+          "used_g": "10.98",
           "group_id": "1",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -49,15 +49,15 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 12h 32m 4s; total estimated time: 12h 37m 13s\n; total layer number: 136\n; total filament length [mm] : 85962.05,1099.00\n; total filament volume [cm^3] : 206762.97,2643.40\n; total filament weight [g] : 258.45,3.33\n; model label id: 102,108\n; object max height: 27.20,24.00\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 27.20\n; filament: 1,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 6h 45m 29s; total estimated time: 6h 50m 38s\n; total layer number: 99\n; total filament length [mm] : 63809.27,3622.39\n; total filament volume [cm^3] : 153479.28,8712.87\n; total filament weight [g] : 191.85,10.98\n; model label id: 102,104\n; object max height: 23.72,20.60\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 23.72\n; filament: 1,4\n; support_material_on_wipe_tower: 1\n; HEADER_BLOCK_END"
     },
     {
       "plate": 2,
       "objects": [
         "PETG - One-piece auger"
       ],
-      "time_seconds": 12222,
-      "filament_weight_g": 46.44,
+      "time_seconds": 10494,
+      "filament_weight_g": 58.29,
       "outside_printable_area": false,
       "support_used": true,
       "filaments": [
@@ -66,8 +66,8 @@
           "tray_info_idx": "GFG00",
           "type": "PETG",
           "color": "#FF671F",
-          "used_m": "15.12",
-          "used_g": "45.46",
+          "used_m": "17.64",
+          "used_g": "53.05",
           "group_id": "0",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -81,8 +81,8 @@
           "tray_info_idx": "GFA12",
           "type": "PLA",
           "color": "#DCF478",
-          "used_m": "0.32",
-          "used_g": "0.98",
+          "used_m": "1.73",
+          "used_g": "5.24",
           "group_id": "1",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -92,15 +92,15 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 3h 18m 34s; total estimated time: 3h 23m 42s\n; total layer number: 170\n; total filament length [mm] : 15119.78,323.59\n; total filament volume [cm^3] : 36367.33,778.33\n; total filament weight [g] : 45.46,0.98\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 34.00\n; filament: 2,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 2h 49m 46s; total estimated time: 2h 54m 54s\n; total layer number: 142\n; total filament length [mm] : 17643.46,1729.45\n; total filament volume [cm^3] : 42437.50,4159.81\n; total filament weight [g] : 53.05,5.24\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 34.04\n; filament: 2,4\n; support_material_on_wipe_tower: 1\n; HEADER_BLOCK_END"
     },
     {
       "plate": 3,
       "objects": [
         "PETG - Square adapter"
       ],
-      "time_seconds": 2407,
-      "filament_weight_g": 9.18,
+      "time_seconds": 2163,
+      "filament_weight_g": 10.44,
       "outside_printable_area": false,
       "support_used": true,
       "filaments": [
@@ -109,8 +109,8 @@
           "tray_info_idx": "GFG00",
           "type": "PETG",
           "color": "#FFFFFF",
-          "used_m": "3.05",
-          "used_g": "9.17",
+          "used_m": "3.43",
+          "used_g": "10.31",
           "group_id": "0",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -124,8 +124,8 @@
           "tray_info_idx": "GFA12",
           "type": "PLA",
           "color": "#DCF478",
-          "used_m": "0.00",
-          "used_g": "0.00",
+          "used_m": "0.04",
+          "used_g": "0.13",
           "group_id": "1",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -135,15 +135,15 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 34m 58s; total estimated time: 40m 7s\n; total layer number: 114\n; total filament length [mm] : 3050.61,1.47\n; total filament volume [cm^3] : 7337.58,3.53\n; total filament weight [g] : 9.17,0.00\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 22.80\n; filament: 3,4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 30m 54s; total estimated time: 36m 3s\n; total layer number: 96\n; total filament length [mm] : 3428.32,44.25\n; total filament volume [cm^3] : 8246.07,106.44\n; total filament weight [g] : 10.31,0.13\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 23.00\n; filament: 3,4\n; support_material_on_wipe_tower: 1\n; HEADER_BLOCK_END"
     },
     {
       "plate": 4,
       "objects": [
         "PLA - Full wear sleeve"
       ],
-      "time_seconds": 745,
-      "filament_weight_g": 2.6,
+      "time_seconds": 578,
+      "filament_weight_g": 2.56,
       "outside_printable_area": false,
       "support_used": true,
       "filaments": [
@@ -152,8 +152,8 @@
           "tray_info_idx": "GFA12",
           "type": "PLA",
           "color": "#DCF478",
-          "used_m": "0.86",
-          "used_g": "2.60",
+          "used_m": "0.84",
+          "used_g": "2.56",
           "group_id": "0",
           "nozzle_diameter": "0.40",
           "volume_type": "Standard",
@@ -163,10 +163,10 @@
           "total_unload_time": "0.00"
         }
       ],
-      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 7m 16s; total estimated time: 12m 25s\n; total layer number: 52\n; total filament length [mm] : 858.71\n; total filament volume [cm^3] : 2065.44\n; total filament weight [g] : 2.60\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 10.40\n; filament: 4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+      "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 4m 29s; total estimated time: 9m 38s\n; total layer number: 43\n; total filament length [mm] : 844.35\n; total filament volume [cm^3] : 2030.91\n; total filament weight [g] : 2.56\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 10.28\n; filament: 4\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
     }
   ],
-  "sliced_export_sha256": "e8149793e3031397b3674ba79c893abf020a5956625f8349ad831c0d9a8dadb7",
+  "sliced_export_sha256": "89b1e487c14e19e83e92e93db83f0071eb3acf933f45cfff649977f895dbc97e",
   "final_project_gcode_embedded": false,
   "native_preview_and_slice_statistics_refreshed": true,
   "all_geometry_and_printer_filament_process_settings_byte_identical_to_sliced_input": true

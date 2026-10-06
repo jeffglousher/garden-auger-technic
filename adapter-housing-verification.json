@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+  "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
   "housing_change_required_for_this_adapter_revision": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,

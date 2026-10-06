@@ -36,10 +36,17 @@ def main():
     consistency=read('cad-design-audit.json')
     assert expected[consistency['source_project']]==consistency['source_project_sha256']
     assert consistency['inspection_geometry']['same_native_mesh_arrays']
-    assert consistency['file_identity']['bambu_printer_filament_process_config_identical_to_previous']
+    assert consistency['file_identity'].get('bambu_printer_filament_process_values_preserved',
+        consistency['file_identity']['bambu_printer_filament_process_config_identical_to_previous'])
+    thin=read('thin-housing-verification.json')
+    assert expected[thin['source_project']]==thin['source_project_sha256']
+    assert thin['inspection_same_native_mesh_arrays']
+    assert thin['native_nominal_interference']['exact']
+    assert not any(p['interfering'] for p in thin['native_nominal_interference']['pairs'])
+    expected[thin['test_project']]=thin['test_project_sha256']
     for check in consistency['current_flight_envelope']['checks']:
-        result=check['result']
-        pairs=[p for p in result['pairs'] if 90 in {p['body_a'],p['body_b']}
+        result=check.get('result',check)
+        pairs=[p for p in result.get('pairs',result.get('flight_housing_pairs',[])) if 90 in {p['body_a'],p['body_b']}
                and bool({26,46}&{p['body_a'],p['body_b']})]
         assert result['exact'] and len(pairs)==2
         assert all(not p['interfering'] and p['minimum_clearance_mm']>

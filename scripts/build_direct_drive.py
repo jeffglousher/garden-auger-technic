@@ -15,6 +15,7 @@ from construction_setup import configure, rear_pads
 from model_cleanup import clean_checked
 from housing_simplification import simplify_housing, verify_housing
 from nested_housing import nest_housing, verify_nesting
+from slim_housing import slim_housing
 from direct_drive_parameters import *
 from design_parameters import square_fit_stack
 
@@ -75,6 +76,9 @@ def main():
         housing_cleanup['geometry_verification']=verify_housing(c,m,simpler)
         m,nesting=nest_housing(simpler)
         nesting['geometry_verification']=verify_nesting(c,simpler,m)
+        slimmer, thinning = slim_housing(m)
+        thinning['native_geometry_verification'] = verify_nesting(c,m,slimmer)
+        m = slimmer
         for o in m['assembly']['component_structure']['occurrences']:
             if o['component_id']==14:o['name']='Round pilot press-fit square adapter - fit prototype'
         c.call('cad_load_project_model',{'model_json':json.dumps(m)})
@@ -130,6 +134,7 @@ def main():
             'square_fit_stack':square_fit_stack(),
             'cleanup':cleanup,'housing_simplification':housing_cleanup,
             'nested_housing':nesting,
+            'thin_housing':thinning,
             'preflight':preflight,'assembly_checks':checks,
             'torque':{'published_stall_Nm':35*9.80665*.01,
                 'tangential_force_at_5_9_mm_diameter_N':35*9.80665*.01/.00295,

@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+  "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
   "reference_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "reference_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "revision": "Finished housing cavities simplified for printed nesting",
@@ -230,8 +230,8 @@
     }
   ],
   "updated_housing_stl_sha256": {
-    "print-parts/direct-drive/petg-housing-lower.stl": "ae9315ae7f881009fcfd6a98141c4cb56b5e10782f293531e9124a70148ec069",
-    "print-parts/direct-drive/petg-housing-upper.stl": "430d2639f14403dd7d415b16d4c75c8209f3a7d76a2cf7ee82e4b5808027c2a0"
+    "print-parts/direct-drive/petg-housing-lower.stl": "d06d0d53bd25940749e0490e957b6fcd93be035a1014318cbfc40bad85cf609f",
+    "print-parts/direct-drive/petg-housing-upper.stl": "0203ca5a0f0a03fb147c9ec45e1ae389925f2afea5fc281cb0fca73272a399b1"
   },
   "unchanged_other_stl_sha256": {
     "print-parts/direct-drive/petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",
@@ -243,6 +243,6 @@
     "print-parts/direct-drive/press-fit-d-5.90.stl": "a42debf7edc4c99f3549ceb98f355e344bed7cf49e773a15b52e3681c70c5e41"
   },
   "whole_project_history_before": 83,
-  "whole_project_history_after": 81,
+  "whole_project_history_after": 73,
   "compatibility": "Existing auger, adapter, sleeve and fit coupons are unchanged. Use the current housing with drawing-correct ear datums at Y162.6/165.7, 41.3 by 20.8 case pocket and the retained flight-clearance entrance taper."
 }

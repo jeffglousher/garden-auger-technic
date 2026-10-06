@@ -1,13 +1,13 @@
 {
   "project": "garden-auger-bambu-latest.3mf",
-  "sha256": "3b119415817c71263f21cd264a985f92e05ea44144e5b7a4c963067ee1dfb17e",
+  "sha256": "61aea9c5dbd2cd73c17b936f2840dba24f7aa2b0734a115a114eb391ba813ff2",
   "canonical_export": "garden-auger-direct-drive.3mf",
   "canonical_artifact_hashes_verified": true,
   "geometry": [
     {
       "name": "PETG - Housing upper",
-      "vertices": 2459,
-      "triangles": 4930,
+      "vertices": 2723,
+      "triangles": 5458,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 2.842170943040401e-14
     },
@@ -26,18 +26,18 @@
       "maximum_shape_difference_mm": 4.629976957382098e-14
     },
     {
-      "name": "PETG - Housing lower",
-      "vertices": 1810,
-      "triangles": 3616,
-      "closed_connected_solid": true,
-      "maximum_shape_difference_mm": 2.842170943040401e-14
-    },
-    {
       "name": "PLA - Full wear sleeve",
       "vertices": 378,
       "triangles": 756,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 1.4210854715202004e-14
+    },
+    {
+      "name": "PETG - Housing lower",
+      "vertices": 1826,
+      "triangles": 3648,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 2.842170943040401e-14
     }
   ],
   "plates": [
@@ -59,7 +59,7 @@
           [
             228.0,
             122.6,
-            27.2
+            23.8
           ]
         ],
         [
@@ -71,7 +71,7 @@
           [
             228.0,
             234.60000000000002,
-            24.0
+            20.6
           ]
         ]
       ]
@@ -162,9 +162,9 @@
     "#DCF478"
   ],
   "printer": "Bambu Lab X2D 0.4 nozzle",
-  "process_profile": "0.20mm High Quality @BBL X2D",
-  "prime_tower": false,
-  "layer_height_mm": 0.2,
+  "process_profile": "0.24mm Standard @BBL X2D",
+  "prime_tower": true,
+  "layer_height_mm": 0.24,
   "support_settings": {
     "enabled": true,
     "type": "tree(auto)",
@@ -177,8 +177,7 @@
   "saved_filament_and_process_profiles_preserved": true,
   "layout_overrides": {
     "print_sequence": "by layer",
-    "prime_tower": false,
-    "primary_nozzle_for_each_single_filament_plate": true
+    "purge_and_nozzle_choices_preserved": true
   },
   "all_five_parts_on_plates_with_one_model_filament": true,
   "adapter_strength_override": {

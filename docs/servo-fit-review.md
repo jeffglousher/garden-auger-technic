@@ -19,7 +19,7 @@ Every shown mechanical dimension was checked:
 - Case cavity axial span: **Y151.7–191.7**, 40.0 mm. This already had sufficient total length at the correct datum: 1.0 mm nominal front room and **1.5 mm nominal rear room**, or 1.3 mm rear room at the nominal rearward ear-travel limit. Moving the ear seat restores the available length behind it from 23.5 to **26.2 mm**, exceeding the required 24.7 mm.
 - Ear overall span: **56 mm**. Reference mounting-slot centers corrected from 52 to **49 mm** apart. The shaft is **10 mm from the right case edge**, centered across the 20 mm width. Slot widths/radii are not dimensioned; their conservative reference cut envelopes are retained. The fit inspection fills the ears solid, so those holes cannot hide a collision.
 
-The two housing halves receive the same corrected case and ear cuts. The existing cut features are reused; no extra retaining hardware or grooves are added. The model still has **81 active history entries**, with **47 housing entries /25 solid operations**. Materials, colors and assembly poses are preserved.
+The two housing halves receive the same corrected case and ear cuts. The existing cut features are reused; no extra retaining hardware or grooves are added. The later exterior-thinning revision reuses these corrected pockets and removes eight obsolete entries, leaving **73 active history entries**. Materials, colors and assembly poses are preserved.
 
 ## Mating surfaces and tolerance stack
 

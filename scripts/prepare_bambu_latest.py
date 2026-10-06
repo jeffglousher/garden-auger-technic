@@ -164,16 +164,21 @@ def build():
     model, config, parts = project_parts(entries)
     refresh_geometry(entries, config, parts)
     geometry_checks(parts)
-    settings = json.loads(entries["Metadata/project_settings.config"])
+    saved_settings = entries["Metadata/project_settings.config"]
+    settings = json.loads(saved_settings)
     assert settings["filament_type"] == ["PETG", "PETG", "PETG", "PLA"]
-    settings["enable_prime_tower"] = "0"
+    if settings.get("enable_prime_tower") == "1":
+        # Keep the user's purge settings. Its former location intersected
+        # the shared housing plate; position it beside the front bearing bay.
+        settings["wipe_tower_x"][0] = "180"
+        settings["wipe_tower_y"][0] = "142"
     # The housing halves share a bed. Complete each layer across both halves
     # instead of sweeping the gantry past one completed, tall part.
     settings["print_sequence"] = "by layer"
-    # Model filaments use the primary nozzle. The saved support-interface
-    # material and nozzle assignments remain process settings.
-    settings["filament_map"] = ["1"] * 4
-    settings["filament_nozzle_map"] = ["0"] * 4
+    # Preserve saved purge and nozzle choices; these belong to the user's
+    # printer/material setup, not to a geometry refresh.
+    if settings != json.loads(saved_settings):
+        entries["Metadata/project_settings.config"] = json.dumps(settings, indent=4).encode()
     for old in config.findall("plate"):
         config.remove(old)
     build_node = model.find("{*}build")
@@ -208,7 +213,8 @@ def build():
         config.insert(list(config).index(assemble_node) if assemble_node is not None else len(config), plate)
     entries["3D/3dmodel.model"] = ET.tostring(model, encoding="utf-8", xml_declaration=True)
     entries["Metadata/model_settings.config"] = ET.tostring(config, encoding="utf-8", xml_declaration=True)
-    entries["Metadata/project_settings.config"] = json.dumps(settings, indent=4).encode()
+    # Printer, process, material and purge values are preserved. Tower XY is
+    # layout metadata and is adjusted above only for the housing plate.
     # Bambu Studio regenerates plate images and slice data when saving the new project.
     entries = {name: data for name, data in entries.items()
                if not re.match(r"Metadata/(?:plate(?:_no_light)?_|top_|pick_)\d+\.", name)
@@ -248,7 +254,6 @@ def verify():
             assert auger["top_shell_layers"] == auger["bottom_shell_layers"] == "6"
     settings = json.loads(entries["Metadata/project_settings.config"])
     assert settings["filament_type"] == ["PETG", "PETG", "PETG", "PLA"]
-    assert settings["enable_prime_tower"] == "0"
     assert settings["print_sequence"] == "by layer"
     items = {i.get("objectid"): i for i in model.findall("{*}build/{*}item")}
     assert len(model.findall("{*}build/{*}item")) == len(items) == 5
@@ -292,7 +297,7 @@ def verify():
         "geometry": geometry, "plates": plate_checks,
         "filament_types": settings["filament_type"], "filament_profiles": settings["filament_settings_id"],
         "filament_colors": settings["filament_colour"], "printer": settings["printer_settings_id"],
-        "process_profile": settings["print_settings_id"], "prime_tower": False,
+        "process_profile": settings["print_settings_id"], "prime_tower": settings["enable_prime_tower"] == "1",
         "layer_height_mm": float(settings["layer_height"]),
         "support_settings": {"enabled": settings.get("enable_support") == "1",
                              "type": settings.get("support_type"),
@@ -302,8 +307,8 @@ def verify():
                              "top_z_distance_mm": float(settings.get("support_top_z_distance", "0")),
                              "scope": "Each plate has one model filament; support interfaces can add another material."},
         "saved_filament_and_process_profiles_preserved": True,
-        "layout_overrides": {"print_sequence": "by layer", "prime_tower": False,
-                             "primary_nozzle_for_each_single_filament_plate": True},
+        "layout_overrides": {"print_sequence": "by layer",
+                             "purge_and_nozzle_choices_preserved": True},
         "all_five_parts_on_plates_with_one_model_filament": True,
         "adapter_strength_override": {"wall_loops": 6, "infill_density_percent": 100,
                                       "infill_pattern": "zig-zag"},
