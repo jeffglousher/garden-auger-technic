@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
+  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
   "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
   "reference_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
   "confirmed_prior_flight_interference": [
@@ -2562,12 +2562,12 @@
             "body_a": 26,
             "body_b": 46,
             "closest_point_a": [
-              -43.0,
+              100.0,
               206.5,
               0.0
             ],
             "closest_point_b": [
-              -43.0,
+              100.0,
               206.5,
               0.0
             ],
@@ -2884,12 +2884,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -3205,12 +3205,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -3526,12 +3526,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -3847,12 +3847,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -4168,12 +4168,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -4489,12 +4489,12 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
               "closest_point_b": [
-                -43.0,
+                100.0,
                 206.5,
                 0.0
               ],
@@ -4509,14 +4509,14 @@
               "body_a": 26,
               "body_b": 1,
               "closest_point_a": [
-                10.4,
-                180.6,
-                4.0
+                10.399999999999999,
+                153.6,
+                0.0
               ],
               "closest_point_b": [
                 10.4,
-                180.6,
-                4.0
+                153.6,
+                0.0
               ],
               "interfering": false,
               "minimum_clearance_mm": 0.0,
@@ -5289,7 +5289,7 @@
     "print-parts/direct-drive/press-fit-d-5.90.stl": "a42debf7edc4c99f3549ceb98f355e344bed7cf49e773a15b52e3681c70c5e41"
   },
   "unchanged_feature_count": false,
-  "current_feature_count": 73,
+  "current_feature_count": 71,
   "hardware_dimension_authority": "User drawing: 41.5 tip-to-rear, 37.5 case axial height, 24.7 ear UNDERSIDE to rear, 2.7 ear thickness. The case pocket clears the larger catalog plan length 40.5 with 0.4 per-side allowance.",
   "unresolved_physical_checks": [
     "Cable boot envelope is not dimensioned in the servo diagram",

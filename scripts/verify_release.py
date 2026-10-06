@@ -44,6 +44,17 @@ def main():
     assert thin['native_nominal_interference']['exact']
     assert not any(p['interfering'] for p in thin['native_nominal_interference']['pairs'])
     expected[thin['test_project']]=thin['test_project_sha256']
+    printing=read('housing-print-verification.json')
+    assert expected[printing['source_project']]==printing['source_project_sha256']
+    assert expected[printing['test_project']]==printing['test_project_sha256']
+    assert expected[printing['full_project']]==printing['full_project_sha256']
+    assert printing['probe_meshes_byte_identical_to_release']
+    for test in ('single_half_release','automatic_support_lower_probe'):
+        assert printing[test]['support_time_seconds']==0
+        assert printing[test]['support_gcode_feature_markers']==0
+    housing_slice=read('bambu-slice-verification.json')['plates'][0]
+    assert housing_slice['native_support_time_seconds']==0
+    assert housing_slice['support_gcode_feature_markers']==0
     for check in consistency['current_flight_envelope']['checks']:
         result=check.get('result',check)
         pairs=[p for p in result.get('pairs',result.get('flight_housing_pairs',[])) if 90 in {p['body_a'],p['body_b']}

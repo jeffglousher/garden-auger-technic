@@ -147,7 +147,8 @@ def refresh_geometry(entries, config, parts):
                      "bottom_shell_layers": 6} if name == "PETG - One-piece auger" else
                     {"wall_loops": 6, "sparse_infill_density": "30%",
                      "sparse_infill_pattern": "gyroid", "top_shell_layers": 6,
-                     "bottom_shell_layers": 6} if name.startswith("PETG - Housing") else {})
+                     "bottom_shell_layers": 6, "enable_support": 0}
+                    if name.startswith("PETG - Housing") else {})
         if strength:
             for key, value in strength.items():
                 node = obj.find(f"metadata[@key='{key}']")
@@ -287,6 +288,10 @@ def verify():
                              "parts": names, "filament": next(iter(filament_ids)),
                              "bounds_mm": [box.tolist() for box in boxes]})
     assert len(assigned) == len(set(assigned)) == len(parts) == 5
+    for obj in config.findall("object"):
+        info = metadata(obj)
+        if info["name"].startswith("PETG - Housing"):
+            assert info.get("enable_support") == "0", info
     proof = json.loads((ROOT/"direct-drive-verification.json").read_text())
     for filename, expected_hash in proof["artifact_sha256"].items():
         assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest() == expected_hash, filename
@@ -315,6 +320,9 @@ def verify():
         "housing_strength_override": {"wall_loops": 6, "infill_density_percent": 30,
                                       "infill_pattern": "gyroid", "top_shell_layers": 6,
                                       "bottom_shell_layers": 6},
+        "housing_support_override": {"enable_support": False,
+            "reason": "Flat bed faces and 45-degree handle shoulders; existing upper screw-recess roofs print as short bridges.",
+            "qualification": "Verify native toolpaths and test the screw-recess bridges physically; slicer success is not a printability certificate."},
         "future_auger_strength_override": {"wall_loops": 6, "infill_density_percent": 40,
                                           "infill_pattern": "gyroid", "top_shell_layers": 6,
                                           "bottom_shell_layers": 6,

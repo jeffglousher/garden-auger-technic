@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
+  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
   "housing_change_required_for_this_adapter_revision": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,
@@ -261,7 +261,7 @@
     "servo_pockets": {
       "case_length_mm": 41.3,
       "case_width_mm": 20.8,
-      "case_axial_span_mm": 40.0,
+      "case_axial_span_mm": 40,
       "case_pocket_y_mm": [
         151.7,
         191.7
@@ -281,7 +281,7 @@
       "printed_assembly_fit_verified": false
     },
     "wire_channel": {
-      "height_mm": 8.0,
+      "height_mm": 8,
       "outlet_width_mm": 5.2,
       "case_side_boot_bay_y_mm": [
         180.6,
@@ -309,7 +309,7 @@
       ],
       "collar_opening_diameters_mm": [
         31.2,
-        31.0
+        31
       ],
       "collar_end_float_nominal_mm": 0.6,
       "sleeve_stop_y_mm": [

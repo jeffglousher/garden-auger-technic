@@ -1,13 +1,13 @@
 {
   "project": "garden-auger-bambu-latest.3mf",
-  "sha256": "61aea9c5dbd2cd73c17b936f2840dba24f7aa2b0734a115a114eb391ba813ff2",
+  "sha256": "e237d961168e4ea06fdfaa6147c05012ca0983054d5577850f86f1b0ebfe0154",
   "canonical_export": "garden-auger-direct-drive.3mf",
   "canonical_artifact_hashes_verified": true,
   "geometry": [
     {
       "name": "PETG - Housing upper",
-      "vertices": 2723,
-      "triangles": 5458,
+      "vertices": 2565,
+      "triangles": 5142,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 2.842170943040401e-14
     },
@@ -34,8 +34,8 @@
     },
     {
       "name": "PETG - Housing lower",
-      "vertices": 1826,
-      "triangles": 3648,
+      "vertices": 1914,
+      "triangles": 3824,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 2.842170943040401e-14
     }
@@ -191,6 +191,11 @@
     "infill_pattern": "gyroid",
     "top_shell_layers": 6,
     "bottom_shell_layers": 6
+  },
+  "housing_support_override": {
+    "enable_support": false,
+    "reason": "Flat bed faces and 45-degree handle shoulders; existing upper screw-recess roofs print as short bridges.",
+    "qualification": "Verify native toolpaths and test the screw-recess bridges physically; slicer success is not a printability certificate."
   },
   "future_auger_strength_override": {
     "wall_loops": 6,

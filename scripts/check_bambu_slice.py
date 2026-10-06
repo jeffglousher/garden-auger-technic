@@ -69,9 +69,18 @@ def main():
         assert meta['outside']=='false',meta
         header=gcode[:gcode.index(b'; HEADER_BLOCK_END')+len(b'; HEADER_BLOCK_END')].decode('utf-8')
         assert f'Metadata/plate_{index}.png' in export
+        feature_times = native_result['sliced_plates'][index-1]['feature_type_times']
+        support_time = sum(value for key,value in feature_times.items() if 'Support' in key)
+        support_markers = re.findall(rb'^; FEATURE: Support[^\r\n]*',gcode,re.MULTILINE)
+        if index == 1:
+            assert support_time == 0 and not support_markers, 'Housing support remains'
+            assert all(f.get('used_for_support')=='false' for f in plate.findall('filament'))
+            assert {f.get('type') for f in plate.findall('filament')} == {'PETG'}
         plates.append({'plate':index,'objects':[o.get('name') for o in plate.findall('object')],
             'time_seconds':int(meta['prediction']),'filament_weight_g':float(meta['weight']),
             'outside_printable_area':False,'support_used':meta['support_used']=='true',
+            'native_support_time_seconds':support_time,
+            'support_gcode_feature_markers':len(support_markers),
             'filaments':[f.attrib for f in plate.findall('filament')],'gcode_header':header})
     assert sorted(p['plate'] for p in plates)==[1,2,3,4]
     # Refresh display/slice statistics only. Preserve every original mesh,
@@ -94,6 +103,8 @@ def main():
         'final_project_gcode_embedded':False,
         'native_preview_and_slice_statistics_refreshed':True,
         'all_geometry_and_printer_filament_process_settings_byte_identical_to_sliced_input':True}
+    report['support_metadata_limitation'] = ('support_used reflects the globally enabled support setting even when an object override generates no support. Actual native feature times, material-use flags and G-code roles are checked separately.')
+    report['housing_bridge_limit'] = 'Existing upper screw-recess roofs bridge across small passages. Native slicing is not a physical bridge-quality certification.'
     (ROOT/'bambu-slice-verification.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({'native_slicer':report['native_slicer'],'all_plates_sliced':True,
                      'housing_time_seconds':plates[0]['time_seconds'],

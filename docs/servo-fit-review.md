@@ -50,3 +50,5 @@ The [component review](../preprint-review.json) separates **45 nominal housing-o
 Use the [corrected editable CAD](../garden-auger-direct-drive.nbcad), [complete Bambu project](../garden-auger-bambu-latest.3mf), [lower housing STL](../print-parts/direct-drive/petg-housing-lower.stl) and [upper housing STL](../print-parts/direct-drive/petg-housing-upper.stl). [All-part CAD views](../renders/direct-drive-all-parts.png) and [exploded assembly](../renders/direct-drive-exploded.png) show the current components.
 
 The corrected geometry matches the shown mechanical dimensions. Physical verification still applies to unshown cable-boot and thread details, actual printed fits, and loaded torque/creep/wear. Those checks do not reopen the confirmed dimensions in your drawing.
+
+The current exterior revision restores a continuous printable floor, blends the ear exterior and supports the grips from the bed. Case/ear pockets, drive seats and screw-head planes remain unchanged. The updated native fit checks use this saved source. See [print evidence and bridge limits](../housing-print-verification.json).

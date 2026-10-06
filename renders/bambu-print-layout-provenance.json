@@ -2,7 +2,7 @@
   "image": "bambu-print-layout.png",
   "method": "Four freshly generated native Bambu CLI plate previews composed with labels",
   "source_project": "garden-auger-bambu-latest.3mf",
-  "source_project_sha256": "61aea9c5dbd2cd73c17b936f2840dba24f7aa2b0734a115a114eb391ba813ff2",
+  "source_project_sha256": "e237d961168e4ea06fdfaa6147c05012ca0983054d5577850f86f1b0ebfe0154",
   "native_slicer": "BambuStudio 02.08.02.61",
   "verification": "bambu-slice-verification.json"
 }

@@ -12,7 +12,7 @@ from cad_client import CadClient
 from nested_housing import verify_nesting
 
 ROOT = Path(__file__).resolve().parents[1]
-REFERENCE = '4d4ed80ae6d9a70de0b06801e7b74ac003e25c03'
+REFERENCE = 'c969789fe356c292e5040a44f467c2685a2209aa'
 
 
 def read_model(data):
@@ -50,12 +50,13 @@ def refresh_inspection(client, model):
     revised['schema_version'] = old['schema_version']
     revised['drawings'] = old['drawings']
     revised['views'] = old['views']
-    revised['document']['name'] = 'Garden auger - thin housing fit inspection'
+    revised['document']['name'] = 'Garden auger - support-free housing fit inspection'
     for sheet in revised['drawings']['sheets']:
-        sheet['title_block']['revision'] = 'FIT-3'
+        sheet['title_block']['revision'] = 'PRINT-4'
     # Rebind every dimension to a returned CURRENT topology anchor. Matching
     # coordinates select the intended unchanged mating corner, not a value.
     revised['drawings']['sheets'] = revised['drawings']['sheets'][:2]
+    revised['drawings']['active_sheet_id'] = revised['drawings']['sheets'][0]['id']
     client.call('cad_load_project_model', {'model_json':json.dumps(revised)})
     for sheet in revised['drawings']['sheets']:
         for view in sheet['views']:
@@ -69,17 +70,17 @@ def refresh_inspection(client, model):
                     annotation[key] = anchor_at(projection, prior['body_id'],prior['fallback_point'])
     client.call('cad_load_project_model', {'model_json':json.dumps(revised)})
     sheets = client.call('drawing_create_sheet', {
-        'name':'Thin housing - exterior wall measurements', 'format':'a3',
+        'name':'Printable housing - exterior wall measurements', 'format':'a3',
         'orientation':'landscape', 'title_block':{'title':'Exterior stock from current CAD topology',
-        'drawing_number':'AU-WALL-20261006','revision':'FIT-3'},
+        'drawing_number':'AU-WALL-20261006','revision':'PRINT-4'},
         'tolerance_note':{'preset':'none','custom':'Nominal dimensions only. No automated wall, GD&T or load qualification.'}})
     sheet_id = max(s['id'] for s in client.call('drawing_document')['sheets'])
     dimensions = []
     definitions = [
         ('Floor - YZ',[1,0,0],[100,140],
-         [(-30.9,191.7,-10.4),(-33.7,189.8,-13.2)],'Floor ',14),
+         [(-30.9,191.7,-10.4),None],'Floor ',14),
         ('Side walls - XY',[0,0,1],[290,140],
-         [(10.4,165.7,0),(13.2,168.5,0)],'Right wall ',16),
+         [(18.5,165.7,0),None],'Right ear wall ',16),
     ]
     for name,direction,position,points,prefix,offset in definitions:
         client.call('drawing_add_view', {'sheet_id':sheet_id,'view':{
@@ -90,14 +91,26 @@ def refresh_inspection(client, model):
                       if s['id']==sheet_id for v in s['views'])
         projection = client.call('drawing_projection', {'body_ids':[46],'scope':'assembly',
             'direction':direction,'up':[0,1,0],'include_hidden':True})
+        # Select a CURRENT native edge endpoint on the outer plane. The
+        # measured separation comes from CAD, never an entered dimension.
+        if name.startswith('Floor'):
+            points[1] = next(a['model_point'] for a in projection['anchors']
+                if a['body_id']==46 and abs(a['model_point'][2]+20.6)<1e-6
+                and 170<a['model_point'][1]<198)
+        else:
+            points[1] = next(a['model_point'] for a in projection['anchors']
+                if a['body_id']==46 and abs(a['model_point'][0]-22.3)<1e-6
+                and abs(a['model_point'][2])<1e-6)
         client.call('drawing_add_linear_dimension', {'sheet_id':sheet_id,'view_id':view_id,
             'first':anchor_at(projection,46,points[0]),'second':anchor_at(projection,46,points[1]),
             'mode':'horizontal','offset':offset,'prefix':prefix,'precision':2})
         if name.startswith('Side'):
             client.call('drawing_add_linear_dimension', {'sheet_id':sheet_id,'view_id':view_id,
-                'first':anchor_at(projection,46,[-30.9,151.7,0]),
-                'second':anchor_at(projection,46,[-33.7,168.5,0]),
-                'mode':'horizontal','offset':-16,'prefix':'Left wall ','precision':2})
+                'first':anchor_at(projection,46,[-38.5,165.7,0]),
+                'second':anchor_at(projection,46,next(a['model_point'] for a in projection['anchors']
+                    if a['body_id']==46 and abs(a['model_point'][0]+42.3)<1e-6
+                    and abs(a['model_point'][2])<1e-6)),
+                'mode':'horizontal','offset':-16,'prefix':'Left ear wall ','precision':2})
     # Serializer is authoritative for IDs/counters allocated by drawing tools.
     saved = client.call('cad_project_model')
     saved = json.loads(saved) if isinstance(saved,str) else saved
