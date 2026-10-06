@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
   "housing_change_required_for_this_adapter_revision": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,
@@ -261,7 +261,7 @@
     "servo_pockets": {
       "case_length_mm": 41.3,
       "case_width_mm": 20.8,
-      "case_axial_span_mm": 40,
+      "case_axial_span_mm": 40.0,
       "case_pocket_y_mm": [
         151.7,
         191.7
@@ -281,12 +281,37 @@
       "printed_assembly_fit_verified": false
     },
     "wire_channel": {
-      "height_mm": 8,
-      "outlet_width_mm": 5.2,
+      "height_mm": 8.0,
+      "outlet_width_mm": 6.0,
       "case_side_boot_bay_y_mm": [
         180.6,
         191.2
       ],
+      "route": {
+        "channel_width_mm": 6.0,
+        "channel_height_mm": 8.0,
+        "centerline_bend_radius_mm": 8.0,
+        "boot_bay_xy_mm": [
+          10.4,
+          180.6,
+          16.0,
+          191.2
+        ],
+        "centerline_start_mm": [
+          10.05,
+          187.0
+        ],
+        "centerline_end_mm": [
+          50.0,
+          171.0
+        ],
+        "exit_direction": "+X, right side; forward of handle",
+        "cut_applied_after_housing_pad_joins": true,
+        "route_length_mm": 49.08274122871835,
+        "trial_bundle_diameter_mm": 4.0,
+        "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
+        "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
+      },
       "assembly": "Lay cable in split seam; keep JR connector outside housing",
       "physical_boot_fit_verified": false,
       "reference_photo_url": "https://www.injora.com/cdn/shop/files/1_5_af7067ed-c672-4de7-882a-37d01068c61d.jpg?v=1787641003&width=720",
@@ -309,7 +334,7 @@
       ],
       "collar_opening_diameters_mm": [
         31.2,
-        31
+        31.0
       ],
       "collar_end_float_nominal_mm": 0.6,
       "sleeve_stop_y_mm": [
@@ -320,11 +345,11 @@
       "native_faces": {
         "26": {
           "before": 101,
-          "after": 95
+          "after": 98
         },
         "46": {
           "before": 98,
-          "after": 92
+          "after": 95
         }
       },
       "sleeve_capture_and_journal_offset_checks": [

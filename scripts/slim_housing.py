@@ -3,6 +3,7 @@ import copy
 import math
 from cad_build import profile
 from model_cleanup import prune
+from cable_routing import apply_cable_route, route_spec
 
 MIN_WALL = 2.8
 HALF_DEPTH = 17.8 + MIN_WALL
@@ -45,7 +46,7 @@ def slim_housing(original):
     extrudes={e['feature_id']:e for e in model['extrudes']}
     features={f['id']:f for f in model['document']['history']['features']}
     outline=[(-34,107.9),(34,107.9),(34,134),(17.6,144),
-        (22.3,158.8),(22.3,169.5),(13.2,180),(13.2,189.8),
+        (22.3,158.8),(22.3,169.5),(27.8,175),(27.8,189.8),
         (23,195),(23,206.5),(-43,206.5),(-43,195),
         (-33.7,189.8),(-33.7,180),(-42.3,169.5),
         (-42.3,158.8),(-33.7,144),(-34,134)]
@@ -73,6 +74,7 @@ def slim_housing(original):
     extrudes[157]['extent']['distance']=HALF_DEPTH
     extrudes[159]['extent']['distance']=HALF_DEPTH-12.7
     extrudes[226]['extent']['distance']=HALF_DEPTH-8
+    model=apply_cable_route(model)
     model,cleanup=prune(model)
     return model,{'nominal_minimum_exterior_wall_mm':MIN_WALL,
         'servo_floor_mm':HALF_DEPTH-10.4,'servo_section_total_depth_mm':2*HALF_DEPTH,
@@ -82,5 +84,6 @@ def slim_housing(original):
         'history_after':len(model['document']['history']['features']),
         'removed_history_entries':cleanup['removed_inactive_features'],
         'preserved_screw_head_seats_z_mm':[8,12.7],
-        'scope':'Flat underside, tangent blended ear exterior and bed-supported handles. Mating datums preserved.',
+        'scope':'Flat underside, tangent blended exterior, bed-supported handles and a curved side cable route. Mating datums preserved.',
+        'cable_route':route_spec(),
         'tradeoff':'Fixed bearing axis requires 10.2 mm servo floor and thicker grips for flat pocket-up printing.'}

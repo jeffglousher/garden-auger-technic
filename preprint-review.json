@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
   "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
   "reference_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
   "confirmed_prior_flight_interference": [
@@ -2583,12 +2583,12 @@
             "body_b": 1,
             "closest_point_a": [
               10.399999999999999,
-              162.60000000000002,
+              165.7,
               0.0
             ],
             "closest_point_b": [
               10.3,
-              162.60000000000002,
+              165.7,
               0.0
             ],
             "interfering": false,
@@ -2683,12 +2683,12 @@
             "body_b": 1,
             "closest_point_a": [
               10.399999999999999,
-              162.60000000000002,
+              165.7,
               0.0
             ],
             "closest_point_b": [
               10.3,
-              162.60000000000002,
+              165.7,
               0.0
             ],
             "interfering": false,
@@ -3226,12 +3226,12 @@
               "body_b": 1,
               "closest_point_a": [
                 10.399999999999999,
-                162.60000000000002,
+                165.7,
                 0.0
               ],
               "closest_point_b": [
                 10.3,
-                162.60000000000002,
+                165.7,
                 0.0
               ],
               "interfering": false,
@@ -3326,12 +3326,12 @@
               "body_b": 1,
               "closest_point_a": [
                 10.399999999999999,
-                162.60000000000002,
+                165.7,
                 0.0
               ],
               "closest_point_b": [
                 10.3,
-                162.60000000000002,
+                165.7,
                 0.0
               ],
               "interfering": false,
@@ -3546,13 +3546,13 @@
               "body_a": 26,
               "body_b": 1,
               "closest_point_a": [
-                10.4,
-                165.7,
+                10.399999999999999,
+                153.6,
                 10.4
               ],
               "closest_point_b": [
                 10.4,
-                165.7,
+                153.6,
                 10.4
               ],
               "interfering": false,
@@ -3586,12 +3586,12 @@
               "body_a": 26,
               "body_b": 15,
               "closest_point_a": [
-                10.465180361560902,
+                10.4651803615609,
                 131.2,
-                10.465180361560904
+                10.465180361560906
               ],
               "closest_point_b": [
-                10.299494936611666,
+                10.299494936611662,
                 131.2,
                 10.299494936611667
               ],
@@ -3647,12 +3647,12 @@
               "body_b": 1,
               "closest_point_a": [
                 10.399999999999999,
-                153.6,
+                180.6,
                 0.0
               ],
               "closest_point_b": [
                 10.4,
-                153.6,
+                180.6,
                 0.0
               ],
               "interfering": false,
@@ -4510,12 +4510,12 @@
               "body_b": 1,
               "closest_point_a": [
                 10.399999999999999,
-                153.6,
+                180.6,
                 0.0
               ],
               "closest_point_b": [
                 10.4,
-                153.6,
+                180.6,
                 0.0
               ],
               "interfering": false,
@@ -4903,8 +4903,8 @@
       ],
       "pilot_diameter_mm": 4,
       "pilot_depth_mm": 6.7,
-      "radial_wall_sample_min_mm": 4.677366238852436,
-      "wall_min_with_dimensional_allowance_mm": 4.452366238852436,
+      "radial_wall_sample_min_mm": 3.300003051757824,
+      "wall_min_with_dimensional_allowance_mm": 3.075003051757824,
       "wall_section_samples": 57,
       "screw_passage_open": true,
       "head_seat_height_mm": 12.7,

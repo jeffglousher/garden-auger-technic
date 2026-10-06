@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
   "prior_commit": "9b736961b820baa7ed3f9fcdc8d613af1132d2b3",
   "prior_source_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
   "method": "Direct product MCP tools, with reversible inspection poses and explicit conservative geometry envelopes. Raw failed controls retained.",
@@ -2389,7 +2389,7 @@
     ],
     "minimum_sampled_clearance_mm": 0.2507828923443634,
     "scope": "Exact sampled flight-only conservative envelopes. Not automatic GD&T, continuous swept motion, or measured printing capability.",
-    "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+    "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
     "check_target_mm": 0.2
   },
   "current_nominal_native_result": {
@@ -2707,27 +2707,26 @@
   "current_nominal_dimensions_report": "cad-tool-validation.json",
   "current_component_checks_report": "preprint-review.json",
   "native_session": {
-    "session_id": "7fc7da67-37ee-456f-83ec-0be448e543b2",
-    "document_id": "96ef753c-ca40-4326-a168-f5494fa6a86b",
-    "mode": "attached live desktop"
+    "session_id": "da2b6932-fa61-4794-b998-9ecfe649b3d7",
+    "method": "Attached native desktop via product MCP"
   },
   "file_identity": {
     "hashes": {
-      "garden-auger-direct-drive.nbcad": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
-      "garden-auger-fit-inspection.limo": "4939c5444a37c60272d983b2bad09f8cc2d2ac19fbcaaeec3e20dea9ef614274",
-      "garden-auger-bambu-latest.3mf": "e237d961168e4ea06fdfaa6147c05012ca0983054d5577850f86f1b0ebfe0154",
-      "renders/cad-fit-assembled.png": "e2b655ba84833fba9b6d74625abd777b7826183f5d758210fc5b98842a0d6105",
-      "renders/cad-fit-mating-surfaces.png": "2fa20bf1ddbc210ae6b333afe44abb2f326c519e957a47d82e0f63fb0dd7c92b",
-      "renders/cad-fit-dimensions.svg": "ea43927ecfabf87094a7fdb9b665e06464384e690d3b34ac931493a9e830cd2b",
-      "renders/cad-fit-clearances.svg": "20901e582d434bbd447516c01ec9ce6162d6beaeed1209a41a88418280074280"
+      "garden-auger-direct-drive.nbcad": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+      "garden-auger-fit-inspection.limo": "7ffa0cd9bef813306dd3133a2cc88abcf67143d5cb6d0c16e6a16832d9774ae7",
+      "garden-auger-bambu-latest.3mf": "a4d15277bfa9b137080b0b2af829313fa20ce3a6cc80e370f6146a773fa38c33",
+      "renders/cad-fit-assembled.png": "d15e2a7a1fbf4e3d3f0b88b59f8c38af04f799e2aaa047faaaa5870911f6733e",
+      "renders/cad-fit-mating-surfaces.png": "4d377b57d25d1cb2a9acb85b8c91dc561e9a15c3722ae8da56d7a4fdfc87a77d",
+      "renders/cad-fit-dimensions.svg": "b4aff9a4136b64789b013e858e66b0b115490ab591e654c4ec85edc55853c208",
+      "renders/cad-fit-clearances.svg": "affd3c6e3c3d33bcc91e350b864051cae2b6fc28b6d2956e2414423da2010ae9"
     },
     "stls": {
       "print-parts/direct-drive/petg-housing-lower.stl": {
-        "sha256": "23b47b013860a402320af1835ddd8a043737e32ed76798a230f7263a6b945ae1",
+        "sha256": "048b4752b7fe8dea852b677254422382ea36614ccc7778e2f82dee9d70b8e1b8",
         "identical_to_previous": false
       },
       "print-parts/direct-drive/petg-housing-upper.stl": {
-        "sha256": "1d975de90350ada4cc6292f339d0c80fd7b48ca15e6e6ba4c4783d2bb2e88ba9",
+        "sha256": "af656d386da663f3bb04b651f60d1f75646955b72a4c518ae31211990a2f4448",
         "identical_to_previous": false
       },
       "print-parts/direct-drive/petg-one-piece-auger.stl": {
@@ -2761,14 +2760,15 @@
     },
     "bambu_printer_filament_process_config_identical_to_previous": true,
     "prior_commit": "9b736961b820baa7ed3f9fcdc8d613af1132d2b3",
-    "previous_saved_bambu_sha256": "61aea9c5dbd2cd73c17b936f2840dba24f7aa2b0734a115a114eb391ba813ff2",
+    "previous_saved_bambu_sha256": "e237d961168e4ea06fdfaa6147c05012ca0983054d5577850f86f1b0ebfe0154",
     "bambu_printer_filament_process_values_preserved": true,
     "bambu_layout_setting_changes": {},
-    "comparison_scope": "Saved full-project global printer/material/process/purge configuration before this revision. Housing-only support overrides are explicit.",
+    "comparison_scope": "Saved full-project global printer/material/process/purge configuration vs preceding release 2a9feb2. No settings changed in the cable revision.",
     "housing_support_override": {
-      "previous": "global automatic support enabled",
-      "current": "enable_support=0 on the two housing objects only",
-      "scope": "Upper screw-recess roofs bridge; physical quality remains unverified."
+      "previous": "enable_support=0 on the two housing objects",
+      "current": "enable_support=0 on the two housing objects",
+      "changed_in_cable_revision": false,
+      "scope": "Upper screw-recess bridges remain a physical check."
     }
   },
   "inspection_geometry": {
@@ -2794,5 +2794,6 @@
     "Printed fit, relative tilt, torque, creep and wear remain physical checks."
   ],
   "current_exterior_revision_report": "thin-housing-verification.json",
-  "current_housing_print_report": "housing-print-verification.json"
+  "current_housing_print_report": "housing-print-verification.json",
+  "current_cable_route_report": "cable-route-verification.json"
 }

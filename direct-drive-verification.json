@@ -13,8 +13,8 @@
     "peg_length": 11.6,
     "flange_diameter": 28,
     "flange_thickness": 5,
-    "spline_boss_diameter": 24,
-    "minimum_bore_radial_wall": 9,
+    "spline_boss_diameter": 24.0,
+    "minimum_bore_radial_wall": 9.0,
     "straight_bore_radial_wall": 9.15,
     "boss_root_transition": "2 mm axial / 2 mm radial broad taper into the 28 mm flange",
     "press_fit_pilot_diameter": 5.7,
@@ -23,7 +23,7 @@
     "entry_chamfer": 0.15,
     "screw_clearance": 3.4,
     "head_access_diameter": 6.4,
-    "underhead_relief_diameter": 4,
+    "underhead_relief_diameter": 4.0,
     "underhead_relief_depth": 0.3,
     "seat_to_shaft_tip_annular_web": 2.5999999999999943
   },
@@ -40,7 +40,7 @@
     "dimensional_authority": "User-confirmed accurate INJORA dimensioned diagram",
     "local_dimensions_image": "source/references/user-servo-fit-diagram.png",
     "nominal_case_face_y": 152.7,
-    "nominal_tip_to_case_body_face_from_supplier_image": 4,
+    "nominal_tip_to_case_body_face_from_supplier_image": 4.0,
     "image_derivation": "41.5 mm tip-to-rear minus 37.5 mm case-face-to-rear = 4.0 mm nominal tip-to-case-face distance",
     "dimensions_image_url": "https://www.injora.com/cdn/shop/files/1_4_2c902b0b-5374-49fa-8a27-c83eb5cfaa5a.jpg?v=1787641003&width=720",
     "nominal_axial_overlap": 3.7,
@@ -48,7 +48,7 @@
     "nominal_tip_to_bore_bottom_gap": 0,
     "positive_axial_stop": "Rotating shaft tip seats on bore floor annulus surrounding center-screw passage",
     "nominal_boss_to_case_face_gap": 0.30000000000001137,
-    "required_exposure_to_nearest_stationary_surface_min": 4,
+    "required_exposure_to_nearest_stationary_surface_min": 4.0,
     "stationary_clearance_min_if_exposure_and_print_depth_pass": 0.2,
     "unsupported_2_mm_stationary_nose_removed_from_reference": true,
     "purchased_shaft_and_nose_collision_verified": false,
@@ -57,7 +57,7 @@
   },
   "center_screw_inspection": {
     "screw": "M3 x 6 ISO4762/DIN912 envelope, full thread; verify factory thread compatibility",
-    "nominal_length_under_head_mm": 6,
+    "nominal_length_under_head_mm": 6.0,
     "length_acceptance_measured_mm": [
       5.9,
       6.1
@@ -70,18 +70,18 @@
     "nominal_thread_entry_length_mm": 3.4000000000000057,
     "thread_entry_length_min_mm": 3.1000000000000005,
     "thread_entry_length_max_mm": 3.6999999999999997,
-    "required_usable_thread_depth_mm": 4,
+    "required_usable_thread_depth_mm": 4.0,
     "nominal_bottom_room_if_usable_depth_4_mm": 0.5999999999999943,
     "minimum_bottom_room_if_inspections_pass_mm": 0.30000000000000027,
     "head_envelope_diameter_mm": 5.5,
-    "head_envelope_height_mm": 3,
+    "head_envelope_height_mm": 3.0,
     "head_access_diameter_mm": 6.4,
     "head_radial_clearance_nominal_mm": 0.4500000000000002,
     "head_radial_clearance_min_with_print_allowance_mm": 0.40000000000000036,
     "shaft_passage_diameter_mm": 3.4,
     "shaft_radial_clearance_nominal_mm": 0.19999999999999996,
     "shaft_radial_clearance_min_with_print_allowance_mm": 0.1499999999999999,
-    "underhead_relief_diameter_mm": 4,
+    "underhead_relief_diameter_mm": 4.0,
     "underhead_relief_depth_mm": 0.3,
     "limitation": "Thread entry length is not a guarantee of full-thread engagement. INJORA does not publish entry chamfer, thread depth or factory screw length; inspect actual screw and usable thread."
   },
@@ -157,7 +157,7 @@
       "housing_checks": [
         {
           "body_id": 26,
-          "reference_step_sha256": "45ff0676322d6a3d2a8b67baec2166c5bf1b7d45a11a2879bbf279ede12c88d6",
+          "reference_step_sha256": "183fa8e299559b458e9842247db2fd6689b09f1af472d49b1e47f5ca3558c109",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -169,7 +169,7 @@
         },
         {
           "body_id": 46,
-          "reference_step_sha256": "fc82c822fcef6c23cb1c57e8449d1a9de79a499eca6b2a3558b2b37ed888d317",
+          "reference_step_sha256": "e3a0230385ea7072e8670d7627356508ace33bdce129565b472015ed6128e142",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -232,7 +232,7 @@
     "servo_pockets": {
       "case_length_mm": 41.3,
       "case_width_mm": 20.8,
-      "case_axial_span_mm": 40,
+      "case_axial_span_mm": 40.0,
       "case_pocket_y_mm": [
         151.7,
         191.7
@@ -252,12 +252,37 @@
       "printed_assembly_fit_verified": false
     },
     "wire_channel": {
-      "height_mm": 8,
-      "outlet_width_mm": 5.2,
+      "height_mm": 8.0,
+      "outlet_width_mm": 6.0,
       "case_side_boot_bay_y_mm": [
         180.6,
         191.2
       ],
+      "route": {
+        "channel_width_mm": 6.0,
+        "channel_height_mm": 8.0,
+        "centerline_bend_radius_mm": 8.0,
+        "boot_bay_xy_mm": [
+          10.4,
+          180.6,
+          16.0,
+          191.2
+        ],
+        "centerline_start_mm": [
+          10.05,
+          187.0
+        ],
+        "centerline_end_mm": [
+          50.0,
+          171.0
+        ],
+        "exit_direction": "+X, right side; forward of handle",
+        "cut_applied_after_housing_pad_joins": true,
+        "route_length_mm": 49.08274122871835,
+        "trial_bundle_diameter_mm": 4.0,
+        "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
+        "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
+      },
       "assembly": "Lay cable in split seam; keep JR connector outside housing",
       "physical_boot_fit_verified": false,
       "reference_photo_url": "https://www.injora.com/cdn/shop/files/1_5_af7067ed-c672-4de7-882a-37d01068c61d.jpg?v=1787641003&width=720",
@@ -280,7 +305,7 @@
       ],
       "collar_opening_diameters_mm": [
         31.2,
-        31
+        31.0
       ],
       "collar_end_float_nominal_mm": 0.6,
       "sleeve_stop_y_mm": [
@@ -291,11 +316,144 @@
       "native_faces": {
         "26": {
           "before": 101,
-          "after": 95
+          "after": 98
         },
         "46": {
           "before": 98,
-          "after": 92
+          "after": 95
+        }
+      },
+      "sleeve_capture_and_journal_offset_checks": [
+        {
+          "sleeve_translation_mm": -0.29,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": 0.19,
+          "exact": true,
+          "chassis_blocks_overtravel": false
+        },
+        {
+          "sleeve_translation_mm": -0.31,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "sleeve_translation_mm": 0.21,
+          "exact": true,
+          "chassis_blocks_overtravel": true
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            -0.5,
+            0
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        },
+        {
+          "auger_axis_offset_xz_mm": [
+            0,
+            -0.5
+          ],
+          "exact": true,
+          "auger_housing_overlap_mm3": 0
+        }
+      ]
+    }
+  },
+  "thin_housing": {
+    "nominal_minimum_exterior_wall_mm": 2.8,
+    "servo_floor_mm": 10.200000000000001,
+    "servo_section_total_depth_mm": 41.2,
+    "bearing_section_total_depth_mm": 41.2,
+    "handle_total_depth_mm": 41.2,
+    "handle_bed_land_width_mm": 11.5,
+    "handle_shoulders_degrees": 45,
+    "history_before": 81,
+    "history_after": 71,
+    "removed_history_entries": 10,
+    "preserved_screw_head_seats_z_mm": [
+      8,
+      12.7
+    ],
+    "scope": "Flat underside, tangent blended exterior, bed-supported handles and a curved side cable route. Mating datums preserved.",
+    "cable_route": {
+      "channel_width_mm": 6.0,
+      "channel_height_mm": 8.0,
+      "centerline_bend_radius_mm": 8.0,
+      "boot_bay_xy_mm": [
+        10.4,
+        180.6,
+        16.0,
+        191.2
+      ],
+      "centerline_start_mm": [
+        10.05,
+        187.0
+      ],
+      "centerline_end_mm": [
+        50.0,
+        171.0
+      ],
+      "exit_direction": "+X, right side; forward of handle",
+      "cut_applied_after_housing_pad_joins": true,
+      "route_length_mm": 49.08274122871835,
+      "trial_bundle_diameter_mm": 4.0,
+      "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
+      "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
+    },
+    "tradeoff": "Fixed bearing axis requires 10.2 mm servo floor and thicker grips for flat pocket-up printing.",
+    "native_geometry_verification": {
+      "finished_housing_geometry_identical_to_previous": false,
+      "other_body_mesh_arrays_identical": true,
+      "unchanged_body_ids": [
+        1,
+        15,
+        90,
+        216,
+        221
+      ],
+      "materials_and_assembly_placements_preserved": true,
+      "collar_stop_y_mm": [
+        113.7,
+        117.3
+      ],
+      "collar_opening_diameters_mm": [
+        31.2,
+        31.0
+      ],
+      "collar_end_float_nominal_mm": 0.6,
+      "sleeve_stop_y_mm": [
+        120.3,
+        131.2
+      ],
+      "sleeve_end_float_nominal_mm": 0.5,
+      "native_faces": {
+        "26": {
+          "before": 107,
+          "after": 83
+        },
+        "46": {
+          "before": 97,
+          "after": 79
         }
       },
       "sleeve_capture_and_journal_offset_checks": [
@@ -811,20 +969,6 @@
     "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
     "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
   ],
-  "center_screw_cad_check": {
-    "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,
-    "center_axis_passage_open": true,
-    "screw_shaft_envelope_passage_open": true,
-    "head_seat_to_tip_annular_seat_measured_mm": 2.5999999999999943,
-    "underhead_relief_measured": true,
-    "temporary_screw_geometry_saved_to_design": false,
-    "boss_diameter_mesh_measured_mm": 24,
-    "pilot_diameter_mesh_measured_mm": 5.7,
-    "pilot_depth_mm": 3.6999999999999886,
-    "straight_bore_radial_wall_mm": 9.15,
-    "servo_cavity_excluded": "Reference servo has no modeled internal threaded bore; its solid volume overlaps the hypothetical screw and cannot validate thread depth.",
-    "actual_servo_thread_depth_verified": false
-  },
   "desktop_compatibility": [
     {
       "file": "garden-auger-direct-drive.nbcad",
@@ -834,7 +978,7 @@
       "drawing_sheets": 0,
       "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\Limo-CAD.exe",
       "reader_mode": "isolated desktop executable headless",
-      "source_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789"
+      "source_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
@@ -856,7 +1000,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 153892.1235257027,
+        "volume_mm3": 156617.12632781986,
         "plate_bounds_mm": [
           [
             8.0,
@@ -869,7 +1013,7 @@
             23.8
           ]
         ],
-        "triangle_count": 5142
+        "triangle_count": 5294
       },
       {
         "name": "PETG - Housing lower",
@@ -878,7 +1022,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 154708.61936147293,
+        "volume_mm3": 157433.6221635901,
         "plate_bounds_mm": [
           [
             8.0,
@@ -891,7 +1035,7 @@
             20.6
           ]
         ],
-        "triangle_count": 3824
+        "triangle_count": 3976
       },
       {
         "name": "PETG - One-piece auger",
@@ -969,8 +1113,8 @@
         "bounds_mm": [
           [
             7.999999999999998,
-            8,
-            0
+            8.0,
+            0.0
           ],
           [
             35.982597,
@@ -989,8 +1133,8 @@
         "bounds_mm": [
           [
             8.000000000000002,
-            8,
-            0
+            8.0,
+            0.0
           ],
           [
             31.992540000000005,
@@ -1006,9 +1150,9 @@
         "volume_mm3": 2727.300276189996,
         "bounds_mm": [
           [
-            38,
-            8,
-            0
+            38.0,
+            8.0,
+            0.0
           ],
           [
             61.992541,
@@ -1024,9 +1168,9 @@
         "volume_mm3": 2723.9604413363063,
         "bounds_mm": [
           [
-            68,
-            8,
-            0
+            68.0,
+            8.0,
+            0.0
           ],
           [
             91.99253999999999,
@@ -1042,9 +1186,9 @@
         "volume_mm3": 2720.5626213625173,
         "bounds_mm": [
           [
-            98,
-            8,
-            0
+            98.0,
+            8.0,
+            0.0
           ],
           [
             121.99253999999999,
@@ -1056,119 +1200,12 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
-    "garden-auger-direct-drive.3mf": "209fcd617f2ffbab11da70f0efe806a3976d998eac84327172b6f1f4f7a0147d",
+    "garden-auger-direct-drive.nbcad": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+    "garden-auger-direct-drive.3mf": "a92aa0a5841e3d48d44829be2deb63cce6d537ed5d2b157a31c71e27dab0195d",
     "garden-auger-direct-adapter.3mf": "3f83fbd230169e82ea9795e2341fb7c046676a48ab655dc7d7a144c2d0c8b2f4",
     "garden-auger-press-fit.nbcad": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
     "garden-auger-press-fit.3mf": "78a4615bfd1eda186963a09e6e4fcaede4268503b8db1ee04f06bf36606fca9e"
   },
   "housing_geometry_release_verification": "housing-nesting-verification.json",
-  "thin_housing": {
-    "nominal_minimum_exterior_wall_mm": 2.8,
-    "servo_floor_mm": 10.200000000000001,
-    "servo_section_total_depth_mm": 41.2,
-    "bearing_section_total_depth_mm": 41.2,
-    "handle_total_depth_mm": 41.2,
-    "handle_bed_land_width_mm": 11.5,
-    "handle_shoulders_degrees": 45,
-    "history_before": 73,
-    "history_after": 71,
-    "removed_history_entries": 2,
-    "preserved_screw_head_seats_z_mm": [
-      8,
-      12.7
-    ],
-    "scope": "Flat underside, tangent blended ear exterior and bed-supported handles. Mating datums preserved.",
-    "tradeoff": "Fixed bearing axis requires 10.2 mm servo floor and thicker grips for flat pocket-up printing.",
-    "native_geometry_verification": {
-      "finished_housing_geometry_identical_to_previous": false,
-      "other_body_mesh_arrays_identical": true,
-      "unchanged_body_ids": [
-        1,
-        15,
-        90,
-        216,
-        221
-      ],
-      "materials_and_assembly_placements_preserved": true,
-      "collar_stop_y_mm": [
-        113.7,
-        117.3
-      ],
-      "collar_opening_diameters_mm": [
-        31.2,
-        31.0
-      ],
-      "collar_end_float_nominal_mm": 0.6,
-      "sleeve_stop_y_mm": [
-        120.3,
-        131.2
-      ],
-      "sleeve_end_float_nominal_mm": 0.5,
-      "native_faces": {
-        "26": {
-          "before": 107,
-          "after": 81
-        },
-        "46": {
-          "before": 97,
-          "after": 77
-        }
-      },
-      "sleeve_capture_and_journal_offset_checks": [
-        {
-          "sleeve_translation_mm": -0.29,
-          "exact": true,
-          "chassis_blocks_overtravel": false
-        },
-        {
-          "sleeve_translation_mm": 0.19,
-          "exact": true,
-          "chassis_blocks_overtravel": false
-        },
-        {
-          "sleeve_translation_mm": -0.31,
-          "exact": true,
-          "chassis_blocks_overtravel": true
-        },
-        {
-          "sleeve_translation_mm": 0.21,
-          "exact": true,
-          "chassis_blocks_overtravel": true
-        },
-        {
-          "auger_axis_offset_xz_mm": [
-            0.5,
-            0
-          ],
-          "exact": true,
-          "auger_housing_overlap_mm3": 0
-        },
-        {
-          "auger_axis_offset_xz_mm": [
-            -0.5,
-            0
-          ],
-          "exact": true,
-          "auger_housing_overlap_mm3": 0
-        },
-        {
-          "auger_axis_offset_xz_mm": [
-            0,
-            0.5
-          ],
-          "exact": true,
-          "auger_housing_overlap_mm3": 0
-        },
-        {
-          "auger_axis_offset_xz_mm": [
-            0,
-            -0.5
-          ],
-          "exact": true,
-          "auger_housing_overlap_mm3": 0
-        }
-      ]
-    }
-  }
+  "cable_route_report": "cable-route-verification.json"
 }

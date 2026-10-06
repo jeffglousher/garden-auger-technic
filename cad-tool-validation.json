@@ -1,17 +1,16 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
   "method": "Direct Limo CAD MCP attached to live Bevy desktop; recomputed current canonical and native inspection files; measured retained solids and exported associative sheets.",
   "desktop_executable": "C:/Users/jeffg/AppData/Local/limo-cad/bevy/Limo-CAD.exe",
-  "loaded_source_revision": "Flat printable exterior, blended ears and bed-supported handles; 71 active features; PRINT-4",
+  "loaded_source_revision": "Side cable routing after housing joins; flat printable exterior; 71 active features; PRINT-5",
   "native_session_at_validation": {
-    "session_id": "7fc7da67-37ee-456f-83ec-0be448e543b2",
-    "document_id": "96ef753c-ca40-4326-a168-f5494fa6a86b",
-    "mode": "attached live desktop"
+    "session_id": "da2b6932-fa61-4794-b998-9ecfe649b3d7",
+    "method": "Attached native desktop via product MCP"
   },
   "native_document": {
     "_disclosure": {
-      "active_focus": "solid",
+      "active_focus": "print",
       "advertised": true,
       "mode": "dynamic",
       "pack": "document",
@@ -283,7 +282,7 @@
             "children": [],
             "id": 35,
             "kind": "sketch",
-            "name": "Cable boot and seam exit - one open channel",
+            "name": "Cable side outlet - tangent bends away from handles",
             "reference_id": null,
             "visible": true
           },
@@ -810,7 +809,7 @@
       {
         "id": 272,
         "kind": "sketch",
-        "name": "Cable boot and seam exit - one open channel",
+        "name": "Cable side outlet - tangent bends away from handles",
         "status": {
           "state": "ok"
         },
@@ -820,15 +819,6 @@
         "id": 183,
         "kind": "extrude",
         "name": "Servo ears - final cut after housing extensions",
-        "status": {
-          "state": "ok"
-        },
-        "suppressed": false
-      },
-      {
-        "id": 278,
-        "kind": "extrude",
-        "name": "Cable boot and seam exit - one open channel",
         "status": {
           "state": "ok"
         },
@@ -1042,6 +1032,15 @@
         "suppressed": false
       },
       {
+        "id": 278,
+        "kind": "extrude",
+        "name": "Cable side outlet - tangent bends away from handles",
+        "status": {
+          "state": "ok"
+        },
+        "suppressed": false
+      },
+      {
         "id": 157,
         "kind": "extrude",
         "name": "Upper M3 screw clearance",
@@ -1105,7 +1104,7 @@
         "suppressed": false
       }
     ],
-    "name": "Garden auger - support-free housing fit inspection",
+    "name": "Garden auger - side cable route fit inspection",
     "rollback_index": 71,
     "settings": {
       "dimension_style": "aligned",
@@ -2130,12 +2129,12 @@
           107.9,
           -3.2
         ],
-        "cylindrical_faces": 23,
-        "faces": 81,
+        "cylindrical_faces": 26,
+        "faces": 83,
         "feature_id": 41,
         "id": 26,
         "name": "Body26",
-        "planar_faces": 55,
+        "planar_faces": 54,
         "size": [
           200,
           98.6,
@@ -2153,12 +2152,12 @@
           107.9,
           -20.6
         ],
-        "cylindrical_faces": 19,
-        "faces": 77,
+        "cylindrical_faces": 22,
+        "faces": 79,
         "feature_id": 72,
         "id": 46,
         "name": "Body46",
-        "planar_faces": 55,
+        "planar_faces": 54,
         "size": [
           200,
           98.6,
@@ -2235,7 +2234,7 @@
         ]
       }
     ],
-    "hole_count": 42,
+    "hole_count": 46,
     "hole_source": "scene",
     "holes": [
       {
@@ -2351,7 +2350,7 @@
       {
         "body_id": 26,
         "counterbore_depth": null,
-        "counterbore_diameter": 14,
+        "counterbore_diameter": 6.2,
         "depth": null,
         "diameter": 3.4,
         "face_id": null,
@@ -2439,6 +2438,50 @@
       {
         "body_id": 26,
         "counterbore_depth": null,
+        "counterbore_diameter": 22,
+        "depth": null,
+        "diameter": 10,
+        "face_id": null,
+        "feature_id": null,
+        "flip": false,
+        "name": "cylinder",
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "style": "counterbore",
+        "thread": null,
+        "through": false,
+        "x": 14,
+        "y": 179,
+        "z": -4
+      },
+      {
+        "body_id": 26,
+        "counterbore_depth": null,
+        "counterbore_diameter": 22,
+        "depth": null,
+        "diameter": 10,
+        "face_id": null,
+        "feature_id": null,
+        "flip": false,
+        "name": "cylinder",
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "style": "counterbore",
+        "thread": null,
+        "through": false,
+        "x": 30,
+        "y": 179,
+        "z": -4
+      },
+      {
+        "body_id": 26,
+        "counterbore_depth": null,
         "counterbore_diameter": null,
         "depth": null,
         "diameter": 8,
@@ -2520,30 +2563,8 @@
         "style": "simple",
         "thread": null,
         "through": false,
-        "x": 18.3,
-        "y": 168.008,
-        "z": -20.6
-      },
-      {
-        "body_id": 26,
-        "counterbore_depth": null,
-        "counterbore_diameter": null,
-        "depth": null,
-        "diameter": 6,
-        "face_id": null,
-        "feature_id": null,
-        "flip": false,
-        "name": "cylinder",
-        "normal": [
-          0,
-          0,
-          -1
-        ],
-        "style": "simple",
-        "thread": null,
-        "through": false,
-        "x": 16.2,
-        "y": 181.119,
+        "x": 26.3,
+        "y": 167.843,
         "z": -20.6
       },
       {
@@ -2679,6 +2700,28 @@
         "z": -20.6
       },
       {
+        "body_id": 26,
+        "counterbore_depth": null,
+        "counterbore_diameter": null,
+        "depth": null,
+        "diameter": 6,
+        "face_id": null,
+        "feature_id": null,
+        "flip": false,
+        "name": "cylinder",
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "style": "simple",
+        "thread": null,
+        "through": false,
+        "x": 24.8,
+        "y": 176.243,
+        "z": -20.6
+      },
+      {
         "body_id": 46,
         "counterbore_depth": null,
         "counterbore_diameter": null,
@@ -2872,8 +2915,8 @@
         "style": "simple",
         "thread": null,
         "through": false,
-        "x": 18.3,
-        "y": 168.008,
+        "x": 26.3,
+        "y": 167.843,
         "z": -20.6
       },
       {
@@ -2894,16 +2937,16 @@
         "style": "simple",
         "thread": null,
         "through": false,
-        "x": 16.2,
-        "y": 181.119,
+        "x": 24.8,
+        "y": 176.243,
         "z": -20.6
       },
       {
         "body_id": 46,
         "counterbore_depth": null,
-        "counterbore_diameter": 14,
+        "counterbore_diameter": 22,
         "depth": null,
-        "diameter": 4,
+        "diameter": 10,
         "face_id": null,
         "feature_id": null,
         "flip": false,
@@ -2916,9 +2959,31 @@
         "style": "counterbore",
         "thread": null,
         "through": false,
-        "x": 16,
-        "y": 196.8,
-        "z": -12
+        "x": 30,
+        "y": 179,
+        "z": -4
+      },
+      {
+        "body_id": 46,
+        "counterbore_depth": null,
+        "counterbore_diameter": 22,
+        "depth": null,
+        "diameter": 10,
+        "face_id": null,
+        "feature_id": null,
+        "flip": false,
+        "name": "cylinder",
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "style": "counterbore",
+        "thread": null,
+        "through": false,
+        "x": 14,
+        "y": 179,
+        "z": -4
       },
       {
         "body_id": 46,
@@ -2983,6 +3048,28 @@
         "thread": null,
         "through": false,
         "x": -36,
+        "y": 196.8,
+        "z": -6.7
+      },
+      {
+        "body_id": 46,
+        "counterbore_depth": null,
+        "counterbore_diameter": null,
+        "depth": null,
+        "diameter": 4,
+        "face_id": null,
+        "feature_id": null,
+        "flip": false,
+        "name": "cylinder",
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "style": "simple",
+        "thread": null,
+        "through": false,
+        "x": 16,
         "y": 196.8,
         "z": -6.7
       },
@@ -3165,6 +3252,15 @@
     ],
     "holes_by_class": [
       {
+        "count": 4,
+        "counterbore_diameter": 22,
+        "depth": null,
+        "diameter": 10,
+        "style": "counterbore",
+        "thread": null,
+        "through": false
+      },
+      {
         "count": 1,
         "counterbore_diameter": 12,
         "depth": null,
@@ -3220,15 +3316,6 @@
       },
       {
         "count": 1,
-        "counterbore_diameter": 14,
-        "depth": null,
-        "diameter": 3.4,
-        "style": "counterbore",
-        "thread": null,
-        "through": false
-      },
-      {
-        "count": 1,
         "counterbore_diameter": 28,
         "depth": null,
         "diameter": 3.4,
@@ -3237,7 +3324,7 @@
         "through": false
       },
       {
-        "count": 3,
+        "count": 4,
         "counterbore_diameter": 6.2,
         "depth": null,
         "diameter": 3.4,
@@ -3246,16 +3333,7 @@
         "through": false
       },
       {
-        "count": 1,
-        "counterbore_diameter": 14,
-        "depth": null,
-        "diameter": 4,
-        "style": "counterbore",
-        "thread": null,
-        "through": false
-      },
-      {
-        "count": 3,
+        "count": 4,
         "counterbore_diameter": null,
         "depth": null,
         "diameter": 4,
@@ -3307,6 +3385,46 @@
       {
         "code": "holes_overlap",
         "feature_id": null,
+        "message": "Holes at (14, 179, -4) \u00c3\u02dc10 and (30, 179, -4) \u00c3\u02dc10 are 16 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (14, 179, -4) \u00c3\u02dc10 and (24.8, 176.243, -20.6) \u00c3\u02dc6 are 11.146 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (30, 179, -4) \u00c3\u02dc10 and (26.3, 167.843, -20.6) \u00c3\u02dc8 are 11.754 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (30, 179, -4) \u00c3\u02dc10 and (24.8, 176.243, -20.6) \u00c3\u02dc6 are 5.886 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (26.3, 167.843, -20.6) \u00c3\u02dc8 and (30, 179, -4) \u00c3\u02dc10 are 11.754 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (24.8, 176.243, -20.6) \u00c3\u02dc6 and (30, 179, -4) \u00c3\u02dc10 are 5.886 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (24.8, 176.243, -20.6) \u00c3\u02dc6 and (14, 179, -4) \u00c3\u02dc10 are 11.146 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
+        "message": "Holes at (30, 179, -4) \u00c3\u02dc10 and (14, 179, -4) \u00c3\u02dc10 are 16 mm apart and overlap; the kernel merges them into one opening"
+      },
+      {
+        "code": "holes_overlap",
+        "feature_id": null,
         "message": "Holes at (0, 146.1, 0) \u00c3\u02dc3.4 and (-6, 141.1, -6) \u00c3\u02dc2 are 8.485 mm apart and overlap; the kernel merges them into one opening"
       },
       {
@@ -3328,19 +3446,19 @@
   },
   "native_drawings": {
     "_disclosure": {
-      "active_focus": "assembly",
+      "active_focus": "solid",
       "advertised": true,
       "mode": "dynamic",
       "pack": "document",
       "state": "soft"
     },
-    "active_sheet_id": 5,
-    "next_annotation_id": 24,
+    "active_sheet_id": 6,
+    "next_annotation_id": 27,
     "next_bom_item_id": 1,
     "next_revision_id": 1,
-    "next_sheet_id": 6,
+    "next_sheet_id": 7,
     "next_template_id": 1,
-    "next_view_id": 12,
+    "next_view_id": 14,
     "sheets": [
       {
         "annotations": [
@@ -3593,8 +3711,8 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 4261567325511682,
-              "edge_key": "edge:113",
+              "edge_id": 4256069767370627,
+              "edge_key": "edge:114",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -3602,7 +3720,7 @@
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 6,
             "kind": "linear_dimension",
@@ -3624,16 +3742,16 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 4259368302255260,
-              "edge_key": "edge:111",
-              "endpoint": "start",
+              "edge_id": 4261567325511682,
+              "edge_key": "edge:113",
+              "endpoint": "end",
               "fallback_point": [
                 10.399999999999999,
-                191.7,
+                191.69999999999996,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
             "view_id": 2
@@ -3642,16 +3760,16 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 1878925629417390,
-              "edge_key": "edge:180",
+              "edge_id": 1320373720614932,
+              "edge_key": "edge:120",
               "endpoint": "start",
               "fallback_point": [
                 -30.9,
-                151.7,
+                151.69999999999996,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 7,
             "kind": "linear_dimension",
@@ -3673,8 +3791,8 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 4261567325511682,
-              "edge_key": "edge:113",
+              "edge_id": 4256069767370627,
+              "edge_key": "edge:114",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -3682,7 +3800,7 @@
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
             "view_id": 2
@@ -3691,8 +3809,8 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 4254970255742416,
-              "edge_key": "edge:115",
+              "edge_id": 1878925629417390,
+              "edge_key": "edge:180",
               "endpoint": "start",
               "fallback_point": [
                 -38.5,
@@ -3700,7 +3818,7 @@
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 8,
             "kind": "linear_dimension",
@@ -3724,14 +3842,14 @@
               "circle_center": false,
               "edge_id": 4254970255742416,
               "edge_key": "edge:115",
-              "endpoint": "end",
+              "endpoint": "start",
               "fallback_point": [
                 -38.5,
                 165.7,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
             "view_id": 2
@@ -3789,8 +3907,8 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 6511168114592443,
-              "edge_key": "edge:169",
+              "edge_id": 7489733463511008,
+              "edge_key": "edge:173",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -3798,7 +3916,7 @@
                 -10.4
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 10,
             "kind": "linear_dimension",
@@ -3820,8 +3938,8 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 4261567325511682,
-              "edge_key": "edge:113",
+              "edge_id": 4256069767370627,
+              "edge_key": "edge:114",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -3829,7 +3947,7 @@
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
             "view_id": 4
@@ -3977,7 +4095,7 @@
           "drawing_number": "AU-FIT-20261005",
           "finish": "",
           "material": "",
-          "revision": "PRINT-4",
+          "revision": "PRINT-5",
           "title": "Servo fit - measurements from retained CAD topology"
         },
         "tolerance_note": {
@@ -4113,8 +4231,8 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 6511168114592443,
-              "edge_key": "edge:169",
+              "edge_id": 7489733463511008,
+              "edge_key": "edge:173",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -4122,7 +4240,7 @@
                 -10.4
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 11,
             "kind": "linear_dimension",
@@ -4144,8 +4262,8 @@
             "second": {
               "body_id": 26,
               "circle_center": false,
-              "edge_id": 1817755450721174,
-              "edge_key": "edge:207",
+              "edge_id": 830394008776921,
+              "edge_key": "edge:211",
               "endpoint": "start",
               "fallback_point": [
                 -30.9,
@@ -4153,7 +4271,7 @@
                 10.4
               ],
               "occurrence_id": 6,
-              "topology_signature": "feature:41:connectivity-v1:11509352422194717002"
+              "topology_signature": "feature:41:connectivity-v1:4695047000009215021"
             },
             "suffix": "",
             "view_id": 5
@@ -4193,8 +4311,8 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 6511168114592443,
-              "edge_key": "edge:169",
+              "edge_id": 7489733463511008,
+              "edge_key": "edge:173",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -4202,7 +4320,7 @@
                 -10.4
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
             "view_id": 5
@@ -4211,16 +4329,16 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 7495231021652063,
-              "edge_key": "edge:176",
-              "endpoint": "end",
+              "edge_id": 1876726606160968,
+              "edge_key": "edge:182",
+              "endpoint": "start",
               "fallback_point": [
                 -38.5,
                 162.60000000000002,
                 -10.4
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "id": 13,
             "kind": "linear_dimension",
@@ -4350,7 +4468,7 @@
           "drawing_number": "AU-FIT-20261005-2",
           "finish": "",
           "material": "",
-          "revision": "PRINT-4",
+          "revision": "PRINT-5",
           "title": "Nominal servo / clamshell mating clearances"
         },
         "tolerance_note": {
@@ -4398,8 +4516,8 @@
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 6511168114592443,
-              "edge_key": "edge:169",
+              "edge_id": 7489733463511008,
+              "edge_key": "edge:173",
               "endpoint": "end",
               "fallback_point": [
                 -30.9,
@@ -4407,9 +4525,9 @@
                 -10.4
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
-            "id": 21,
+            "id": 24,
             "kind": "linear_dimension",
             "mode": "horizontal",
             "offset": 14,
@@ -4429,36 +4547,36 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 413261867903994,
-              "edge_key": "edge:90",
+              "edge_id": 412162356275783,
+              "edge_key": "edge:93",
               "endpoint": "end",
               "fallback_point": [
-                13.2,
+                100,
                 188,
-                -20.59999999999999
+                -20.6
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
-            "view_id": 10
+            "view_id": 12
           },
           {
             "first": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 6044975097203139,
-              "edge_key": "edge:208",
+              "edge_id": 2302237604418130,
+              "edge_key": "edge:139",
               "endpoint": "end",
               "fallback_point": [
                 18.5,
-                165.7,
+                165.70000000000002,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
-            "id": 22,
+            "id": 25,
             "kind": "linear_dimension",
             "mode": "horizontal",
             "offset": 16,
@@ -4478,19 +4596,19 @@
             "second": {
               "body_id": 46,
               "circle_center": false,
-              "edge_id": 1368737472630128,
-              "edge_key": "edge:81",
-              "endpoint": "end",
+              "edge_id": 1370936495886550,
+              "edge_key": "edge:83",
+              "endpoint": "start",
               "fallback_point": [
-                22.299999999999994,
-                168.007866694991,
+                22.3,
+                167.84314575050763,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
-            "view_id": 11
+            "view_id": 13
           },
           {
             "first": {
@@ -4498,16 +4616,16 @@
               "circle_center": false,
               "edge_id": 4254970255742416,
               "edge_key": "edge:115",
-              "endpoint": "end",
+              "endpoint": "start",
               "fallback_point": [
                 -38.5,
                 165.7,
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
-            "id": 23,
+            "id": 26,
             "kind": "linear_dimension",
             "mode": "horizontal",
             "offset": -16,
@@ -4536,16 +4654,16 @@
                 0
               ],
               "occurrence_id": 7,
-              "topology_signature": "feature:72:connectivity-v1:7585444543549418209"
+              "topology_signature": "feature:72:connectivity-v1:17684214292473929486"
             },
             "suffix": "",
-            "view_id": 11
+            "view_id": 13
           }
         ],
         "bom": [],
         "bom_table_position": null,
         "format": "a3",
-        "id": 5,
+        "id": 6,
         "name": "Printable housing - exterior wall measurements",
         "orientation": "landscape",
         "projection_method": "first_angle",
@@ -4635,7 +4753,7 @@
           "drawing_number": "AU-WALL-20261006",
           "finish": "",
           "material": "",
-          "revision": "PRINT-4",
+          "revision": "PRINT-5",
           "title": "Exterior stock from current CAD topology"
         },
         "tolerance_note": {
@@ -4654,7 +4772,7 @@
               0,
               0
             ],
-            "id": 10,
+            "id": 12,
             "kind": "custom",
             "name": "Floor - YZ",
             "occurrence_ids": [],
@@ -4684,7 +4802,7 @@
               0,
               1
             ],
-            "id": 11,
+            "id": 13,
             "kind": "custom",
             "name": "Side walls - XY",
             "occurrence_ids": [],
@@ -4711,7 +4829,7 @@
   "native_drawing_export_dimension_text": {
     "1": [
       "Servo fit - measurements from retained CAD topology",
-      "DRAWING: AU-FIT-20261005 REV: PRINT-4 SHEET: Servo and housing native fit measurements",
+      "DRAWING: AU-FIT-20261005 REV: PRINT-5 SHEET: Servo and housing native fit measurements",
       "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
       "MATERIAL: FINISH:",
       "Nominal geometry inspection. No automatic tolerance-stack or physical-fit certification.",
@@ -4736,7 +4854,7 @@
     ],
     "2": [
       "Nominal servo / clamshell mating clearances",
-      "DRAWING: AU-FIT-20261005-2 REV: PRINT-4 SHEET: Assembled servo clearances",
+      "DRAWING: AU-FIT-20261005-2 REV: PRINT-5 SHEET: Assembled servo clearances",
       "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
       "MATERIAL: FINISH:",
       "Exact nominal geometry. Shaft teeth, shaft internal thread and cable boot are not modeled.",
@@ -4748,9 +4866,9 @@
       "1.50 mm",
       "0.20 mm"
     ],
-    "5": [
+    "6": [
       "Exterior stock from current CAD topology",
-      "DRAWING: AU-WALL-20261006 REV: PRINT-4 SHEET: Printable housing - exterior wall measurements",
+      "DRAWING: AU-WALL-20261006 REV: PRINT-5 SHEET: Printable housing - exterior wall measurements",
       "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
       "MATERIAL: FINISH:",
       "Nominal dimensions only. No automated wall, GD&amp;T or load qualification.",
@@ -4800,19 +4918,19 @@
     "Native slice success does not certify upper screw-recess bridge quality. Housing supports are explicitly disabled; the lower half separately passes an automatic-support probe."
   ],
   "native_final_session": {
-    "session_id": "7fc7da67-37ee-456f-83ec-0be448e543b2",
-    "document_id": "96ef753c-ca40-4326-a168-f5494fa6a86b",
-    "mode": "attached live desktop"
+    "session_id": "da2b6932-fa61-4794-b998-9ecfe649b3d7",
+    "method": "Attached native desktop via product MCP"
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
-    "garden-auger-fit-inspection.limo": "4939c5444a37c60272d983b2bad09f8cc2d2ac19fbcaaeec3e20dea9ef614274",
-    "renders/cad-fit-assembled.png": "e2b655ba84833fba9b6d74625abd777b7826183f5d758210fc5b98842a0d6105",
-    "renders/cad-fit-mating-surfaces.png": "2fa20bf1ddbc210ae6b333afe44abb2f326c519e957a47d82e0f63fb0dd7c92b",
-    "renders/cad-fit-dimensions.svg": "ea43927ecfabf87094a7fdb9b665e06464384e690d3b34ac931493a9e830cd2b",
-    "renders/cad-fit-clearances.svg": "20901e582d434bbd447516c01ec9ce6162d6beaeed1209a41a88418280074280",
-    "renders/cad-thin-housing.png": "f7d1cd084141b7577a35a01453bcf8a26321a97fa6a8f07e788141922fb1a444",
-    "renders/cad-thin-wall-dimensions.svg": "2848f6c725beb9c9c4c02e0720e905ad0484c2b2a6df8241cae9f54199598e10",
-    "renders/cad-housing-underside.png": "5c48e65068f7469ea83cd2eda20df2e87618dc67469cc6c111582d5f927d5156"
-  }
+    "garden-auger-direct-drive.nbcad": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+    "garden-auger-fit-inspection.limo": "7ffa0cd9bef813306dd3133a2cc88abcf67143d5cb6d0c16e6a16832d9774ae7",
+    "renders/cad-fit-assembled.png": "d15e2a7a1fbf4e3d3f0b88b59f8c38af04f799e2aaa047faaaa5870911f6733e",
+    "renders/cad-fit-mating-surfaces.png": "4d377b57d25d1cb2a9acb85b8c91dc561e9a15c3722ae8da56d7a4fdfc87a77d",
+    "renders/cad-fit-dimensions.svg": "b4aff9a4136b64789b013e858e66b0b115490ab591e654c4ec85edc55853c208",
+    "renders/cad-fit-clearances.svg": "affd3c6e3c3d33bcc91e350b864051cae2b6fc28b6d2956e2414423da2010ae9",
+    "renders/cad-thin-housing.png": "85ba079ae4dcda3f8cab3f3db44cb7946002fff07c0e79a62aa7889923b88c14",
+    "renders/cad-thin-wall-dimensions.svg": "9feaedd8c74c2b6a94ab491b6bf46fce706876b279f2b9506f693e088243b37a",
+    "renders/cad-housing-underside.png": "32f496b37f767746f46a9854327d3346b24456dcfa0d9d8fdf4e749ddf9000fb"
+  },
+  "cable_route_report": "cable-route-verification.json"
 }

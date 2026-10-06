@@ -1,42 +1,42 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
+  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
   "test_project": "garden-auger-lower-fit-test.3mf",
-  "test_project_sha256": "5f31bcc208a61d422be487af245d6085cb3a0230cb79be7039583cc44c38af7c",
+  "test_project_sha256": "d89f12626884cb376702285275d54198e27491943c0c57cd869b2565260c8146",
   "full_project": "garden-auger-bambu-latest.3mf",
-  "full_project_sha256": "e237d961168e4ea06fdfaa6147c05012ca0983054d5577850f86f1b0ebfe0154",
+  "full_project_sha256": "a4d15277bfa9b137080b0b2af829313fa20ce3a6cc80e370f6146a773fa38c33",
   "single_half_release": {
     "native_exit_code": 0,
     "native_plate": {
       "feature_type_times": {
-        "Bottom surface": 215.34140014648438,
-        "Bridge": 367.1801452636719,
-        "Custom": 286.54742431640625,
+        "Bottom surface": 216.22647094726562,
+        "Bridge": 370.37115478515625,
+        "Custom": 286.5427551269531,
         "Flush": 29.0,
-        "Gap infill": 37.30561447143555,
-        "Inner wall": 2570.19775390625,
-        "Internal solid infill": 1744.2679443359375,
-        "Outer wall": 792.6024780273438,
-        "Sparse infill": 5395.78369140625,
-        "Top surface": 194.8651885986328,
-        "Travel": 685.7474365234375,
-        "Undefined": 678.8114624023438
+        "Gap infill": 38.32765579223633,
+        "Inner wall": 2540.775390625,
+        "Internal solid infill": 1730.8873291015625,
+        "Outer wall": 777.6554565429688,
+        "Sparse infill": 5569.35205078125,
+        "Top surface": 196.4161834716797,
+        "Travel": 686.4548950195312,
+        "Undefined": 679.5189208984375
       },
       "filament_change_times": 0,
       "filaments": [
         {
           "filament_id": "GFG00",
           "id": 1,
-          "main_used_g": 109.24717712402344,
-          "total_used_g": 109.24717712402344
+          "main_used_g": 110.03267669677734,
+          "total_used_g": 110.03267669677734
         }
       ],
-      "generate_support_material_time": 48,
+      "generate_support_material_time": 27,
       "id": 1,
-      "infill_time": 845,
+      "infill_time": 555,
       "layer_filament_change": 0,
-      "main_predication": 11988.26953125,
-      "make_perimeters_time": 143,
+      "main_predication": 12113.916015625,
+      "make_perimeters_time": 102,
       "obj_cached_cnt": 0,
       "objects": [
         {
@@ -50,52 +50,52 @@
           },
           "id": 5,
           "name": "PETG - Housing lower",
-          "triangle_count": 3824
+          "triangle_count": 3976
         }
       ],
-      "sliced_time": 6179,
-      "sliced_time_with_cache": 4972,
-      "total_predication": 12325.880859375,
-      "triangle_count": 3824,
+      "sliced_time": 3452,
+      "sliced_time_with_cache": 2684,
+      "total_predication": 12451.5224609375,
+      "triangle_count": 3976,
       "warning_message": ""
     },
     "support_time_seconds": 0,
     "support_gcode_feature_markers": 0,
-    "gcode_sha256": "d331c3c7477349634f2a0a9f9b531c90c1bd01a9eaee40be6f6b1c4bba0989e1",
-    "sliced_archive_sha256": "8740b91b6b48b6bb8b330fa99b1a8f65e19ba10a12ba2a8f01e4322467f62d1b"
+    "gcode_sha256": "93e0b572437d02b515886d4401a1b730f9ed1683114ee95dc67102e03562b3c1",
+    "sliced_archive_sha256": "0eae4932bfc7661fdcad43402726fb281206c0243ff2f98d861ff0823ad405ad"
   },
   "automatic_support_lower_probe": {
     "native_exit_code": 0,
     "native_plate": {
       "feature_type_times": {
-        "Bottom surface": 215.34140014648438,
-        "Bridge": 367.1801452636719,
-        "Custom": 286.54742431640625,
+        "Bottom surface": 216.22647094726562,
+        "Bridge": 370.37115478515625,
+        "Custom": 286.5427551269531,
         "Flush": 29.0,
-        "Gap infill": 37.30561447143555,
-        "Inner wall": 2570.19775390625,
-        "Internal solid infill": 1744.2679443359375,
-        "Outer wall": 792.6024780273438,
-        "Sparse infill": 5395.78369140625,
-        "Top surface": 194.8651885986328,
-        "Travel": 685.7474365234375,
-        "Undefined": 678.8114624023438
+        "Gap infill": 38.32765579223633,
+        "Inner wall": 2540.775390625,
+        "Internal solid infill": 1730.8873291015625,
+        "Outer wall": 777.6554565429688,
+        "Sparse infill": 5569.35205078125,
+        "Top surface": 196.4161834716797,
+        "Travel": 686.4548950195312,
+        "Undefined": 679.5189208984375
       },
       "filament_change_times": 0,
       "filaments": [
         {
           "filament_id": "GFG00",
           "id": 1,
-          "main_used_g": 109.24717712402344,
-          "total_used_g": 109.24717712402344
+          "main_used_g": 110.03267669677734,
+          "total_used_g": 110.03267669677734
         }
       ],
-      "generate_support_material_time": 34,
+      "generate_support_material_time": 32,
       "id": 1,
-      "infill_time": 633,
+      "infill_time": 517,
       "layer_filament_change": 0,
-      "main_predication": 11988.26953125,
-      "make_perimeters_time": 110,
+      "main_predication": 12113.916015625,
+      "make_perimeters_time": 84,
       "obj_cached_cnt": 0,
       "objects": [
         {
@@ -109,19 +109,19 @@
           },
           "id": 5,
           "name": "PETG - Housing lower",
-          "triangle_count": 3824
+          "triangle_count": 3976
         }
       ],
-      "sliced_time": 4162,
-      "sliced_time_with_cache": 3220,
-      "total_predication": 12325.880859375,
-      "triangle_count": 3824,
+      "sliced_time": 3584,
+      "sliced_time_with_cache": 2813,
+      "total_predication": 12451.5224609375,
+      "triangle_count": 3976,
       "warning_message": ""
     },
     "support_time_seconds": 0,
     "support_gcode_feature_markers": 0,
-    "gcode_sha256": "5728c919187ed5e51efcad32a6badd3bfbac062c498112a29313143bcee87dc1",
-    "sliced_archive_sha256": "3e0c45bb9f50140e0594b83ebb7426dfa1321e990e41fe6423b4faaebd2a0fb3"
+    "gcode_sha256": "bc6424e78fcce66d2267acaf00aa2cd468f8ca537b030e568d8f773d17fad3af",
+    "sliced_archive_sha256": "db8f2b458cc9770fb1e936401e5c78e3be945a2b2175221e924692a176ffc181"
   },
   "probe_meshes_byte_identical_to_release": true,
   "saved_global_printer_material_process_and_purge_settings_identical": true,
@@ -133,17 +133,17 @@
   ],
   "upper_screw_roof_native_geometry": {
     "method": "Native drawing_projection circular topology references, definition scope, body 26",
-    "topology_signature": "feature:41:connectivity-v1:11509352422194717002",
+    "topology_signature": "feature:41:connectivity-v1:4695047000009215021",
     "circles": [
       {
         "body_id": 26,
         "center": [
-          -35.99999999999999,
-          196.8
+          26.999999999999996,
+          118.5
         ],
         "center_model": [
-          -35.99999999999999,
-          196.8,
+          26.999999999999996,
+          118.5,
           20.6
         ],
         "closed": true,
@@ -153,29 +153,6 @@
         "normal_model": [
           0,
           0,
-          1
-        ],
-        "occurrence_id": null,
-        "radius": 3.0999999999999943
-      },
-      {
-        "body_id": 26,
-        "center": [
-          26.999999999999996,
-          118.5
-        ],
-        "center_model": [
-          26.999999999999996,
-          118.5,
-          20.6
-        ],
-        "closed": true,
-        "edge_id": 842350362792067,
-        "edge_key": "edge:84",
-        "hidden": false,
-        "normal_model": [
-          0,
-          0,
           0.9999999999999999
         ],
         "occurrence_id": null,
@@ -190,6 +167,29 @@
         "center_model": [
           -27.000000000000004,
           118.5,
+          20.6
+        ],
+        "closed": true,
+        "edge_id": 843449874420278,
+        "edge_key": "edge:87",
+        "hidden": false,
+        "normal_model": [
+          0,
+          0,
+          0.9999999999999999
+        ],
+        "occurrence_id": null,
+        "radius": 3.100000000000005
+      },
+      {
+        "body_id": 26,
+        "center": [
+          -35.99999999999999,
+          196.8
+        ],
+        "center_model": [
+          -35.99999999999999,
+          196.8,
           20.6
         ],
         "closed": true,
@@ -199,33 +199,10 @@
         "normal_model": [
           0,
           0,
-          0.9999999999999999
+          1
         ],
         "occurrence_id": null,
-        "radius": 3.100000000000005
-      },
-      {
-        "body_id": 26,
-        "center": [
-          -27,
-          118.49999999999999
-        ],
-        "center_model": [
-          -27,
-          118.49999999999999,
-          8
-        ],
-        "closed": true,
-        "edge_id": 854444990702388,
-        "edge_key": "edge:89",
-        "hidden": false,
-        "normal_model": [
-          0,
-          0,
-          -1
-        ],
-        "occurrence_id": null,
-        "radius": 1.6999999999999993
+        "radius": 3.0999999999999943
       },
       {
         "body_id": 26,
@@ -239,8 +216,8 @@
           8
         ],
         "closed": true,
-        "edge_id": 855544502330599,
-        "edge_key": "edge:88",
+        "edge_id": 854444990702388,
+        "edge_key": "edge:89",
         "hidden": false,
         "normal_model": [
           0,
@@ -262,8 +239,8 @@
           20.6
         ],
         "closed": true,
-        "edge_id": 3682388897893405,
-        "edge_key": "edge:51",
+        "edge_id": 3679090363008772,
+        "edge_key": "edge:52",
         "hidden": false,
         "normal_model": [
           0,
@@ -276,17 +253,17 @@
       {
         "body_id": 26,
         "center": [
-          -27,
-          118.50000000000001
+          16.000000000000007,
+          196.8
         ],
         "center_model": [
-          -27,
-          118.50000000000001,
-          0
+          16.000000000000007,
+          196.8,
+          12.7
         ],
         "closed": true,
-        "edge_id": 4636764990991328,
-        "edge_key": "edge:41",
+        "edge_id": 3681289386265194,
+        "edge_key": "edge:50",
         "hidden": false,
         "normal_model": [
           0,
@@ -294,16 +271,16 @@
           1
         ],
         "occurrence_id": null,
-        "radius": 1.6999999999999993
+        "radius": 3.0999999999999943
       },
       {
         "body_id": 26,
         "center": [
-          16,
+          -36,
           196.8
         ],
         "center_model": [
-          16,
+          -36,
           196.8,
           0
         ],
@@ -317,17 +294,17 @@
           1
         ],
         "occurrence_id": null,
-        "radius": 1.6999999999999993
+        "radius": 1.7000000000000028
       },
       {
         "body_id": 26,
         "center": [
-          -36,
-          196.8
+          -27,
+          118.50000000000001
         ],
         "center_model": [
-          -36,
-          196.8,
+          -27,
+          118.50000000000001,
           0
         ],
         "closed": true,
@@ -340,22 +317,22 @@
           1
         ],
         "occurrence_id": null,
-        "radius": 1.7000000000000028
+        "radius": 1.6999999999999993
       },
       {
         "body_id": 26,
         "center": [
-          16.000000000000007,
+          16,
           196.8
         ],
         "center_model": [
-          16.000000000000007,
+          16,
           196.8,
-          12.7
+          0
         ],
         "closed": true,
-        "edge_id": 4645561084017016,
-        "edge_key": "edge:49",
+        "edge_id": 4642262549132383,
+        "edge_key": "edge:44",
         "hidden": false,
         "normal_model": [
           0,
@@ -363,7 +340,7 @@
           1
         ],
         "occurrence_id": null,
-        "radius": 3.0999999999999943
+        "radius": 1.6999999999999993
       },
       {
         "body_id": 26,
@@ -377,8 +354,8 @@
           12.7
         ],
         "closed": true,
-        "edge_id": 4646660595645227,
-        "edge_key": "edge:48",
+        "edge_id": 4645561084017016,
+        "edge_key": "edge:49",
         "hidden": false,
         "normal_model": [
           0,
@@ -391,6 +368,29 @@
       {
         "body_id": 26,
         "center": [
+          -35.99999999999999,
+          196.8
+        ],
+        "center_model": [
+          -35.99999999999999,
+          196.8,
+          12.7
+        ],
+        "closed": true,
+        "edge_id": 8859989152332384,
+        "edge_key": "edge:92",
+        "hidden": false,
+        "normal_model": [
+          0,
+          0,
+          1
+        ],
+        "occurrence_id": null,
+        "radius": 3.0999999999999943
+      },
+      {
+        "body_id": 26,
+        "center": [
           -36,
           196.8
         ],
@@ -400,8 +400,8 @@
           12.7
         ],
         "closed": true,
-        "edge_id": 8859989152332384,
-        "edge_key": "edge:92",
+        "edge_id": 8861088663960595,
+        "edge_key": "edge:93",
         "hidden": false,
         "normal_model": [
           0,
@@ -414,25 +414,48 @@
       {
         "body_id": 26,
         "center": [
-          -35.99999999999999,
-          196.8
+          -27,
+          118.49999999999999
         ],
         "center_model": [
-          -35.99999999999999,
-          196.8,
-          12.7
+          -27,
+          118.49999999999999,
+          8
         ],
         "closed": true,
-        "edge_id": 8863287687217017,
-        "edge_key": "edge:91",
+        "edge_id": 8862188175588806,
+        "edge_key": "edge:90",
         "hidden": false,
         "normal_model": [
           0,
           0,
-          1
+          -1
         ],
         "occurrence_id": null,
-        "radius": 3.0999999999999943
+        "radius": 1.6999999999999993
+      },
+      {
+        "body_id": 26,
+        "center": [
+          27,
+          118.49999999999999
+        ],
+        "center_model": [
+          27,
+          118.49999999999999,
+          8
+        ],
+        "closed": true,
+        "edge_id": 8864387198845228,
+        "edge_key": "edge:96",
+        "hidden": false,
+        "normal_model": [
+          0,
+          0,
+          -1
+        ],
+        "occurrence_id": null,
+        "radius": 1.6999999999999993
       },
       {
         "body_id": 26,
@@ -446,8 +469,8 @@
           0
         ],
         "closed": true,
-        "edge_id": 8864387198845228,
-        "edge_key": "edge:96",
+        "edge_id": 8865486710473439,
+        "edge_key": "edge:97",
         "hidden": false,
         "normal_model": [
           0,
@@ -469,8 +492,8 @@
           8
         ],
         "closed": true,
-        "edge_id": 8866586222101650,
-        "edge_key": "edge:94",
+        "edge_id": 8867685733729861,
+        "edge_key": "edge:95",
         "hidden": false,
         "normal_model": [
           0,
@@ -479,33 +502,10 @@
         ],
         "occurrence_id": null,
         "radius": 3.100000000000005
-      },
-      {
-        "body_id": 26,
-        "center": [
-          27,
-          118.49999999999999
-        ],
-        "center_model": [
-          27,
-          118.49999999999999,
-          8
-        ],
-        "closed": true,
-        "edge_id": 8867685733729861,
-        "edge_key": "edge:95",
-        "hidden": false,
-        "normal_model": [
-          0,
-          0,
-          -1
-        ],
-        "occurrence_id": null,
-        "radius": 1.6999999999999993
       }
     ],
-    "derived_radial_roof_width_mm": 1.399999999999995,
-    "limits": "Radial width is derived from returned native radii. It is not a bridge-quality or GD&T certification."
+    "derived_radial_roof_width_mm": 1.4000000000000001,
+    "limits": "Radial width is derived from returned circles; no printed bridge quality certificate."
   },
   "full_housing_native_slice": {
     "plate": 1,
@@ -513,8 +513,8 @@
       "PETG - Housing upper",
       "PETG - Housing lower"
     ],
-    "time_seconds": 24739,
-    "filament_weight_g": 219.6,
+    "time_seconds": 24999,
+    "filament_weight_g": 221.2,
     "outside_printable_area": false,
     "support_used": true,
     "native_support_time_seconds": 0,
@@ -525,8 +525,8 @@
         "tray_info_idx": "GFG00",
         "type": "PETG",
         "color": "#034638",
-        "used_m": "73.04",
-        "used_g": "219.60",
+        "used_m": "73.57",
+        "used_g": "221.20",
         "group_id": "0",
         "nozzle_diameter": "0.40",
         "volume_type": "Standard",
@@ -536,6 +536,6 @@
         "total_unload_time": "0.00"
       }
     ],
-    "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 6h 47m 10s; total estimated time: 6h 52m 19s\n; total layer number: 99\n; total filament length [mm] : 73037.77\n; total filament volume [cm^3] : 175676.43\n; total filament weight [g] : 219.60\n; model label id: 102,104\n; object max height: 23.72,20.60\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 23.72\n; filament: 1\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
+    "gcode_header": "; HEADER_BLOCK_START\n; BambuStudio 02.08.02.61\n; model printing time: 6h 51m 31s; total estimated time: 6h 56m 39s\n; total layer number: 99\n; total filament length [mm] : 73572.13\n; total filament volume [cm^3] : 176961.72\n; total filament weight [g] : 221.20\n; model label id: 102,104\n; object max height: 23.72,20.60\n; filament_density: 1.25,1.25,1.25,1.26\n; filament_diameter: 1.75,1.75,1.75,1.75\n; max_z_height: 23.72\n; filament: 1\n; support_material_on_wipe_tower: 0\n; HEADER_BLOCK_END"
   }
 }

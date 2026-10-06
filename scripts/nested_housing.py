@@ -6,6 +6,7 @@ from cad_build import profile
 from model_cleanup import prune
 from housing_simplification import housing_counts
 from design_parameters import REAR_ADAPTER_CHAMBER_END_Y
+from cable_routing import apply_cable_route,route_spec
 from servo_dimensions import (
     CASE_LEFT_X,CASE_RIGHT_X,CASE_WIDTH,CASE_CLEARANCE,
     CASE_POCKET_FRONT_Y,CASE_POCKET_REAR_Y,EAR_POCKET_FRONT_Y,EAR_POCKET_REAR_Y,
@@ -70,21 +71,9 @@ def nest_housing(original):
     history.remove(ear_cut)
     history.insert(next(i for i, f in enumerate(history) if f['id'] == 277) + 1, ear_cut)
 
-    # The connector stays outside. Lay the cable into the open clamshell seam.
-    # Keep a short bay at the photographed case-side cable boot, then turn
-    # toward the existing outlet. No tall connector parking pocket is needed.
-    cable = sketches['Sketch95']
-    cable_name = 'Cable boot and seam exit - one open channel'
-    cable['name'] = cable_name
-    profile(cable, [(10.4, 180.6), (50, 180.6), (50, 185.8),
-                    (16, 185.8), (16, 191.2), (10.4, 191.2)])
-    features[cable['feature_id']]['name'] = cable_name
-    features[278]['name'] = cable_name
-    extrudes[278].update(name=cable_name, sketch_name=cable_name,
-        extent={'type': 'two_sides', 'distance': CABLE_CHANNEL_HEIGHT / 2,
-                'second_distance': CABLE_CHANNEL_HEIGHT / 2}, flip=False)
     if 229 in features:
         features[229]['suppressed'] = True
+    model=apply_cable_route(model)
     model, pruning = prune(model)
     return model, {'finished_housing_geometry_changed': True,
         'housing_before': housing_counts(original), 'housing_after': housing_counts(model),
@@ -115,7 +104,8 @@ def nest_housing(original):
             'drawing_dimensions_user_confirmed': True,
             'printed_assembly_fit_verified': False},
         'wire_channel': {'height_mm': CABLE_CHANNEL_HEIGHT,
-            'outlet_width_mm': 5.2, 'case_side_boot_bay_y_mm': [180.6, 191.2],
+            'outlet_width_mm': 6.0, 'case_side_boot_bay_y_mm': [180.6, 191.2],
+            'route':route_spec(),
             'assembly': 'Lay cable in split seam; keep JR connector outside housing',
             'physical_boot_fit_verified': False,
             'reference_photo_url': 'https://www.injora.com/cdn/shop/files/1_5_af7067ed-c672-4de7-882a-37d01068c61d.jpg?v=1787641003&width=720',

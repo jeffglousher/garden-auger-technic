@@ -44,6 +44,19 @@ def main():
     assert thin['native_nominal_interference']['exact']
     assert not any(p['interfering'] for p in thin['native_nominal_interference']['pairs'])
     expected[thin['test_project']]=thin['test_project_sha256']
+    cable=read('cable-route-verification.json')
+    assert expected[cable['source_project']]==cable['source_project_sha256']
+    expected[cable['inspection_artifact']]=cable['inspection_artifact_sha256']
+    assert not cable['temporary_probes_in_production_model']
+    assert all(p['interfering'] for p in cable['previous_dead_end_reproduced_by_native_tool']['housing_pairs'])
+    for test in cable['native_continuous_swept_bundle_checks']:
+        assert test['exact']
+        assert any(p['interfering'] for p in test['housing_pairs'])==test.get('expected_rejection',False)
+    assert cable['native_4mm_minimum_housing_clearance_mm']>=.99
+    captures=read('renders/cable-route-provenance.json')
+    assert captures['source_project_sha256']==cable['source_project_sha256']
+    assert captures['experiment_project_sha256']==cable['inspection_artifact_sha256']
+    expected.update(captures['capture_sha256'])
     printing=read('housing-print-verification.json')
     assert expected[printing['source_project']]==printing['source_project_sha256']
     assert expected[printing['test_project']]==printing['test_project_sha256']

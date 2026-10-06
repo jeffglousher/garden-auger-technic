@@ -1,4 +1,4 @@
-"""Record native CAD evidence for the exterior-only housing revision."""
+"""Record native CAD evidence for the printable housing and routing revision."""
 import copy
 import hashlib
 import io
@@ -50,9 +50,9 @@ def refresh_inspection(client, model):
     revised['schema_version'] = old['schema_version']
     revised['drawings'] = old['drawings']
     revised['views'] = old['views']
-    revised['document']['name'] = 'Garden auger - support-free housing fit inspection'
+    revised['document']['name'] = 'Garden auger - side cable route fit inspection'
     for sheet in revised['drawings']['sheets']:
-        sheet['title_block']['revision'] = 'PRINT-4'
+        sheet['title_block']['revision'] = 'PRINT-5'
     # Rebind every dimension to a returned CURRENT topology anchor. Matching
     # coordinates select the intended unchanged mating corner, not a value.
     revised['drawings']['sheets'] = revised['drawings']['sheets'][:2]
@@ -72,7 +72,7 @@ def refresh_inspection(client, model):
     sheets = client.call('drawing_create_sheet', {
         'name':'Printable housing - exterior wall measurements', 'format':'a3',
         'orientation':'landscape', 'title_block':{'title':'Exterior stock from current CAD topology',
-        'drawing_number':'AU-WALL-20261006','revision':'PRINT-4'},
+        'drawing_number':'AU-WALL-20261006','revision':'PRINT-5'},
         'tolerance_note':{'preset':'none','custom':'Nominal dimensions only. No automated wall, GD&T or load qualification.'}})
     sheet_id = max(s['id'] for s in client.call('drawing_document')['sheets'])
     dimensions = []
