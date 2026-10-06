@@ -1,12 +1,12 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "experiment_project": "experiments/cable-routing-trial.limo",
-  "experiment_project_sha256": "4a67eae50680f5f257e1caac9e2c28e287652b278ecf6d8394750cead9694f79",
+  "experiment_project_sha256": "fe93da2028e679020c48240c507ba4121550ee0454c691c5c075317a4b9718ee",
   "native_production_body_mesh_arrays_identical_in_experiment": true,
   "capture_method": "Native CAD viewport, open experiment project; cyan 4 mm trial sweep is not a print part.",
   "capture_sha256": {
-    "renders/cad-cable-route-top.png": "2752632a4cece2bf4cea5ef7df7c903b60bda74ea0aef5930ebb3ff0e130e823",
-    "renders/cad-cable-route-isometric.png": "e3deef8c63e81b4c64f84e5101f66f2e7729c2612dca3cf92822d9ed93929ea1"
+    "renders/cad-cable-route-top.png": "04fde6f7818b58a238c36b1c400cddf9da8f7398e0c85d0a3ec3325c32de4d1a",
+    "renders/cad-cable-route-isometric.png": "fcf27b5f6e7f1afb4b3e1cf39a9e3378b200eb92bc513d30bb3521e63fda5ee5"
   }
 }

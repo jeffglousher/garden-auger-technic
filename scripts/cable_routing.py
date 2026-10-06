@@ -8,16 +8,17 @@ CHANNEL_HEIGHT = 8.0
 BEND_RADIUS = 8.0
 BOOT_BAY = (10.4, 180.6, 16.0, 191.2)
 ROUTE_START = (10.05, 187.0)
-FIRST_CENTER = (14.0, 179.0)
-SECOND_CENTER = (30.0, 179.0)
-ROUTE_END = (50.0, 171.0)
+STRAIGHT_END = (20.0, 187.0)
+BEND_CENTER = (20.0, 195.0)
+TURN_END = (28.0, 195.0)
+ROUTE_END = (28.0, 214.5)
 CABLE_DIAMETER_TRIAL = 4.0
-NAME = 'Cable side outlet - tangent bends away from handles'
+NAME = 'Cable rear outlet - one tangent bend toward controls'
 
 
 def route_points(step_degrees=3.0):
-    points=[ROUTE_START,(14.0,187.0)]
-    for center,angles in [(FIRST_CENTER,(90,0)),(SECOND_CENTER,(180,270))]:
+    points=[ROUTE_START,STRAIGHT_END]
+    for center,angles in [(BEND_CENTER,(270,360))]:
         count=math.ceil(abs(angles[1]-angles[0])/step_degrees)
         for i in range(1,count+1):
             angle=math.radians(angles[0]+(angles[1]-angles[0])*i/count)
@@ -31,15 +32,11 @@ def route_profile(sketch):
     # Native analytic arcs, trimmed into the retained boot bay. Positive CCW
     # arcs can be reversed because native profile connectivity is undirected.
     inner=BEND_RADIUS-CHANNEL_WIDTH/2;outer=BEND_RADIUS+CHANNEL_WIDTH/2
-    low=FIRST_CENTER[1]+math.sqrt(inner**2-2**2)
-    high=FIRST_CENTER[1]+math.sqrt(outer**2-2**2)
-    points=[(10.4,180.6),(16,180.6),(16,low),(19,179),(30,168),
-            (50,168),(50,174),(30,174),(25,179),(16,high),
-            (16,191.2),(10.4,191.2)]
-    arcs={2:(FIRST_CENTER,inner,0,math.acos(2/inner)),
-          3:(SECOND_CENTER,outer,math.pi,3*math.pi/2),
-          7:(SECOND_CENTER,inner,math.pi,3*math.pi/2),
-          8:(FIRST_CENTER,outer,0,math.acos(2/outer))}
+    points=[(10.4,180.6),(16,180.6),(16,184),(20,184),
+            (31,195),(31,214.5),(25,214.5),(25,195),
+            (20,190),(16,190),(16,191.2),(10.4,191.2)]
+    arcs={3:(BEND_CENTER,outer,3*math.pi/2,2*math.pi),
+          7:(BEND_CENTER,inner,3*math.pi/2,2*math.pi)}
     profile(sketch,points,arcs)
 
 
@@ -68,9 +65,9 @@ def route_spec():
     return {'channel_width_mm':CHANNEL_WIDTH,'channel_height_mm':CHANNEL_HEIGHT,
         'centerline_bend_radius_mm':BEND_RADIUS,'boot_bay_xy_mm':list(BOOT_BAY),
         'centerline_start_mm':list(ROUTE_START),'centerline_end_mm':list(ROUTE_END),
-        'exit_direction':'+X, right side; forward of handle',
+        'exit_direction':'+Y, rear face of housing toward controls',
         'cut_applied_after_housing_pad_joins':True,
-        'route_length_mm':14-ROUTE_START[0]+math.pi*BEND_RADIUS+ROUTE_END[0]-30,
+        'route_length_mm':STRAIGHT_END[0]-ROUTE_START[0]+math.pi*BEND_RADIUS/2+ROUTE_END[1]-TURN_END[1],
         'trial_bundle_diameter_mm':CABLE_DIAMETER_TRIAL,
         'dimensional_authority':'Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.',
         'strain_relief':'Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance.'}

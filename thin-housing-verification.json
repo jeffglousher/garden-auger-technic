@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "reference_commit": "c969789fe356c292e5040a44f467c2685a2209aa",
   "reference_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",
   "native_geometry_verification": {
@@ -31,11 +31,11 @@
     "native_faces": {
       "26": {
         "before": 107,
-        "after": 83
+        "after": 86
       },
       "46": {
         "before": 97,
-        "after": 79
+        "after": 82
       }
     },
     "sleeve_capture_and_journal_offset_checks": [
@@ -108,13 +108,13 @@
         "body_a": 26,
         "body_b": 46,
         "closest_point_a": [
-          100.0,
-          206.5,
+          24.999999999999993,
+          195.0,
           0.0
         ],
         "closest_point_b": [
-          100.0,
-          206.5,
+          24.999999999999993,
+          195.0,
           0.0
         ],
         "interfering": false,
@@ -777,7 +777,7 @@
       "file": "renders/cad-fit-dimensions.svg",
       "dimension_text": [
         "Servo fit - measurements from retained CAD topology",
-        "DRAWING: AU-FIT-20261005 REV: PRINT-5 SHEET: Servo and housing native fit measurements",
+        "DRAWING: AU-FIT-20261005 REV: PRINT-6 SHEET: Servo and housing native fit measurements",
         "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
         "MATERIAL: FINISH:",
         "Nominal geometry inspection. No automatic tolerance-stack or physical-fit certification.",
@@ -806,7 +806,7 @@
       "file": "renders/cad-fit-clearances.svg",
       "dimension_text": [
         "Nominal servo / clamshell mating clearances",
-        "DRAWING: AU-FIT-20261005-2 REV: PRINT-5 SHEET: Assembled servo clearances",
+        "DRAWING: AU-FIT-20261005-2 REV: PRINT-6 SHEET: Assembled servo clearances",
         "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
         "MATERIAL: FINISH:",
         "Exact nominal geometry. Shaft teeth, shaft internal thread and cable boot are not modeled.",
@@ -820,11 +820,11 @@
       ]
     },
     {
-      "sheet_id": 6,
+      "sheet_id": 7,
       "file": "renders/cad-thin-wall-dimensions.svg",
       "dimension_text": [
         "Exterior stock from current CAD topology",
-        "DRAWING: AU-WALL-20261006 REV: PRINT-5 SHEET: Printable housing - exterior wall measurements",
+        "DRAWING: AU-WALL-20261006 REV: PRINT-6 SHEET: Printable housing - exterior wall measurements",
         "DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft",
         "MATERIAL: FINISH:",
         "Nominal dimensions only. No automated wall, GD&amp;T or load qualification.",
@@ -849,17 +849,8 @@
     "No automatic global CAD wall-thickness, GD&T, bridge-quality or loaded-strength certification.",
     "Native support_used metadata can reflect enabled global settings despite zero support extrusion."
   ],
-  "test_project_geometry": {
-    "same_current_canonical_lower_mesh": true,
-    "triangle_indices_identical": true,
-    "maximum_centered_vertex_difference_mm": 2.842170943040401e-14,
-    "only_one_print_part": true,
-    "saved_printer_filament_process_and_purge_settings_unchanged": true,
-    "housing_wall_loops": 6,
-    "housing_infill_percent": 30
-  },
   "test_project": "garden-auger-lower-fit-test.3mf",
-  "test_project_sha256": "d89f12626884cb376702285275d54198e27491943c0c57cd869b2565260c8146",
+  "test_project_sha256": "c4506e505547da3372864ebf0b76273c088d0e8ccdb964cd0d9edb2d5f6ffeda",
   "exterior_parameters": {
     "nominal_minimum_exterior_wall_mm": 2.8,
     "servo_floor_mm": 10.200000000000001,
@@ -875,7 +866,7 @@
       8,
       12.7
     ],
-    "scope": "Flat underside, tangent blended exterior, bed-supported handles and a curved side cable route. Mating datums preserved.",
+    "scope": "Flat underside, tangent blended exterior, bed-supported handles and a curved rear cable route. Mating datums preserved.",
     "cable_route": {
       "channel_width_mm": 6.0,
       "channel_height_mm": 8.0,
@@ -891,12 +882,12 @@
         187.0
       ],
       "centerline_end_mm": [
-        50.0,
-        171.0
+        28.0,
+        214.5
       ],
-      "exit_direction": "+X, right side; forward of handle",
+      "exit_direction": "+Y, rear face of housing toward controls",
       "cut_applied_after_housing_pad_joins": true,
-      "route_length_mm": 49.08274122871835,
+      "route_length_mm": 42.016370614359175,
       "trial_bundle_diameter_mm": 4.0,
       "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
       "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
@@ -930,11 +921,11 @@
       "native_faces": {
         "26": {
           "before": 107,
-          "after": 83
+          "after": 86
         },
         "46": {
           "before": 97,
-          "after": 79
+          "after": 82
         }
       },
       "sleeve_capture_and_journal_offset_checks": [
@@ -1000,34 +991,34 @@
     "native_exit_code": 0,
     "native_plate": {
       "feature_type_times": {
-        "Bottom surface": 216.22647094726562,
-        "Bridge": 370.37115478515625,
-        "Custom": 286.5427551269531,
+        "Bottom surface": 215.34140014648438,
+        "Bridge": 365.65167236328125,
+        "Custom": 286.54742431640625,
         "Flush": 29.0,
-        "Gap infill": 38.32765579223633,
-        "Inner wall": 2540.775390625,
-        "Internal solid infill": 1730.8873291015625,
-        "Outer wall": 777.6554565429688,
-        "Sparse infill": 5569.35205078125,
-        "Top surface": 196.4161834716797,
-        "Travel": 686.4548950195312,
-        "Undefined": 679.5189208984375
+        "Gap infill": 43.93172073364258,
+        "Inner wall": 2590.8505859375,
+        "Internal solid infill": 1731.3253173828125,
+        "Outer wall": 799.3410034179688,
+        "Sparse infill": 5384.74658203125,
+        "Top surface": 195.21044921875,
+        "Travel": 717.275634765625,
+        "Undefined": 710.3396606445312
       },
       "filament_change_times": 0,
       "filaments": [
         {
           "filament_id": "GFG00",
           "id": 1,
-          "main_used_g": 110.03267669677734,
-          "total_used_g": 110.03267669677734
+          "main_used_g": 109.4433822631836,
+          "total_used_g": 109.4433822631836
         }
       ],
-      "generate_support_material_time": 27,
+      "generate_support_material_time": 18,
       "id": 1,
-      "infill_time": 555,
+      "infill_time": 533,
       "layer_filament_change": 0,
-      "main_predication": 12113.916015625,
-      "make_perimeters_time": 102,
+      "main_predication": 12029.271484375,
+      "make_perimeters_time": 91,
       "obj_cached_cnt": 0,
       "objects": [
         {
@@ -1041,52 +1032,52 @@
           },
           "id": 5,
           "name": "PETG - Housing lower",
-          "triangle_count": 3976
+          "triangle_count": 3940
         }
       ],
-      "sliced_time": 3452,
-      "sliced_time_with_cache": 2684,
-      "total_predication": 12451.5224609375,
-      "triangle_count": 3976,
+      "sliced_time": 3216,
+      "sliced_time_with_cache": 2498,
+      "total_predication": 12366.8828125,
+      "triangle_count": 3940,
       "warning_message": ""
     },
     "support_time_seconds": 0,
     "support_gcode_feature_markers": 0,
-    "gcode_sha256": "93e0b572437d02b515886d4401a1b730f9ed1683114ee95dc67102e03562b3c1",
-    "sliced_archive_sha256": "0eae4932bfc7661fdcad43402726fb281206c0243ff2f98d861ff0823ad405ad"
+    "gcode_sha256": "3da37db07245af68730d3d93e2213354c1f1380d3123c644366a607f50ea0c01",
+    "sliced_archive_sha256": "abd7741ad78d448e0ca09fbb9ad1aca2ab304829ad5147ceb65dc88044270383"
   },
   "current_lower_automatic_support_probe": {
     "native_exit_code": 0,
     "native_plate": {
       "feature_type_times": {
-        "Bottom surface": 216.22647094726562,
-        "Bridge": 370.37115478515625,
-        "Custom": 286.5427551269531,
+        "Bottom surface": 215.34140014648438,
+        "Bridge": 365.65167236328125,
+        "Custom": 286.54742431640625,
         "Flush": 29.0,
-        "Gap infill": 38.32765579223633,
-        "Inner wall": 2540.775390625,
-        "Internal solid infill": 1730.8873291015625,
-        "Outer wall": 777.6554565429688,
-        "Sparse infill": 5569.35205078125,
-        "Top surface": 196.4161834716797,
-        "Travel": 686.4548950195312,
-        "Undefined": 679.5189208984375
+        "Gap infill": 43.93172073364258,
+        "Inner wall": 2590.8505859375,
+        "Internal solid infill": 1731.3253173828125,
+        "Outer wall": 799.3410034179688,
+        "Sparse infill": 5384.74658203125,
+        "Top surface": 195.21044921875,
+        "Travel": 717.275634765625,
+        "Undefined": 710.3396606445312
       },
       "filament_change_times": 0,
       "filaments": [
         {
           "filament_id": "GFG00",
           "id": 1,
-          "main_used_g": 110.03267669677734,
-          "total_used_g": 110.03267669677734
+          "main_used_g": 109.4433822631836,
+          "total_used_g": 109.4433822631836
         }
       ],
-      "generate_support_material_time": 32,
+      "generate_support_material_time": 35,
       "id": 1,
-      "infill_time": 517,
+      "infill_time": 564,
       "layer_filament_change": 0,
-      "main_predication": 12113.916015625,
-      "make_perimeters_time": 84,
+      "main_predication": 12029.271484375,
+      "make_perimeters_time": 76,
       "obj_cached_cnt": 0,
       "objects": [
         {
@@ -1100,19 +1091,19 @@
           },
           "id": 5,
           "name": "PETG - Housing lower",
-          "triangle_count": 3976
+          "triangle_count": 3940
         }
       ],
-      "sliced_time": 3584,
-      "sliced_time_with_cache": 2813,
-      "total_predication": 12451.5224609375,
-      "triangle_count": 3976,
+      "sliced_time": 3419,
+      "sliced_time_with_cache": 2590,
+      "total_predication": 12366.8828125,
+      "triangle_count": 3940,
       "warning_message": ""
     },
     "support_time_seconds": 0,
     "support_gcode_feature_markers": 0,
-    "gcode_sha256": "bc6424e78fcce66d2267acaf00aa2cd468f8ca537b030e568d8f773d17fad3af",
-    "sliced_archive_sha256": "db8f2b458cc9770fb1e936401e5c78e3be945a2b2175221e924692a176ffc181"
+    "gcode_sha256": "ea587bbc7bfd57bcffe6cf705faa252fb978241ef4adde6840b8374b3ef93c27",
+    "sliced_archive_sha256": "3f6d1d58c6f917248333f42264c88fc30f625e5e1490855a9ca3e974044eb294"
   },
   "previous_rejected_thin_floor_release": {
     "source_project_sha256": "e68d5cc72227fbf64a877104e47d99198e161ac7126241ac8e5cd1509afe5e38",

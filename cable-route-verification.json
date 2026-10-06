@@ -1,7 +1,7 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
-  "revision": "Continuous tangent side routing; existing sketch/cut reused",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
+  "revision": "One continuous tangent rear bend; existing sketch/cut reused; side bulge removed",
   "reference_commit": "2a9feb2ea0f2370d2babc0aece511b15af7ff430",
   "reference_project_sha256": "774837e9213136d3ea83e7389115d69f57eefb1e6e8d213bf9e439f36ffa5789",
   "previous_dead_end_reproduced_by_native_tool": {
@@ -69,12 +69,12 @@
       187.0
     ],
     "centerline_end_mm": [
-      50.0,
-      171.0
+      28.0,
+      214.5
     ],
-    "exit_direction": "+X, right side; forward of handle",
+    "exit_direction": "+Y, rear face of housing toward controls",
     "cut_applied_after_housing_pad_joins": true,
-    "route_length_mm": 49.08274122871835,
+    "route_length_mm": 42.016370614359175,
     "trial_bundle_diameter_mm": 4.0,
     "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
     "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
@@ -93,17 +93,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999997085,
+          "minimum_clearance_mm": 0.9999999999999728,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -113,17 +113,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999997085,
+          "minimum_clearance_mm": 0.9999999999999728,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -145,17 +145,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            189.81665382639196,
+            20.0,
+            190.0,
             0.0
           ],
           "closest_point_b": [
-            15.885562129402762,
-            189.22062398507154,
-            4.898587196589413e-16
+            20.0,
+            189.4,
+            0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6069164670457294,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -165,17 +165,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            189.81665382639196,
+            20.0,
+            190.0,
             0.0
           ],
           "closest_point_b": [
-            15.885562129402762,
-            189.22062398507154,
-            4.898587196589413e-16
+            20.0,
+            189.4,
+            0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6069164670457294,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -197,17 +197,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            183.58257569495584,
+            20.0,
+            184.0,
             0.0
           ],
           "closest_point_b": [
-            16.2350569765141,
-            184.16817028401033,
-            0.0
+            20.0,
+            184.6,
+            2.4492935982947064e-16
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6310093540811049,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -217,17 +217,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            183.58257569495584,
+            20.0,
+            184.0,
             0.0
           ],
           "closest_point_b": [
-            16.2350569765141,
-            184.16817028401033,
-            0.0
+            20.0,
+            184.6,
+            2.4492935982947064e-16
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6310093540811049,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -249,17 +249,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.40000000000000036
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             0.4
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999999821,
+          "minimum_clearance_mm": 0.9999999999999929,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -269,17 +269,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            23.98245580136528,
-            179.0,
-            0.13567255981796378
+            29.98245580136528,
+            195.0,
+            0.1356725598179625
           ],
           "interfering": false,
-          "minimum_clearance_mm": 1.026549190084024,
+          "minimum_clearance_mm": 1.0265491900842987,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -301,17 +301,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            23.98245580136528,
-            179.0,
-            -0.1356725598179625
+            29.98245580136528,
+            195.0,
+            -0.13567255981796345
           ],
           "interfering": false,
-          "minimum_clearance_mm": 1.026549190084024,
+          "minimum_clearance_mm": 1.026549190084281,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -321,17 +321,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             -0.3999999999999999
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             -0.4
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999999821,
+          "minimum_clearance_mm": 0.9999999999999929,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -353,17 +353,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            189.81665382639196,
+            20.0,
+            190.0,
             0.40000000000000036
           ],
           "closest_point_b": [
-            15.885562129402762,
-            189.22062398507154,
-            0.4000000000000005
+            20.0,
+            189.4,
+            0.4
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6069164670457294,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -373,17 +373,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            189.81665382639196,
+            20.0,
+            190.0,
             0.0
           ],
           "closest_point_b": [
-            15.881199788389614,
-            189.19790348696822,
-            0.09667390089001932
+            20.0,
+            189.37674339530125,
+            0.09588563149211587
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6374255375563177,
+          "minimum_clearance_mm": 0.6305892875931681,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -405,17 +405,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            183.58257569495584,
+            20.0,
+            184.0,
             0.0
           ],
           "closest_point_b": [
-            16.24352071893632,
-            184.18925590265098,
-            -0.0993885073064048
+            20.0,
+            184.62325660469875,
+            -0.09588563149211698
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6612422327293431,
+          "minimum_clearance_mm": 0.6305892875931683,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -425,17 +425,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            16.0,
-            183.58257569495584,
-            -0.40000000000000124
+            20.0,
+            184.0,
+            -0.39999999999999947
           ],
           "closest_point_b": [
-            16.235056976514105,
-            184.1681702840103,
-            -0.40000000000000113
+            20.0,
+            184.6,
+            -0.3999999999999998
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.6310093540810798,
+          "minimum_clearance_mm": 0.5999999999999943,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -457,17 +457,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.5,
-            179.00000000000003,
+            25.500000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.4999999999997034,
+          "minimum_clearance_mm": 0.4999999999999708,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -477,17 +477,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.5,
-            179.00000000000003,
+            25.500000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.4999999999997034,
+          "minimum_clearance_mm": 0.4999999999999708,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -509,40 +509,40 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            27.392809158953646,
-            174.73355465072305,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            27.392809158953646,
-            174.73355465072305,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "interfering": true,
           "minimum_clearance_mm": 0.0,
           "occurrence_a": 6,
           "occurrence_b": 18,
-          "overlap_volume_mm3": 1.8860864301380413
+          "overlap_volume_mm3": 2.932298587699293
         },
         {
           "below_clearance": true,
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            23.19138840942868,
-            170.36039305241613,
+            25.0,
+            206.5,
             0.0
           ],
           "closest_point_b": [
-            23.19138840942868,
-            170.36039305241613,
+            25.0,
+            206.5,
             0.0
           ],
           "interfering": true,
           "minimum_clearance_mm": 0.0,
           "occurrence_a": 7,
           "occurrence_b": 18,
-          "overlap_volume_mm3": 1.8860861370625166
+          "overlap_volume_mm3": 2.9322985876841035
         }
       ],
       "trial_bundle_diameter_mm": 6.2,
@@ -562,13 +562,13 @@
         "body_a": 26,
         "body_b": 231,
         "closest_point_a": [
-          10.399999999999999,
+          13.2452520899314,
           180.6,
           0.0
         ],
         "closest_point_b": [
-          10.399999999999997,
-          181.09999999999997,
+          13.245252089931398,
+          181.1,
           0.0
         ],
         "interfering": false,
@@ -582,13 +582,13 @@
         "body_a": 46,
         "body_b": 231,
         "closest_point_a": [
-          10.399999999999999,
+          13.2452520899314,
           180.6,
           0.0
         ],
         "closest_point_b": [
-          10.399999999999997,
-          181.09999999999997,
+          13.245252089931398,
+          181.1,
           0.0
         ],
         "interfering": false,
@@ -621,17 +621,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            22.19900743804201,
-            179.0,
-            28.00992561958002
+            27.80099256195801,
+            195.0,
+            28.009925619580024
           ],
           "interfering": false,
-          "minimum_clearance_mm": 28.14962686336264,
+          "minimum_clearance_mm": 28.14962686336267,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -651,17 +651,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            22.485071250072675,
-            179.0,
-            10.059714999709335
+            27.514928749927343,
+            195.0,
+            10.059714999709337
           ],
           "interfering": false,
-          "minimum_clearance_mm": 10.369316876852906,
+          "minimum_clearance_mm": 10.369316876852977,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -681,17 +681,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            22.894427190999927,
-            179.0,
+            28.894427190999924,
+            195.0,
             4.211145618000168
           ],
           "interfering": false,
-          "minimum_clearance_mm": 4.7082039324992335,
+          "minimum_clearance_mm": 4.708203932499367,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -711,17 +711,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            23.414213562373106,
-            179.0,
-            1.5857864376269037
+            29.414213562373103,
+            195.0,
+            1.5857864376269033
           ],
           "interfering": false,
-          "minimum_clearance_mm": 2.242640687119067,
+          "minimum_clearance_mm": 2.2426406871192768,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -741,17 +741,17 @@
           "body_a": 46,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999997085,
+          "minimum_clearance_mm": 0.9999999999999728,
           "occurrence_a": 7,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -773,17 +773,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             30.0
           ],
           "closest_point_b": [
-            22.199007438042006,
-            179.0,
-            1.9900743804199783
+            27.80099256195801,
+            195.0,
+            1.990074380419978
           ],
           "interfering": false,
-          "minimum_clearance_mm": 28.14962686336264,
+          "minimum_clearance_mm": 28.149626863362666,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -804,17 +804,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             12.0
           ],
           "closest_point_b": [
-            22.485071250072675,
-            179.0,
-            1.9402850002906642
+            27.514928749927343,
+            195.0,
+            1.9402850002906635
           ],
           "interfering": false,
-          "minimum_clearance_mm": 10.369316876852906,
+          "minimum_clearance_mm": 10.369316876852972,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -835,17 +835,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             6.0
           ],
           "closest_point_b": [
-            22.894427190999924,
-            179.0,
-            1.7888543819998326
+            28.894427190999927,
+            195.0,
+            1.7888543819998322
           ],
           "interfering": false,
-          "minimum_clearance_mm": 4.7082039324992335,
+          "minimum_clearance_mm": 4.708203932499361,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -866,17 +866,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            31.000000000000004,
+            195.0,
             3.0
           ],
           "closest_point_b": [
-            23.414213562373103,
-            179.0,
-            1.4142135623730967
+            29.414213562373106,
+            195.0,
+            1.4142135623730958
           ],
           "interfering": false,
-          "minimum_clearance_mm": 2.242640687119067,
+          "minimum_clearance_mm": 2.242640687119256,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -897,17 +897,17 @@
           "body_a": 26,
           "body_b": 231,
           "closest_point_a": [
-            25.000000000000007,
-            179.0,
+            24.999999999999993,
+            195.0,
             0.0
           ],
           "closest_point_b": [
-            24.0,
-            179.0,
+            26.000000000000004,
+            195.0,
             0.0
           ],
           "interfering": false,
-          "minimum_clearance_mm": 0.9999999999997085,
+          "minimum_clearance_mm": 0.9999999999999728,
           "occurrence_a": 6,
           "occurrence_b": 18,
           "overlap_volume_mm3": 0.0
@@ -916,31 +916,36 @@
       "upper_lift_mm": 0
     }
   ],
-  "native_4mm_minimum_housing_clearance_mm": 0.9999999999997085,
+  "native_4mm_minimum_housing_clearance_mm": 0.9999999999999728,
   "planar_tool_experiment": {
     "tool": "Shapely / GEOS",
     "version": "2.1.2",
-    "scope": "Final outbound segment vs actual native handle front datum; XY only.",
-    "handle_front_y_mm": 181.0,
-    "outbound_segment_to_handle_band_mm": 8.0,
-    "native_handle_front_anchor": {
+    "scope": "Fully external trial tail vs actual native rear-face datum; XY only. The internal route intentionally passes through rear stock.",
+    "rear_face_y_mm": 206.5,
+    "external_tail_to_rear_stock_mm": 1.0,
+    "centerline_rear_face_crossing_mm": [
+      28.0,
+      206.5,
+      0
+    ],
+    "native_rear_face_anchor": {
       "body_id": 46,
-      "edge_id": 406664798134728,
-      "edge_key": "edge:96",
+      "edge_id": 404465774878306,
+      "edge_key": "edge:98",
       "endpoint": "end",
       "hidden": false,
       "model_point": [
         100.0,
-        181.0,
-        0.0
+        206.5,
+        -13.6
       ],
       "occurrence_id": null,
       "point": [
         100.0,
-        181.0
+        206.5
       ]
     },
-    "native_topology_signature": "feature:72:connectivity-v1:17684214292473929486",
+    "native_topology_signature": "feature:72:connectivity-v1:4730832392570227654",
     "documentation": "https://shapely.readthedocs.io/en/stable/manual.html"
   },
   "temporary_probes_in_production_model": false,
@@ -954,5 +959,5 @@
     "Factory boot remains the only strain relief; the housing channel does not clamp the cable."
   ],
   "inspection_artifact": "experiments/cable-routing-trial.limo",
-  "inspection_artifact_sha256": "4a67eae50680f5f257e1caac9e2c28e287652b278ecf6d8394750cead9694f79"
+  "inspection_artifact_sha256": "fe93da2028e679020c48240c507ba4121550ee0454c691c5c075317a4b9718ee"
 }

@@ -157,7 +157,7 @@
       "housing_checks": [
         {
           "body_id": 26,
-          "reference_step_sha256": "183fa8e299559b458e9842247db2fd6689b09f1af472d49b1e47f5ca3558c109",
+          "reference_step_sha256": "c3808a800cb62f36294f65b1e9de07b561c3bf23caede1ae61641859c3ecfa76",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -169,7 +169,7 @@
         },
         {
           "body_id": 46,
-          "reference_step_sha256": "e3a0230385ea7072e8670d7627356508ace33bdce129565b472015ed6128e142",
+          "reference_step_sha256": "bafa751a99c0b6eca635a72fd3d229fdfd88e8910d996a9fcf55395229dc9256",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -273,12 +273,12 @@
           187.0
         ],
         "centerline_end_mm": [
-          50.0,
-          171.0
+          28.0,
+          214.5
         ],
-        "exit_direction": "+X, right side; forward of handle",
+        "exit_direction": "+Y, rear face of housing toward controls",
         "cut_applied_after_housing_pad_joins": true,
-        "route_length_mm": 49.08274122871835,
+        "route_length_mm": 42.016370614359175,
         "trial_bundle_diameter_mm": 4.0,
         "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
         "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
@@ -394,7 +394,7 @@
       8,
       12.7
     ],
-    "scope": "Flat underside, tangent blended exterior, bed-supported handles and a curved side cable route. Mating datums preserved.",
+    "scope": "Flat underside, tangent blended exterior, bed-supported handles and a curved rear cable route. Mating datums preserved.",
     "cable_route": {
       "channel_width_mm": 6.0,
       "channel_height_mm": 8.0,
@@ -410,12 +410,12 @@
         187.0
       ],
       "centerline_end_mm": [
-        50.0,
-        171.0
+        28.0,
+        214.5
       ],
-      "exit_direction": "+X, right side; forward of handle",
+      "exit_direction": "+Y, rear face of housing toward controls",
       "cut_applied_after_housing_pad_joins": true,
-      "route_length_mm": 49.08274122871835,
+      "route_length_mm": 42.016370614359175,
       "trial_bundle_diameter_mm": 4.0,
       "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
       "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
@@ -449,11 +449,11 @@
       "native_faces": {
         "26": {
           "before": 107,
-          "after": 83
+          "after": 86
         },
         "46": {
           "before": 97,
-          "after": 79
+          "after": 82
         }
       },
       "sleeve_capture_and_journal_offset_checks": [
@@ -978,7 +978,7 @@
       "drawing_sheets": 0,
       "reader_executable": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\Limo-CAD.exe",
       "reader_mode": "isolated desktop executable headless",
-      "source_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b"
+      "source_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854"
     },
     {
       "file": "garden-auger-press-fit.nbcad",
@@ -1000,7 +1000,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 156617.12632781986,
+        "volume_mm3": 153855.88053550356,
         "plate_bounds_mm": [
           [
             8.0,
@@ -1013,7 +1013,7 @@
             23.8
           ]
         ],
-        "triangle_count": 5294
+        "triangle_count": 5258
       },
       {
         "name": "PETG - Housing lower",
@@ -1022,7 +1022,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 157433.6221635901,
+        "volume_mm3": 154672.3763712738,
         "plate_bounds_mm": [
           [
             8.0,
@@ -1035,7 +1035,7 @@
             20.6
           ]
         ],
-        "triangle_count": 3976
+        "triangle_count": 3940
       },
       {
         "name": "PETG - One-piece auger",
@@ -1200,8 +1200,8 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
-    "garden-auger-direct-drive.3mf": "a92aa0a5841e3d48d44829be2deb63cce6d537ed5d2b157a31c71e27dab0195d",
+    "garden-auger-direct-drive.nbcad": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
+    "garden-auger-direct-drive.3mf": "c2400c94c39815ba0f94acacae6f9be59000798936fdf3e1ed4fa0fabd4f4a0b",
     "garden-auger-direct-adapter.3mf": "3f83fbd230169e82ea9795e2341fb7c046676a48ab655dc7d7a144c2d0c8b2f4",
     "garden-auger-press-fit.nbcad": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
     "garden-auger-press-fit.3mf": "78a4615bfd1eda186963a09e6e4fcaede4268503b8db1ee04f06bf36606fca9e"

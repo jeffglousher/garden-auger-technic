@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "reference_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "reference_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "revision": "Finished housing cavities simplified for printed nesting",
@@ -86,12 +86,12 @@
           187.0
         ],
         "centerline_end_mm": [
-          50.0,
-          171.0
+          28.0,
+          214.5
         ],
-        "exit_direction": "+X, right side; forward of handle",
+        "exit_direction": "+Y, rear face of housing toward controls",
         "cut_applied_after_housing_pad_joins": true,
-        "route_length_mm": 49.08274122871835,
+        "route_length_mm": 42.016370614359175,
         "trial_bundle_diameter_mm": 4.0,
         "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
         "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."
@@ -255,8 +255,8 @@
     }
   ],
   "updated_housing_stl_sha256": {
-    "print-parts/direct-drive/petg-housing-lower.stl": "048b4752b7fe8dea852b677254422382ea36614ccc7778e2f82dee9d70b8e1b8",
-    "print-parts/direct-drive/petg-housing-upper.stl": "af656d386da663f3bb04b651f60d1f75646955b72a4c518ae31211990a2f4448"
+    "print-parts/direct-drive/petg-housing-lower.stl": "41c5029700f4047c87e1cc8e3040131c6052740cc24643b2172a083bf0550fbd",
+    "print-parts/direct-drive/petg-housing-upper.stl": "fc0b8950d8db9447b957adfaa5922833d6fee404348b5a32377d22df249b8b1e"
   },
   "unchanged_other_stl_sha256": {
     "print-parts/direct-drive/petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",

@@ -46,7 +46,7 @@ def slim_housing(original):
     extrudes={e['feature_id']:e for e in model['extrudes']}
     features={f['id']:f for f in model['document']['history']['features']}
     outline=[(-34,107.9),(34,107.9),(34,134),(17.6,144),
-        (22.3,158.8),(22.3,169.5),(27.8,175),(27.8,189.8),
+        (22.3,158.8),(22.3,169.5),(13.2,180),(13.2,189.8),
         (23,195),(23,206.5),(-43,206.5),(-43,195),
         (-33.7,189.8),(-33.7,180),(-42.3,169.5),
         (-42.3,158.8),(-33.7,144),(-34,134)]
@@ -84,6 +84,6 @@ def slim_housing(original):
         'history_after':len(model['document']['history']['features']),
         'removed_history_entries':cleanup['removed_inactive_features'],
         'preserved_screw_head_seats_z_mm':[8,12.7],
-        'scope':'Flat underside, tangent blended exterior, bed-supported handles and a curved side cable route. Mating datums preserved.',
+        'scope':'Flat underside, tangent blended exterior, bed-supported handles and a curved rear cable route. Mating datums preserved.',
         'cable_route':route_spec(),
         'tradeoff':'Fixed bearing axis requires 10.2 mm servo floor and thicker grips for flat pocket-up printing.'}

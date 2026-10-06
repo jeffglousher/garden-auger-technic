@@ -26,7 +26,7 @@ def main():
     for child in list(config):
         if child.tag=='object' and child.get('id')!=oid or child.tag in ('plate','assemble'):config.remove(child)
     plate=ET.SubElement(config,'plate')
-    for key,value in {'plater_id':1,'plater_name':'PETG - Lower clamshell cable-route fit test',
+    for key,value in {'plater_id':1,'plater_name':'PETG - Lower clamshell rear-cable fit test',
         'locked':'false','filament_map_mode':'Auto For Flush','filament_maps':'1 1 1 2',
         'filament_volume_maps':'0 0 0 0'}.items():b.add_metadata(plate,key,value)
     instance=ET.SubElement(plate,'model_instance')

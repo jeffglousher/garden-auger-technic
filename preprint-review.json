@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "reference_commit": "940e024634e4a6526b57c2783ebf87731270294d",
   "reference_sha256": "8b9db03e8c858f6c2b8b1813670d58ac1a569a1f956a0b280c53ec3d51245209",
   "confirmed_prior_flight_interference": [
@@ -2562,13 +2562,13 @@
             "body_a": 26,
             "body_b": 46,
             "closest_point_a": [
-              100.0,
-              206.5,
+              24.999999999999993,
+              195.0,
               0.0
             ],
             "closest_point_b": [
-              100.0,
-              206.5,
+              24.999999999999993,
+              195.0,
               0.0
             ],
             "interfering": false,
@@ -2884,13 +2884,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,
@@ -3205,13 +3205,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,
@@ -3526,13 +3526,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,
@@ -3847,13 +3847,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,
@@ -4168,13 +4168,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,
@@ -4489,13 +4489,13 @@
               "body_a": 26,
               "body_b": 46,
               "closest_point_a": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "closest_point_b": [
-                100.0,
-                206.5,
+                24.999999999999993,
+                195.0,
                 0.0
               ],
               "interfering": false,

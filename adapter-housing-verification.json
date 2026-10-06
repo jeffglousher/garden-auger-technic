@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "housing_change_required_for_this_adapter_revision": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,
@@ -302,12 +302,12 @@
           187.0
         ],
         "centerline_end_mm": [
-          50.0,
-          171.0
+          28.0,
+          214.5
         ],
-        "exit_direction": "+X, right side; forward of handle",
+        "exit_direction": "+Y, rear face of housing toward controls",
         "cut_applied_after_housing_pad_joins": true,
-        "route_length_mm": 49.08274122871835,
+        "route_length_mm": 42.016370614359175,
         "trial_bundle_diameter_mm": 4.0,
         "dimensional_authority": "Servo dimensions are drawing-controlled. Boot size, bundle diameter, seam height and bend radius are design trials, not INJORA published dimensions.",
         "strain_relief": "Factory servo boot only; this clearance channel does not clamp the wire or qualify pull resistance."

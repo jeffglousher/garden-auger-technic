@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "prior_commit": "9b736961b820baa7ed3f9fcdc8d613af1132d2b3",
   "prior_source_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
   "method": "Direct product MCP tools, with reversible inspection poses and explicit conservative geometry envelopes. Raw failed controls retained.",
@@ -2389,7 +2389,7 @@
     ],
     "minimum_sampled_clearance_mm": 0.2507828923443634,
     "scope": "Exact sampled flight-only conservative envelopes. Not automatic GD&T, continuous swept motion, or measured printing capability.",
-    "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+    "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
     "check_target_mm": 0.2
   },
   "current_nominal_native_result": {
@@ -2407,13 +2407,13 @@
         "body_a": 26,
         "body_b": 46,
         "closest_point_a": [
-          100,
-          206.5,
+          24.999999999999993,
+          195,
           0
         ],
         "closest_point_b": [
-          100,
-          206.5,
+          24.999999999999993,
+          195,
           0
         ],
         "interfering": false,
@@ -2706,27 +2706,24 @@
   },
   "current_nominal_dimensions_report": "cad-tool-validation.json",
   "current_component_checks_report": "preprint-review.json",
-  "native_session": {
-    "session_id": "da2b6932-fa61-4794-b998-9ecfe649b3d7",
-    "method": "Attached native desktop via product MCP"
-  },
+  "native_session": "2c40d8e7-6a48-4480-86b7-21edb04f1dfb",
   "file_identity": {
     "hashes": {
-      "garden-auger-direct-drive.nbcad": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
-      "garden-auger-fit-inspection.limo": "7ffa0cd9bef813306dd3133a2cc88abcf67143d5cb6d0c16e6a16832d9774ae7",
-      "garden-auger-bambu-latest.3mf": "a4d15277bfa9b137080b0b2af829313fa20ce3a6cc80e370f6146a773fa38c33",
-      "renders/cad-fit-assembled.png": "d15e2a7a1fbf4e3d3f0b88b59f8c38af04f799e2aaa047faaaa5870911f6733e",
-      "renders/cad-fit-mating-surfaces.png": "4d377b57d25d1cb2a9acb85b8c91dc561e9a15c3722ae8da56d7a4fdfc87a77d",
-      "renders/cad-fit-dimensions.svg": "b4aff9a4136b64789b013e858e66b0b115490ab591e654c4ec85edc55853c208",
-      "renders/cad-fit-clearances.svg": "affd3c6e3c3d33bcc91e350b864051cae2b6fc28b6d2956e2414423da2010ae9"
+      "garden-auger-direct-drive.nbcad": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
+      "garden-auger-fit-inspection.limo": "3a50eff6a61fe26c481d305743e8312cc1ea9ac0d0424c3ecf0f29e04b402b1e",
+      "garden-auger-bambu-latest.3mf": "e227a6aeabfa5e86ea39d208a1ba90c6b75f3f13ce8d6fcac7578a8066166082",
+      "renders/cad-fit-assembled.png": "5e74c18a06220c3b0e2ec8ddd448e9694576136bb37d7a11a39110d1b760ffa4",
+      "renders/cad-fit-mating-surfaces.png": "3650b945481923c3a8bd0375b42055e1ccf44c2d39f507da905400f1977d1232",
+      "renders/cad-fit-dimensions.svg": "631e4f6939f0bc76b49be14be4bee7f97ffff388bce2d91c001faf0c37383218",
+      "renders/cad-fit-clearances.svg": "ca1fea1820cb3c71998d61572c2495a170874d4a52e4e5d5dc6603d92936ef9a"
     },
     "stls": {
       "print-parts/direct-drive/petg-housing-lower.stl": {
-        "sha256": "048b4752b7fe8dea852b677254422382ea36614ccc7778e2f82dee9d70b8e1b8",
+        "sha256": "41c5029700f4047c87e1cc8e3040131c6052740cc24643b2172a083bf0550fbd",
         "identical_to_previous": false
       },
       "print-parts/direct-drive/petg-housing-upper.stl": {
-        "sha256": "af656d386da663f3bb04b651f60d1f75646955b72a4c518ae31211990a2f4448",
+        "sha256": "fc0b8950d8db9447b957adfaa5922833d6fee404348b5a32377d22df249b8b1e",
         "identical_to_previous": false
       },
       "print-parts/direct-drive/petg-one-piece-auger.stl": {

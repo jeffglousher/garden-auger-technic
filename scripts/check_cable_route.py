@@ -17,7 +17,7 @@ from shapely.geometry import LineString, box
 
 from cad_build import Builder
 from cad_client import CadClient
-from cable_routing import route_spec, ROUTE_START, ROUTE_END
+from cable_routing import route_spec, ROUTE_START, STRAIGHT_END, BEND_CENTER, TURN_END, ROUTE_END
 
 ROOT=Path(__file__).resolve().parents[1]
 REFERENCE='2a9feb2ea0f2370d2babc0aece511b15af7ff430'
@@ -45,16 +45,18 @@ def sweep_probe(c,diameter):
     plane=model_value(c)['datum_planes'][-1]['datum_id']
     c.call('sketch_begin',{'name':name+' circle','plane':{'type':'datum_plane','datum_id':plane}})
     c.call('sketch_set_grid_snap',{'enabled':False})
-    c.call('sketch_add_circle',{'mode':'center_diameter','p1':{'x':187,'y':0},
-        'p2':{'x':187+diameter/2,'y':0},'ctrl_held':True})
+    c.call('sketch_add_circle',{'mode':'center_diameter','p1':{'x':ROUTE_START[1],'y':0},
+        'p2':{'x':ROUTE_START[1]+diameter/2,'y':0},'ctrl_held':True})
     c.call('sketch_finish')
     c.call('sketch_begin',{'name':name+' path','plane':{'type':'origin_plane','plane':'xy'}})
     c.call('sketch_set_grid_snap',{'enabled':False})
-    c.call('sketch_add_line',{'from':{'x':ROUTE_START[0],'y':187},'to_raw':{'x':14,'y':187},'ctrl_held':True})
-    for center,start,end in [((14,179),(22,179),(14,187)),((30,179),(22,179),(30,171))]:
+    c.call('sketch_add_line',{'from':dict(zip(('x','y'),ROUTE_START)),
+        'to_raw':dict(zip(('x','y'),STRAIGHT_END)),'ctrl_held':True})
+    for center,start,end in [(BEND_CENTER,STRAIGHT_END,TURN_END)]:
         c.call('sketch_add_arc_center',{'center':dict(zip(('x','y'),center)),
             'start':dict(zip(('x','y'),start)),'sweep':dict(zip(('x','y'),end)),'ctrl_held':True})
-    c.call('sketch_add_line',{'from':{'x':30,'y':171},'to_raw':{'x':ROUTE_END[0],'y':171},'ctrl_held':True})
+    c.call('sketch_add_line',{'from':dict(zip(('x','y'),TURN_END)),
+        'to_raw':dict(zip(('x','y'),ROUTE_END)),'ctrl_held':True})
     c.call('sketch_finish')
     path=model_value(c)['sketches'][-1]
     ids=[i for i,e in path['snapshot']['entities'] if e['type'] in ('arc','line')]
@@ -150,8 +152,8 @@ def main():
         handle_anchors=[a for a in projection['anchors']
             if abs(abs(a['model_point'][0])-100)<1e-6]
         assert handle_anchors,'No native handle-end topology anchors returned'
-        front_anchor=min(handle_anchors,key=lambda a:a['model_point'][1])
-        y=front_anchor['model_point'][1]
+        rear_anchor=max(handle_anchors,key=lambda a:a['model_point'][1])
+        y=rear_anchor['model_point'][1]
         if args.inspection_project:
             c.call('cad_load_project_model',{'model_json':json.dumps(visible)})
             c.call('project_set_visibility',{'hidden_body_ids':[26,15,90,216,221],
@@ -165,15 +167,17 @@ def main():
             with zipfile.ZipFile(args.inspection_project,'w',zipfile.ZIP_DEFLATED) as z:
                 z.writestr('manifest.json',json.dumps(manifest));z.writestr('model.json',json.dumps(visible))
     # Planar tooling is explicitly separate from the authoritative 3D sweep.
-    # Check only the final outbound segment, not the attached boot near root.
+    # The cable now passes through the center rear stock and exits its rear
+    # face. Check a fully external tail against that native rear-face datum.
     handle=next(s for s in model['sketches'] if s['feature_id']==49)
-    authored_y=min(e['position']['x'] for _,e in handle['snapshot']['entities'] if e['type']=='point')
+    authored_y=max(e['position']['x'] for _,e in handle['snapshot']['entities'] if e['type']=='point')
     assert abs(y-authored_y)<1e-6
-    outlet=LineString([(30,171),(50,171)]).buffer(2,quad_segs=32)
-    handle_band=box(-100,y,100,206.5)
-    gap=outlet.distance(handle_band);assert gap>=8-1e-8 and not outlet.intersects(handle_band)
+    assert ROUTE_END[0]==TURN_END[0] and ROUTE_END[1]>y+3
+    outlet=LineString([(ROUTE_END[0],y+3),ROUTE_END]).buffer(2,quad_segs=32)
+    rear_stock=box(-100,181,100,y)
+    gap=outlet.distance(rear_stock);assert gap>=1-1e-8 and not outlet.intersects(rear_stock)
     report={'source_project':args.project.name,'source_project_sha256':hashlib.sha256(data).hexdigest(),
-        'revision':'Continuous tangent side routing; existing sketch/cut reused',
+        'revision':'One continuous tangent rear bend; existing sketch/cut reused; side bulge removed',
         'reference_commit':REFERENCE,'reference_project_sha256':hashlib.sha256(previous).hexdigest(),
         'previous_dead_end_reproduced_by_native_tool':negative,'route_spec':route_spec(),
         'native_continuous_swept_bundle_checks':checks,'native_boot_trial':boot_test,
@@ -181,9 +185,10 @@ def main():
         'lower_drop_in_samples':insertions,'upper_closure_samples':closures,
         'native_4mm_minimum_housing_clearance_mm':min(p['minimum_clearance_mm'] for p in checks[0]['housing_pairs']),
         'planar_tool_experiment':{'tool':'Shapely / GEOS','version':shapely.__version__,
-            'scope':'Final outbound segment vs actual native handle front datum; XY only.',
-            'handle_front_y_mm':y,'outbound_segment_to_handle_band_mm':gap,
-            'native_handle_front_anchor':front_anchor,
+            'scope':'Fully external trial tail vs actual native rear-face datum; XY only. The internal route intentionally passes through rear stock.',
+            'rear_face_y_mm':y,'external_tail_to_rear_stock_mm':gap,
+            'centerline_rear_face_crossing_mm':[ROUTE_END[0],y,0],
+            'native_rear_face_anchor':rear_anchor,
             'native_topology_signature':projection['topology_signatures']['46'],
             'documentation':'https://shapely.readthedocs.io/en/stable/manual.html'},
         'temporary_probes_in_production_model':False,
@@ -199,7 +204,7 @@ def main():
         report['inspection_artifact_sha256']=hashlib.sha256(args.inspection_project.read_bytes()).hexdigest()
     args.output.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps({'native_minimum_4mm_gap':report['native_4mm_minimum_housing_clearance_mm'],
-        'outbound_to_handle_band_mm':gap,'native_sweep_checks':len(checks),
+        'external_tail_to_rear_stock_mm':gap,'native_sweep_checks':len(checks),
         'previous_dead_end_reproduced':True,'oversize_bundle_rejected':True},indent=2),flush=True)
 
 

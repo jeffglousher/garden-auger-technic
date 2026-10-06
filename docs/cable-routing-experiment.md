@@ -1,10 +1,12 @@
 # Cable routing: native volume checks and planar tooling
 
-The current housing sends the servo lead to the **right side forward of the handle**. Its split-seam channel is 6 mm wide and 8 mm high. The existing sketch and cut supply the boot bay and two tangent R8 bends. A smooth side-routing spine contains the turn; the cut runs after all housing pad joins. Production feature count remains 71. Keep the JR connector outside and lay the lead into the open lower half before closure.
+The current housing sends the servo lead **out of the rear face toward the controls**, along +Y. Its split-seam channel is 6 mm wide and 8 mm high. The existing sketch and cut supply the boot bay, one tangent R8 quarter-turn and the straight rear passage. The outlet center is X28 at the native rear face Y206.5, offset from the rear mounting screw at X16/Y196.8. The former side-routing bulge is removed. The cut still runs after all housing pad joins. Production feature count remains 71. Keep the JR connector outside and lay the lead into the open lower half before closure.
 
 ## Faults reproduced and corrected
 
 The previous channel stopped at X50 while the handle continues to X100. The native tool reports 314.159 mm³ overlap in each half for a Ø4 straight cable extended to the actual exterior. A later rear-pad join also filled part of the intended boot bay. The revised cut is reordered after those joins instead of adding another relief operation.
+
+The subsequent two-bend side outlet was geometrically clear, but the user selected a rear outlet to route to the controls. This revision replaces that side swoop with one rear-facing turn and removes the exterior stock that only served the side route.
 
 The source diagram shows the cable emerging from the servo's right side near its rear. It does **not** dimension the boot, cable bundle, entry across the seam or permissible bend radius. Existing boot-bay coordinates and the new envelopes are **design trials**, not dimensions measured from that photograph or published by INJORA.
 
@@ -27,7 +29,7 @@ Run from the repository:
 uv run --no-project --python 3.14 --with shapely==2.1.2 python scripts/check_cable_route.py --inspection-project C:/Users/jeffg/dev/garden-auger-technic/experiments/cable-routing-trial.limo
 ```
 
-The reusable experiment also integrates **Shapely/GEOS** for planar outlet checks. It measures the final outbound Ø4 segment against the actual native handle-front datum: 8.00 mm clear. It does not make that claim for the attached boot near the handle root. Shapely uses XY and ignores Z; curved buffers are polygonal approximations. The native analytic 3D sweep remains the clearance authority. See the [official Shapely manual](https://shapely.readthedocs.io/en/stable/manual.html) for those planar and curve limitations.
+The reusable experiment also integrates **Shapely/GEOS** for planar outlet checks. It obtains the rear-face datum from actual native topology, then confirms a fully external Ø4 tail is beyond that face. The internal passage intentionally runs through the housing's central rear stock. Its centerline crosses the back at X28/Y206.5 and continues along +Y. Shapely uses XY and ignores Z; curved buffers are polygonal approximations. The native analytic 3D sweep remains the clearance authority. See the [official Shapely manual](https://shapely.readthedocs.io/en/stable/manual.html) for those planar and curve limitations.
 
 ## Remaining limits
 

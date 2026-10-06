@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "73aa26882cf4250d76e931f7a7e69fdfbbed4a50f00f94a6a459a69c600dac9b",
+  "source_project_sha256": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
   "baseline_commit": "6816a19f59809b0960d3e3b408ffa8cbd29a3a23",
   "baseline_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
   "root_cause": "24.7 mm was applied to the upper ear face instead of the underside, shifting reference ears and housing slots rearward by 2.7 mm. Mount-hole envelope centers were also 52 instead of 49 mm apart.",
