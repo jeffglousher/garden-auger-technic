@@ -1,13 +1,13 @@
 {
   "project": "garden-auger-bambu-latest.3mf",
-  "sha256": "6bda95508146d4ade3b93678b20e02b1bb8ffe881240c1d9914885a2337a867d",
+  "sha256": "3b119415817c71263f21cd264a985f92e05ea44144e5b7a4c963067ee1dfb17e",
   "canonical_export": "garden-auger-direct-drive.3mf",
   "canonical_artifact_hashes_verified": true,
   "geometry": [
     {
       "name": "PETG - Housing upper",
-      "vertices": 2458,
-      "triangles": 4928,
+      "vertices": 2459,
+      "triangles": 4930,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 2.842170943040401e-14
     },
@@ -27,8 +27,8 @@
     },
     {
       "name": "PETG - Housing lower",
-      "vertices": 1809,
-      "triangles": 3614,
+      "vertices": 1810,
+      "triangles": 3616,
       "closed_connected_solid": true,
       "maximum_shape_difference_mm": 2.842170943040401e-14
     },

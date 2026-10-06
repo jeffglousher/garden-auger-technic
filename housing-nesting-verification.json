@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
+  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
   "reference_commit": "50f789bd5b35e472b28f56a7ee5f9c3b94a52469",
   "reference_project_sha256": "1a35e97687c8e10f9655ab420fbfe4fa1585fbf30edb913075b510ebdd4b2d8e",
   "revision": "Finished housing cavities simplified for printed nesting",
@@ -36,7 +36,7 @@
       "M3 screw seats and ruthex insert pilots"
     ],
     "flight_entry": {
-      "entry_diameter_mm": 33.2,
+      "entry_diameter_mm": 33.6,
       "collar_stop_opening_diameter_mm": 31.2,
       "taper_length_mm": 5.9,
       "additional_profile_vertices": 0,
@@ -230,8 +230,8 @@
     }
   ],
   "updated_housing_stl_sha256": {
-    "print-parts/direct-drive/petg-housing-lower.stl": "f4778587a78a0d23b658c68527239a48a0407601514ba2d8c82558f1437c375e",
-    "print-parts/direct-drive/petg-housing-upper.stl": "7ec80099e3a4dbb2490f35b1198a2f4a8e69169a9b10a4faa06a51e636dc2591"
+    "print-parts/direct-drive/petg-housing-lower.stl": "ae9315ae7f881009fcfd6a98141c4cb56b5e10782f293531e9124a70148ec069",
+    "print-parts/direct-drive/petg-housing-upper.stl": "430d2639f14403dd7d415b16d4c75c8209f3a7d76a2cf7ee82e4b5808027c2a0"
   },
   "unchanged_other_stl_sha256": {
     "print-parts/direct-drive/petg-one-piece-auger.stl": "f51e9dd2f86ac499e3261852c51da9253c8e00f2eb1951fc4b6b5fe2d0d98fce",

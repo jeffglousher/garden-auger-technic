@@ -2,6 +2,8 @@
 
 The corrected assembly is open in a newly launched **Limo CAD Bevy desktop**. This review used the product's MCP tools directly, attached to that live document. The [raw native results](../cad-tool-validation.json) preserve its session identity, feature statuses, exact interference results, print warnings, hole-summary warnings and drawing references.
 
+The [consistency audit](design-audit.md) records the intentionally failed alignment control, former incomplete flight envelope and additional datum-transfer allowance. The current files include its Ø33.6 entrance correction; these nominal drawing sheets were re-exported from that source with revision FIT-2. Broader tolerance and motion coverage remains separate evidence with explicit limitations.
+
 Open [garden-auger-fit-inspection.limo](../garden-auger-fit-inspection.limo) for the current native inspection document, with **two associative drawing sheets** and a saved view showing the mating surfaces. It uses the current schema 10. The canonical schema-7 [print source](../garden-auger-direct-drive.nbcad) and all print exports remain unchanged. The native scene's mesh arrays match before and after adding the inspection sheets. The raised cover and servo are presentation offsets; mechanical placements are preserved.
 
 ![Mating surfaces captured from the live CAD window](../renders/cad-fit-mating-surfaces.png)

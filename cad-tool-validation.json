@@ -1,611 +1,778 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
-  "method": "Direct Limo CAD MCP operations attached to a newly launched live Bevy desktop; native file-open/recompute, exact interference, export preflight, scene summary and associative drawing dimensions.",
+  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+  "method": "Direct Limo CAD MCP attached to live Bevy desktop; recomputed current canonical and native inspection files; measured retained solids and exported associative sheets.",
   "desktop_executable": "C:/Users/jeffg/AppData/Local/limo-cad/bevy/Limo-CAD.exe",
-  "loaded_source_revision": "a68e4ab7e4a9d046e363b675d34729002a3d1c92",
+  "loaded_source_revision": "Audited source; drawing revision FIT-2; exact source SHA-256 above.",
   "native_session_at_validation": {
     "active_sketch_generation": null,
     "attached": true,
-    "attached_generation": 1,
+    "attached_generation": 2,
     "code": "attached",
-    "document_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
-    "generation": 1,
+    "document_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
+    "generation": 2,
     "heartbeat": {
-      "age_ms": 7278,
-      "document_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
-      "generation": 1,
+      "age_ms": 5559,
+      "document_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
+      "generation": 2,
       "interface_version": 1,
-      "project_session_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
+      "project_session_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
       "stale": false,
-      "updated_ms": 1791238811263,
+      "updated_ms": 1791250272028,
       "window_id": "main"
     },
-    "heartbeat_age_ms": 7278,
+    "heartbeat_age_ms": 5559,
     "heartbeat_kind": "heartbeat",
     "heartbeat_stale": false,
     "hint": "Attached snapshot matches live heartbeat generation",
-    "last_apply_receipt": null,
-    "model_generation": 1,
+    "last_apply_receipt": {
+      "base_generation": 1,
+      "name": "recall_named_view",
+      "seq": 1,
+      "status": "applied"
+    },
+    "model_generation": 2,
     "pending_inbox": [],
     "pending_inbox_count": 0,
-    "published_generation": 1,
-    "session_id": "90f8f91b-54c9-48e5-972f-770bc1c85871",
+    "published_generation": 2,
+    "session_id": "f3471008-cec0-43fe-9ffc-69919dd9c5ff",
     "session_mode": "live",
     "stale": false,
     "window_id": "main",
     "writeback": false
   },
   "native_document": {
-    "name": "Garden auger - round pilot direct press-fit prototype",
+    "name": "Garden auger - audited fit inspection",
     "feature_count": 81,
     "feature_statuses": [
       {
         "id": 1,
+        "kind": "construction_plane",
         "name": "Plane1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 2,
+        "kind": "sketch",
         "name": "Sketch1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 3,
+        "kind": "extrude",
         "name": "Extrude1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 180,
+        "kind": "construction_plane",
         "name": "Plane37",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 4,
+        "kind": "sketch",
         "name": "Sketch2",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 5,
+        "kind": "extrude",
         "name": "Extrude2",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 6,
+        "kind": "sketch",
         "name": "Sketch3",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 7,
+        "kind": "extrude",
         "name": "Extrude3",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 238,
+        "kind": "sketch",
         "name": "Sketch84",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 239,
+        "kind": "revolve",
         "name": "Revolve1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 40,
+        "kind": "sketch",
         "name": "Chassis stepped outer blank",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 41,
+        "kind": "extrude",
         "name": "Chassis stepped outer blank",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 48,
+        "kind": "construction_plane",
         "name": "Plane14",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 49,
+        "kind": "sketch",
         "name": "Sketch18",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 50,
+        "kind": "extrude",
         "name": "Extrude18",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 93,
+        "kind": "construction_plane",
         "name": "Plane24",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 72,
+        "kind": "split_body",
         "name": "SplitBody1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 102,
+        "kind": "import_step",
         "name": "auger.STEP",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 130,
+        "kind": "sketch",
         "name": "Sketch45",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 131,
+        "kind": "extrude",
         "name": "Servo case pocket - 41.3 by 20.8; 40.0 axial span",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 155,
+        "kind": "construction_plane",
         "name": "Plane33",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 156,
+        "kind": "sketch",
         "name": "Sketch54",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 158,
+        "kind": "sketch",
         "name": "Sketch55",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 160,
+        "kind": "sketch",
         "name": "Sketch56",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 181,
+        "kind": "construction_plane",
         "name": "Plane38",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 182,
+        "kind": "sketch",
         "name": "Sketch62",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 225,
+        "kind": "sketch",
         "name": "Sketch79",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 226,
+        "kind": "extrude",
         "name": "Front M3 head seats",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 235,
+        "kind": "construction_plane",
         "name": "Plane50",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 240,
+        "kind": "construction_plane",
         "name": "Plane51",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 245,
+        "kind": "sketch",
         "name": "Sketch87",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 246,
+        "kind": "revolve",
         "name": "Revolve2",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 247,
+        "kind": "sketch",
         "name": "Sketch88",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 248,
+        "kind": "revolve",
         "name": "Revolve3",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 249,
+        "kind": "sketch",
         "name": "Sketch89",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 250,
+        "kind": "revolve",
         "name": "Revolve4",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 251,
+        "kind": "sketch",
         "name": "Sketch90",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 253,
+        "kind": "revolve",
         "name": "Revolve5",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 263,
+        "kind": "mirror",
         "name": "Mirror1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 264,
+        "kind": "sketch",
         "name": "Sketch94",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 265,
+        "kind": "extrude",
         "name": "Extrude93",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 267,
+        "kind": "combine",
         "name": "Combine2",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 268,
+        "kind": "mirror",
         "name": "Mirror2",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 269,
+        "kind": "extrude",
         "name": "Extrude95",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 271,
+        "kind": "combine",
         "name": "Combine3",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 272,
+        "kind": "sketch",
         "name": "Cable boot and seam exit - one open channel",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 275,
+        "kind": "sketch",
         "name": "Sketch96",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 276,
+        "kind": "extrude",
         "name": "Extrude99",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 277,
+        "kind": "extrude",
         "name": "Extrude100",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 183,
+        "kind": "extrude",
         "name": "Servo ears - final cut after housing extensions",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 278,
+        "kind": "extrude",
         "name": "Cable boot and seam exit - one open channel",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 280,
+        "kind": "sketch",
         "name": "Sketch97",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 281,
+        "kind": "revolve",
         "name": "Revolve6",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 282,
+        "kind": "combine",
         "name": "Combine4",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 285,
+        "kind": "sketch",
         "name": "Sketch98",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 286,
+        "kind": "revolve",
         "name": "Revolve7",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 287,
+        "kind": "sketch",
         "name": "Sketch99",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 289,
+        "kind": "extrude",
         "name": "Extrude104",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 290,
+        "kind": "sketch",
         "name": "Sketch100",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 291,
+        "kind": "extrude",
         "name": "Extrude105",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 292,
+        "kind": "sketch",
         "name": "Sketch101",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 293,
+        "kind": "extrude",
         "name": "Extrude106",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 299,
+        "kind": "move_copy",
         "name": "MoveCopy1",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 300,
+        "kind": "sketch",
         "name": "Chassis integral thrust stops and journal seat",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 301,
+        "kind": "revolve",
         "name": "Nested collar and sleeve seats - one revolve cut",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 302,
+        "kind": "sketch",
         "name": "Plain loose PLA wear sleeve",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 303,
+        "kind": "revolve",
         "name": "Revolve9",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 304,
+        "kind": "sketch",
         "name": "Adapter center screw clearance",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 305,
+        "kind": "revolve",
         "name": "Revolve10",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 308,
+        "kind": "sketch",
         "name": "Direct adapter axial screw access and head seat",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 309,
+        "kind": "revolve",
         "name": "Revolve12",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 310,
+        "kind": "sketch",
         "name": "Rear fastener pads clear of wire channel",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 311,
+        "kind": "extrude",
         "name": "Extrude108",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 312,
+        "kind": "extrude",
         "name": "Extrude109",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 157,
+        "kind": "extrude",
         "name": "Upper M3 screw clearance",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 159,
+        "kind": "extrude",
         "name": "Upper M3 head seats",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 161,
+        "kind": "extrude",
         "name": "Lower ruthex insert pilots",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 313,
+        "kind": "sketch",
         "name": "Direct adapter integral press-fit boss",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 314,
+        "kind": "revolve",
         "name": "Revolve13",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 315,
+        "kind": "sketch",
         "name": "Plain round press-fit pilot and shaft-tip seat",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       },
       {
         "id": 316,
+        "kind": "revolve",
         "name": "Revolve14",
         "status": {
           "state": "ok"
-        }
+        },
+        "suppressed": false
       }
     ]
   },
@@ -985,8 +1152,8 @@
         "body_a": 26,
         "body_b": 90,
         "closest_point_a": [
-          16.54246090373974,
-          108.13948066793554,
+          16.7165822343017,
+          108.21013734801664,
           0
         ],
         "closest_point_b": [
@@ -995,7 +1162,7 @@
           -1.846704024233423e-12
         ],
         "interfering": false,
-        "minimum_clearance_mm": 1.0544714688051107,
+        "minimum_clearance_mm": 1.2386161844027659,
         "occurrence_a": 6,
         "occurrence_b": 8,
         "overlap_volume_mm3": 0
@@ -1085,8 +1252,8 @@
         "body_a": 46,
         "body_b": 90,
         "closest_point_a": [
-          16.54246090373974,
-          108.13948066793554,
+          16.7165822343017,
+          108.21013734801664,
           0
         ],
         "closest_point_b": [
@@ -1095,7 +1262,7 @@
           -1.846704024233423e-12
         ],
         "interfering": false,
-        "minimum_clearance_mm": 1.0544714688051107,
+        "minimum_clearance_mm": 1.2386161844027659,
         "occurrence_a": 7,
         "occurrence_b": 8,
         "overlap_volume_mm3": 0
@@ -2368,12 +2535,12 @@
   "native_drawings": {
     "_disclosure": {
       "active_focus": "solid",
-      "advertised": false,
+      "advertised": true,
       "mode": "dynamic",
       "pack": "document",
-      "state": "hidden_but_callable"
+      "state": "soft"
     },
-    "active_sheet_id": 1,
+    "active_sheet_id": 2,
     "next_annotation_id": 15,
     "next_bom_item_id": 1,
     "next_revision_id": 1,
@@ -3016,7 +3183,7 @@
           "drawing_number": "AU-FIT-20261005",
           "finish": "",
           "material": "",
-          "revision": "a68e4ab",
+          "revision": "FIT-2",
           "title": "Servo fit - measurements from retained CAD topology"
         },
         "tolerance_note": {
@@ -3389,7 +3556,7 @@
           "drawing_number": "AU-FIT-20261005-2",
           "finish": "",
           "material": "",
-          "revision": "a68e4ab",
+          "revision": "FIT-2",
           "title": "Nominal servo / clamshell mating clearances"
         },
         "tolerance_note": {
@@ -3436,527 +3603,24 @@
   },
   "native_drawing_export_dimension_text": {
     "sheet_1": [
-      "40.50 mm",
-      "37.50 mm",
-      "2.70 mm",
-      "24.70 mm",
-      "56.00 mm",
-      "41.30 mm",
-      "40.00 mm",
-      "3.10 mm",
-      "20.00 mm",
-      "10.40 mm",
-      "49.00 mm"
+      "40.50",
+      "37.50",
+      "2.70",
+      "24.70",
+      "56.00",
+      "41.30",
+      "40.00",
+      "3.10",
+      "20.00",
+      "10.40",
+      "49.00"
     ],
     "sheet_2": [
-      "20.80 mm",
-      "1.50 mm",
-      "0.20 mm"
-    ],
-    "sheet_1_annotation_meaning": [
-      "Case plan length",
-      "Case axial height",
-      "Ear thickness",
-      "Ear underside to rear",
-      "Ear overall span",
-      "Case pocket plan length",
-      "Case pocket axial span",
-      "Ear pocket axial span",
-      "Case width",
-      "Lower-half pocket depth to split face",
-      "Equal-slot-corner separation; same-width slots, 49 mm reference center spacing"
-    ],
-    "sheet_2_annotation_meaning": [
-      "Full clamshell case pocket width",
-      "Nominal rear case clearance",
-      "Nominal front ear clearance"
+      "20.80",
+      "1.50",
+      "0.20"
     ]
   },
-  "native_adapter_projection_circle_references": [
-    {
-      "body_id": 216,
-      "center": [
-        6.000000000000002,
-        6.000000000000002
-      ],
-      "center_model": [
-        -6.000000000000002,
-        141.1,
-        6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 650291890389641,
-      "edge_key": "edge:22",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -5.999999999999998,
-        -5.999999999999999
-      ],
-      "center_model": [
-        5.999999999999998,
-        141.1,
-        -5.999999999999999
-      ],
-      "closed": false,
-      "edge_id": 652490913646063,
-      "edge_key": "edge:24",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 1.0000000000000018
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -6.000000000000002,
-        6.000000000000002
-      ],
-      "center_model": [
-        6.000000000000002,
-        141.1,
-        6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 655789448530696,
-      "edge_key": "edge:29",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -1.6659328047759983e-15,
-        0
-      ],
-      "center_model": [
-        1.6659328047759983e-15,
-        152.39999999999998,
-        0
-      ],
-      "closed": true,
-      "edge_id": 2628313309162780,
-      "edge_key": "edge:43",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 12
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -1.6659328047759983e-15,
-        0
-      ],
-      "center_model": [
-        1.6659328047759983e-15,
-        148,
-        0
-      ],
-      "closed": true,
-      "edge_id": 2629412820790991,
-      "edge_key": "edge:42",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 12
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -6.000000000000002,
-        6.000000000000002
-      ],
-      "center_model": [
-        6.000000000000002,
-        129.5,
-        6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 6857035028644891,
-      "edge_key": "edge:11",
-      "hidden": true,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        2.5475356415496066e-16,
-        -6.661338147750939e-16
-      ],
-      "center_model": [
-        -2.5475356415496066e-16,
-        146.4,
-        -6.661338147750939e-16
-      ],
-      "closed": true,
-      "edge_id": 6858134540273102,
-      "edge_key": "edge:12",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 1.7000000000000006
-    },
-    {
-      "body_id": 216,
-      "center": [
-        6.000000000000002,
-        -6.000000000000002
-      ],
-      "center_model": [
-        -6.000000000000002,
-        141.1,
-        -6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 6862532586785946,
-      "edge_key": "edge:16",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -5.999999999999998,
-        -5.999999999999999
-      ],
-      "center_model": [
-        5.999999999999998,
-        129.5,
-        -5.999999999999999
-      ],
-      "closed": false,
-      "edge_id": 8155976150442979,
-      "edge_key": "edge:8",
-      "hidden": true,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 1.0000000000000018
-    },
-    {
-      "body_id": 216,
-      "center": [
-        0,
-        4.440892098500626e-16
-      ],
-      "center_model": [
-        0,
-        146.1,
-        4.440892098500626e-16
-      ],
-      "closed": true,
-      "edge_id": 8164772243468667,
-      "edge_key": "edge:0",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 3.1999999999999997
-    },
-    {
-      "body_id": 216,
-      "center": [
-        2.654594619003631e-16,
-        2.220446049250313e-16
-      ],
-      "center_model": [
-        -2.654594619003631e-16,
-        146.1,
-        2.220446049250313e-16
-      ],
-      "closed": true,
-      "edge_id": 8165871755096878,
-      "edge_key": "edge:3",
-      "hidden": true,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 1.9999999999999998
-    },
-    {
-      "body_id": 216,
-      "center": [
-        0,
-        4.440892098500626e-16
-      ],
-      "center_model": [
-        0,
-        129.5,
-        4.440892098500626e-16
-      ],
-      "closed": true,
-      "edge_id": 8166971266725089,
-      "edge_key": "edge:2",
-      "hidden": true,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 3.1999999999999997
-    },
-    {
-      "body_id": 216,
-      "center": [
-        6.000000000000002,
-        -6.000000000000002
-      ],
-      "center_model": [
-        -6.000000000000002,
-        129.5,
-        -6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 8169170289981511,
-      "edge_key": "edge:4",
-      "hidden": true,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        6.000000000000002,
-        6.000000000000002
-      ],
-      "center_model": [
-        -6.000000000000002,
-        129.5,
-        6.000000000000002
-      ],
-      "closed": false,
-      "edge_id": 8170269801609722,
-      "edge_key": "edge:7",
-      "hidden": true,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 0.9999999999999982
-    },
-    {
-      "body_id": 216,
-      "center": [
-        0,
-        -1.7763568394002505e-15
-      ],
-      "center_model": [
-        0,
-        146.1,
-        -1.7763568394002505e-15
-      ],
-      "closed": true,
-      "edge_id": 8689920912494178,
-      "edge_key": "edge:38",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -0.9999999999999999,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 13.900000000000011
-    },
-    {
-      "body_id": 216,
-      "center": [
-        0,
-        0
-      ],
-      "center_model": [
-        0,
-        152.39999999999998,
-        0
-      ],
-      "closed": true,
-      "edge_id": 8691020424122389,
-      "edge_key": "edge:39",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 3
-    },
-    {
-      "body_id": 216,
-      "center": [
-        5.137189322933128e-16,
-        8.881784197001252e-16
-      ],
-      "center_model": [
-        -5.137189322933128e-16,
-        152.24999999999997,
-        8.881784197001252e-16
-      ],
-      "closed": true,
-      "edge_id": 8692119935750600,
-      "edge_key": "edge:36",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 2.849999999999999
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -1.7763568394002505e-15,
-        -1.7957845007008624e-15
-      ],
-      "center_model": [
-        1.7763568394002505e-15,
-        146.1,
-        -1.7957845007008624e-15
-      ],
-      "closed": true,
-      "edge_id": 8695418470635233,
-      "edge_key": "edge:35",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 13.999999999999998
-    },
-    {
-      "body_id": 216,
-      "center": [
-        -1.7763568394002505e-15,
-        -1.7957845007008624e-15
-      ],
-      "center_model": [
-        1.7763568394002505e-15,
-        141.1,
-        -1.7957845007008624e-15
-      ],
-      "closed": true,
-      "edge_id": 8696517982263444,
-      "edge_key": "edge:32",
-      "hidden": false,
-      "normal_model": [
-        0,
-        -1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 13.999999999999998
-    },
-    {
-      "body_id": 216,
-      "center": [
-        5.137189322933128e-16,
-        8.881784197001252e-16
-      ],
-      "center_model": [
-        -5.137189322933128e-16,
-        148.7,
-        8.881784197001252e-16
-      ],
-      "closed": true,
-      "edge_id": 8697617493891655,
-      "edge_key": "edge:33",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 2.849999999999999
-    },
-    {
-      "body_id": 216,
-      "center": [
-        2.5475356415496066e-16,
-        -6.661338147750939e-16
-      ],
-      "center_model": [
-        -2.5475356415496066e-16,
-        148.7,
-        -6.661338147750939e-16
-      ],
-      "closed": true,
-      "edge_id": 8699816517148077,
-      "edge_key": "edge:31",
-      "hidden": false,
-      "normal_model": [
-        0,
-        1,
-        0
-      ],
-      "occurrence_id": 14,
-      "radius": 1.7000000000000006
-    }
-  ],
   "inspection_copy_geometry": {
     "native_mesh_arrays_identical_before_and_after_drawings": true,
     "native_final_scene_errors": [],
@@ -3964,60 +3628,75 @@
     "inspection_schema": 10,
     "canonical_source_schema": 7,
     "print_geometry_changed": false,
-    "view_offsets": "Upper housing +60 mm Z and servo +30 mm Z are saved presentation offsets only; no mechanical occurrence pose change."
+    "scope": "Canonical source versus inspection copy only; release housing geometry changed as recorded in cad-design-audit.json.",
+    "native_mesh_comparison": {
+      "same_native_mesh_arrays": true,
+      "body_ids": [
+        1,
+        15,
+        26,
+        46,
+        90,
+        216,
+        221
+      ],
+      "canonical_errors": [],
+      "inspection_errors": []
+    },
+    "view_offsets": "Presentation only: cover +60 Z, servo reference +30 Z; mechanical placements retained."
   },
+  "consistency_audit": "cad-design-audit.json",
   "limitations": [
-    "Interference check evaluates retained nominal B-reps at the current solved mechanical occurrence poses. It does not verify the supplier image or printed dimensions.",
-    "The assembly has no joints or motion studies. No native swept-motion result was requested or claimed in this validation.",
-    "Available CAD catalog has no automatic GD&T tolerance-stack validator. Existing tolerance bounds are separately derived acceptance calculations, not native CAD certification.",
-    "Export preflight ok:true means timeline/appearance readiness; its separate layout issues include below_bed/outside_bed/possible_overlap for the assembled CAD pose. Its overlap warnings use transformed mesh bounds, not exact solids.",
-    "Scene summary classifies cylindrical faces heuristically, leaves hole depth null and reports eight holes_overlap warnings. Adapter corner references are open R1 arcs, yet summary counts them as four diameter-2 holes; this is a hole-classification limitation, not an exact collision result.",
-    "The purchased reference omits shaft teeth/output shaft solid, internal threaded hole and cable boot. CAD cannot validate press-fit engagement, screw bottoming/thread engagement or boot fit for absent geometry.",
-    "Nominal geometry checks do not establish physical fit, printer capability, torque rating, creep or wear."
+    "No automatic GD&T stack validator. Nominal associative dimensions and exact sampled interference do not certify manufactured tolerances.",
+    "No continuous swept-motion result; this assembly has no joints or motion study.",
+    "Purchased reference omits the rotating spline shaft, internal threaded cavity and cable boot; real press fit, screw bottoming and boot fit cannot be certified from absent geometry.",
+    "Preflight readiness and its separate print-layout warnings must be evaluated separately; assembled CAD placement is not a print layout.",
+    "Native hole inference can classify open corner arcs and outer cylinders as holes; warnings and unknown depths are retained.",
+    "Printed fit, relative tilt, torque, creep and wear remain physical checks."
   ],
   "native_final_session": {
     "active_sketch_generation": null,
     "attached": true,
-    "attached_generation": 27,
+    "attached_generation": 2,
     "code": "attached",
-    "document_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
-    "generation": 27,
+    "document_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
+    "generation": 2,
     "heartbeat": {
-      "age_ms": 1318,
-      "document_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
-      "generation": 27,
+      "age_ms": 5559,
+      "document_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
+      "generation": 2,
       "interface_version": 1,
-      "project_session_id": "3a9f5239-8a35-4899-8b8b-6c91ac6952c5",
+      "project_session_id": "587b2d39-5244-4688-9d69-68bd34f8f468",
       "stale": false,
-      "updated_ms": 1791239141713,
+      "updated_ms": 1791250272028,
       "window_id": "main"
     },
-    "heartbeat_age_ms": 1318,
+    "heartbeat_age_ms": 5559,
     "heartbeat_kind": "heartbeat",
     "heartbeat_stale": false,
     "hint": "Attached snapshot matches live heartbeat generation",
     "last_apply_receipt": {
-      "base_generation": 26,
-      "name": "drawing_add_linear_dimension",
-      "seq": 26,
+      "base_generation": 1,
+      "name": "recall_named_view",
+      "seq": 1,
       "status": "applied"
     },
-    "model_generation": 27,
+    "model_generation": 2,
     "pending_inbox": [],
     "pending_inbox_count": 0,
-    "published_generation": 27,
-    "session_id": "90f8f91b-54c9-48e5-972f-770bc1c85871",
+    "published_generation": 2,
+    "session_id": "f3471008-cec0-43fe-9ffc-69919dd9c5ff",
     "session_mode": "live",
     "stale": false,
     "window_id": "main",
     "writeback": false
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
-    "garden-auger-fit-inspection.limo": "cfbc3b336a38cf092cbdc2c0e74349218e0b94830d7ff3f795e6cdf63205cd4c",
-    "renders/cad-fit-assembled.png": "8fce3525c6b7f5b197ecc8c5022fc65541e654fd7b5f4bdb083a1b3281ca8094",
-    "renders/cad-fit-mating-surfaces.png": "77b252447da6ee05bd4e59b4db8bc849bcf93665644bca482815c92271e17489",
-    "renders/cad-fit-dimensions.svg": "ed7feafeb55de6836e885f621450d7a2f0a50afcb609c4757908d0975011122e",
-    "renders/cad-fit-clearances.svg": "f77bd30cb60e4513d06f02abd6d5017d4903c00fdbddb9c8f557e23b56dd6f5d"
+    "garden-auger-direct-drive.nbcad": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+    "garden-auger-fit-inspection.limo": "5fa73cbc6d813d01857e74fc89b5b770f884e66ba4b6ab94ce51c8f1883faa14",
+    "renders/cad-fit-assembled.png": "4b77ceb4333fa0f2e64ec17f0effa56f355cd691496d19bad43088251adb574a",
+    "renders/cad-fit-mating-surfaces.png": "4e2317d3449b6d4cabbb26ed8a9d0464b144d17a53eb29dd91f644531afb2a03",
+    "renders/cad-fit-dimensions.svg": "b51eeba227ad922bf0f7eae3e3f42338dda725379a0542fe2cb438987a930f87",
+    "renders/cad-fit-clearances.svg": "a15642a2d9cdf2aa57d44dc2514455225829074c826a338c551396a36d471472"
   }
 }

@@ -87,25 +87,27 @@
   },
   "square_fit_stack": {
     "required_flange_face_y": [
-      140.7,
-      141.5
+      140.6,
+      141.6
     ],
     "required_flange_face_from_front_chassis_thrust_stop": [
-      26.999999999999993,
-      27.79999999999999
+      26.89999999999999,
+      27.89999999999999
     ],
     "required_drive_axis_offset_max": 0.5,
-    "engagement_min": 8.900000000000002,
-    "engagement_max": 11.099999999999998,
-    "tip_bottom_gap_min": 0.9000000000000028,
-    "hub_flange_gap_min": 0.5999999999999971,
+    "engagement_min": 8.800000000000002,
+    "engagement_max": 11.199999999999998,
+    "tip_bottom_gap_min": 0.8000000000000028,
+    "hub_flange_gap_min": 0.4999999999999971,
     "auger_motion_extrema_mm": [
       -0.49999999999999717,
       0.49999999999999717
     ],
     "socket_functional_face_location_allowance_mm": 0.5999999999999972,
-    "adapter_peg_tip_location_allowance_mm": 0.5,
-    "installed_adapter_axial_allowance_derivation": "0.20 nominal ear-face gap +0.10 printed stop-face extrema +0.10 adapter seat-to-flange extrema =0.40 mm",
+    "adapter_peg_tip_location_allowance_mm": 0.6,
+    "installed_adapter_axial_allowance_derivation": "0.20 nominal ear-face gap +0.10 ear-stop extrema +0.10 adapter seat-to-flange extrema +0.10 transfer to front chassis thrust face =0.50 mm",
+    "coordinate_note": "World Y values locate the nominal CAD model. Inspect the installed flange from the actual front chassis thrust face; do not treat nominal world coordinates as a physical datum.",
+    "relative_square_alignment": "Common axis offset from the housing is not relative peg/socket offset. Assemble coaxially and check free axial sliding over the engagement length.",
     "note": "Conditional on +/-0.10 mm critical printed functional-face extrema; nominal hardware dimensions follow the supplied drawing. Inspect finished surfaces and installed alignment."
   },
   "cleanup": {
@@ -155,7 +157,7 @@
       "housing_checks": [
         {
           "body_id": 26,
-          "reference_step_sha256": "9934653af1d1a31638b3acfdf20dd064f8b13ca01ad4be35f294445de01aa745",
+          "reference_step_sha256": "45ff0676322d6a3d2a8b67baec2166c5bf1b7d45a11a2879bbf279ede12c88d6",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -167,7 +169,7 @@
         },
         {
           "body_id": 46,
-          "reference_step_sha256": "8f45294e4ccea3ba5fd0950a231fc9f5456af1d46f7dc4e7041262468c778adb",
+          "reference_step_sha256": "fc82c822fcef6c23cb1c57e8449d1a9de79a499eca6b2a3558b2b37ed888d317",
           "new_minus_old": {
             "native_boolean_residual_empty": true
           },
@@ -221,7 +223,7 @@
       "M3 screw seats and ruthex insert pilots"
     ],
     "flight_entry": {
-      "entry_diameter_mm": 33.2,
+      "entry_diameter_mm": 33.6,
       "collar_stop_opening_diameter_mm": 31.2,
       "taper_length_mm": 5.9,
       "additional_profile_vertices": 0,
@@ -809,7 +811,6 @@
     "Verify center screw clamps the adapter and does not bottom, then inspect installed flange position and square clearances.",
     "Qualify loaded torque, stall behavior and creep on the completed PETG adapter; CAD clearance is not proof of strength."
   ],
-  "servo_drawing_fit_verification": "servo-fit-verification.json",
   "center_screw_cad_check": {
     "exact_native_screw_envelope_to_printed_parts_overlap_mm3": 0,
     "center_axis_passage_open": true,
@@ -853,7 +854,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 186880.95691587668,
+        "volume_mm3": 186851.3306391337,
         "plate_bounds_mm": [
           [
             8.0,
@@ -866,7 +867,7 @@
             27.2
           ]
         ],
-        "triangle_count": 4928
+        "triangle_count": 4930
       },
       {
         "name": "PETG - Housing lower",
@@ -875,7 +876,7 @@
         "material": "PETG",
         "color_name": "Chassis yellow",
         "color_hex": "#E5AE3C",
-        "volume_mm3": 188108.96884455057,
+        "volume_mm3": 188079.34256780765,
         "plate_bounds_mm": [
           [
             8.0,
@@ -888,7 +889,7 @@
             24.0
           ]
         ],
-        "triangle_count": 3614
+        "triangle_count": 3616
       },
       {
         "name": "PETG - One-piece auger",
@@ -1053,8 +1054,8 @@
     ]
   },
   "artifact_sha256": {
-    "garden-auger-direct-drive.nbcad": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
-    "garden-auger-direct-drive.3mf": "a8e1749be65dfd0a7788df3197f18ec85f2c9d813de7fcc574491f1376e0af66",
+    "garden-auger-direct-drive.nbcad": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
+    "garden-auger-direct-drive.3mf": "b4097f104637a0624691e1fa289680e683f956e7c9cc404f21c8ad12d043926d",
     "garden-auger-direct-adapter.3mf": "3f83fbd230169e82ea9795e2341fb7c046676a48ab655dc7d7a144c2d0c8b2f4",
     "garden-auger-press-fit.nbcad": "80f2fd492c87589a5bb41f9c0230e25fb44f9eca6dc23b20b6a83bc1bcf27523",
     "garden-auger-press-fit.3mf": "78a4615bfd1eda186963a09e6e4fcaede4268503b8db1ee04f06bf36606fca9e"

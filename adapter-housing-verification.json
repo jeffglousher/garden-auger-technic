@@ -1,6 +1,6 @@
 {
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
+  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
   "housing_change_required_for_this_adapter_revision": false,
   "nominal_mm": {
     "housing_chamber_diameter": 29.6,
@@ -13,11 +13,11 @@
   "conditional_minimum_mm": {
     "boss_radial_clearance": 2.2000000000000006,
     "flange_radial_clearance": 0.20000000000000073,
-    "adapter_rear_to_housing_wall_gap": 0.6000000000000114
+    "adapter_rear_to_housing_wall_gap": 0.5000000000000171
   },
   "acceptance_limits": {
     "printed_diameters_and_axial_extrema_plus_minus_mm": 0.1,
-    "installed_adapter_axial_plus_minus_mm": 0.4000000000000057,
+    "installed_adapter_axial_plus_minus_mm": 0.5,
     "drive_axis_radial_offset_max_mm": 0.5
   },
   "native_ideal_geometry_checks": [
@@ -46,7 +46,7 @@
     {
       "adapter_translation_mm": [
         0.5,
-        -0.4000000000000057,
+        -0.5,
         0
       ],
       "exact": true,
@@ -68,7 +68,7 @@
     {
       "adapter_translation_mm": [
         -0.5,
-        -0.4000000000000057,
+        -0.5,
         0
       ],
       "exact": true,
@@ -90,7 +90,7 @@
     {
       "adapter_translation_mm": [
         0,
-        -0.4000000000000057,
+        -0.5,
         0.5
       ],
       "exact": true,
@@ -112,7 +112,7 @@
     {
       "adapter_translation_mm": [
         0,
-        -0.4000000000000057,
+        -0.5,
         -0.5
       ],
       "exact": true,
@@ -134,7 +134,7 @@
     {
       "adapter_translation_mm": [
         0.5,
-        0.4000000000000057,
+        0.5,
         0
       ],
       "exact": true,
@@ -156,7 +156,7 @@
     {
       "adapter_translation_mm": [
         -0.5,
-        0.4000000000000057,
+        0.5,
         0
       ],
       "exact": true,
@@ -178,7 +178,7 @@
     {
       "adapter_translation_mm": [
         0,
-        0.4000000000000057,
+        0.5,
         0.5
       ],
       "exact": true,
@@ -192,7 +192,7 @@
         {
           "body_a": 46,
           "body_b": 216,
-          "minimum_clearance_mm": 0.8000000000000114,
+          "minimum_clearance_mm": 0.700000000000017,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -200,7 +200,7 @@
     {
       "adapter_translation_mm": [
         0,
-        0.4000000000000057,
+        0.5,
         -0.5
       ],
       "exact": true,
@@ -208,7 +208,7 @@
         {
           "body_a": 26,
           "body_b": 216,
-          "minimum_clearance_mm": 0.8000000000000114,
+          "minimum_clearance_mm": 0.700000000000017,
           "overlap_volume_mm3": 0.0
         },
         {
@@ -252,7 +252,7 @@
       "M3 screw seats and ruthex insert pilots"
     ],
     "flight_entry": {
-      "entry_diameter_mm": 33.2,
+      "entry_diameter_mm": 33.6,
       "collar_stop_opening_diameter_mm": 31.2,
       "taper_length_mm": 5.9,
       "additional_profile_vertices": 0,

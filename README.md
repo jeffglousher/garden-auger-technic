@@ -2,7 +2,7 @@
 
 The current [direct-drive CAD](garden-auger-direct-drive.nbcad) uses **one gray PETG adapter with a plain round press-fit pilot**, plus one factory-compatible M3 center screw. No fine spline teeth are printed. The metal shaft forms its tooth engagement in the plastic as the adapter seats. The separate horn and four M4 screws are omitted. The 14 mm square drive, 28 mm auger hub, loose teal PLA sleeve and clamshell-only retention remain.
 
-[Current design decisions](docs/design-decisions.md) record the confirmed hardware dimensions and selected construction. Print feedback remains pending. Run `py scripts/verify_release.py` to check the current files and their verification hashes without rebuilding or changing them.
+[Current design decisions](docs/design-decisions.md) record the confirmed hardware dimensions and selected construction. The user's physical test failed on the previous housing. Physical fit of the corrected housing remains untested. The [consistency audit](docs/design-audit.md) records the additional validation gaps, native failed controls and corrections. Run `py scripts/verify_release.py` to check the current files and their verification hashes without rebuilding or changing them.
 
 The [direct CAD tool review](docs/cad-tool-validation.md) records the live Limo CAD results and limitations. Open [garden-auger-fit-inspection.limo](garden-auger-fit-inspection.limo) for the native schema-10 inspection copy with two associative measurement sheets and an open mating-surface view. Its geometry matches the canonical print source; drawing and presentation metadata are added only to that inspection copy. The native tool confirms nominal dimensions and exact assembled clearance, while automatic GD&T stack validation, absent hardware details and physical print fit remain outside its checks.
 
@@ -12,7 +12,7 @@ The [direct CAD tool review](docs/cad-tool-validation.md) records the live Limo 
 
 ![Corrected native housing and mating dimensions](renders/housing-preprint-review.png)
 
-The preprint review found **last-flight interference at the permitted 0.50 mm shaft offset**. Earlier radial checks included the auger core but omitted its flight body. The existing shared revolve now has **one entrance taper, diameter 33.2 at Y107.8 to diameter 31.2 at Y113.7**, clearing the flight while keeping the thrust-stop opening and collar retention. This replaces a straight segment; it adds no groove or history entry. The [fresh component review](preprint-review.json) includes both auger bodies, axial travel, rotation, clamshell closure, insert walls and screw access.
+The earlier preprint review found **last-flight interference at the permitted 0.50 mm shaft offset**, after radial checks had omitted the flight body. The consistency audit subsequently found that its 33.2 mm entrance was checked at ±0.30 mm nominal axial travel while the tolerance notes allowed ±0.50 mm. A conservative native CAD envelope left **0.149 mm**, below the existing 0.20 mm review target. The existing shared revolve now has **one entrance taper, diameter 33.6 at Y107.8 to diameter 31.2 at Y113.7**. The collar opening and both thrust stops stay unchanged. The [component review](preprint-review.json) separates nominal poses, native tolerance-envelope samples, full coupled assembly poses and a separately derived screening bound.
 
 The physical fit test exposed a **2.70 mm ear-datum error in both the reference servo and housing**: the diagram's **24.70 mm** starts at the ear underside, but the model used the opposite face. A real servo seated in the old pockets extended **1.20 mm beyond the rear cavity**. The corrected ear pockets are **Y162.6–165.7**, 3.10 mm around the 2.70 mm ear, with 0.40 mm nominal total play. The **41.30 by 20.80 mm case pocket** clears the larger **40.50 by 20.00 mm** catalog envelope with 0.40 mm on each side. Case cavity Y151.7–191.7 leaves **1.50 mm nominal rear room** at the corrected seat. Reference mounting centers are corrected from 52 to **49 mm**. See the [full fit correction report](docs/servo-fit-review.md) and [independent drawing-envelope regression](servo-fit-verification.json).
 
@@ -40,7 +40,7 @@ The revised pilot is **Ø5.70 ×3.70 deep**, with a 0.15 mm entry chamfer and **
 
 The adapter has a **Ø24 boss**, enlarged from Ø16, with a broad 2 mm axial/radial taper into the Ø28 ×5 flange. Plastic wall is **9.15 mm radially along the straight bore**, 9.00 mm at the entry chamfer (8.90 mm minimum under the stated ±0.10 diameter limits). The annular seat-to-screw-seat web stays **2.60 mm**; **Ø4.00 ×0.30 underhead relief** clears the screw neck. The rear chassis chamber stays Ø29.6. The current servo fit correction preserves the adapter, auger and sleeve; use both corrected housing halves described above.
 
-The [adapter-to-housing recheck](adapter-housing-verification.json) uses the saved native assembly, including both housing halves. The Ø29.6 chamber leaves **2.80 mm nominal radial boss clearance**, **0.80 mm nominal radial flange clearance**, and **1.20 mm nominal clearance behind the adapter**. With ±0.10 mm critical printed dimensions, ±0.40 mm installed axial position and at most 0.50 mm radial axis offset, the conditional minima are **2.20, 0.20 and 0.60 mm**, respectively. This adapter fits the corrected housing. The nominal servo stack follows the confirmed diagram; inspect printed seating during assembly.
+The [adapter-to-housing recheck](adapter-housing-verification.json) uses the saved native assembly, including both housing halves. The Ø29.6 chamber leaves **2.80 mm nominal radial boss clearance**, **0.80 mm nominal radial flange clearance**, and **1.20 mm nominal clearance behind the adapter**. With ±0.10 mm critical printed dimensions, ±0.50 mm installed axial allowance and at most 0.50 mm radial axis offset, the conditional minima are **2.20, 0.20 and 0.50 mm**, respectively. These housing gaps do not certify relative square alignment. The nominal servo stack follows the confirmed diagram; inspect printed seating during assembly.
 
 ## Center screw verification
 
@@ -56,7 +56,7 @@ The actual adapter mesh has an open axial passage and a measured 2.60 mm annular
 
 [Native CAD screw section and conditional stack](renders/direct-drive-screw-check.png).
 
-After seating, the auger-facing adapter flange must lie **27.40 ±0.40 mm behind the front chassis thrust-stop face**, and its drive axis must be within 0.50 mm radial of the assembled journal axis. The axial allowance includes 0.20 mm ear-face gap, 0.10 mm printed stop-face extrema and 0.10 mm adapter seat-to-flange extrema. The square engagement/bottom-gap limits below are conditional on these installed limits and the critical printed sizes. The existing insert and chassis-screw dimensions remain unchanged.
+After seating, inspect the auger-facing adapter flange **27.40 ±0.50 mm behind the actual front chassis thrust-stop face**, with its drive axis within 0.50 mm radial of the assembled journal axis. The conservative axial budget includes 0.20 mm ear-face gap, 0.10 mm ear-stop extrema, 0.10 mm adapter seat-to-flange extrema and 0.10 mm transfer to the printed front thrust face. Nominal world Y coordinates are model locations, not a physical inspection datum. The square must align with the adapter over its engagement length; common housing-axis offset is a separate quantity. The square engagement/bottom-gap limits below require these installed limits and the critical printed sizes.
 
 ## Current files and materials
 
@@ -80,12 +80,12 @@ Render with `scripts/render_direct_drive.py`, `scripts/render_screw_check.py`, `
 
 ## Mating dimensions and acceptance limits
 
-All dimensions are millimeters. These are required acceptance limits, not measured printer capability. Critical printed diameters and axial extrema require ±0.10 mm acceptance. Basic square surfaces use a 0.10 mm total profile zone, including size, form and location; do not count those contributions again. Inspect functional face extrema so form is included in the axial stack. Installed adapter flange position is ±0.40 mm and radial axis offset is at most 0.50 mm.
+All dimensions are millimeters. These are required acceptance limits, not measured printer capability or native GD&T certification. Critical printed diameters and axial extrema require ±0.10 mm acceptance; the collar/sleeve length and capture-span controls below also apply. Basic square surfaces use a 0.10 mm total profile zone, including size, form and location. The quoted flat gap assumes aligned mating datums and does not include arbitrary relative offset or tilt. Inspect functional face extrema and the installed flange from the actual thrust face. Installed axial allowance is ±0.50 mm and common radial axis offset is at most 0.50 mm.
 
 - Collar 3.00 ±0.10 in a 3.60 ±0.10 capture span: **0.40–0.80 mm total end float**. Both chassis faces retain the integral collar.
 - PLA sleeve 10.40 ±0.10 long in a 10.90 ±0.10 seat: **0.30–0.70 mm total end float**. The sleeve remains loose.
 - Square peg 14 BASIC /R1 BASIC, 11.6 long; socket 14.4 BASIC /R1.2 BASIC, 12 deep. Square flat clearance is **at least 0.10 mm per side** under the stated profile controls.
-- Square engagement: **8.90–11.10 mm**. Peg-tip clearance is **at least 0.90 mm** and hub-to-flange gap is **at least 0.60 mm** under the printed and installed acceptance limits. The conservative stack derives ±0.50 mm auger motion extrema, ±0.60 mm socket-face location allowance and ±0.50 mm peg-tip location allowance, counting each surface once.
+- Square engagement: **8.80–11.20 mm**. Peg-tip clearance is **at least 0.80 mm** and hub-to-flange gap is **at least 0.50 mm** under the printed and installed acceptance limits. The conservative stack derives ±0.50 mm auger motion extrema, ±0.60 mm socket-face location allowance and ±0.60 mm peg-tip location allowance. These are separately derived bounds.
 - Ø28 journal, sleeve bore Ø28.6 /OD34, sleeve pocket Ø35.6: **at least 0.90 mm combined radial float**. The rear Ø29.6 journal/adapter chamber preserves **at least 0.20 mm radial room at the permitted axis offset**.
 
 The collar-root fillets and square socket radii stay in the auger. Finish mating surfaces as needed and check free rotation, positive end float, installed flange position and alignment before a loaded trial.
@@ -105,7 +105,7 @@ The complete Bambu project has four plates grouped by model filament, the purge 
 1. Print and measure the PETG pilot coupons. Select the snug fit that seats without splitting, rocking or excessive force; update the final adapter pilot if needed.
 2. Install the four heat-set inserts in the lower housing and let it cool.
 3. Seat the adapter directly on the servo shaft. Inspect shaft-tip contact, stationary clearance and screw depth; install the compatible center screw before mating the auger.
-4. Slide the full PLA sleeve over the auger journal from its drive end. Engage the square adapter and nest the servo, sleeve and integral collar in the lower housing.
+4. Slide the full PLA sleeve over the auger journal from its drive end. Engage the square adapter first, then nest the servo, sleeve and integral collar in the lower housing. Let the auger and sleeve follow the servo drive axis; do not independently force the auger onto the housing centerline. Confirm the square slides axially without binding.
 5. Lay the cable in the open split-seam channel, keeping the connector outside. Physically check the cable boot allowance.
 6. Close the upper housing with the two front and two rear M3 screws. Confirm free rotation, collar/sleeve end float and installed drive-axis alignment.
 

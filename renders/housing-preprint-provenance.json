@@ -2,7 +2,7 @@
   "image": "housing-preprint-review.png",
   "method": "Native CAD rear-bay sections and axial dimension diagram",
   "source_project": "garden-auger-direct-drive.nbcad",
-  "source_project_sha256": "53464584ffa503c248c6ef53dcc37be7dc5cf1dcd11c53b603fca1630e5fc040",
+  "source_project_sha256": "c1a2c3edea6b13cf6eccd23aec841f02aaeb864a77d36acbadf2a06fbb160563",
   "reference_commit": "6816a19f59809b0960d3e3b408ffa8cbd29a3a23",
   "reference_project_sha256": "b1ec99ae153f16389b60a98d90965a540556d90dca78006ee41090c2b28c73cf",
   "display_only_cut": "Housing material forward of Y148 omitted in isolated unsaved CAD document",

@@ -33,6 +33,22 @@ def main():
     native_review=read('cad-tool-validation.json')
     assert expected[native_review['source_project']]==native_review['source_project_sha256']
     expected.update(native_review['artifact_sha256'])
+    consistency=read('cad-design-audit.json')
+    assert expected[consistency['source_project']]==consistency['source_project_sha256']
+    assert consistency['inspection_geometry']['same_native_mesh_arrays']
+    assert consistency['file_identity']['bambu_printer_filament_process_config_identical_to_previous']
+    for check in consistency['current_flight_envelope']['checks']:
+        result=check['result']
+        pairs=[p for p in result['pairs'] if 90 in {p['body_a'],p['body_b']}
+               and bool({26,46}&{p['body_a'],p['body_b']})]
+        assert result['exact'] and len(pairs)==2
+        assert all(not p['interfering'] and p['minimum_clearance_mm']>
+                   consistency['current_flight_envelope']['check_target_mm'] for p in pairs)
+    # Keep the failed negative control; a report that only records passing
+    # common-offset poses would silently lose the relative-alignment finding.
+    alignment=read('preprint-review.json')['native_coupled_alignment_checks']
+    assert any(p['interfering'] and {p['body_a'],p['body_b']}=={15,216}
+               for p in alignment['independent_offset_negative_control']['result']['pairs'])
     for report in ('adapter-housing-verification.json','housing-nesting-verification.json',
                    'preprint-review.json','servo-fit-verification.json','bambu-slice-verification.json'):
         proof=read(report)

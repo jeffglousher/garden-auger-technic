@@ -32,9 +32,10 @@ HOUSING_RING_CAVITY=35.6
 REAR_SCREW_Y=196.8
 PRINT_SIZE_TOLERANCE=.10
 MAX_DRIVE_AXIS_OFFSET=.50
-# Ear face allowance 0.20 + printed stop-face extrema 0.10 + adapter's
-# shaft-seat-to-flange extrema 0.10. Inspect these actual functional faces.
-INSTALLED_ADAPTER_AXIAL_TOLERANCE=.40
+# Include transfer to the actual front chassis thrust face. The former
+# +/-0.40 absolute-coordinate budget omitted that face's +/-0.10 allowance
+# when it was presented as a measurement from the printed thrust face.
+INSTALLED_ADAPTER_AXIAL_TOLERANCE=.50
 REAR_ADAPTER_CHAMBER_END_Y=153.6
 
 
@@ -59,7 +60,9 @@ def square_fit_stack():
         'socket_functional_face_location_allowance_mm':socket_face,
         'adapter_peg_tip_location_allowance_mm':peg_tip,
         'installed_adapter_axial_allowance_derivation':
-            '0.20 nominal ear-face gap +0.10 printed stop-face extrema +0.10 adapter seat-to-flange extrema =0.40 mm',
+            '0.20 nominal ear-face gap +0.10 ear-stop extrema +0.10 adapter seat-to-flange extrema +0.10 transfer to front chassis thrust face =0.50 mm',
+        'coordinate_note':'World Y values locate the nominal CAD model. Inspect the installed flange from the actual front chassis thrust face; do not treat nominal world coordinates as a physical datum.',
+        'relative_square_alignment':'Common axis offset from the housing is not relative peg/socket offset. Assemble coaxially and check free axial sliding over the engagement length.',
         'note':'Conditional on +/-0.10 mm critical printed functional-face extrema; nominal hardware dimensions follow the supplied drawing. Inspect finished surfaces and installed alignment.'}
 
 

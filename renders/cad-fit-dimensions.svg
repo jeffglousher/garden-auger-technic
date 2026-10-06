@@ -10,7 +10,7 @@
 <polyline data-layer="BORDER" points="230.00000,277.00000 410.00000,277.00000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray=""/>
 <polyline data-layer="BORDER" points="230.00000,282.00000 410.00000,282.00000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray=""/>
 <text xml:space="preserve" x="231.50000" y="246.97500" font-family="Arial, Helvetica, sans-serif" font-size="3.5" fill="#111" textLength="106.12000" lengthAdjust="spacingAndGlyphs">Servo fit - measurements from retained CAD topology</text>
-<text xml:space="preserve" x="231.50000" y="253.12500" font-family="Arial, Helvetica, sans-serif" font-size="2.5" fill="#111" textLength="130.40000" lengthAdjust="spacingAndGlyphs">DRAWING: AU-FIT-20261005 REV: a68e4ab SHEET: Servo and housing native fit measurements</text>
+<text xml:space="preserve" x="231.50000" y="253.12500" font-family="Arial, Helvetica, sans-serif" font-size="2.5" fill="#111" textLength="126.82500" lengthAdjust="spacingAndGlyphs">DRAWING: AU-FIT-20261005 REV: FIT-2 SHEET: Servo and housing native fit measurements</text>
 <text xml:space="preserve" x="231.50000" y="257.70000" font-family="Arial, Helvetica, sans-serif" font-size="2" fill="#111" textLength="56.10000" lengthAdjust="spacingAndGlyphs">DIMENSIONS: mm Iso FIRST ANGLE RELEASE: Draft</text>
 <text xml:space="preserve" x="231.50000" y="262.12500" font-family="Arial, Helvetica, sans-serif" font-size="2.5" fill="#111" textLength="25.95000" lengthAdjust="spacingAndGlyphs">MATERIAL: FINISH:</text>
 <text xml:space="preserve" x="231.50000" y="269.12500" font-family="Arial, Helvetica, sans-serif" font-size="2.5" fill="#111" textLength="125.55000" lengthAdjust="spacingAndGlyphs">Nominal geometry inspection. No automatic tolerance-stack or physical-fit certification.</text>
@@ -54,9 +54,9 @@
 <polyline data-layer="VISIBLE" points="298.00000,137.40000 298.00000,141.40000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="248.00000,196.70000 248.00000,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="293.80000,136.00000 294.33181,136.36191 294.89460,136.67347 295.48361,136.93206 296.09388,137.13548 296.72024,137.28202 297.35740,137.37044 298.00000,137.40000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
-<polyline data-layer="VISIBLE" points="248.00000,219.30000 265.41695,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
+<polyline data-layer="VISIBLE" points="248.00000,219.30000 265.22034,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="292.40000,136.00000 293.80000,136.00000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
-<polyline data-layer="VISIBLE" points="266.40000,213.50000 265.41695,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
+<polyline data-layer="VISIBLE" points="266.40000,213.50000 265.22034,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="292.40000,135.50000 292.40000,136.00000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="266.40000,213.50000 264.20000,213.50000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="251.10000,135.50000 292.40000,135.50000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
@@ -86,9 +86,9 @@
 <polyline data-layer="VISIBLE" points="332.00000,146.16983 332.00000,146.10949" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="326.00000,146.16983 332.00000,146.16983" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="182.00000,146.20000 238.00000,146.20000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
-<polyline data-layer="VISIBLE" points="298.58305,219.30000 316.00000,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
-<polyline data-layer="VISIBLE" points="265.41695,219.30000 265.83272,219.30000 267.05919,219.30000 269.03485,219.30000 271.66064,219.30000 274.80488,219.30000 278.30992,219.30000 282.00000,219.30000 285.69008,219.30000 289.19512,219.30000 292.33936,219.30000 294.96515,219.30000 296.94081,219.30000 298.16728,219.30000 298.58305,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
-<polyline data-layer="VISIBLE" points="297.60000,213.50000 298.58305,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
+<polyline data-layer="VISIBLE" points="298.77966,219.30000 316.00000,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
+<polyline data-layer="VISIBLE" points="265.22034,219.30000 265.64104,219.30000 266.88205,219.30000 268.88113,219.30000 271.53805,219.30000 274.71958,219.30000 278.26617,219.30000 282.00000,219.30000 285.73383,219.30000 289.28042,219.30000 292.46195,219.30000 295.11887,219.30000 297.11795,219.30000 298.35896,219.30000 298.77966,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
+<polyline data-layer="VISIBLE" points="297.60000,213.50000 298.77966,219.30000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="297.60000,213.50000 297.20888,213.50000 296.05511,213.50000 294.19657,213.50000 291.72644,213.50000 288.76859,213.50000 285.47133,213.50000 282.00000,213.50000 278.52867,213.50000 275.23141,213.50000 272.27356,213.50000 269.80343,213.50000 267.94489,213.50000 266.79112,213.50000 266.40000,213.50000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="292.40000,136.00000 292.40000,146.60000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
 <polyline data-layer="VISIBLE" points="292.40000,146.60000 292.40000,161.50000" fill="none" stroke="#111" stroke-width="0.5" stroke-dasharray=""/>
@@ -312,7 +312,7 @@
 <polyline data-layer="HIDDEN" points="264.40000,24.62000 269.60000,24.62000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="264.40000,22.80000 269.60000,22.80000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="269.60000,24.62000 269.60000,24.61039 269.60000,24.58158 269.60000,24.53362 269.60000,24.46663 269.60000,24.38073 269.60000,24.27612 269.60000,24.15302 269.60000,24.01168 269.60000,23.85240 269.60000,23.67552 269.60000,23.48141 269.60000,23.27048 269.60000,23.04319 269.60000,22.80000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
-<polyline data-layer="HIDDEN" points="264.40000,131.09000 266.81373,131.09000 269.19710,131.09000 271.52014,131.09000 273.75365,131.09000 275.86953,131.09000 277.84117,131.09000 279.64378,131.09000 281.25470,131.09000 282.65365,131.09000 283.82306,131.09000 284.74820,131.09000 285.41746,131.09000 285.82241,131.09000 285.95797,131.09000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
+<polyline data-layer="HIDDEN" points="264.40000,131.09000 266.84234,131.09000 269.25397,131.09000 271.60456,131.09000 273.86455,131.09000 276.00551,131.09000 278.00053,131.09000 279.82452,131.09000 281.45453,131.09000 282.87007,131.09000 284.05334,131.09000 284.98946,131.09000 285.66665,131.09000 286.07640,131.09000 286.21356,131.09000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="264.40000,123.55000 266.67064,123.55000 268.91272,123.55000 271.09806,123.55000 273.19916,123.55000 275.18961,123.55000 277.04437,123.55000 278.74013,123.55000 280.25554,123.55000 281.57157,123.55000 282.67165,123.55000 283.54195,123.55000 284.17154,123.55000 284.55248,123.55000 284.68000,123.55000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="277.92000,22.15000 264.40000,22.15000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="269.60000,22.80000 269.60000,36.58000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
@@ -350,7 +350,7 @@
 <polyline data-layer="HIDDEN" points="277.71543,33.77543 277.92000,33.50884" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="277.92000,33.50884 277.92000,39.96000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="264.40000,39.96000 277.92000,39.96000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
-<polyline data-layer="HIDDEN" points="284.68000,123.55000 285.95797,131.09000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
+<polyline data-layer="HIDDEN" points="284.68000,123.55000 286.21356,131.09000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="287.54000,118.87000 287.54000,123.55000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="284.55000,114.97000 284.55000,118.87000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>
 <polyline data-layer="HIDDEN" points="287.54000,100.80000 287.54000,114.97000" fill="none" stroke="#111" stroke-width="0.25" stroke-dasharray="4,2"/>

@@ -4,6 +4,7 @@ Use native B-rep intersections for movement; use mesh sections for independent
 hole/wall measurements. This does not qualify purchased hardware or torque.
 """
 import base64
+import copy
 import hashlib
 import io
 import json
@@ -19,6 +20,8 @@ import trimesh
 from geometry_measurements import section_segments, segment_distance, vertical_hits
 from cad_client import CadClient
 from print_packer import mesh_from_object
+from design_parameters import PRINT_SIZE_TOLERANCE, MAX_DRIVE_AXIS_OFFSET, square_fit_stack
+from servo_dimensions import CASE_CLEARANCE
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE = '940e024634e4a6526b57c2783ebf87731270294d'
@@ -45,8 +48,31 @@ def pose(client, occurrence, translation, angle=0):
                                     math.cos(math.radians(angle)/2)]}})
 
 
-def flight_entry_bound(flight):
-    """Clip flight triangles to the entrance and bound all radial directions."""
+def entrance_budget(model):
+    """Read the built profile; distinguish nominal poses from tolerance envelopes."""
+    sketch = next(s for s in model['sketches']
+                  if s['name'] == 'Chassis integral thrust stops and journal seat')
+    entities = dict(sketch['snapshot']['entities'])
+    front, rear = (entities[i]['position'] for i in (2, 3))
+    slope = (front['y'] - rear['y']) / (rear['x'] - front['x'])
+    return {'front_y': front['x'], 'rear_y': rear['x'],
+        'front_radius': front['y'], 'rear_radius': rear['y'], 'slope': slope,
+        'rearward_travel': square_fit_stack()['auger_motion_extrema_mm'][1],
+        'radial_offset': max(MAX_DRIVE_AXIS_OFFSET, math.hypot(CASE_CLEARANCE, CASE_CLEARANCE)),
+        'verification_deflection': .02, 'manufacturing_deflection': .08,
+        'printed_radial_surface_allowance_each': PRINT_SIZE_TOLERANCE,
+        'additional_axial_face_allowance': 2 * PRINT_SIZE_TOLERANCE,
+        'minimum_clearance_target': .20}
+
+
+def envelope_reduction(budget):
+    return (budget['verification_deflection'] + budget['manufacturing_deflection'] +
+        2 * budget['printed_radial_surface_allowance_each'] +
+        budget['additional_axial_face_allowance'] * budget['slope'])
+
+
+def flight_entry_bound(flight, budget):
+    """Separate derived screening bound; this is not native GD&T validation."""
     def clip(polygon, y, keep_high):
         output = []
         if not polygon:
@@ -60,25 +86,116 @@ def flight_entry_bound(flight):
                 output.append(a + (b-a) * ((y-a[1])/(b[1]-a[1])))
         return output
     points = []
+    low = budget['front_y'] - budget['rearward_travel'] - budget['additional_axial_face_allowance']
+    high = budget['rear_y'] - budget['rearward_travel'] + budget['additional_axial_face_allowance']
     for triangle in flight.triangles:
-        if triangle[:, 1].max() < 107.6 or triangle[:, 1].min() > 113.4:
+        if triangle[:, 1].max() < low or triangle[:, 1].min() > high:
             continue
-        polygon = clip(list(triangle), 107.6, True)
-        points.extend(clip(polygon, 113.4, False))
+        polygon = clip(list(triangle), low, True)
+        points.extend(clip(polygon, high, False))
     points = np.array(points)
     assert len(points), 'No flight geometry at the entrance'
-    throat_radius = 16.6 - (points[:, 1] + .3 - 107.8) / 5.9
-    return float(np.min(throat_radius - np.hypot(points[:, 0], points[:, 2]) - .5))
+    throat_radius = budget['front_radius'] - (points[:, 1] + budget['rearward_travel'] -
+        budget['front_y']) * budget['slope']
+    return float(np.min(throat_radius - np.hypot(points[:, 0], points[:, 2]) - budget['radial_offset']))
 
 
-def native_flight_entry_bound(client):
+def native_flight_entry_bound(client, budget):
     export = client.call('solid_export_3mf', {'body_ids': [90], 'scope': 'definition',
         'linear_deflection': .02, 'angular_deflection': .1, 'slicer_target': 'bambu_studio'})
     with zipfile.ZipFile(io.BytesIO(base64.b64decode(export['bytes_base64']))) as archive:
         xml = ET.fromstring(archive.read('3D/3dmodel.model'))
     objects = xml.findall('{*}resources/{*}object')
     assert len(objects) == 1, 'Unexpected extra flight export body'
-    return flight_entry_bound(mesh_from_object(objects[0]))
+    return flight_entry_bound(mesh_from_object(objects[0]), budget)
+
+
+def flight_envelope_model(model, budget):
+    """Native B-rep checks of explicit conservative envelopes at sampled poses.
+
+    Move both collar faces -0.10 and rear housing stop +0.10 so the +0.50
+    auger pose reaches a physical stop instead of penetrating the nominal one.
+    Reduce entrance radii by the documented mating/export budget. This is a
+    flight-only envelope, not a complete manufactured assembly or motion sweep.
+    """
+    envelope = copy.deepcopy(model)
+    collar = next(s for s in envelope['sketches'] if s['name'] == 'Sketch84')
+    for entity_id, entity in collar['snapshot']['entities']:
+        if entity['type'] == 'point' and 7 <= entity_id <= 12:
+            entity['position']['x'] -= PRINT_SIZE_TOLERANCE
+        if entity['type'] == 'arc': entity['center']['x'] -= PRINT_SIZE_TOLERANCE
+    collar['profile_identities'] = {'next': 0, 'records': []}
+    entrance = next(s for s in envelope['sketches']
+                    if s['name'] == 'Chassis integral thrust stops and journal seat')
+    reduction = envelope_reduction(budget)
+    for entity_id, entity in entrance['snapshot']['entities']:
+        if entity['type'] != 'point': continue
+        if entity_id in (5, 6): entity['position']['x'] += PRINT_SIZE_TOLERANCE
+        if entity_id in (2, 3): entity['position']['y'] -= reduction
+    entrance['profile_identities'] = {'next': 0, 'records': []}
+    return envelope
+
+
+def flight_envelope_checks(client, model, budget):
+    """Recompute the explicit envelope and measure native solid clearances."""
+    envelope = flight_envelope_model(model, budget)
+    reduction = envelope_reduction(budget)
+    checks = []
+    try:
+        client.call('cad_load_project_model', {'model_json': json.dumps(envelope)})
+        assert not client.call('solid_scene')['errors']
+        c = CASE_CLEARANCE
+        cases = [(MAX_DRIVE_AXIS_OFFSET, 0, 0), (c, c, -45), (-c, c, -135),
+                 (-c, -c, 135), (c, -c, 45)]
+        for dx, dz, angle in cases:
+            pose(client, 8, [dx, budget['rearward_travel'], dz], angle)
+            result = client.call('assembly_interference_check', {'clearance_threshold_mm': 5})
+            pairs = pair_summary(result, {90}, {26, 46})
+            assert len(pairs) == 2 and not any(p['interfering'] for p in pairs), pairs
+            assert min(p['minimum_clearance_mm'] for p in pairs) > budget['minimum_clearance_target'], pairs
+            checks.append({'auger_translation_mm': [dx, budget['rearward_travel'], dz],
+                           'rotation_deg': angle, 'exact': True, 'flight_housing_pairs': pairs})
+    finally:
+        client.call('cad_load_project_model', {'model_json': json.dumps(model)})
+    return {'budget': budget, 'equivalent_taper_radial_reduction_mm': reduction,
+        'collar_face_shift_mm': -PRINT_SIZE_TOLERANCE,
+        'housing_rear_stop_shift_mm': PRINT_SIZE_TOLERANCE, 'checks': checks,
+        'minimum_sampled_clearance_mm': min(p['minimum_clearance_mm'] for c in checks for p in c['flight_housing_pairs']),
+        'scope': 'Exact sampled flight-only conservative envelopes. Not automatic GD&T, continuous swept motion, or measured printing capability.'}
+
+
+def coupled_alignment_checks(client, model):
+    """Show the failed independent-offset case and valid floating assemblies."""
+    servo_base = next(o['local_pose'] for o in model['assembly']['component_structure']['occurrences']
+                      if o['component_id'] == 3)
+    def servo(dx, dy, dz):
+        client.call('assembly_set_occurrence_pose', {'occurrence_id': 3,
+            'local_pose': {'translation': [p + d for p, d in zip(servo_base['translation'], (dx, dy, dz))],
+                           'rotation': servo_base['rotation']}})
+    try:
+        servo(.3, 0, 0); pose(client, 14, [.3, 0, 0])
+        mismatch = client.call('assembly_interference_check', {'clearance_threshold_mm': 2})
+        square = pair_summary(mismatch, {15}, {216})
+        assert len(square) == 1 and square[0]['interfering'], square
+        checks = []
+        c = CASE_CLEARANCE
+        for dx, dz, dy, angle in [(0, 0, 0, 0), (.3, 0, 0, 0),
+                (c, c, -.19, -45), (-c, c, .19, -135),
+                (-c, -c, -.19, 135), (c, -c, .19, 45)]:
+            servo(dx, dy, dz)
+            pose(client, 14, [dx, dy, dz], angle)
+            pose(client, 8, [dx, 0, dz], angle)
+            pose(client, 16, [dx, 0, dz])
+            result = client.call('assembly_interference_check', {'clearance_threshold_mm': 2})
+            assert result['exact'] and not any(p['interfering'] for p in result['pairs']
+                if {p['body_a'], p['body_b']} != {15, 90}), result
+            checks.append({'drive_xz_mm': [dx, dz], 'servo_adapter_axial_shift_mm': dy,
+                'common_drive_rotation_deg': angle, 'sleeve_follows_drive_axis': True, 'result': result})
+    finally:
+        client.call('cad_load_project_model', {'model_json': json.dumps(model)})
+    return {'independent_offset_negative_control': {'servo_adapter_x_mm': .3,
+                'auger_x_mm': 0, 'result': mismatch}, 'aligned_floating_assemblies': checks,
+        'scope': 'Sampled nominal full assemblies including sleeve and square mate. Housing axis clearance alone does not validate relative peg/socket misalignment.'}
 
 
 def main():
@@ -89,6 +206,7 @@ def main():
     reference = read_model(prior)
     regression = []
     movement = []
+    budget = entrance_budget(model)
     with CadClient() as client:
         client.call('cad_load_project_model', {'model_json': json.dumps(reference)})
         for shift in [0, .3]:
@@ -102,8 +220,12 @@ def main():
         assert not scene['errors'], scene['errors']
         preflight = client.call('solid_export_preflight')
         assert preflight['ok'] and not preflight['timeline_errors'], preflight
-        bound = native_flight_entry_bound(client)
-        assert bound - .02 - .08 - .2 > .2, bound
+        bound = native_flight_entry_bound(client, budget)
+        radial_gap_bound = bound - envelope_reduction(budget)
+        normal_gap_bound = radial_gap_bound / math.sqrt(1 + budget['slope'] ** 2)
+        assert normal_gap_bound > budget['minimum_clearance_target'], normal_gap_bound
+        envelopes = flight_envelope_checks(client, model, budget)
+        alignment = coupled_alignment_checks(client, model)
         nominal = client.call('assembly_interference_check', {'clearance_threshold_mm': 2})
         assert not any(p['interfering'] for p in nominal['pairs']
                        if {p['body_a'], p['body_b']} != {15, 90}), nominal
@@ -190,15 +312,19 @@ def main():
         'reference_commit': REFERENCE, 'reference_sha256': hashlib.sha256(prior).hexdigest(),
         'confirmed_prior_flight_interference': regression,
         'revised_motion_checks': movement, 'motion_check_count': len(movement),
-        'motion_check_scope': '45 exact B-rep poses: 0/45/90 degree rotations, 0/0.5 mm cardinal offsets and +/-0.30 mm axial travel. Additional continuous-rotation entrance check uses the conservative flight surface bound below.',
+        'motion_check_scope': '45 nominal exact B-rep poses: 0/45/90 degree rotations, 0/0.5 mm cardinal offsets and +/-0.30 mm nominal axial travel. These housing-only poses are not a complete assembly tolerance check. Separate native +0.50 mm flight envelopes and full coupled assembly checks are recorded below.',
+        'native_tolerance_envelope_checks': envelopes,
+        'native_coupled_alignment_checks': alignment,
         'minimum_sampled_flight_to_housing_clearance_mm': min(flight_gaps),
         'continuous_rotation_flight_entry_bound': {'method': 'Minimum vertex gap on clipped triangular flight surface against the linear axisymmetric entrance; radial offset applied in every direction by the triangle inequality.',
-            'rearward_travel_mm': .3, 'radial_offset_mm': .5,
+            'rearward_travel_mm': budget['rearward_travel'], 'radial_offset_mm': budget['radial_offset'],
             'minimum_surface_bound_mm': bound, 'native_verification_deflection_mm': .02,
             'manufacturing_export_deflection_mm': .08,
             'printed_surface_allowance_each_mm': .1,
-            'conditional_minimum_gap_mm': bound - .02 - .08 - .2,
-            'scope': 'Complete final flight at the housing entrance; not a load or wear qualification.'},
+            'additional_axial_face_allowance_mm': budget['additional_axial_face_allowance'],
+            'conditional_minimum_radial_gap_mm': radial_gap_bound,
+            'conditional_minimum_gap_mm': normal_gap_bound,
+            'scope': 'Separately derived screening bound from native tessellation, with explicit acceptance assumptions. Not a native GD&T certificate, load or wear qualification.'},
         'nominal_servo_case_and_ear_clearance': servo_pairs,
         'clamshell_closure_path': closure, 'heat_set_inserts_and_screws': inserts,
         'native_preflight': preflight, 'retained_non_housing_stls': retained,
