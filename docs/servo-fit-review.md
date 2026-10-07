@@ -1,6 +1,28 @@
-# Servo fit correction — 5 October 2026
+# Servo fit review — 7 October 2026
 
-**Later physical-test update: the owner measures 27 mm ear underside to rear case, versus 24.7 mm in the drawing.** The production housing has only 26.0 mm from its rear ear stop to its rear wall. The correction below is historical. The [original feedback audit](../servo-fit-feedback-20261007.json) preserves the pre-measurement investigation; [caliper readings](../source/references/servo-caliper-readings.json) and [new native checks](../servo-27mm-test-verification.json) document the measured failure and separate 2.3 mm rear-extension test. Use [the separate lower-half test](../garden-auger-lower-servo-27mm-test.3mf) for fit feedback. Its ear seats and drive datums are preserved; complete physical seating remains unqualified.
+## Current snug-nest test
+
+The previous review checked clearance but allowed unnecessary movement. Independent native probes using the measured 38 mm case length and 27 mm rear length showed about 0.90 mm total X travel, 0.80 mm Z travel and 0.40 mm Y travel in the rear-extension test, conditional on the drawing's ear envelope and shaft-to-case offset. The 41.30 mm body clearance bay does not itself locate the smaller case. Ear outer ends and clamshell capture faces must do that job.
+
+The [current CAD test](../experiments/garden-auger-servo-snug-test.limo) reuses its two existing pocket cuts:
+
+- Axial ear slots: **3.00 mm**, Y162.65–165.65 around source ear faces Y162.8–165.5. Nominal total axial movement is **0.30 mm**.
+- Ear outer-tip capture: **56.40 mm**, X−38.2 to +18.2 around the source 56 mm span. Nominal total lateral movement is **0.40 mm**.
+- Case/ear capture between halves: **20.40 mm**, Z±10.2 around the source 20 mm width. Nominal total capture movement is **0.40 mm**. The continuous flat floor gains 0.20 mm stock, becoming **10.40 mm** locally; exterior/handle geometry is unchanged.
+- Rear ear stop to rear wall: **28.35 mm**, leaving **1.35 mm** behind the measured 27 mm rear length at the rearward stop. The rear wall remains Y194.0. Keep the case cut after both rear pad joins so they cannot refill its corner.
+- The conservative 41.30 mm case plan bay remains clearance space. Its 3.30 mm excess over the measured 38 mm case is not the servo's travel allowance. A tighter body bay would require the actual case-to-shaft/ear offset; do not invent that datum.
+
+Native exact checks clear the independent solid-ear probe at X/Z±0.19 mm and Y±0.14 mm, and reject X/Z±0.21 mm and Y±0.16 mm. Separate principal-axis angular samples about the ear-centre pivot clear ±0.1° and reject ±1°; they do not establish maximum angular play or a combined six-DOF contact envelope. Nine coupled assembly offset poses and 24 auger rotation/end-float samples pass. The lower half is one closed connected native-export mesh. The print presentation matches its Bambu bed placement and passes native envelope preflight. The available section tool returns material intervals excluding voids; this is sampled geometry, not a strength or global minimum-wall calculation.
+
+The [raw native review](../servo-snug-review.json) retains face keys, tool outputs, build hashes, settings inspection and limitations. [Ear-nest section](../renders/servo-snug-ear-nest.svg), [floor section](../renders/servo-snug-servo-floor.svg), [square socket](../renders/servo-snug-square-socket.svg), [adapter seat](../renders/servo-snug-adapter-seat.svg) and [PLA bushing](../renders/servo-snug-pla-bushing.svg) are unmodified native section diagrams.
+
+The square remains 14.0/R1 into 14.4/R1.2, with 10 mm nominal engagement, 2 mm tip room and 1.6 mm flange gap. Journal/bushing remain Ø28/Ø28.6; the full PLA ring is Ø34 in a Ø35.6 housing chamber. Collar end float remains 0.6 mm; sleeve end float remains 0.5 mm. Four native insert pilots remain Ø4.0×6.7 mm for RX-M3×5.7 inserts. The adapter retains its Ø5.7×3.7 trial pilot, Ø24 boss, Ø28 flange, 2.6 mm seat-to-head-seat stack and Ø3.4/Ø6.4 passage/access. Native faces confirm these values, and all four non-housing body meshes are unchanged. Retain the conservative existing installed-position acceptance limits; their hardware datums still need physical confirmation.
+
+**Use [the snug lower-half Bambu test](../garden-auger-lower-servo-snug-test.3mf), not the older production housing.** Its saved process/object overrides are preserved. Slice again; no new slicer time/support estimate is claimed. Final capture requires both matching revised halves. These small clearances are trial design values, not measured printer capability. Only 27 and 38 mm are new hardware readings; 20 mm width, 56 mm ear span, 2.7 mm ear thickness and shaft offsets remain source references. Confirm seating, little movement, square alignment, free rotation and screw bottoming physically. The reference deliberately remains a clearance envelope rather than a fully measured servo. No clip, separate servo clamp or new hardware is introduced.
+
+## Earlier corrections — historical
+
+**Physical-test update: the owner measures 27 mm ear underside to rear case, versus 24.7 mm in the drawing.** The production housing has only 26.0 mm from its rear ear stop to its rear wall. The correction below is historical. The [original feedback audit](../servo-fit-feedback-20261007.json), [caliper readings](../source/references/servo-caliper-readings.json) and [rear-clearance checks](../servo-27mm-test-verification.json) preserve the measured failure and first separate 2.3 mm rear-extension test. That test is superseded by the snug-nest test above.
 
 The model was wrong. The 24.7 mm dimension in your diagram starts at the **underside/rear face of the mounting ear**. The servo reference and housing used its opposite face, moving the ears and pockets 2.7 mm rearward. The same error in both parts made the previous clearance check falsely pass.
 

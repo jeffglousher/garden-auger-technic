@@ -9,11 +9,20 @@ import subprocess
 
 
 class CadClient:
-    def __init__(self, executable: Path | None = None, arguments: list[str] | None = None):
-        executable = executable or Path(os.environ['LOCALAPPDATA']) / 'nbcad/mcp/nbcad-mcp.exe'
+    def __init__(self, executable: Path | None = None, arguments: list[str] | None = None,
+                 stderr_path: Path | None = None):
+        if executable is None:
+            local = Path(os.environ['LOCALAPPDATA'])
+            candidates = [local / 'limo-cad/bevy/Limo-CAD.exe',
+                          local / 'nbcad/mcp/nbcad-mcp.exe']
+            executable = next((p for p in candidates if p.is_file()), None)
+            if executable is None:
+                raise FileNotFoundError('No installed Limo CAD engine; pass executable explicitly')
+        self.executable = executable
+        self.stderr_file = stderr_path.open('w', encoding='utf-8') if stderr_path else None
         self.process = subprocess.Popen(
             [str(executable),*(arguments if arguments is not None else ['--headless'])], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL, text=True, encoding='utf-8',
+            stderr=self.stderr_file or subprocess.DEVNULL, text=True, encoding='utf-8',
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0,
         )
         self.sequence = 0
@@ -55,6 +64,8 @@ class CadClient:
     def close(self):
         self.process.stdin.close()
         self.process.wait(timeout=15)
+        if self.stderr_file:
+            self.stderr_file.close()
 
     def __enter__(self):
         return self

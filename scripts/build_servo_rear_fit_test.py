@@ -96,7 +96,7 @@ def probe_results(client, expected_interference):
     return checks
 
 
-def package_test(raw_export):
+def package_test(raw_export, template=TEMPLATE, output=PRINT, note=None):
     with zipfile.ZipFile(io.BytesIO(raw_export)) as archive:
         xml = ET.fromstring(archive.read('3D/3dmodel.model'))
     obj = next(o for o in xml.findall('{*}resources/{*}object') if o.find('{*}mesh') is not None)
@@ -104,7 +104,7 @@ def package_test(raw_export):
     assert component_count(mesh) == 1
     center = (mesh.bounds[0] + mesh.bounds[1]) / 2
     vertices = mesh.vertices-center
-    entries = read_zip(TEMPLATE)
+    entries = read_zip(template)
     _, config, parts = project_parts(entries)
     assert set(parts) == {'PETG - Housing lower'}, 'Template must contain one lower half'
     part = parts['PETG - Housing lower']
@@ -145,16 +145,16 @@ def package_test(raw_export):
             if target not in entries and not rel.get('TargetMode') == 'External':
                 rels.remove(rel)
         entries[name] = ET.tostring(rels, encoding='utf-8', xml_declaration=True)
-    entries['Metadata/servo-rear-fit-test.txt'] = (
+    entries['Metadata/servo-rear-fit-test.txt'] = (note or
         '27 mm ear-underside-to-rear fit test; rear bay extended 2.30 mm. '
         'Ear seats and adapter/auger/sleeve datums retained. '
         'This is a test article; complete physical fit and shaft-to-ear position remain unverified. '
         'Slice again; saved printer/process and object overrides are retained.').encode()
-    with zipfile.ZipFile(PRINT, 'w', zipfile.ZIP_DEFLATED) as archive:
+    with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         for name, data in entries.items():
             archive.writestr(name, data)
-    result = read_zip(PRINT)
-    original = read_zip(TEMPLATE)
+    result = read_zip(output)
+    original = read_zip(template)
     assert result['Metadata/project_settings.config'] == original['Metadata/project_settings.config']
     _, actual_config, actual_parts = project_parts(result)
     assert set(actual_parts) == set(parts)
@@ -167,7 +167,7 @@ def package_test(raw_export):
             'native_export_mesh_matches_packaged_test': True,
             'printer_and_process_config_byte_identical': True,
             'object_settings_preserved': True, 'fresh_slice_required': True,
-            'template_sha256': digest(TEMPLATE), 'test_sha256': digest(PRINT)}
+            'template_sha256': digest(template), 'test_sha256': digest(output)}
 
 
 def main():
@@ -208,6 +208,7 @@ def main():
                 item['name'] = '27 mm rear-clearance envelope - shaft and front datums provisional'
     candidate['document']['name'] = 'Garden auger - 27 mm servo rear fit test'
     with CadClient() as client:
+        native_engine = client.executable
         client.call('cad_load_project_model', {'model_json': json.dumps(original)})
         old_scene = client.call('solid_scene')
         failure = probe_results(client, True)
@@ -257,7 +258,7 @@ def main():
                      'failed_unreordered_cut_native_overlap_each_half_mm3': 0.0035595160669871758,
                      'failed_unreordered_cut_native_overlap_bounds_lower_mm':
                          [[-30.5,192.46987915039062,-10],[-30.47641372680664,192.5,0]]},
-        'native_engine_sha256': digest(Path.home()/'AppData/Local/nbcad/mcp/nbcad-mcp.exe'),
+        'native_engine_sha256': digest(native_engine),
         'native_old_housing_failure': failure, 'native_revised_housing_fit': fit,
         'native_retained_planes': planes, 'native_nominal_assembly': nominal,
         'native_preflight': preflight, 'unchanged_print_body_meshes': unchanged,
