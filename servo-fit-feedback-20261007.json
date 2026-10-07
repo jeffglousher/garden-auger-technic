@@ -1,0 +1,888 @@
+{
+  "format": "servo-physical-fit-feedback-audit",
+  "version": 1,
+  "date": "2026-10-07",
+  "physical_fit_status": "FAILED_BY_USER_REPORT",
+  "root_cause_status": "NOT_YET_ESTABLISHED",
+  "source_commit": "71cb1c1c22be301aa7359bea2be93028ea6cafc5",
+  "source_files_sha256": {
+    "garden-auger-direct-drive.nbcad": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854",
+    "garden-auger-bambu-latest.3mf": "e227a6aeabfa5e86ea39d208a1ba90c6b75f3f13ce8d6fcac7578a8066166082",
+    "garden-auger-lower-fit-test.3mf": "c4506e505547da3372864ebf0b76273c088d0e8ccdb964cd0d9edb2d5f6ffeda",
+    "source/references/user-servo-fit-diagram.png": "ab486b6b1cc1210e08689b5c02129df5093c12a18e12dcaa06483c0e13982168"
+  },
+  "user_photo": {
+    "filename": "1000015381.jpg",
+    "sha256": "8ea25ef20c5b98e3a722b92b8d3e3ba144448ce1620f391afd941dc5a191797b",
+    "reported_failure": "Servo housing slightly too short",
+    "identifies_exact_print_file": false,
+    "dimensional_scale_reference": false
+  },
+  "cad_engine": {
+    "mode": "isolated installed headless native CAD; no desktop session attached",
+    "file_version": "0.2.2",
+    "binary_sha256": "8edc25d99bacf40ec7b3887805ae4f39e36db8d6b7a8f8f37738e155b36afd02"
+  },
+  "native_tools_used": [
+    "cad_load_project_model",
+    "solid_scene",
+    "drawing_projection (lower-half section at Z=-5)",
+    "assembly_interference_check",
+    "native sketch/extrude tools for disposable drawing probe"
+  ],
+  "native_recompute_errors": [],
+  "retained_native_planes": {
+    "1": {
+      "topology_signature": "connectivity-v1:12587568160798329230",
+      "planes": [
+        {
+          "face_key": "face:1",
+          "face_id": 604608968213697,
+          "axis": "Z",
+          "coordinate_mm": -41.5,
+          "origin": [
+            -10.25,
+            0.0,
+            -41.5
+          ],
+          "normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "face_key": "face:2",
+          "face_id": 601310433329064,
+          "axis": "X",
+          "coordinate_mm": -30.5,
+          "origin": [
+            -30.5,
+            10.0,
+            -41.5
+          ],
+          "normal": [
+            -1.0,
+            -0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:3",
+          "face_id": 602409944957275,
+          "axis": "Z",
+          "coordinate_mm": -16.8,
+          "origin": [
+            -34.0,
+            0.0,
+            -16.8
+          ],
+          "normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "face_key": "face:4",
+          "face_id": 607907503098330,
+          "axis": "X",
+          "coordinate_mm": -38.0,
+          "origin": [
+            -38.0,
+            10.0,
+            -16.8
+          ],
+          "normal": [
+            -1.0,
+            -0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:5",
+          "face_id": 609007014726541,
+          "axis": "Z",
+          "coordinate_mm": -14.100000000000001,
+          "origin": [
+            -34.0,
+            0.0,
+            -14.100000000000001
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "face_key": "face:6",
+          "face_id": 605708479841908,
+          "axis": "X",
+          "coordinate_mm": -30.5,
+          "origin": [
+            -30.5,
+            10.0,
+            -41.5
+          ],
+          "normal": [
+            -1.0,
+            -0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:7",
+          "face_id": 606807991470119,
+          "axis": "Z",
+          "coordinate_mm": -4.0,
+          "origin": [
+            -10.25,
+            0.0,
+            -4.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "face_key": "face:8",
+          "face_id": 594713363559798,
+          "axis": "X",
+          "coordinate_mm": 10.0,
+          "origin": [
+            10.0,
+            -10.0,
+            -41.5
+          ],
+          "normal": [
+            1.0,
+            -0.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:9",
+          "face_id": 595812875188009,
+          "axis": "Z",
+          "coordinate_mm": -14.100000000000001,
+          "origin": [
+            14.0,
+            0.0,
+            -14.100000000000001
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "face_key": "face:10",
+          "face_id": 3187004994626947,
+          "axis": "X",
+          "coordinate_mm": 18.0,
+          "origin": [
+            18.0,
+            -10.0,
+            -16.8
+          ],
+          "normal": [
+            1.0,
+            -0.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:11",
+          "face_id": 3185905482998736,
+          "axis": "Z",
+          "coordinate_mm": -16.8,
+          "origin": [
+            14.0,
+            0.0,
+            -16.8
+          ],
+          "normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "face_key": "face:12",
+          "face_id": 3189204017883369,
+          "axis": "X",
+          "coordinate_mm": 10.0,
+          "origin": [
+            10.0,
+            -10.0,
+            -41.5
+          ],
+          "normal": [
+            1.0,
+            -0.0,
+            -0.0
+          ]
+        }
+      ]
+    },
+    "26": {
+      "topology_signature": "connectivity-v1:8072937433659850667",
+      "planes": [
+        {
+          "face_key": "face:15",
+          "face_id": 953709554344989,
+          "axis": "Z",
+          "coordinate_mm": 10.4,
+          "origin": [
+            10.399999999999999,
+            191.7,
+            10.4
+          ],
+          "normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ]
+        },
+        {
+          "face_key": "face:16",
+          "face_id": 950411019460356,
+          "axis": "X",
+          "coordinate_mm": 10.399999999999999,
+          "origin": [
+            10.399999999999999,
+            191.7,
+            -10.4
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:17",
+          "face_id": 951510531088567,
+          "axis": "Y",
+          "coordinate_mm": 162.60000000000005,
+          "origin": [
+            14.450000000000001,
+            162.60000000000005,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:19",
+          "face_id": 940515414806457,
+          "axis": "Y",
+          "coordinate_mm": 165.70000000000002,
+          "origin": [
+            14.450000000000001,
+            165.70000000000002,
+            0.0
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:62",
+          "face_id": 5170336645916779,
+          "axis": "Y",
+          "coordinate_mm": 151.69999999999996,
+          "origin": [
+            -10.249999999999998,
+            151.69999999999996,
+            4.57676480360773e-16
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:64",
+          "face_id": 5176933715686045,
+          "axis": "X",
+          "coordinate_mm": -30.9,
+          "origin": [
+            -30.9,
+            191.7,
+            10.4
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:66",
+          "face_id": 5174734692429623,
+          "axis": "Y",
+          "coordinate_mm": 162.60000000000002,
+          "origin": [
+            -34.45,
+            162.60000000000002,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:70",
+          "face_id": 4180776180716104,
+          "axis": "Y",
+          "coordinate_mm": 165.7,
+          "origin": [
+            -34.45,
+            165.7,
+            0.0
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:72",
+          "face_id": 4182975203972526,
+          "axis": "X",
+          "coordinate_mm": -30.9,
+          "origin": [
+            -30.9,
+            191.7,
+            10.4
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:74",
+          "face_id": 4185174227228948,
+          "axis": "Y",
+          "coordinate_mm": 191.69999999999996,
+          "origin": [
+            -10.249999999999998,
+            191.69999999999996,
+            4.57676480360773e-16
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:76",
+          "face_id": 4187373250485370,
+          "axis": "X",
+          "coordinate_mm": 10.399999999999999,
+          "origin": [
+            10.399999999999999,
+            191.7,
+            -10.4
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "measured_from_plane_origins": {
+        "rear_stop_to_wall_mm": 25.999999999999943,
+        "ear_slot_width_mm": 3.099999999999966,
+        "case_plan_pocket_length_mm": 41.3,
+        "case_pocket_axial_span_mm": 40.0
+      }
+    },
+    "46": {
+      "topology_signature": "connectivity-v1:4730832392570227654",
+      "planes": [
+        {
+          "face_key": "face:47",
+          "face_id": 6938026441807878,
+          "axis": "X",
+          "coordinate_mm": 10.399999999999999,
+          "origin": [
+            10.399999999999999,
+            191.7,
+            -10.4
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:48",
+          "face_id": 6950121069718199,
+          "axis": "Y",
+          "coordinate_mm": 191.69999999999996,
+          "origin": [
+            -10.249999999999998,
+            191.69999999999996,
+            4.57676480360773e-16
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:49",
+          "face_id": 6949021558089988,
+          "axis": "X",
+          "coordinate_mm": -30.9,
+          "origin": [
+            -30.9,
+            191.7,
+            10.4
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:50",
+          "face_id": 5949565488235414,
+          "axis": "Y",
+          "coordinate_mm": 165.7,
+          "origin": [
+            -34.45,
+            165.7,
+            0.0
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:52",
+          "face_id": 5947366464978992,
+          "axis": "Y",
+          "coordinate_mm": 162.60000000000002,
+          "origin": [
+            -34.45,
+            162.60000000000002,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:53",
+          "face_id": 5948465976607203,
+          "axis": "X",
+          "coordinate_mm": -30.9,
+          "origin": [
+            -30.9,
+            191.7,
+            10.4
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:54",
+          "face_id": 5953963534748258,
+          "axis": "Y",
+          "coordinate_mm": 151.69999999999996,
+          "origin": [
+            -10.249999999999998,
+            151.69999999999996,
+            4.57676480360773e-16
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:67",
+          "face_id": 4985293790483592,
+          "axis": "Y",
+          "coordinate_mm": 165.70000000000002,
+          "origin": [
+            14.450000000000001,
+            165.70000000000002,
+            0.0
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ]
+        },
+        {
+          "face_key": "face:69",
+          "face_id": 4983094767227170,
+          "axis": "Y",
+          "coordinate_mm": 162.60000000000005,
+          "origin": [
+            14.450000000000001,
+            162.60000000000005,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:70",
+          "face_id": 4001230883423972,
+          "axis": "X",
+          "coordinate_mm": 10.399999999999999,
+          "origin": [
+            10.399999999999999,
+            191.7,
+            -10.4
+          ],
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "face_key": "face:77",
+          "face_id": 4000131371795761,
+          "axis": "Z",
+          "coordinate_mm": -10.4,
+          "origin": [
+            -30.9,
+            191.7,
+            -10.4
+          ],
+          "normal": [
+            -0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "measured_from_plane_origins": {
+        "rear_stop_to_wall_mm": 25.99999999999997,
+        "ear_slot_width_mm": 3.099999999999966,
+        "case_plan_pocket_length_mm": 41.3,
+        "case_pocket_axial_span_mm": 40.0
+      }
+    }
+  },
+  "dimension_comparison_mm": {
+    "case_plan_length": {
+      "drawing": 40.0,
+      "catalog_summary": 40.5,
+      "native_reference": 40.5,
+      "native_pocket": 41.3
+    },
+    "case_width": {
+      "drawing": 20.0,
+      "native_reference": 20.0,
+      "native_pocket": 20.8
+    },
+    "case_axial_height": {
+      "drawing": 37.5,
+      "native_reference": 37.5,
+      "catalog_summary_height": 40.5,
+      "source_discrepancy": 3.0,
+      "cause_of_physical_failure_confirmed": false
+    },
+    "ear_underside_to_case_rear": {
+      "drawing": 24.7,
+      "native_reference": 24.7,
+      "nominal_ear_face_to_pocket_rear": 26.2,
+      "nominal_rear_clearance": 1.5,
+      "rear_ear_slot_stop_to_pocket_rear": 26.0,
+      "rear_clearance_when_ear_contacts_rear_stop": 1.3
+    },
+    "ear_thickness": {
+      "drawing": 2.7,
+      "native_reference": 2.7,
+      "native_slot": 3.1,
+      "total_axial_play": 0.4
+    },
+    "shaft_tip_to_rear": {
+      "drawing": 41.5,
+      "model_nominal_datum": 41.5,
+      "rotating_shaft_geometry_modeled": false
+    },
+    "ear_span": {
+      "drawing": 56.0,
+      "native_reference": 56.0,
+      "pocket_span": 57.0
+    },
+    "case_pocket_y": [
+      151.7,
+      191.7
+    ],
+    "ear_pocket_y": [
+      162.6,
+      165.7
+    ],
+    "historical_wrong_ear_pocket_y": [
+      165.3,
+      168.4
+    ],
+    "historical_rear_stop_to_wall": 23.3,
+    "historical_deviation": "Earlier slots were displaced rearward by 2.7 mm; latest retained CAD faces and current export no longer contain that displacement."
+  },
+  "print_export_checks": {
+    "full_and_test_lower_vertices_identical": true,
+    "full_and_test_lower_faces_identical": true,
+    "canonical_world_from_print_part_translation_mm": [
+      0,
+      157.2,
+      -10.3
+    ],
+    "lower_print_mesh_planes": [
+      {
+        "name": "case rear wall",
+        "axis": "Y",
+        "coordinate_mm": 191.7,
+        "matching_vertices": 4,
+        "bounds_mm": [
+          [
+            -30.9,
+            191.7,
+            -10.4
+          ],
+          [
+            10.4,
+            191.7,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "rear ear stop",
+        "axis": "Y",
+        "coordinate_mm": 165.7,
+        "matching_vertices": 8,
+        "bounds_mm": [
+          [
+            -38.5,
+            165.7,
+            -10.4
+          ],
+          [
+            18.5,
+            165.7,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "front ear stop",
+        "axis": "Y",
+        "coordinate_mm": 162.6,
+        "matching_vertices": 8,
+        "bounds_mm": [
+          [
+            -38.5,
+            162.6,
+            -10.4
+          ],
+          [
+            18.5,
+            162.6,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "case left wall",
+        "axis": "X",
+        "coordinate_mm": -30.9,
+        "matching_vertices": 8,
+        "bounds_mm": [
+          [
+            -30.9,
+            151.7,
+            -10.4
+          ],
+          [
+            -30.9,
+            191.7,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "case right wall",
+        "axis": "X",
+        "coordinate_mm": 10.4,
+        "matching_vertices": 12,
+        "bounds_mm": [
+          [
+            10.4,
+            153.6,
+            -10.4
+          ],
+          [
+            10.4,
+            191.7,
+            0.0
+          ]
+        ]
+      }
+    ],
+    "scope": "Selected plane positions and full/test mesh identity; does not establish the identity or measured dimensions of the user printed article."
+  },
+  "independent_drawing_probe_native_results": [
+    {
+      "probe_translation_mm": [
+        0,
+        -0.19,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999962483,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999962483,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "probe_translation_mm": [
+        0,
+        0,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.1999999999999602,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.1999999999999602,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "probe_translation_mm": [
+        0,
+        0.19,
+        0
+      ],
+      "exact": true,
+      "housing_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 231,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "caliper_requests": [
+    {
+      "number": 1,
+      "part": "servo",
+      "measurement": "Rear/bottom case face to mounting-ear underside/rear face",
+      "drawing_target_mm": 24.7
+    },
+    {
+      "number": 2,
+      "part": "printed lower housing",
+      "measurement": "Rear-facing ear-slot stop to inside rear bay wall, along shaft direction",
+      "latest_cad_target_mm": 26.0,
+      "historical_wrong_slot_target_mm": 23.3
+    },
+    {
+      "number": 3,
+      "part": "printed lower housing and servo",
+      "measurement": "Ear-slot axial width, plus actual ear thickness if convenient",
+      "latest_slot_target_mm": 3.1,
+      "drawing_ear_thickness_mm": 2.7
+    },
+    {
+      "number": 4,
+      "part": "servo with adapter removed",
+      "measurement": "Rear/bottom case face to shaft tip",
+      "drawing_target_mm": 41.5
+    },
+    {
+      "number": 5,
+      "part": "servo and printed housing",
+      "measurement": "Optional if short direction is across the case: case length excluding ears and matching pocket length",
+      "drawing_case_length_mm": 40.0,
+      "catalog_case_length_mm": 40.5,
+      "latest_pocket_target_mm": 41.3
+    }
+  ],
+  "limitations": [
+    "CAD results establish fit only for the stated simplified nominal drawing envelope, not the purchased servo or manufactured housing.",
+    "Native nominal no-overlap cannot overrule a failed physical fit.",
+    "Case cover/boss details, hardware tolerances and assembled adapter seating are not fully represented by the drawing probe.",
+    "The drawing case axial height and separate catalog height differ; no interpretation is asserted as measured hardware truth.",
+    "The photo cannot supply millimeter measurements or prove the identity of the printed file.",
+    "No dimensions were changed and no replacement print was generated pending the measurements."
+  ],
+  "production_geometry_changed": false,
+  "replacement_print_generated": false,
+  "next_action": "Use numbered physical measurements to identify the deviation, then revise and revalidate the affected geometry."
+}

@@ -1,8 +1,10 @@
 # Servo fit correction — 5 October 2026
 
+**7 October update: another physical fit failure has been reported. The correction below is historical; the current housing is not physically qualified.** The [feedback audit](../servo-fit-feedback-20261007.json) records the latest native dimensions, matching print-mesh planes and numbered caliper requests. Its drawing-envelope checks pass, but the purchased servo/printed housing mismatch remains unresolved. Hold another housing print until that deviation is measured and corrected.
+
 The model was wrong. The 24.7 mm dimension in your diagram starts at the **underside/rear face of the mounting ear**. The servo reference and housing used its opposite face, moving the ears and pockets 2.7 mm rearward. The same error in both parts made the previous clearance check falsely pass.
 
-Seating the real servo in those pockets placed its rear face 1.2 mm beyond the cavity. The corrected model restores the drawing datums, clears the larger catalog case length and accounts for the resulting adapter-position stack. **Reprint both housing halves. The auger, square adapter, PLA sleeve and four fit coupons are byte-identical to the previous release.**
+Seating the drawing-dimensioned servo in those old pockets placed its rear face 1.2 mm beyond the cavity. That correction restored the drawing datums, cleared the larger catalog case length and accounted for the resulting adapter-position stack. **The auger, square adapter, PLA sleeve and four fit coupons remained byte-identical to that previous release. The new physical fit failure requires further investigation before reprinting either housing half.**
 
 ![Native CAD and dimensioned before/after comparison](../renders/housing-preprint-review.png)
 
