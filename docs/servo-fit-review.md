@@ -1,6 +1,6 @@
 # Servo fit correction — 5 October 2026
 
-**7 October update: another physical fit failure has been reported. The correction below is historical; the current housing is not physically qualified.** The [feedback audit](../servo-fit-feedback-20261007.json) records the latest native dimensions, matching print-mesh planes and numbered caliper requests. Its drawing-envelope checks pass, but the purchased servo/printed housing mismatch remains unresolved. Hold another housing print until that deviation is measured and corrected.
+**Later physical-test update: the owner measures 27 mm ear underside to rear case, versus 24.7 mm in the drawing.** The production housing has only 26.0 mm from its rear ear stop to its rear wall. The correction below is historical. The [original feedback audit](../servo-fit-feedback-20261007.json) preserves the pre-measurement investigation; [caliper readings](../source/references/servo-caliper-readings.json) and [new native checks](../servo-27mm-test-verification.json) document the measured failure and separate 2.3 mm rear-extension test. Use [the separate lower-half test](../garden-auger-lower-servo-27mm-test.3mf) for fit feedback. Its ear seats and drive datums are preserved; complete physical seating remains unqualified.
 
 The model was wrong. The 24.7 mm dimension in your diagram starts at the **underside/rear face of the mounting ear**. The servo reference and housing used its opposite face, moving the ears and pockets 2.7 mm rearward. The same error in both parts made the previous clearance check falsely pass.
 
