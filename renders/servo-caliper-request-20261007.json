@@ -1,0 +1,14 @@
+{
+  "purpose": "Visual request for physical servo caliper readings, retaining numbers 1, 4 and 5 from the fit investigation",
+  "image": "servo-caliper-request-20261007.png",
+  "source": "source/references/user-servo-fit-diagram.png",
+  "method": "Built-in image_gen image editing; annotations reviewed against the supplied drawing",
+  "measurement_numbers": {
+    "1": "Mounting-ear underside/rear face to flat rear/bottom case face",
+    "4": "Bare shaft tip to flat rear/bottom case face",
+    "5": "Main case length excluding the mounting ears"
+  },
+  "prompt": "Edit the supplied manufacturer drawing into a clear caliper markup. Preserve the two servo views and geometry. Remove the specification table and original dimension values. Label measurement 1 in blue from the mounting-ear LOWER face to the bottom case face, with a magnified lower-face inset. Label measurement 4 in red from the bare shaft tip to the bottom case face. Label measurement 5 in green across the main case only, excluding the ears. Keep original measurement numbers, show no expected values, and provide reply blanks in mm. State that housing measurements 2 and 3 come next.",
+  "correction_prompt": "Move measurement 1's upper endpoint dot, extension line and arrowhead from the middle of the ear flange to its exact underside/bottom edge. Preserve the servo photographs, other arrows, text and reply blanks.",
+  "limitations": "A measurement-location illustration. It is not a dimensionally calibrated image, native CAD render, or validation of hardware fit. No caliper readings have been supplied."
+}
