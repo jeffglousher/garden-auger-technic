@@ -15,7 +15,7 @@
     "object_settings_preserved": true,
     "fresh_slice_required": true,
     "template_sha256": "6a77b54aecbddef0a82b3e543e9d61b5856116ded6d425aa8d9e66800058796e",
-    "test_sha256": "78c65451ba7d58306b4a7252705399b6eb3b2d736828f21c4317f8eff6697a63"
+    "test_sha256": "bc6a4cf354dd7573e11ff2915ccc1341e512cb51a3ffa8936da56a33cbb8391a"
   },
   "readings": {
     "source": "Owner reply to renders/servo-caliper-request-20261007.png",
@@ -12997,7 +12997,7 @@
     "process_settings_id": "0.24mm Standard @BBL X2D",
     "support_filament": 0,
     "support_interface_filament": 4,
-    "template_sha256": "78c65451ba7d58306b4a7252705399b6eb3b2d736828f21c4317f8eff6697a63",
+    "template_sha256": "bc6a4cf354dd7573e11ff2915ccc1341e512cb51a3ffa8936da56a33cbb8391a",
     "version": "02.08.02.61"
   },
   "native_servo_angular_samples": [
@@ -13248,5 +13248,74 @@
       ]
     }
   ],
-  "angular_scope": "For each principal axis about the ear-centre pivot, +/-0.1 degree clears and +/-1 degree is blocked. Other motions are zero. These discrete samples do not establish maximum angular play or a simultaneous six-DOF contact envelope."
+  "angular_scope": "For each principal axis about the ear-centre pivot, +/-0.1 degree clears and +/-1 degree is blocked. Other motions are zero. These discrete samples do not establish maximum angular play or a simultaneous six-DOF contact envelope.",
+  "native_bambu_load_and_slice": {
+    "native_exit_code": 0,
+    "native_plate": {
+      "feature_type_times": {
+        "Bottom surface": 215.34140014648438,
+        "Bridge": 364.8254089355469,
+        "Custom": 286.54742431640625,
+        "Flush": 29.0,
+        "Gap infill": 38.18971633911133,
+        "Inner wall": 2595.044189453125,
+        "Internal solid infill": 1729.94580078125,
+        "Outer wall": 799.1659545898438,
+        "Sparse infill": 5348.62646484375,
+        "Top surface": 193.88238525390625,
+        "Travel": 723.3706665039062,
+        "Undefined": 716.4346923828125
+      },
+      "filament_change_times": 0,
+      "filaments": [
+        {
+          "filament_id": "GFG00",
+          "id": 1,
+          "main_used_g": 109.19471740722656,
+          "total_used_g": 109.19471740722656
+        }
+      ],
+      "generate_support_material_time": 19,
+      "id": 1,
+      "infill_time": 482,
+      "layer_filament_change": 0,
+      "main_predication": 11993.7880859375,
+      "make_perimeters_time": 72,
+      "obj_cached_cnt": 0,
+      "objects": [
+        {
+          "bbox": {
+            "depth": 98.60000610351562,
+            "height": 20.600000381469727,
+            "width": 200.0,
+            "x": 28.0,
+            "y": 78.69999694824219,
+            "z": 9.265136213798542e-09
+          },
+          "id": 5,
+          "name": "PETG - Housing lower",
+          "triangle_count": 3940
+        }
+      ],
+      "sliced_time": 3112,
+      "sliced_time_with_cache": 2466,
+      "total_predication": 12331.3994140625,
+      "triangle_count": 3940,
+      "warning_message": ""
+    },
+    "support_time_seconds": 0,
+    "support_gcode_feature_markers": 0,
+    "gcode_sha256": "f975162d8b8c98eb5e0bde5f1375e205071cd6ecbe1a45aca84fe8931c32a2b8",
+    "sliced_archive_sha256": "0f83ba6ea781aab1e7264a8bafc447ccaca27e91fe8a3f106fbcec8156761bae"
+  },
+  "bambu_relationship_compatibility_repair": {
+    "before_sha256": "78c65451ba7d58306b4a7252705399b6eb3b2d736828f21c4317f8eff6697a63",
+    "after_sha256": "bc6a4cf354dd7573e11ff2915ccc1341e512cb51a3ffa8936da56a33cbb8391a",
+    "changed_entries": [
+      "3D/_rels/3dmodel.model.rels",
+      "_rels/.rels"
+    ],
+    "geometry_settings_transforms_byte_identical": true,
+    "reason": "The Bambu native loader rejected prefixed OPC relationships. Same staged sparse input loaded and sliced after only normalizing the relationship namespace spelling. Latest strong source is now also checked by native Bambu."
+  }
 }

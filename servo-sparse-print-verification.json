@@ -1,0 +1,158 @@
+{
+  "source": "garden-auger-lower-servo-snug-test.3mf",
+  "source_sha256": "bc6a4cf354dd7573e11ff2915ccc1341e512cb51a3ffa8936da56a33cbb8391a",
+  "test": "garden-auger-lower-servo-sparse-test.3mf",
+  "test_sha256": "b1382f1be10055e54a37371232b7195e444903ccd3819eb154082d879e2ad90f",
+  "geometry_and_bed_transforms_byte_identical": true,
+  "test_settings": {
+    "layer_height": "0.28",
+    "line_width": "0.50",
+    "initial_layer_line_width": "0.50",
+    "outer_wall_line_width": "0.50",
+    "inner_wall_line_width": "0.50",
+    "sparse_infill_line_width": "0.50",
+    "internal_solid_infill_line_width": "0.50",
+    "top_surface_line_width": "0.50",
+    "wall_loops": "2",
+    "sparse_infill_density": "5%",
+    "sparse_infill_pattern": "rectilinear",
+    "top_shell_layers": "3",
+    "bottom_shell_layers": "3",
+    "top_shell_thickness": "0",
+    "bottom_shell_thickness": "0",
+    "enable_support": "0",
+    "support_filament": "0",
+    "support_interface_filament": "0",
+    "enable_prime_tower": "0",
+    "print_settings_id": "0.28mm Sparse Servo Fit Test @BBL X2D"
+  },
+  "previous_global_values": {
+    "layer_height": "0.24",
+    "line_width": "0.42",
+    "initial_layer_line_width": "0.5",
+    "outer_wall_line_width": "0.42",
+    "inner_wall_line_width": "0.45",
+    "sparse_infill_line_width": "0.45",
+    "internal_solid_infill_line_width": "0.42",
+    "top_surface_line_width": "0.45",
+    "wall_loops": "2",
+    "sparse_infill_density": "15%",
+    "sparse_infill_pattern": "grid",
+    "top_shell_layers": "4",
+    "bottom_shell_layers": "3",
+    "top_shell_thickness": "1",
+    "bottom_shell_thickness": "0",
+    "enable_support": "1",
+    "support_filament": "0",
+    "support_interface_filament": "4",
+    "enable_prime_tower": "1",
+    "print_settings_id": "0.24mm Standard @BBL X2D"
+  },
+  "removed_object_overrides": {
+    "bottom_shell_layers": "6",
+    "enable_support": "0",
+    "sparse_infill_density": "30%",
+    "sparse_infill_pattern": "gyroid",
+    "top_shell_layers": "6",
+    "wall_loops": "6"
+  },
+  "object_uses_global_strength_settings": true,
+  "opc_relationships_normalized_for_bambu": true,
+  "native_bambu_inspection": {
+    "status": "unsupported_by_Limo_typed_print_intent",
+    "tool_error": "{'content': [{'text': 'Selected template process pattern is outside the initial typed print-intent capability; choose a supported process template', 'type': 'text'}], 'isError': True}",
+    "native_Bambu_slice_succeeded": true
+  },
+  "native_slice": {
+    "native_exit_code": 0,
+    "native_plate": {
+      "feature_type_times": {
+        "Bottom surface": 245.6855010986328,
+        "Bridge": 528.2396240234375,
+        "Custom": 286.54766845703125,
+        "Flush": 29.0,
+        "Gap infill": 5.3072099685668945,
+        "Inner wall": 550.473876953125,
+        "Internal solid infill": 660.734375,
+        "Outer wall": 823.4764404296875,
+        "Sparse infill": 587.345947265625,
+        "Top surface": 201.32850646972656,
+        "Travel": 380.787353515625,
+        "Undefined": 373.8533630371094
+      },
+      "filament_change_times": 0,
+      "filaments": [
+        {
+          "filament_id": "GFG00",
+          "id": 1,
+          "main_used_g": 45.30876159667969,
+          "total_used_g": 45.30876159667969
+        }
+      ],
+      "generate_support_material_time": 17,
+      "id": 1,
+      "infill_time": 109,
+      "layer_filament_change": 0,
+      "main_predication": 3954.23388671875,
+      "make_perimeters_time": 38,
+      "obj_cached_cnt": 0,
+      "objects": [
+        {
+          "bbox": {
+            "depth": 98.60000610351562,
+            "height": 20.600000381469727,
+            "width": 200.0,
+            "x": 28.0,
+            "y": 78.69999694824219,
+            "z": 9.265136213798542e-09
+          },
+          "id": 5,
+          "name": "PETG - Housing lower",
+          "triangle_count": 3940
+        }
+      ],
+      "sliced_time": 580,
+      "sliced_time_with_cache": 400,
+      "total_predication": 4291.84765625,
+      "triangle_count": 3940,
+      "warning_message": ""
+    },
+    "support_time_seconds": 0,
+    "support_gcode_feature_markers": 0,
+    "gcode_sha256": "019181875675d0b1fb11d6296394b20e65f8fb257ac3a4a5a811d81882fca6d3",
+    "sliced_archive_sha256": "cf81eaa1f9ffe501d67bf87b1cceac6602f65c851ff8e1ec2c891e60ee446abf"
+  },
+  "gcode_feature_roles": [
+    "Bottom surface",
+    "Bridge",
+    "Custom",
+    "Floating vertical shell",
+    "Gap infill",
+    "Inner wall",
+    "Internal solid infill",
+    "Outer wall",
+    "Sparse infill",
+    "Top surface"
+  ],
+  "time_seconds": 4291.84765625,
+  "filament_weight_g": 45.30876159667969,
+  "native_run_directory": ".build\\sparse-servo-test\\slice-_l_lwmcc",
+  "preview_and_slice_statistics_refreshed": true,
+  "final_project_gcode_embedded": false,
+  "printer_command_sent": false,
+  "ui_control": "Windows Computer Use native pipe unavailable",
+  "scope": "Low-material dimensional fit test. Native slicing does not certify manufactured dimensions, sparse-skin bridging or loaded strength.",
+  "source_initial_sha256": "78c65451ba7d58306b4a7252705399b6eb3b2d736828f21c4317f8eff6697a63",
+  "source_opc_repair_after_sparse_derivation": true,
+  "strong_same_geometry_native_baseline": {
+    "time_seconds": 12331.3994140625,
+    "filament_weight_g": 109.19471740722656,
+    "native_exit_code": 0
+  },
+  "launched_bambu": {
+    "process_id": 17852,
+    "file": "C:\\Users\\jeffg\\dev\\garden-auger-technic\\garden-auger-lower-servo-sparse-test.3mf",
+    "method": "Bambu Studio invoked with explicit project path; window interaction unavailable because Computer Use native pipe missing",
+    "project_loaded_in_ui_confirmed": false
+  }
+}

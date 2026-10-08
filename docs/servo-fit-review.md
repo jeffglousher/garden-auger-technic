@@ -2,6 +2,8 @@
 
 ## Current snug-nest test
 
+**Next physical print uses [the sparse lower-half copy](../garden-auger-lower-servo-sparse-test.3mf):** 0.28 mm layers, 0.50 mm lines, two walls, 5% rectilinear and three top/bottom layers. It preserves every model/bed-transform byte from the reviewed mesh and removes the strength overrides so Global settings apply. Native Bambu estimates 1 h 12 min /45.3 g with no support or prime tower. The same geometry's stronger profile estimates 3 h 26 min /109.2 g. [Native slice proof](../servo-sparse-print-verification.json) records these results and the CAD inspector's unsupported-rectilinear limitation. Native slicing also found and verified a correction to the helper's OPC relationship serialization; this changed package spelling only.
+
 The previous review checked clearance but allowed unnecessary movement. Independent native probes using the measured 38 mm case length and 27 mm rear length showed about 0.90 mm total X travel, 0.80 mm Z travel and 0.40 mm Y travel in the rear-extension test, conditional on the drawing's ear envelope and shaft-to-case offset. The 41.30 mm body clearance bay does not itself locate the smaller case. Ear outer ends and clamshell capture faces must do that job.
 
 The [current CAD test](../experiments/garden-auger-servo-snug-test.limo) reuses its two existing pocket cuts:

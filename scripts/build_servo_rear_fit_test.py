@@ -144,12 +144,15 @@ def package_test(raw_export, template=TEMPLATE, output=PRINT, note=None):
             target = rel.get('Target', '').lstrip('/')
             if target not in entries and not rel.get('TargetMode') == 'External':
                 rels.remove(rel)
+        # Bambu's native loader needs the unprefixed OPC spelling.
+        ET.register_namespace('', 'http://schemas.openxmlformats.org/package/2006/relationships')
         entries[name] = ET.tostring(rels, encoding='utf-8', xml_declaration=True)
     entries['Metadata/servo-rear-fit-test.txt'] = (note or
         '27 mm ear-underside-to-rear fit test; rear bay extended 2.30 mm. '
         'Ear seats and adapter/auger/sleeve datums retained. '
         'This is a test article; complete physical fit and shaft-to-ear position remain unverified. '
         'Slice again; saved printer/process and object overrides are retained.').encode()
+    ET.register_namespace('', CORE)
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         for name, data in entries.items():
             archive.writestr(name, data)
