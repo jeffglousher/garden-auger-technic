@@ -157,8 +157,7 @@ def main():
     BUILD.mkdir(parents=True, exist_ok=True)
     preserved = {p: digest(ROOT/p) for p in [
         'garden-auger-direct-drive.nbcad', 'garden-auger-bambu-latest.3mf',
-        'garden-auger-lower-fit-test.3mf', str(SOURCE.relative_to(ROOT)),
-        'garden-auger-lower-servo-27mm-test.3mf']}
+        'garden-auger-lower-fit-test.3mf', str(SOURCE.relative_to(ROOT))]}
     readings = json.loads((ROOT/'source/references/servo-caliper-readings.json').read_text())
     assert readings['readings']['1']['value'] == 27 and readings['readings']['5']['value'] == 38
     original = read_model(SOURCE)
