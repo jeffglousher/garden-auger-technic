@@ -1,0 +1,20 @@
+{
+  "source": "Owner reply in project chat on 2026-10-07",
+  "owner_statement": "printed the one side only, the one with locating unset dumples, and it seems ok, we should print the other side with the same dimensions",
+  "context": "Reply to the question about the sparse revised lower-half fit test",
+  "reported_printed_halves": 1,
+  "interpreted_part": "Housing lower, based on the ongoing sparse lower-half test context",
+  "exact_printed_filename_reported": null,
+  "lower_half_fit": "Seems OK per owner; individual seating/play observations were not separately reported",
+  "owner_requested_next_step": "Print the matching other half with the same dimensions",
+  "matching_half_closure": "Pending; only one half has been printed",
+  "adapter_alignment": "Not separately reported",
+  "free_auger_rotation": "Not separately reported",
+  "cable_routing": "Not separately reported",
+  "actual_shaft_engagement": "Unconfirmed",
+  "usable_screw_thread_depth": "Unconfirmed",
+  "new_caliper_readings": false,
+  "production_ready": false,
+  "project_issue": "https://github.com/jeffglousher/garden-auger-technic/issues/2",
+  "issue_action": "Keep open for matching-half and assembly feedback"
+}

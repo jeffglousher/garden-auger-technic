@@ -1,0 +1,489 @@
+{
+  "status": "Matching upper sparse fit test; full physical assembly pending",
+  "cad": "experiments/garden-auger-servo-snug-test.limo",
+  "cad_sha256": "e298cbe0a4beab15691ba0a3e145b3129aeed7430d8f8aa9fb7df98b5930d666",
+  "body_id": 26,
+  "body_name": "PETG - Housing upper",
+  "native_engine": {
+    "path": "C:\\Users\\jeffg\\AppData\\Local\\limo-cad\\bevy\\Limo-CAD.exe",
+    "sha256": "64849c29246f0562fc047a35223375c5a8b02ad14b14e53160132988d52918da"
+  },
+  "original_review_engine_sha256": "ab75b91861009a3af9310a76ef595883f49d5d91879ef8afc075613bef35f477",
+  "current_engine_matches_original_review": false,
+  "current_engine_lower_mesh_matches_verified_sparse_lower": true,
+  "native_upper_locating_faces_match_review": {
+    "rear": {
+      "body_id": 26,
+      "face_key": "face:74",
+      "coordinate_mm": 193.99999999999997,
+      "axis": "Y"
+    },
+    "ear_front": {
+      "body_id": 26,
+      "face_key": "face:17",
+      "coordinate_mm": 162.64999999999998,
+      "axis": "Y"
+    },
+    "ear_rear": {
+      "body_id": 26,
+      "face_key": "face:19",
+      "coordinate_mm": 165.64999999999998,
+      "axis": "Y"
+    },
+    "left_ear_tip": {
+      "body_id": 26,
+      "face_key": "face:68",
+      "coordinate_mm": -38.2,
+      "axis": "X"
+    },
+    "right_ear_tip": {
+      "body_id": 26,
+      "face_key": "face:18",
+      "coordinate_mm": 18.2,
+      "axis": "X"
+    },
+    "capture": {
+      "body_id": 26,
+      "face_key": "face:15",
+      "coordinate_mm": 10.2,
+      "axis": "Z"
+    },
+    "exterior_bed": {
+      "body_id": 26,
+      "face_key": "face:5",
+      "coordinate_mm": 20.6,
+      "axis": "Z"
+    }
+  },
+  "native_matching_halves_nominal_interference": {
+    "_disclosure": {
+      "active_focus": "assembly",
+      "advertised": false,
+      "mode": "dynamic",
+      "pack": "document",
+      "state": "hidden_but_callable"
+    },
+    "exact": true,
+    "pairs": [
+      {
+        "below_clearance": true,
+        "body_a": 26,
+        "body_b": 46,
+        "closest_point_a": [
+          24.999999999999993,
+          195.0,
+          0.0
+        ],
+        "closest_point_b": [
+          24.999999999999993,
+          195.0,
+          0.0
+        ],
+        "interfering": false,
+        "minimum_clearance_mm": 0.0,
+        "occurrence_a": 6,
+        "occurrence_b": 7,
+        "overlap_volume_mm3": 0.0
+      }
+    ]
+  },
+  "native_export_materials": [
+    {
+      "name": "PETG, Chassis yellow",
+      "displaycolor": "#E5AE3C"
+    }
+  ],
+  "physical_feedback_source": "source/references/servo-lower-fit-feedback-20261007.json",
+  "template": "garden-auger-lower-servo-sparse-test.3mf",
+  "template_sha256": "b1382f1be10055e54a37371232b7195e444903ccd3819eb154082d879e2ad90f",
+  "test": "garden-auger-upper-servo-sparse-test.3mf",
+  "test_sha256": "884beed17763209c47db6c0bd891820db4db27384fa2455cfeb6c26755835ed2",
+  "native_export_mesh_matches_packaged_test": true,
+  "one_closed_connected_upper_half": true,
+  "native_print_placement_matches_packaged_test": true,
+  "native_preflight": {
+    "_disclosure": {
+      "active_focus": "print",
+      "advertised": true,
+      "mode": "dynamic",
+      "pack": "print",
+      "state": "active"
+    },
+    "appearances_assigned": 7,
+    "bodies_missing_appearance": [],
+    "body_count": 7,
+    "body_ids": [
+      1,
+      15,
+      26,
+      46,
+      90,
+      216,
+      221
+    ],
+    "hints": [
+      "Ready for solid_export_3mf (preferred) or solid_export_stl / solid_export_step."
+    ],
+    "layout": {
+      "bed": {
+        "margin_mm": 0.0,
+        "name": "Bambu X2D main",
+        "nozzle_mode": "main",
+        "origin_mm": [
+          0.0,
+          0.0
+        ],
+        "size_mm": [
+          256.0,
+          256.0,
+          261.0
+        ]
+      },
+      "clearance_mm": 2.0,
+      "excluded_instances": 6,
+      "issues": [
+        {
+          "code": "excluded_instances",
+          "message": "6 body occurrences are excluded by visibility or body selection. Repeated included occurrences are all preserved.",
+          "occurrence_ids": [
+            3,
+            7,
+            8,
+            14,
+            16
+          ]
+        }
+      ],
+      "overlap_check": "Conservative transformed mesh bounds; warnings are possible intersections, not exact solid collisions.",
+      "printable_groups": 1,
+      "printable_instances": 1,
+      "proposal_fits": true,
+      "proposed_translations": [
+        {
+          "occurrence_id": 6,
+          "translation": [
+            -28.0,
+            -78.70000152587892,
+            3.8146972514141453e-07
+          ]
+        }
+      ]
+    },
+    "manufacturing": {
+      "evidence": {
+        "cad_layout_checked": true,
+        "installed_slicer_imported": false,
+        "note": "This preflight reports requested settings. Portable 3MF does not serialize process overrides; realized walls, fit and strength remain unverified.",
+        "physical_fit_load_checks": "not_run",
+        "project_metadata_written_and_read_back": false,
+        "toolpaths_generated": false
+      },
+      "export_mode": "portable_model",
+      "objects": [
+        {
+          "appearance": {
+            "body_id": 26,
+            "brand": "Generic",
+            "color": {
+              "a": 255,
+              "b": 60,
+              "g": 174,
+              "r": 229
+            },
+            "color_name": "Chassis yellow",
+            "density_g_cm3": null,
+            "diameter_mm": 1.75,
+            "filament_id": null,
+            "filament_type": "PETG",
+            "material_name": "PETG",
+            "preset_id": null
+          },
+          "appearance_source": "cad_authored",
+          "body_id": 26,
+          "effective": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "geometry_sha256": "cff06007b0b65129e74d0414cd692f64d88f0fafad9b31675bcd2cb9552f35ea",
+          "group_occurrence_id": 6,
+          "height_ranges": [],
+          "inherited_defaults": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "layer_height_profiles": [],
+          "modifiers": [],
+          "name": "Body26",
+          "occurrence_id": 6,
+          "requested": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "resolved_export_sha256": "25bdf4e38d5763a899d5c3396c9774181ce32ba787548f450ebba3187c8453a6",
+          "rotation": [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          "source_document_id": null,
+          "sources": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "translation": [
+            128.0,
+            -29.19999999999999,
+            20.6
+          ],
+          "unsupported": []
+        }
+      ],
+      "project_defaults": {
+        "bottom_shell_layers": null,
+        "infill_density_percent": null,
+        "infill_pattern": null,
+        "top_shell_layers": null,
+        "wall_count": null
+      },
+      "selected_process": null,
+      "warnings": []
+    },
+    "ok": true,
+    "print_intent": {
+      "capabilities": [
+        {
+          "field": "wall_count",
+          "scope": "part",
+          "supported": false,
+          "target": "portable"
+        },
+        {
+          "field": "infill_density_percent",
+          "scope": "part",
+          "supported": false,
+          "target": "portable"
+        },
+        {
+          "field": "infill_pattern",
+          "scope": "part",
+          "supported": false,
+          "target": "portable"
+        },
+        {
+          "field": "top_shell_layers",
+          "scope": "part",
+          "supported": false,
+          "target": "portable"
+        },
+        {
+          "field": "bottom_shell_layers",
+          "scope": "part",
+          "supported": false,
+          "target": "portable"
+        }
+      ],
+      "height_ranges": [],
+      "layer_height_profiles": [],
+      "modifiers": [],
+      "orphan_body_ids": [],
+      "parts": [
+        {
+          "binding": "live",
+          "body_id": 26,
+          "requested": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "settings": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "sources": {
+            "bottom_shell_layers": null,
+            "infill_density_percent": null,
+            "infill_pattern": null,
+            "top_shell_layers": null,
+            "wall_count": null
+          },
+          "unsupported": []
+        }
+      ],
+      "profile_status": null,
+      "project_defaults": {
+        "bottom_shell_layers": null,
+        "infill_density_percent": null,
+        "infill_pattern": null,
+        "top_shell_layers": null,
+        "wall_count": null
+      },
+      "selected_process": null,
+      "warnings": []
+    },
+    "timeline_errors": []
+  },
+  "bed_bounds_mm": [
+    [
+      28.0,
+      78.7,
+      0.0
+    ],
+    [
+      228.0,
+      177.3,
+      23.8
+    ]
+  ],
+  "bed_transform": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    128.0,
+    128.0,
+    11.9
+  ],
+  "global_settings_byte_identical_to_sparse_lower": true,
+  "test_settings": {
+    "layer_height": "0.28",
+    "line_width": "0.50",
+    "initial_layer_line_width": "0.50",
+    "outer_wall_line_width": "0.50",
+    "inner_wall_line_width": "0.50",
+    "sparse_infill_line_width": "0.50",
+    "internal_solid_infill_line_width": "0.50",
+    "top_surface_line_width": "0.50",
+    "wall_loops": "2",
+    "sparse_infill_density": "5%",
+    "sparse_infill_pattern": "rectilinear",
+    "top_shell_layers": "3",
+    "bottom_shell_layers": "3",
+    "top_shell_thickness": "0",
+    "bottom_shell_thickness": "0",
+    "enable_support": "0",
+    "support_filament": "0",
+    "support_interface_filament": "0",
+    "enable_prime_tower": "0",
+    "print_settings_id": "0.28mm Sparse Servo Fit Test @BBL X2D"
+  },
+  "object_uses_global_strength_settings": true,
+  "native_slice": {
+    "native_exit_code": 0,
+    "native_plate": {
+      "feature_type_times": {
+        "Bottom surface": 245.7828369140625,
+        "Bridge": 511.2414245605469,
+        "Custom": 286.3885192871094,
+        "Flush": 29.0,
+        "Gap infill": 4.575011730194092,
+        "Inner wall": 615.8936767578125,
+        "Internal solid infill": 672.0787353515625,
+        "Outer wall": 903.4100341796875,
+        "Overhang wall": 11.313499450683594,
+        "Sparse infill": 589.0244750976562,
+        "Top surface": 193.39344787597656,
+        "Travel": 425.3382263183594,
+        "Undefined": 418.5582275390625
+      },
+      "filament_change_times": 0,
+      "filaments": [
+        {
+          "filament_id": "GFG00",
+          "id": 1,
+          "main_used_g": 45.870521545410156,
+          "total_used_g": 45.870521545410156
+        }
+      ],
+      "generate_support_material_time": 30,
+      "id": 1,
+      "infill_time": 144,
+      "layer_filament_change": 0,
+      "main_predication": 4142.7080078125,
+      "make_perimeters_time": 76,
+      "obj_cached_cnt": 0,
+      "objects": [
+        {
+          "bbox": {
+            "depth": 98.60000610351562,
+            "height": 23.799999237060547,
+            "width": 200.0,
+            "x": 28.0,
+            "y": 78.69999694824219,
+            "z": 3.814697322468419e-07
+          },
+          "id": 5,
+          "name": "PETG - Housing upper",
+          "triangle_count": 5258
+        }
+      ],
+      "sliced_time": 814,
+      "sliced_time_with_cache": 545,
+      "total_predication": 4480.31640625,
+      "triangle_count": 5258,
+      "warning_message": ""
+    },
+    "support_time_seconds": 0,
+    "support_gcode_feature_markers": 0,
+    "gcode_sha256": "e452afd067e6df2d18560c64cb129d790043d6b4e23ea35795d9866712fdd8be",
+    "sliced_archive_sha256": "2f4d53ed5de0801872f7de4dd9458e696edc5be59c3dfcac37dc645854c37bc6"
+  },
+  "gcode_feature_roles": [
+    "Bottom surface",
+    "Bridge",
+    "Custom",
+    "Floating vertical shell",
+    "Gap infill",
+    "Inner wall",
+    "Internal solid infill",
+    "Outer wall",
+    "Overhang wall",
+    "Sparse infill",
+    "Top surface"
+  ],
+  "time_seconds": 4480.31640625,
+  "filament_weight_g": 45.870521545410156,
+  "native_run_directory": ".build\\servo-upper-sparse-test\\slice-k8oxaww0",
+  "preserved_files_sha256": {
+    "experiments\\garden-auger-servo-snug-test.limo": "e298cbe0a4beab15691ba0a3e145b3129aeed7430d8f8aa9fb7df98b5930d666",
+    "garden-auger-lower-servo-sparse-test.3mf": "b1382f1be10055e54a37371232b7195e444903ccd3819eb154082d879e2ad90f",
+    "garden-auger-lower-servo-snug-test.3mf": "bc6a4cf354dd7573e11ff2915ccc1341e512cb51a3ffa8936da56a33cbb8391a",
+    "garden-auger-lower-fit-test.3mf": "6a77b54aecbddef0a82b3e543e9d61b5856116ded6d425aa8d9e66800058796e",
+    "garden-auger-bambu-latest.3mf": "e227a6aeabfa5e86ea39d208a1ba90c6b75f3f13ce8d6fcac7578a8066166082",
+    "garden-auger-direct-drive.nbcad": "e32c80a81073ff2e8e25d9b8ee620020367892c186ef41e5a6c0abb9ecfe5854"
+  },
+  "reviewed_CAD_modified": false,
+  "preview_and_slice_statistics_refreshed": true,
+  "final_project_gcode_embedded": false,
+  "printer_command_sent": false,
+  "project_loaded_in_ui_confirmed": false,
+  "limitations": [
+    "Native slice and sampled CAD checks do not certify manufactured fit or strength.",
+    "Check unsupported upper screw-recess roofs for bridge quality.",
+    "Lower half alone seems OK per owner; matching-half closure, alignment, rotation and cable routing are pending.",
+    "Shaft engagement and usable screw thread depth remain unconfirmed.",
+    "Limo typed Bambu inspector rejects rectilinear; native Bambu slicing is the process evidence."
+  ]
+}
