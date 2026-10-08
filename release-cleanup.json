@@ -170,5 +170,51 @@
       "other_team_worktrees_modified": false
     },
     "remaining_acceptance": "Printed fit/seating, usable internal center-screw depth, cable boot clearance and loaded torque/creep/wear feedback."
+  },
+  "assembly_fit_cleanup_20261008": {
+    "baseline_commit": "9f4f70ff763428d7d02fba0fde2486eeed1f74af",
+    "owner_authorization": "Owner reports successful assembly fit and requests cleanup of older versions without ongoing value; use PR process and merge immediately.",
+    "removed_paths": [
+      "garden-auger-lower-servo-27mm-test.3mf",
+      "source/horn-1906-0025-0032/1906-0025-0032.STEP",
+      "source/horn-1906-0025-0032/spec-sheet.pdf"
+    ],
+    "removed_sha256": {
+      "garden-auger-lower-servo-27mm-test.3mf": "fc1eaa2255129e2767b74d5ba687a7a57a4e0db9099ed892d06f7fce707cc822",
+      "source/horn-1906-0025-0032/1906-0025-0032.STEP": "ad985e243fe504ea7cacd92caad7afffbd1124737c9bdfc11ec0ea5547fcc01d",
+      "source/horn-1906-0025-0032/spec-sheet.pdf": "f48965ed0cc234603b1303b14ad6a65caff50d7f393eea4d0dacceb8d0e1aae7"
+    },
+    "removed_count": 3,
+    "removed_bytes": 2677616,
+    "recover_tracked_files": "git show 9f4f70ff763428d7d02fba0fde2486eeed1f74af:<path>",
+    "reason": "Redundant superseded rear-extension print and unselected metal-horn source/specification; neither is a required current design input.",
+    "retained_with_value": [
+      "Reviewed snug-nest CAD and both matching sparse housing prints; stronger lower profile.",
+      "Owner-saved historical Bambu template and complete Bambu project used for saved settings and earlier builders.",
+      "Rear-extension CAD remains the snug-nest builder input; failure regression and raw native reports remain evidence.",
+      "Original auger CAD/STEP/SLDPRT construction sources and drawing/caliper/Hitec references.",
+      "Earlier assembly/cable/fit inspection projects and renders linked by upstream findings."
+    ],
+    "superseded_print_regeneration_location": ".build/servo-27mm-test/garden-auger-lower-servo-27mm-test.3mf",
+    "physical_feedback": "source/references/servo-assembly-fit-feedback-20261008.json",
+    "current_geometry_and_print_settings_changed": false,
+    "remaining_validation": "First dirty trial, loaded behavior and separately unconfirmed shaft engagement/usable screw depth.",
+    "dirty_trial_issue": "https://github.com/jeffglousher/garden-auger-technic/issues/3",
+    "removed_git_blob_sha256": {
+      "garden-auger-lower-servo-27mm-test.3mf": "fc1eaa2255129e2767b74d5ba687a7a57a4e0db9099ed892d06f7fce707cc822",
+      "source/horn-1906-0025-0032/1906-0025-0032.STEP": "631f801047c55cbe8b4a16a5929adf38c75d4b74bbf86f264c100a074ccdfdf7",
+      "source/horn-1906-0025-0032/spec-sheet.pdf": "f48965ed0cc234603b1303b14ad6a65caff50d7f393eea4d0dacceb8d0e1aae7"
+    },
+    "removed_text_files_with_LF_in_git_CRLF_in_working_copy": [
+      "source/horn-1906-0025-0032/1906-0025-0032.STEP"
+    ],
+    "validation": {
+      "retained_binary_assets_hash_identical": 61,
+      "intact_retained_archives": 16,
+      "local_documentation_links_resolve": 159,
+      "removed_files_recoverable_from_pinned_commit": 3,
+      "native_CAD_and_sparse_print_hashes_match_existing_reports": true,
+      "modified_scripts_parse_and_import": true
+    }
   }
 }

@@ -28,9 +28,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'garden-auger-direct-drive.nbcad'
 TEMPLATE = ROOT / 'garden-auger-lower-fit-test.3mf'
 CAD = ROOT / 'experiments/garden-auger-servo-27mm-test.limo'
-PRINT = ROOT / 'garden-auger-lower-servo-27mm-test.3mf'
 REPORT = ROOT / 'servo-27mm-test-verification.json'
 BUILD = ROOT / '.build/servo-27mm-test'
+# This superseded print is a regeneration/debug artifact, not a current candidate.
+PRINT = BUILD / 'garden-auger-lower-servo-27mm-test.3mf'
 REAR_EXTENSION = 27.0 - 24.7
 
 
@@ -268,7 +269,7 @@ def main():
         'materials_preserved': True, 'mechanical_poses_preserved': True,
         'saved_production_and_user_test_preserved': original_hashes,
         'test_cad': str(CAD.relative_to(ROOT)), 'test_cad_sha256': digest(CAD),
-        'test_print': PRINT.name, 'test_print_checks': packaging,
+        'test_print': str(PRINT.relative_to(ROOT)), 'test_print_checks': packaging,
         'probe_saved_or_exported': False,
         'scope': ['27 mm rear length is user measured; no new reading for shaft tip-to-rear.',
                   'The 38 mm case plan length is recorded; retain the conservative larger plan pocket because case-to-shaft offset was not measured.',
@@ -277,7 +278,7 @@ def main():
                   'Native checks establish geometric fit of the stated envelope, not manufactured fit or strength.',
                   'No production file was overwritten; the owner-modified Bambu template and its object settings are preserved.']}
     REPORT.write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
-    print(json.dumps({'test_cad': report['test_cad'], 'test_print': PRINT.name,
+    print(json.dumps({'test_cad': report['test_cad'], 'test_print': report['test_print'],
         'native_old_failure_reproduced': True, 'native_fit_checks': len(fit),
         'rear_stop_to_wall_mm': 28.3, 'source_and_user_project_unchanged': True}), flush=True)
 
