@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08",
+  "cad_revision_authorized": true,
+  "authorization_quote": "Begin the CAD revision now",
+  "observations": {
+    "assembly_fit": "All current parts can be assembled together; fitment tests succeed.",
+    "joint_test": "Halves held tightly together by hand while handles were flexed; screws have not been tried.",
+    "locator_feedback": "Existing nub and recess allow movement. Add a second feature nearer each handle end, with tighter print-appropriate fit.",
+    "ingress_concern": "Opening around the rotating auger, not the split seam."
+  },
+  "requirements": [
+    "Lock all fitted functional internal dimensions.",
+    "Two locators per handle side with alternating ownership.",
+    "Four housing screws of the same length and four identical inserts.",
+    "Recess socket head cap screws flush or below the housing exterior.",
+    "Remove exterior bulk around inner features while retaining structural load paths.",
+    "Review completed CAD and provide report, exploded view, individual pieces and feature details.",
+    "Use PR process and merge validated repository work immediately."
+  ],
+  "remaining_physical_gates": [
+    "New locator fit and matching-half closure",
+    "Screwed handle stiffness and hardware engagement",
+    "Dirty trial and dirt ingress",
+    "Actual servo shaft engagement and usable center-screw thread depth"
+  ]
+}
