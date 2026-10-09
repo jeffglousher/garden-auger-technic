@@ -156,3 +156,36 @@ The complete Bambu project has four plates grouped by model filament, the saved 
 6. Close the upper housing with the two front and two rear M3 screws. Confirm free rotation, collar/sleeve end float and installed drive-axis alignment.
 
 The clamshell retains the auger and loose sleeve. No retaining clip, ring lock, separate horn or four M4 horn screws are required.
+
+
+## Abe's Home Assistant controls
+
+The deployed [ESP32-S3 configuration](controls/esphome/lonelybinary.yaml) includes
+the [learning-bench package](controls/esphome/common/lonelybinary-learning-bench.yaml).
+The [Abe dashboard export](controls/home-assistant/abe.json) is a Home Assistant
+storage-dashboard configuration for `lovelace-abe`; save it through the Lovelace
+WebSocket API or dashboard editor rather than editing `.storage` files.
+
+PCA9685 **CH0** follows the potentiometer, **CH1** is a system-controlled position
+servo, and **CH2** is the continuous-rotation auger. **CH3** remains available for
+a second continuous motor. The auger has Reverse, Stop, Forward and speed controls.
+The direction buttons request -50% and +50%; 0% stops. Nonzero continuous commands
+keep PWM attached. Boot, disabling servo commands, releasing all outputs, and
+loss of all API connections clear the continuous commands. Enabling commands does
+not restart them. The existing position servos retain their timed release behavior.
+
+Keep `wifi_ssid`, `wifi_password`, `lonelybinary_api_key` and
+`lonelybinary_fallback_password` in the local, ignored `secrets.yaml`. The exported
+configuration references those secrets; no live credentials are included here.
+The controller uses GPIO8/GPIO9 for I2C and address 0x40. Its servo V+ supply is
+separate from the 3.3 V logic supply and shares ground; USB logic power alone is
+insufficient for the servos. Power off before moving or reseating cables.
+
+Validation on 9 October 2026: ESPHome 2026.9.1 compiled and uploaded this package;
+all dashboard entities were available, and live button commands reached CH2.
+Controller-register readback showed approximately 2001 microseconds at +50%,
+1000 microseconds at -50%, and PWM off at Stop, with a nominal 50 Hz frequency.
+The `Auger output status` diagnostic reports controller-register settings, not
+measured terminal voltage, servo speed or physical rotation. The owner identified
+and repaired a loose shared servo-power wire after reporting that no servos moved.
+This check does not qualify loaded auger performance or mechanical strength.

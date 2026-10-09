@@ -1,0 +1,534 @@
+# CH0 follows the dial; CH1 is positional. CH2 is the auger, CH3 continuous.
+# Continuous outputs start stopped and never restore a running command.
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - light.turn_on:
+          id: led_bar
+          brightness: 60%
+          effect: Reflection meter
+      - script.execute: stop_continuous
+      - script.execute: apply_knob
+      - delay: 500ms
+      - script.execute: beep_once
+
+globals:
+  - id: continuous_1_command
+    type: float
+    initial_value: '0'
+  - id: continuous_2_command
+    type: float
+    initial_value: '0'
+  - id: servo_1_command
+    type: float
+    initial_value: '0'
+  - id: dance_phase
+    type: int
+    initial_value: '0'
+  - id: dance_started
+    type: uint32_t
+    initial_value: '0'
+  - id: dance_from
+    type: float
+    initial_value: '0'
+  - id: selected_effect
+    type: std::string
+    initial_value: '"Reflection meter"'
+
+i2c:
+  sda: GPIO8
+  scl: GPIO9
+  scan: true
+  frequency: 100kHz
+pca9685:
+  id: servo_driver
+  address: 0x40
+  frequency: 50Hz
+
+output:
+  - platform: pca9685
+    pca9685_id: servo_driver
+    id: servo_channel_0
+    channel: 0
+  - platform: pca9685
+    pca9685_id: servo_driver
+    id: servo_channel_1
+    channel: 1
+  - platform: pca9685
+    pca9685_id: servo_driver
+    id: servo_channel_2
+    channel: 2
+  - platform: pca9685
+    pca9685_id: servo_driver
+    id: servo_channel_3
+    channel: 3
+  - platform: ledc
+    id: xl_led_pwm
+    channel: 0
+    pin: GPIO17
+    frequency: 1000Hz
+  - platform: ledc
+    id: buzzer_pwm
+    pin: GPIO20
+    channel: 2
+    frequency: 1000Hz
+
+rtttl:
+  id: melody
+  output: buzzer_pwm
+  gain: 12%
+
+light:
+  - platform: monochromatic
+    id: xl_led
+    name: XL LED
+    output: xl_led_pwm
+    restore_mode: ALWAYS_OFF
+    default_transition_length: 0s
+  - platform: esp32_rmt_led_strip
+    id: led_bar
+    name: Learning LED bar
+    pin: GPIO2
+    num_leds: 5
+    rmt_symbols: 48
+    chipset: WS2812
+    channel_colors: GRB
+    color_correct: [25%, 25%, 25%]
+    gamma_correct: 1.0
+    restore_mode: ALWAYS_OFF
+    default_transition_length: 0s
+    effects:
+      - addressable_lambda:
+          name: Color wheel
+          update_interval: 20ms
+          lambda: |-
+            it.all() = ESPHSVColor(static_cast<uint8_t>((millis() / 30) % 256), 255, 255);
+      - addressable_lambda:
+          name: Comet
+          update_interval: 20ms
+          lambda: |-
+            const int head = (millis() / 150) % it.size();
+            it.all() = Color::BLACK;
+            it[head] = Color(0, 220, 255);
+            it[(head + it.size() - 1) % it.size()] = Color(25, 0, 80);
+      - addressable_rainbow:
+          name: Rainbow
+          speed: 5
+          width: 5
+      - addressable_lambda:
+          name: Reflection meter
+          update_interval: 20ms
+          lambda: |-
+            it.all() = Color::BLACK;
+            const float volts = id(reflection_voltage).state;
+            if (!std::isfinite(volts)) return;
+            // Display-only zero zone; the reported voltage stays untouched.
+            const float level = clamp((volts - 0.10f) / 3.0f, 0.0f, 1.0f);
+            const float fill = level * it.size();
+            for (int i = 0; i < it.size(); i++) {
+              const float brightness = clamp(fill - i, 0.0f, 1.0f) * level;
+              it[i] = Color(static_cast<uint8_t>(180 * brightness), 0,
+                            static_cast<uint8_t>(255 * brightness));
+            }
+
+sensor:
+  - platform: copy
+    source_id: knob_level
+    name: Servo 1 requested position
+    unit_of_measurement: '%'
+    device_class: ''
+    accuracy_decimals: 0
+    filters:
+      - lambda: return x * 200.0f - 100.0f;
+      - throttle: 200ms
+  - platform: adc
+    id: knob_level
+    pin: GPIO6
+    internal: true
+    attenuation: auto
+    update_interval: 20ms
+    filters:
+      - sliding_window_moving_average:
+          window_size: 3
+          send_every: 1
+          send_first_at: 1
+      # Starting scale; calibrate against measured knob endpoints after wiring.
+      - lambda: return clamp(x / 3.1f, 0.0f, 1.0f);
+      - delta: 0.005
+    on_value:
+      then:
+        - script.execute: apply_knob
+  - platform: copy
+    source_id: knob_level
+    name: Knob position
+    unit_of_measurement: '%'
+    device_class: ''
+    accuracy_decimals: 0
+    filters:
+      - multiply: 100
+      - throttle: 200ms
+  - platform: adc
+    id: reflection_voltage
+    pin: GPIO15
+    internal: true
+    attenuation: auto
+    update_interval: 20ms
+  - platform: copy
+    source_id: reflection_voltage
+    name: Optical reflection voltage
+    accuracy_decimals: 2
+    filters:
+      - throttle: 200ms
+
+script:
+  - id: stop_continuous
+    mode: restart
+    then:
+      - lambda: |-
+          id(continuous_1_command) = 0;
+          id(continuous_2_command) = 0;
+          id(continuous_1_speed).publish_state(0);
+          id(continuous_2_speed).publish_state(0);
+      - script.execute: stop_continuous_1
+      - script.execute: stop_continuous_2
+  - id: stop_continuous_1
+    mode: restart
+    then:
+      - servo.write:
+          id: continuous_1
+          level: 0%
+      - delay: 100ms
+      - servo.detach: continuous_1
+  - id: stop_continuous_2
+    mode: restart
+    then:
+      - servo.write:
+          id: continuous_2
+          level: 0%
+      - delay: 100ms
+      - servo.detach: continuous_2
+  - id: beep_once
+    mode: single
+    then:
+      - rtttl.stop
+      - rtttl.play: 'hello:d=4,o=5,b=120:c,e,g,2c6,g,2c6'
+  - id: play_demo
+    mode: single
+    then:
+      - if:
+          condition:
+            switch.is_on: servo_enabled
+          then:
+            - rtttl.stop
+            - repeat:
+                count: 8
+                then:
+                  - lambda: |-
+                      // Original four-beat phrases; motion restarts on each musical phrase.
+                      static const char *const phrases[] = {
+                        "8c6,8e6,8g6,8p,8a6,8g6,8e6,8c6",
+                        "8d6,16p,16d6,8f6,8a6,4g6,8e6,8p",
+                        "8e6,8g6,8c7,8b6,8a6,8g6,8e6,8p",
+                        "4f6,8a6,8g6,8e6,8d6,4c6",
+                        "8c6,8g6,8e6,8g6,8a6,8p,8g6,8e6",
+                        "8d6,16p,16f6,8a6,8f6,4g6,8d6,8p",
+                        "8e6,8g6,8a6,8c7,8b6,8g6,8e6,8d6",
+                        "8f6,8a6,8g6,8e6,2c6"
+                      };
+                      id(dance_phase) = iteration;
+                      id(dance_from) = id(servo_2_position).state / 100.0f;
+                      id(dance_started) = millis();
+                      id(melody).play(std::string("Bounce:d=4,o=6,b=120:") + phrases[iteration]);
+                  - while:
+                      condition:
+                        lambda: return id(melody).is_playing() && millis() - id(dance_started) < 3000;
+                      then:
+                        - lambda: |-
+                            const uint32_t elapsed = millis() - id(dance_started);
+                            const float t = clamp(elapsed / 2000.0f, 0.0f, 1.0f);
+                            const int mode = id(dance_phase) % 4;
+                            float target;
+                            if (mode == 0 || mode == 2) {
+                              const float end = mode == 0 ? -0.75f : 0.75f;
+                              const float ease = t * t * (3.0f - 2.0f * t);
+                              target = id(dance_from) + (end - id(dance_from)) * ease;
+                            } else if (mode == 1) {
+                              // Short 40-degree accents, not rapid full-range reversals.
+                              const int beat = elapsed / 500;
+                              target = beat % 2 == 0 ? -0.45f : -0.75f;
+                            } else {
+                              target = elapsed < 500 ? 0.40f : elapsed < 1000 ? 0.70f :
+                                  0.70f * (1.0f - clamp((elapsed - 1000) / 1000.0f, 0.0f, 1.0f));
+                            }
+                            id(servo_1).write(target);
+                            id(servo_2_position).publish_state(target * 100.0f);
+                        - delay: 20ms
+                  - rtttl.stop
+            - servo.write:
+                id: servo_1
+                level: 0%
+            - lambda: id(servo_2_position).publish_state(0);
+            - rtttl.stop
+  - id: apply_knob
+    then:
+      - if:
+          condition:
+            lambda: return id(servo_enabled).state && id(dial_controls_servo_1).state && std::isfinite(id(knob_level).state);
+          then:
+            - lambda: |-
+                id(servo_1_command) = id(knob_level).state * 200.0f - 100.0f;
+                id(servo_1_position).publish_state(id(servo_1_command));
+                id(servo_0).write(id(servo_1_command) / 100.0f);
+      - if:
+          condition:
+            switch.is_on: knob_controls_leds
+          then:
+            - lambda: |-
+                const float level = id(knob_level).state;
+                if (!std::isfinite(level)) return;
+                auto xl = id(xl_led).make_call();
+                xl.set_state(level > 0.01f);
+                xl.set_brightness(level);
+                xl.perform();
+
+switch:
+  - platform: template
+    id: dial_controls_servo_1
+    name: Dial controls servo 1
+    optimistic: true
+    restore_mode: ALWAYS_ON
+    on_turn_on:
+      - script.execute: apply_knob
+  - platform: template
+    name: Servo 1 details
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+  - platform: template
+    name: Servo 2 details
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+  - platform: template
+    name: Continuous 1 details
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+  - platform: template
+    name: Continuous 2 details
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+  - platform: template
+    id: knob_controls_leds
+    name: Knob controls LEDs
+    optimistic: true
+    restore_mode: ALWAYS_ON
+    on_turn_on:
+      - script.execute: apply_knob
+  - platform: template
+    id: servo_enabled
+    name: Enable servo commands
+    optimistic: true
+    restore_mode: ALWAYS_ON
+    on_turn_on:
+      - script.execute: apply_knob
+    on_turn_off:
+      - script.execute: stop_continuous
+      - script.stop: play_demo
+      - rtttl.stop
+      - servo.detach: servo_0
+      - servo.detach: servo_1
+
+servo:
+  - id: servo_0
+    output: servo_channel_0
+    min_level: 2.5%
+    idle_level: 7.5%
+    max_level: 12.5%
+    restore: false
+    auto_detach_time: 1s
+  - id: servo_1
+    output: servo_channel_1
+    min_level: 2.5%
+    idle_level: 7.5%
+    max_level: 12.5%
+    restore: false
+    auto_detach_time: 3s
+
+  - id: continuous_1
+    output: servo_channel_2
+    min_level: 2.5%
+    idle_level: 7.5%
+    max_level: 12.5%
+    restore: false
+    auto_detach_time: 0s
+  - id: continuous_2
+    output: servo_channel_3
+    min_level: 2.5%
+    idle_level: 7.5%
+    max_level: 12.5%
+    restore: false
+    auto_detach_time: 0s
+
+number:
+  - platform: template
+    id: servo_1_position
+    name: Servo 1 commanded position
+    unit_of_measurement: '%'
+    min_value: -100
+    max_value: 100
+    step: 1
+    mode: slider
+    lambda: return id(servo_1_command);
+    update_interval: 1s
+    set_action:
+      - if:
+          condition:
+            switch.is_on: servo_enabled
+          then:
+            - switch.turn_off: dial_controls_servo_1
+            - lambda: |-
+                id(servo_1_command) = x;
+                id(servo_1_position).publish_state(x);
+                id(servo_0).write(x / 100.0f);
+  - platform: template
+    id: continuous_1_speed
+    name: Continuous 1 speed
+    unit_of_measurement: '%'
+    min_value: -100
+    max_value: 100
+    step: 1
+    mode: slider
+    lambda: return id(continuous_1_command);
+    update_interval: 1s
+    set_action:
+      - script.stop: stop_continuous_1
+      - lambda: |-
+          const float speed = id(servo_enabled).state ? x : 0.0f;
+          id(continuous_1_command) = speed;
+          id(continuous_1_speed).publish_state(speed);
+          if (speed != 0.0f) id(continuous_1).write(speed / 100.0f);
+      - if:
+          condition:
+            lambda: return id(continuous_1_command) == 0.0f;
+          then:
+            - script.execute: stop_continuous_1
+  - platform: template
+    id: continuous_2_speed
+    name: Continuous 2 speed
+    unit_of_measurement: '%'
+    min_value: -100
+    max_value: 100
+    step: 1
+    mode: slider
+    lambda: return id(continuous_2_command);
+    update_interval: 1s
+    set_action:
+      - script.stop: stop_continuous_2
+      - lambda: |-
+          const float speed = id(servo_enabled).state ? x : 0.0f;
+          id(continuous_2_command) = speed;
+          id(continuous_2_speed).publish_state(speed);
+          if (speed != 0.0f) id(continuous_2).write(speed / 100.0f);
+      - if:
+          condition:
+            lambda: return id(continuous_2_command) == 0.0f;
+          then:
+            - script.execute: stop_continuous_2
+  - platform: template
+    id: servo_2_position
+    name: Servo 2 requested position
+    unit_of_measurement: '%'
+    min_value: -100
+    max_value: 100
+    step: 1
+    mode: slider
+    optimistic: true
+    restore_value: false
+    initial_value: 0
+    set_action:
+      - script.stop: play_demo
+      - rtttl.stop
+      - if:
+          condition:
+            switch.is_on: servo_enabled
+          then:
+            - servo.write:
+                id: servo_1
+                level: !lambda return x / 100.0f;
+
+text_sensor:
+  - platform: template
+    name: Auger output status
+    entity_category: diagnostic
+    update_interval: 1s
+    lambda: |-
+      uint8_t regs[4], mode1, prescale;
+      if (!id(servo_driver).read_bytes(0x0E, regs, 4) ||
+          !id(servo_driver).read_byte(0x00, &mode1) ||
+          !id(servo_driver).read_byte(0xFE, &prescale))
+        return {"CH2: controller read failed"};
+      if (mode1 & 0x10) return {"CH2: controller asleep"};
+      if (regs[3] & 0x10) return {"CH2: PWM off"};
+      if (regs[1] & 0x10) return {"CH2: output held high"};
+      const uint16_t on = regs[0] | ((regs[1] & 0x0F) << 8);
+      const uint16_t off = regs[2] | ((regs[3] & 0x0F) << 8);
+      const uint16_t ticks = (off - on) & 0x0FFF;
+      const float pulse_us = ticks * (prescale + 1) / 25.0f;
+      const float hz = 25000000.0f / (4096.0f * (prescale + 1));
+      char status[96];
+      snprintf(status, sizeof(status), "CH2: %.0f us at %.1f Hz; command %.0f%%",
+               pulse_us, hz, id(continuous_1_command));
+      return {status};
+  - platform: template
+    name: Bench revision
+    lambda: return {"abe-auger-ch2-diag-20261009"};
+    update_interval: 60s
+
+button:
+  - platform: template
+    name: Stop continuous
+    icon: mdi:stop
+    on_press:
+      - script.execute: stop_continuous
+  - platform: template
+    name: Play demo
+    icon: mdi:motion-play
+    on_press:
+      - script.execute: play_demo
+  - platform: template
+    name: Test buzzer
+    on_press:
+      - script.stop: play_demo
+      - script.execute: beep_once
+  - platform: template
+    name: Next light effect
+    on_press:
+      - lambda: |-
+          std::string current = id(led_bar).get_effect_name();
+          if (current == "None") current = id(selected_effect);
+          const char *next = "Rainbow";
+          if (current == "Rainbow") next = "Color wheel";
+          else if (current == "Color wheel") next = "Comet";
+          else if (current == "Comet") next = "Reflection meter";
+          id(selected_effect) = next;
+          auto call = id(led_bar).make_call();
+          call.set_effect(next);
+          call.perform();
+  - platform: template
+    name: Release servo
+    on_press:
+      - script.execute: stop_continuous
+      - switch.turn_off: servo_enabled
+      - servo.detach: servo_0
+      - servo.detach: servo_1
+
+interval:
+  - interval: 1s
+    then:
+      - if:
+          condition:
+            lambda: |-
+              return !id(servo_enabled).state ||
+                  (!api::global_api_server->is_connected() &&
+                   (id(continuous_1_command) != 0 || id(continuous_2_command) != 0));
+          then:
+            - script.execute: stop_continuous
