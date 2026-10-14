@@ -10,7 +10,7 @@ Open the separate [rounded housing CAD](../experiments/garden-auger-rounded-hous
 
 ## Ring dimensions and print-file check
 
-The owner's ?slip ring? description is provisionally interpreted as the **teal loose PLA wear sleeve**. This is a mechanical sleeve; there is no electrical slip ring. The clarification question remains open: outside diameter/closure, loose inside diameter, excess length, or the yellow auger-entry rim. No sleeve dimension was changed based on an ambiguous size complaint.
+The owner now confirms that the **teal loose PLA wear sleeve seems to prevent housing closure** and requested dimensional diagnosis without speculative geometry edits. The actual printed housing filenames and printed sleeve dimensions remain unknown. A [separate closure audit](../sleeve-closure-review.json) confirms the fitted, detail and rounded CAD use identical sleeve-seat profiles and revolve definitions in both halves. Five upper-half approach/closure poses clear the nominal sleeve. No sleeve or housing geometry was changed during this diagnosis.
 
 Native cylindrical and planar witnesses confirm:
 
@@ -23,7 +23,11 @@ The saved [sleeve STL](../print-parts/direct-drive/pla-full-wear-sleeve.stl) mat
 
 If this refers to the **yellow entrance rim**, that deflector is intentionally larger: ?37.60 inside, up to ?41.20 outside. It is separate from the ?34 sleeve, remains unchanged and is noncontact protection rather than a dirt-tight seal.
 
-To correct a physical oversize, identify which fit is wrong and use the numbered printed-part measurements below. Do not use the chamfer mouth as the bore reading. No new caliper readings or shaft-relative offsets have been invented.
+The follow-up also inspects the six matching sparse upper/lower projects. The detail and rounded meshes match their native CAD directly. The older servo meshes retain identical vertex/triangle counts and triangle order, with maximum coordinate differences of 0.00001453/0.00001512 mm from export precision; their Y125 sleeve-seat sections retain at least 0.77896 mm radial room around the nominal sleeve. All examined 3MF instance/component transforms are rigid, with no scaling. This is file/model evidence, not manufactured-dimension evidence.
+
+**Axial seating is a narrower allowance than diameter.** A correctly located sleeve spans Y120.6-131.0 between stops Y120.3/131.2. Native sleeve translations of -0.29/+0.19 mm clear both halves; -0.31/+0.21 mm collide. Outside that short bay the adjacent openings reduce to diameter31.0 at the front and29.6 at the rear, so a displaced sleeve can prevent closure even with its correct diameter. These are isolated nominal controls, not proof that the physical sleeve is misplaced.
+
+To diagnose the remaining physical problem, identify which upper/lower files were printed, check whether the halves close with the sleeve removed, and use the numbered printed-part measurements below. Do not use the chamfer mouth as the bore reading. No new caliper readings or shaft-relative offsets have been invented.
 
 ![Numbered sleeve measurements](../renders/rounded-housing/sleeve-measurements.png)
 
