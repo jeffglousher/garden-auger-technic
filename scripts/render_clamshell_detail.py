@@ -30,12 +30,16 @@ def picture(name, geometry, title, subtitle, size=(1400,900),direction=(1.2,-1.7
     return path
 
 
-def main():
+def main(scene_path=ROOT/'.build/clamshell-detail/scene.json', out=OUT,
+         revision_name='Clamshell detail revision',
+         side_relief_description='Side relief widens at 45 degrees toward retained bed floors; bearing cavities remain fixed'):
+    global OUT
+    OUT=out
     OUT.mkdir(parents=True,exist_ok=True)
-    bodies={b['id']:b for b in json.loads((ROOT/'.build/clamshell-detail/scene.json').read_text())['bodies']}
+    bodies={b['id']:b for b in json.loads(scene_path.read_text())['bodies']}
     meshes={bid:(COLORS[bid],triangles(bodies[bid],
         (lambda p:(p[0],148.7-p[2],p[1])) if bid==1 else None)) for bid in COLORS}
-    picture('assembled',list(meshes.values()),'Clamshell detail revision | assembled',
+    picture('assembled',list(meshes.values()),revision_name+' | assembled',
             'Actual native CAD meshes | fitted internal dimensions retained | physical revision trial pending')
     offsets={26:(0,0,45),46:(0,0,-30),15:(0,-30,0),90:(0,-30,0),
              216:(0,25,10),221:(0,0,16),1:(0,25,0)}
@@ -68,7 +72,7 @@ def main():
         ('auger-entry',[26,46,15,90],[0,101,-21],[22,122,21],'Auger entrance | cutaway of external deflector',
          'Fixed projecting lip, 18.8 mm inner radius | original entrance and thrust stops retained | noncontact'),
         ('sculpted-shoulders',[26,46],[-40,125,-21],[35,145,21],'Bearing shoulders | exterior material removed',
-         'Side relief widens at 45 degrees toward retained bed floors; bearing cavities remain fixed')]:
+         side_relief_description)]:
         geometry=[crop(bodies[i],lo,hi) for i in ids]
         if name=='locators':geometry=[shifted(g,(0,0,12 if i==26 else -5)) for i,g in zip(ids,geometry)]
         if name=='screw-stack':

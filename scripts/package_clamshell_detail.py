@@ -20,16 +20,19 @@ CAD=ROOT/'experiments/garden-auger-clamshell-detail-test.limo'
 BUILD=ROOT/'.build/clamshell-detail'
 
 
-def main():
-    review=json.loads((ROOT/'clamshell-detail-review.json').read_text())
+def main(cad=CAD, review_path=ROOT/'clamshell-detail-review.json',
+         prefix='clamshell-detail', template_prefix='servo',
+         report_path=ROOT/'clamshell-detail-print-verification.json'):
+    review=json.loads(review_path.read_text())
+    CAD=cad.resolve()
     assert digest(CAD)==review['cad_sha256']
     results=[]
     with CadClient() as c:
         c.call('cad_load_project_model',{'model_json':json.dumps(read_model(CAD))})
         for side,bid,oid,rotation,q in [('upper',26,6,UPPER,[0,1,0,0]),('lower',46,7,I,[0,0,0,1])]:
             name=f'PETG - Housing {side}'
-            template=ROOT/f'garden-auger-{side}-servo-sparse-test.3mf'
-            target=ROOT/f'garden-auger-{side}-clamshell-detail-sparse-test.3mf'
+            template=ROOT/f'garden-auger-{side}-{template_prefix}-sparse-test.3mf'
+            target=ROOT/f'garden-auger-{side}-{prefix}-sparse-test.3mf'
             before=read_zip(template);entries=dict(before)
             model,config,parts=project_parts(entries);part=parts[name]
             raw=base64.b64decode(c.call('solid_export_3mf',{'body_ids':[bid],'scope':'definition',
@@ -38,7 +41,7 @@ def main():
             assert mesh.is_watertight and mesh.is_volume and component_count(mesh)==1
             center=mesh.bounds.mean(0);vertices=mesh.vertices-center
             rotated=vertices@rotation.T;translation=np.array([128,128,-rotated[:,2].min()])
-            view=f'Print - clamshell detail {side}'
+            view=f'Print - {prefix} {side}'
             c.call('upsert_named_view',{'name':view,'camera':{'position':[280,-180,330],
                 'target':[128,128,10],'up':[0,0,1]},'visible_body_ids':[bid],
                 'occurrence_offsets':[{'occurrence_id':oid,'translation':(translation-rotation@center).tolist(),'rotation':q}],
@@ -62,7 +65,7 @@ def main():
                 if 'face_count' in n.attrib:n.set('face_count',str(len(mesh.faces)))
                 if key=='source_file':n.set('value',str(CAD.relative_to(ROOT)).replace('\\','/'))
                 if key.startswith('source_offset_'):n.set('value',f'{center["xyz".index(key[-1])]:.12g}')
-                if key=='plater_name':n.set('value',f'Clamshell detail test - {side}')
+                if key=='plater_name':n.set('value',f'{prefix} test - {side}')
                 if n.tag=='assemble_item' and 'instance_id' in n.attrib:n.set('transform',transform_text(rotation,translation))
                 if n.tag=='part':n.set('uuid',str(uuid.uuid5(uuid.NAMESPACE_URL,review['cad_sha256']+side)))
             entries['Metadata/model_settings.config']=ET.tostring(config,encoding='utf-8',xml_declaration=True)
@@ -108,7 +111,7 @@ def main():
                 'printer_command_sent':False,'final_project_gcode_embedded':False}
             results.append(result)
             print(side,native['native_plate']['total_predication']/60,'minutes',flush=True)
-    (ROOT/'clamshell-detail-print-verification.json').write_text(json.dumps(results,indent=2)+'\n')
+    report_path.write_text(json.dumps(results,indent=2)+'\n')
 
 
 if __name__=='__main__':main()

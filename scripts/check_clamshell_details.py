@@ -12,8 +12,9 @@ ROOT=Path(__file__).resolve().parents[1]
 CAD=ROOT/'experiments/garden-auger-clamshell-detail-test.limo'
 
 
-def main():
-    r=json.loads((ROOT/'clamshell-detail-review.json').read_text())
+def main(cad=CAD, report_path=ROOT/'clamshell-detail-review.json'):
+    CAD=cad.resolve()
+    r=json.loads(report_path.read_text())
     assert digest(CAD)==r['cad_sha256']
     source=read_model(ROOT/r['source']);candidate=read_model(CAD)
     sections=[('ear-nest',46,'xy',-.1,164.15),('servo-floor',46,'xz',179.9,-10),
@@ -66,7 +67,7 @@ def main():
             coupled.append({'common_drive_translation_mm':shift,'result':result})
     r.update(retained_native_section_probes=records,native_equal_screw_stacks=screws,
              coupled_assembly_samples=coupled,native_section_boundary_finding=boundary_finding)
-    (ROOT/'clamshell-detail-review.json').write_text(json.dumps(r,indent=2)+'\n')
+    report_path.write_text(json.dumps(r,indent=2)+'\n')
     print('Six retained section probes, four native screw stacks and nine coupled poses passed',flush=True)
 
 
