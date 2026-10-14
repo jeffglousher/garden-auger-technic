@@ -1,12 +1,13 @@
 {
   "date": "2026-10-14",
   "owner_request": "Check the slip ring vs model tolerances. It seems slightly too Large on the assembly. We should also round the sides to reduce the plastic and improve the ergonomics.",
-  "ring_identity": "Teal loose PLA sleeve provisionally assumed; clarification pending.",
-  "fit_direction": "Outside diameter, bore, axial length, or yellow entry-rim concern unconfirmed.",
+  "ring_identity": "Confirmed teal PLA wear sleeve.",
+  "fit_direction": "Housing closure obstruction reported; diameter versus length/position not yet measured.",
   "new_caliper_readings": null,
   "authorized_work": [
     "Audit ring CAD and print-file dimensions.",
     "Round housing sides for less plastic and improved ergonomics."
   ],
-  "result": "Separate rounded housing candidate; sleeve remains unchanged because CAD/STL agree and physical correction is not yet specified."
+  "result": "No geometry changed during follow-up. Seat feature/profile unchanged across fitted/detail/rounded models; nominal closure and off-seat axial controls checked. Actual print versions and measurements remain needed.",
+  "owner_clarification": "Yes, the teal sleeve, seems to block closing but check the dimensions. Do not just blindly make changes. Owner is not sure whether the latest housing model changed."
 }

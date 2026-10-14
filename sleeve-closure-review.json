@@ -1,0 +1,1042 @@
+{
+  "owner_feedback": "Teal PLA sleeve seems to prevent housing closure; actual printed housing versions and dimensions unconfirmed.",
+  "geometry_changed": false,
+  "models": [
+    {
+      "file": "experiments/garden-auger-servo-snug-test.limo",
+      "sha256": "e298cbe0a4beab15691ba0a3e145b3129aeed7430d8f8aa9fb7df98b5930d666",
+      "lower_seat": {
+        "body_id": 46,
+        "face_key": "face:57",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.2,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:199",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.2,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:200",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "upper_seat": {
+        "body_id": 26,
+        "face_key": "face:51",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 117.3,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:205",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 117.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          },
+          {
+            "edge_key": "edge:206",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 113.7,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          }
+        ]
+      },
+      "sleeve": {
+        "body_id": 221,
+        "face_key": "face:4",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.0,
+            "z": 0.0
+          },
+          "radius": 17.0,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:7",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.0,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:8",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.6,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "closed_sleeve_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "file": "experiments/garden-auger-clamshell-detail-test.limo",
+      "sha256": "5ef6714af6a64528bcd43c1f1a50aab54c1ac134e14d44fb52c83a79fb764980",
+      "lower_seat": {
+        "body_id": 46,
+        "face_key": "face:24",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 117.3,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:135",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 113.7,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:136",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 117.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "upper_seat": {
+        "body_id": 26,
+        "face_key": "face:19",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.2,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:100",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.2,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          },
+          {
+            "edge_key": "edge:101",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          }
+        ]
+      },
+      "sleeve": {
+        "body_id": 221,
+        "face_key": "face:4",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.0,
+            "z": 0.0
+          },
+          "radius": 17.0,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:7",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.0,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:8",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.6,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "closed_sleeve_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "file": "experiments/garden-auger-rounded-housing-test.limo",
+      "sha256": "6e5524665b72a79f256b688acac9ee0134fbbd0ed79ea5cb9a8e1fea3473beef",
+      "lower_seat": {
+        "body_id": 46,
+        "face_key": "face:97",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.2,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:319",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.2,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:321",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "upper_seat": {
+        "body_id": 26,
+        "face_key": "face:48",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.2,
+            "z": 0.0
+          },
+          "radius": 17.8,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:178",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.2,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          },
+          {
+            "edge_key": "edge:181",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.3,
+                "z": 0.0
+              },
+              "closed": false,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.8,
+              "reference": {
+                "x": -1.0,
+                "y": 0.0,
+                "z": -1.8369701987210297e-16
+              }
+            }
+          }
+        ]
+      },
+      "sleeve": {
+        "body_id": 221,
+        "face_key": "face:4",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -1.0,
+            "z": -0.0
+          },
+          "origin": {
+            "x": 0.0,
+            "y": 131.0,
+            "z": 0.0
+          },
+          "radius": 17.0,
+          "reference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:7",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 131.0,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:8",
+            "circle": {
+              "center": {
+                "x": 0.0,
+                "y": 120.6,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+              },
+              "radius": 17.0,
+              "reference": {
+                "x": 0.0,
+                "y": -0.0,
+                "z": 1.0
+              }
+            }
+          }
+        ]
+      },
+      "closed_sleeve_pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "print_files": [
+    {
+      "file": "garden-auger-upper-servo-sparse-test.3mf",
+      "sha256": "454546d8f147a2b387f3c717df377e0089c36c8b419c06fc39871cb8981774ab",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "older_package_precision_check": {
+        "native_mesh_counts_and_triangle_order_match": true,
+        "maximum_vertex_coordinate_difference_mm": 1.4529350215397585e-05,
+        "source_center_mm": [
+          0.0,
+          157.2,
+          8.7
+        ],
+        "print_seat_section_radius_range_mm": [
+          17.77896487978142,
+          17.8000009298985
+        ],
+        "section_y_mm": 125,
+        "print_seat_min_radial_gap_to_nominal_sleeve_mm": 0.7789648797814195
+      },
+      "mesh_matches_at_0_000001_mm": false,
+      "mesh_matches_with_export_precision": true
+    },
+    {
+      "file": "garden-auger-lower-servo-sparse-test.3mf",
+      "sha256": "b1382f1be10055e54a37371232b7195e444903ccd3819eb154082d879e2ad90f",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "older_package_precision_check": {
+        "native_mesh_counts_and_triangle_order_match": true,
+        "maximum_vertex_coordinate_difference_mm": 1.5115293358292092e-05,
+        "source_center_mm": [
+          0.0,
+          157.2,
+          -10.3
+        ],
+        "print_seat_section_radius_range_mm": [
+          17.77896475747707,
+          17.800000905814866
+        ],
+        "section_y_mm": 125,
+        "print_seat_min_radial_gap_to_nominal_sleeve_mm": 0.7789647574770697
+      },
+      "mesh_matches_at_0_000001_mm": false,
+      "mesh_matches_with_export_precision": true
+    },
+    {
+      "file": "garden-auger-upper-clamshell-detail-sparse-test.3mf",
+      "sha256": "0bef2affdf65cefa7c237c715186562fad606cd93c110890a0277ba223ce9ee5",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "mesh_matches_at_0_000001_mm": true,
+      "mesh_matches_with_export_precision": true
+    },
+    {
+      "file": "garden-auger-lower-clamshell-detail-sparse-test.3mf",
+      "sha256": "e648b68a8b3611b3a3ae47902abae6356797ed78f3a5d74122c1ecfbc6f3d4a0",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "mesh_matches_at_0_000001_mm": true,
+      "mesh_matches_with_export_precision": true
+    },
+    {
+      "file": "garden-auger-upper-rounded-housing-sparse-test.3mf",
+      "sha256": "113c8f7c2c3a1c0f8c69e4a5421bbda8171ab97bce89ff4e59bb222d3a963e18",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "mesh_matches_at_0_000001_mm": true,
+      "mesh_matches_with_export_precision": true
+    },
+    {
+      "file": "garden-auger-lower-rounded-housing-sparse-test.3mf",
+      "sha256": "23746139c5b921d1c7b180ea62130e51e1d7089729062ab64e2619aabaf9c752",
+      "transforms": [
+        {
+          "node": "component",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "node": "item",
+          "axis_scale_factors": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "all_transforms_rigid": true,
+      "mesh_matches_at_0_000001_mm": true,
+      "mesh_matches_with_export_precision": true
+    }
+  ],
+  "closure_samples": [
+    {
+      "upper_lift_mm": 10,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.8845965859994568,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "upper_lift_mm": 2,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "upper_lift_mm": 0.5,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "upper_lift_mm": 0.1,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "upper_lift_mm": 0,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.19999999999998863,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "axial_sleeve_position_controls": [
+    {
+      "axial_shift_mm": -0.29,
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "axial_shift_mm": -0.31,
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.7657632093129035
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.7657632093129045
+        }
+      ]
+    },
+    {
+      "axial_shift_mm": 0.19,
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990905,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "axial_shift_mm": 0.21,
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 221,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 1.0989291102278327
+        },
+        {
+          "body_a": 46,
+          "body_b": 221,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 1.0989291102278336
+        }
+      ]
+    }
+  ],
+  "sleeve_seat_profile_identical_across_current_models": true,
+  "sleeve_seat_revolve_identical_across_current_models": true,
+  "interpretation": "Owner confirms teal sleeve seems to prevent closure. No current modeled seat shrinkage, print-file scaling or nominal outside-diameter collision found. Axial placement, actual printed dimensions and physical housing filenames still unconfirmed."
+}
