@@ -1,5 +1,7 @@
 # Rounded housing and ring tolerance review ? 14 October 2026
 
+**Bushing sizing update:** the owner subsequently released the old bushing length as a constraint. Use the [replacement bushing review](constraint-bushing-review.md) and replacement-only print project. The audit below preserves the pre-replacement geometry and closure investigation.
+
 The housing now has **R4 grip cross-section blends and tip corners, R6 front side corners and R9.5 curved side relief**. The side relief replaces the earlier flat bevels. Net solid volume falls another **3.62 cm? (1.28%)** relative to the clamshell detail revision. Continuous flat bed faces remain; the grip bed lands narrow where the cross-section corners are blended. Locator geometry, four identical M3 x18 screw stacks, fitted component cavities, rear cable route and auger-entry deflector are unchanged. Yellow PETG housing, orange PETG auger, gray PETG adapter and teal PLA sleeve are preserved.
 
 Open the separate [rounded housing CAD](../experiments/garden-auger-rounded-housing-test.limo). Use two matching rounded halves. The previous physically fitted and detail candidates remain preserved, including the owner's locally modified upper Bambu project.

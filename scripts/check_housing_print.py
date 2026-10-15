@@ -26,7 +26,7 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def slice_native(entries, output):
+def slice_native(entries, output, filament_ids=('1',)):
     staged = output/'input.3mf'
     with zipfile.ZipFile(staged,'w',zipfile.ZIP_DEFLATED) as z:
         for name,data in entries.items():
@@ -44,7 +44,7 @@ def slice_native(entries, output):
     native = result['sliced_plates'][0]
     support_time = sum(v for k,v in native['feature_type_times'].items() if 'Support' in k)
     assert support_time == 0 and not markers,native
-    assert {str(f['id']) for f in native['filaments']} == {'1'},native
+    assert {str(f['id']) for f in native['filaments']} == set(map(str,filament_ids)),native
     return exported,{'native_exit_code':process.returncode,'native_plate':native,
         'support_time_seconds':support_time,'support_gcode_feature_markers':len(markers),
         'gcode_sha256':hashlib.sha256(gcode).hexdigest(),

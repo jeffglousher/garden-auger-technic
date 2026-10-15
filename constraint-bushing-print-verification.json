@@ -1,0 +1,97 @@
+{
+  "file": "garden-auger-pla-constraint-fit-bushing-test.3mf",
+  "sha256": "d6dc73a033933a155e27926f0a3a86738c61d57ba00d95daa1000dbd99da13da",
+  "cad_sha256": "adb7676081c1fcbaa982a6a83e5204e2ed973bb3de639084831eb4c14b7cf145",
+  "template": "garden-auger-bambu-latest.3mf",
+  "template_sha256": "e227a6aeabfa5e86ea39d208a1ba90c6b75f3f13ce8d6fcac7578a8066166082",
+  "template_is_profile_source_only": true,
+  "one_bushing_only": true,
+  "native_mesh_matches_package": true,
+  "bed_bounds_mm": [
+    [
+      111.00528390598612,
+      111.01056616963916,
+      0.0
+    ],
+    [
+      144.99471609401388,
+      144.98943383036084,
+      9.799999999999983
+    ]
+  ],
+  "process": {
+    "layer_height": "0.20",
+    "initial_layer_print_height": "0.20",
+    "wall_loops": "4",
+    "sparse_infill_density": "15%",
+    "sparse_infill_pattern": "grid",
+    "top_shell_layers": "4",
+    "bottom_shell_layers": "4",
+    "enable_support": "0",
+    "enable_prime_tower": "0",
+    "print_settings_id": "0.20mm Four Wall PLA Bushing @BBL X2D"
+  },
+  "material": "PLA",
+  "active_saved_filament_slot": 4,
+  "design_color": "#37AAA1",
+  "native_slice": {
+    "native_exit_code": 0,
+    "native_plate": {
+      "feature_type_times": {
+        "Custom": 287.03955078125,
+        "Flush": 29.0,
+        "Gap infill": 36.00551223754883,
+        "Inner wall": 147.44094848632812,
+        "Outer wall": 113.09590911865234,
+        "Top surface": 4.752971172332764,
+        "Travel": 49.57425308227539,
+        "Undefined": 42.09828567504883
+      },
+      "filament_change_times": 0,
+      "filaments": [
+        {
+          "filament_id": "GFA12",
+          "id": 4,
+          "main_used_g": 3.103154420852661,
+          "total_used_g": 3.103154420852661
+        }
+      ],
+      "generate_support_material_time": 14,
+      "id": 1,
+      "infill_time": 33,
+      "layer_filament_change": 0,
+      "main_predication": 321.8786315917969,
+      "make_perimeters_time": 128,
+      "obj_cached_cnt": 0,
+      "objects": [
+        {
+          "bbox": {
+            "depth": 33.97886657714844,
+            "height": 9.800000190734863,
+            "width": 33.989437103271484,
+            "x": 111.00527954101562,
+            "y": 111.01056671142578,
+            "z": -9.536743306171047e-08
+          },
+          "id": 5,
+          "name": "PLA - Constraint fit bushing",
+          "triangle_count": 1008
+        }
+      ],
+      "sliced_time": 450,
+      "sliced_time_with_cache": 246,
+      "total_predication": 659.4421997070312,
+      "triangle_count": 1008,
+      "warning_message": ""
+    },
+    "support_time_seconds": 0,
+    "support_gcode_feature_markers": 0,
+    "gcode_sha256": "fc64da5d073059de3e6f48318c1914092227016451df4dab31d2c51c5d07ad92",
+    "sliced_archive_sha256": "880de871ce4c1cc3a8fedd860bac64d6afbc416b094a8644ba68fc88c91e0f6e"
+  },
+  "filament_and_printer_profiles_preserved": true,
+  "annulus_filled_by_walls_and_gap_fill": true,
+  "sparse_toolpaths": false,
+  "printer_command_sent": false,
+  "embedded_gcode": false
+}
