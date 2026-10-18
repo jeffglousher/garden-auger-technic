@@ -1,11 +1,12 @@
-# Garden auger - current two-plate print candidate
+# Garden auger - current D-grip print candidate
 
-**Print the entire current assembly:** [garden-auger-two-plate-assembly.3mf](garden-auger-two-plate-assembly.3mf) contains all five parts on **two plates**. Housing halves share plate 1 by layer; the auger, adapter and bushing print by object on plate 2, with the PLA bushing last and an explicit wait for its saved 55 C bed temperature. Both native slices pass without warnings. Estimate **about 10 hours / 272.0 g**, plus any bed-cooling wait. [Plate layout and all three geometry reviews](docs/two-plate-geometry-review.md) - [package evidence](two-plate-assembly-verification.json) - [geometry evidence](geometry-refinement-review.json) - [individual STLs](print-parts/relieved-assembly/).
+**Print the entire current assembly:** [garden-auger-child-d-grip-assembly.3mf](garden-auger-child-d-grip-assembly.3mf) contains all five parts on **two plates, both using print by object**. Plate 1 holds the matching housing pieces; plate 2 finishes the auger, adapter and PLA bushing in that order, with a wait for the saved 55 C bed temperature before the bushing. Both native slices pass without warnings. Estimate **8 h 42 min / 232.0 g**, plus any bed-cooling wait. [Design and validation review](docs/child-d-grip-review.md) - [print evidence](d-grip-print-verification.json) - [geometry evidence](d-grip-geometry-review.json) - [functional checks](d-grip-validation.json) - [individual STLs](print-parts/d-grip-assembly/).
 
-The housing has modestly deeper exterior relief and accommodating outer locator sockets; the fitted servo, auger, adapter and bushing dimensions are retained. All three requested geometry areas were reviewed and native checks pass. This remains a printable candidate requiring a printed/screwed trial and dirty testing. No printer command was sent. The [previous four-plate package](garden-auger-current-assembly.3mf) preserves the preceding housing revision.
+The complete rounded D grips now belong to the lower housing: **24 mm wide, 18.6 mm high, 20.04 mm flat bed land and 55 mm clear grip length per side**, across a 187 mm overall span. The upper is a central cover. Four smaller locators move into the case; fixed servo/drive/bushing dimensions, screw stacks and rear cable routing remain. This is a child-size starting point requiring actual hand comfort and clamped strength checks. An [optional grip sample](print-parts/grip-comfort-sample.stl) allows a small comfort print first. No printer command was sent.
 
+![Closed current assembly from the reverse side](renders/d-grip/closed-reverse.png)
 
-![Current assembly](renders/relieved-assembly/assembled.png)
+[Closed underside](renders/d-grip/closed-underside.png) shows the flat print bases. Open the [matching editable CAD](experiments/garden-auger-child-d-grips.limo) for this revision. Use both new housing pieces together. The [preceding two-plate package](garden-auger-two-plate-assembly.3mf) and its [review](docs/two-plate-geometry-review.md) preserve the older large paired handles; the [four-plate package](garden-auger-current-assembly.3mf) is an earlier fallback.
 
 The following records preserve the earlier iteration history. Use the complete project above for the current full build; historical files named ?latest? are not current geometry.
 

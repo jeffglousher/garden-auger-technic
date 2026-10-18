@@ -1,5 +1,7 @@
 # Two plates and all three geometry reviews - 18 October 2026
 
+**Historical iteration:** the [lower D-grip revision](child-d-grip-review.md) supersedes this housing and plate layout. The files below preserve the preceding geometry and its validation.
+
 Use [garden-auger-two-plate-assembly.3mf](../garden-auger-two-plate-assembly.3mf) for the entire current printable candidate. It contains five parts from [the relieved-housing CAD](../experiments/garden-auger-relieved-housing.limo). Both native Bambu slices pass without warnings. The earlier [four-plate package](../garden-auger-current-assembly.3mf) remains an unchanged fallback for the preceding housing geometry.
 
 ## Plate layout and actual print order
