@@ -32,7 +32,8 @@ def picture(name, geometry, title, subtitle, size=(1400,900),direction=(1.2,-1.7
 
 def main(scene_path=ROOT/'.build/clamshell-detail/scene.json', out=OUT,
          revision_name='Clamshell detail revision',
-         side_relief_description='Side relief widens at 45 degrees toward retained bed floors; bearing cavities remain fixed'):
+         side_relief_description='Side relief widens at 45 degrees toward retained bed floors; bearing cavities remain fixed',
+         locator_description='7.00 mm pins / 7.30 mm straight sockets / 2.8 mm projection / chamfered entries; printed fit pending'):
     global OUT
     OUT=out
     OUT.mkdir(parents=True,exist_ok=True)
@@ -66,7 +67,7 @@ def main(scene_path=ROOT/'.build/clamshell-detail/scene.json', out=OUT,
     sheet.save(OUT/'individual-pieces.png')
     for name,ids,lo,hi,title,subtitle in [
         ('locators',[26,46],[46,182,-21],[96,205,21],'Two locators per handle | alternating ownership',
-         '7.00 mm pins / 7.30 mm straight sockets / 2.8 mm projection / chamfered entries; printed fit pending'),
+         locator_description),
         ('screw-stack',[26,46],[23,113,-21],[27,124,21],'Common housing screw stack | front section',
          'M3 x 18: seat Z14, tip Z-4 | four identical lower insert pilots | hardware shown as nominal envelopes'),
         ('auger-entry',[26,46,15,90],[0,101,-21],[22,122,21],'Auger entrance | cutaway of external deflector',

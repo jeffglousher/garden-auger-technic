@@ -1,8 +1,11 @@
-# Garden auger ? current complete print candidate
+# Garden auger - current two-plate print candidate
 
-**Print the entire current assembly:** [garden-auger-current-assembly.3mf](garden-auger-current-assembly.3mf) contains all five parts on four Bambu plates, with matching rounded halves, unchanged auger/adapter and the shorter constraint-fit PLA bushing. [Review, changes and current renderings](docs/current-assembly-review.md) ? [native verification](current-assembly-verification.json) ? [individual STLs](print-parts/current-assembly/). Native CAD checks and all four native Bambu slices pass, with no slicer warnings. Stronger housing settings use six walls/30% gyroid; PETG plates include automatic supports with PLA interfaces. Estimate **10 h36 min /284.1 g total**. This is a printable test candidate; the latest revision still needs a printed/screwed trial and dirty testing. No printer command was sent.
+**Print the entire current assembly:** [garden-auger-two-plate-assembly.3mf](garden-auger-two-plate-assembly.3mf) contains all five parts on **two plates**. Housing halves share plate 1 by layer; the auger, adapter and bushing print by object on plate 2, with the PLA bushing last and an explicit wait for its saved 55 C bed temperature. Both native slices pass without warnings. Estimate **about 10 hours / 272.0 g**, plus any bed-cooling wait. [Plate layout and all three geometry reviews](docs/two-plate-geometry-review.md) - [package evidence](two-plate-assembly-verification.json) - [geometry evidence](geometry-refinement-review.json) - [individual STLs](print-parts/relieved-assembly/).
 
-![Current assembly](renders/current-assembly/assembled.png)
+The housing has modestly deeper exterior relief and accommodating outer locator sockets; the fitted servo, auger, adapter and bushing dimensions are retained. All three requested geometry areas were reviewed and native checks pass. This remains a printable candidate requiring a printed/screwed trial and dirty testing. No printer command was sent. The [previous four-plate package](garden-auger-current-assembly.3mf) preserves the preceding housing revision.
+
+
+![Current assembly](renders/relieved-assembly/assembled.png)
 
 The following records preserve the earlier iteration history. Use the complete project above for the current full build; historical files named ?latest? are not current geometry.
 

@@ -1,5 +1,7 @@
 # Current assembly and complete print project — 15 October 2026
 
+**Historical four-plate handoff:** the newer [two-plate candidate and geometry review](two-plate-geometry-review.md) is now preferred. This page preserves the preceding housing revision and its original checks.
+
 Open **[garden-auger-current-assembly.3mf](../garden-auger-current-assembly.3mf)** in Bambu Studio. It contains all **five current printed parts on four plates**, sourced from [the constraint-fit-bushing assembly](../experiments/garden-auger-constraint-bushing-test.limo). The purchased servo and metal fasteners are excluded from the print. [Five individual STLs](../print-parts/current-assembly/) provide the same geometry and print orientations, without material/process metadata.
 
 This handoff adds packaging, verification and current renderings; **it makes no further CAD geometry changes**. The historical `garden-auger-bambu-latest.3mf` supplied saved printer/filament profiles only. None of its old housing meshes were used. That file, the saved lower-half template and the owner's modified upper sparse project are unchanged.
