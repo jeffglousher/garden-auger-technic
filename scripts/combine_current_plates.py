@@ -41,9 +41,12 @@ def main():
     parser.add_argument('--adaptive-bed', action='store_true')
     parser.add_argument('--canonical', type=Path, default=CANONICAL)
     parser.add_argument('--refresh-geometry', action='store_true')
+    parser.add_argument('--build-root', type=Path, default=BUILD)
+    parser.add_argument('--d-grip-layout', action='store_true')
+    parser.add_argument('--cad-source')
     parser.add_argument('--slice', type=int, default=0)
     args = parser.parse_args()
-    lane = BUILD / args.name
+    lane = args.build_root.resolve() / args.name
     lane.mkdir(parents=True, exist_ok=True)
     if (lane/'result.json').exists() or (lane/'sliced.3mf').exists():
         raise FileExistsError('Use a new --name to preserve previous native evidence and avoid overwrite prompts.')
@@ -63,6 +66,9 @@ def main():
             for node in obj.findall('metadata'):
                 key=node.get('key')
                 if key in overrides[obj.get('id')]:node.set('value',overrides[obj.get('id')][key])
+    if args.cad_source:
+        for node in config.findall('object/part/metadata'):
+            if node.get('key')=='source_file':node.set('value',args.cad_source)
     mesh_checks = b.geometry_checks(parts)
     settings = json.loads(entries['Metadata/project_settings.config'])
     settings['print_sequence'] = 'by object'
@@ -101,6 +107,11 @@ def main():
             ('PETG - Housing lower', b.I, (28.,138.)),
         ]
         settings['wipe_tower_y'][0] = '142'
+    if args.d_grip_layout:
+        layouts[0][2][:] = [
+            ('PETG - Housing upper', b.UPPER, (173.,75.)),
+            ('PETG - Housing lower', np.array([[0.,-1.,0.],[1.,0.,0.],[0.,0.,1.]]), (8.,34.5)),
+        ]
     if args.thermal_order:
         # Keep the tall auger at the back, beyond the rod envelope of either
         # short front part, so actual native ordering remains collision-safe.

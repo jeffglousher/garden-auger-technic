@@ -4,6 +4,7 @@ The delivered 3MF remains editable and contains no machine program. Native
 evidence lives in the existing garden-auger-owned 150 MiB additional-output lane.
 """
 import base64
+import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -33,10 +34,27 @@ def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main():
-    review=json.loads((ROOT/'geometry-refinement-review.json').read_text())
+    global BUILD,CAD,TARGET,REPORT
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--d-grips',action='store_true')
+    args=parser.parse_args()
+    review_path=ROOT/('d-grip-geometry-review.json' if args.d_grips else 'geometry-refinement-review.json')
+    if args.d_grips:
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
+        CAD=ROOT/'experiments/garden-auger-child-d-grips.limo'
+        TARGET=ROOT/'garden-auger-child-d-grip-assembly.3mf'
+        REPORT=ROOT/'d-grip-print-verification.json'
+        validation=json.loads((ROOT/'d-grip-validation.json').read_text())
+        assert validation['cad_sha256']==sha(CAD)
+    parts_dir='print-parts/d-grip-assembly' if args.d_grips else 'print-parts/relieved-assembly'
+    renders_dir='renders/d-grip' if args.d_grips else 'renders/relieved-assembly'
+    review=json.loads(review_path.read_text())
     assert sha(CAD)==review['cad_sha256']
     preserved={str(p.relative_to(ROOT)):sha(p) for p in [CAD,ROOT/'garden-auger-current-assembly.3mf',
         ROOT/'garden-auger-upper-servo-sparse-test.3mf',ROOT/'garden-auger-bambu-latest.3mf']}
+    if args.d_grips:
+        for p in [ROOT/'garden-auger-two-plate-assembly.3mf',ROOT/'experiments/garden-auger-relieved-housing.limo']:
+            preserved[str(p.relative_to(ROOT))]=sha(p)
     native=BUILD/'native.3mf';canonical=BUILD/'five-refined-parts.3mf'
     with CadClient() as c:
         c.call('cad_load_project_model',{'model_json':json.dumps(read_model(CAD))})
@@ -54,20 +72,26 @@ def main():
         raw=c.call('solid_export_3mf',{'body_ids':[26,46,15,90,216,221],
             'scope':'definition','linear_deflection':.08,'angular_deflection':.2,'slicer_target':'standard'})
         native.write_bytes(base64.b64decode(raw['bytes_base64']))
-    parts=pack(native,canonical,print_notes='Relieved current housing; accommodating outer locator sockets; unchanged drive and constraint-fit bushing.',
-        individual_dir='print-parts/relieved-assembly')
+    print_notes=('Lower-owned complete D grips and central upper cover; relocated case locators; unchanged drive and constraint-fit bushing.'
+                 if args.d_grips else 'Relieved current housing; accommodating outer locator sockets; unchanged drive and constraint-fit bushing.')
+    parts=pack(native,canonical,print_notes=print_notes,
+        individual_dir=parts_dir)
     entries=b.read_zip(canonical);xml=ET.fromstring(entries['3D/3dmodel.model'])
     next(o for o in xml.findall('{*}resources/{*}object') if o.get('name')=='PLA - Full wear sleeve').set('name','PLA - Constraint-fit bushing')
     entries['3D/3dmodel.model']=ET.tostring(xml,encoding='utf-8',xml_declaration=True)
     write_zip(canonical,entries)
-    old=ROOT/'print-parts/relieved-assembly/pla-full-wear-sleeve.stl'
+    old=ROOT/parts_dir/'pla-full-wear-sleeve.stl'
     old.replace(old.with_name('pla-constraint-fit-bushing.stl'))
     parts[-1]['name']='PLA - Constraint-fit bushing'
     run_name='refined-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')
-    subprocess.run([sys.executable,str(ROOT/'scripts/combine_current_plates.py'),
-        '--name',run_name,'--housing-sequence','by layer','--thermal-order','--adaptive-bed',
-        '--canonical',str(canonical),'--refresh-geometry'],check=True)
-    lane=BUILD.parent/'sequential'/run_name
+    slice_root=BUILD/'slice-runs' if args.d_grips else BUILD.parent/'sequential'
+    command=[sys.executable,str(ROOT/'scripts/combine_current_plates.py'),
+        '--name',run_name,'--housing-sequence','by object' if args.d_grips else 'by layer',
+        '--thermal-order','--adaptive-bed','--canonical',str(canonical),'--refresh-geometry',
+        '--build-root',str(slice_root),'--cad-source',str(CAD.relative_to(ROOT))]
+    if args.d_grips:command.append('--d-grip-layout')
+    subprocess.run(command,check=True)
+    lane=slice_root/run_name
     probe=json.loads((lane/'probe.json').read_text());native_result=probe['native_result']
     assert probe['exit_code']==0 and native_result['return_code']==0
     assert len(native_result['sliced_plates'])==2
@@ -75,7 +99,13 @@ def main():
     assert not any(p['warning_message'] for p in native_result['sliced_plates'])
     entries=b.read_zip(lane/'input.3mf');sliced=b.read_zip(lane/'sliced.3mf')
     first=sliced['Metadata/plate_1.gcode'].decode();second=sliced['Metadata/plate_2.gcode'].decode()
-    assert '; print_sequence = by layer' in first and '; print_sequence = by object' in second
+    assert ('; print_sequence = by object' if args.d_grips else '; print_sequence = by layer') in first
+    assert '; print_sequence = by object' in second
+    if args.d_grips:
+        first_ids=re.findall(r'; start printing object, unique label id: (\d+)',first)
+        first_runs=[x for i,x in enumerate(first_ids) if i==0 or x!=first_ids[i-1]]
+        assert len(first_runs)==2 and set(first_runs)=={'102','104'},first_runs
+        assert not re.search(r'^\s*M190 S55\s*$',first,re.M)
     ids=re.findall(r'; start printing object, unique label id: (\d+)',second)
     runs=[x for i,x in enumerate(ids) if i==0 or x!=ids[i-1]]
     assert runs==['106','108','110'],runs # Auger, adapter, then PLA.
@@ -84,7 +114,8 @@ def main():
     wait=second.rindex('M190 S55');assert wait<start_bushing
     assert not re.search(r'^\s*M(?:140|190) S(?:[6-9][0-9]|[1-9][0-9]{2,})',second[start_bushing:],re.M)
     roles=lambda text:set(re.findall(r'^; FEATURE: ([^\r\n]+)',text,re.M))
-    assert {'Support','Support interface','Prime tower'}<=roles(first)
+    assert {'Support','Support interface'}<=roles(first)
+    assert ('Prime tower' in roles(first)) != args.d_grips
     assert {'Support','Support interface'}<=roles(second) and 'Prime tower' not in roles(second)
     assert not any('Support' in s or 'Sparse' in s for s in roles(second[start_bushing:]))
     # Emitted order is checked, and the rear auger is separated in Y from both
@@ -109,7 +140,7 @@ def main():
     assert all(b.metadata(o)==by_name[b.metadata(o)['name']] for o in config.findall('object'))
     assert all(sha(ROOT/p)==h for p,h in preserved.items())
     result={'cad':str(CAD.relative_to(ROOT)),'cad_sha256':sha(CAD),
-        'geometry_review':'geometry-refinement-review.json','geometry_review_sha256':sha(ROOT/'geometry-refinement-review.json'),
+        'geometry_review':review_path.name,'geometry_review_sha256':sha(review_path),
         'project':TARGET.name,'project_sha256':sha(TARGET),'native_engine_sha256':review['engine_sha256'],
         'native_slicer_version':'02.08.02.61','mesh_checks':mesh_checks,'parts':parts,
         'native_equal_screw_stacks':stacks,
@@ -121,21 +152,35 @@ def main():
         'actual_second_plate_order':['PETG - One-piece auger','PETG - Square adapter','PLA - Constraint-fit bushing'],
         'auger_to_front_parts_y_gap_mm':y_gap,'saved_clearances':probe['clearances'],
         'temperature_policy':{'bed_temperature_formula':'by_first_filament','PETG_C':70,'PLA_C':55,'wait_for_PLA_before_final_object':True},
-        'prime_tower_actual':{'plate_1':True,'plate_2':False},'object_process_settings_preserved':True,
+        'prime_tower_actual':{'plate_1':not args.d_grips,'plate_2':False},'object_process_settings_preserved':True,
         'embedded_gcode':False,'printer_command_sent':False,'preserved_files':preserved,
         'time_seconds':sum(p['total_predication'] for p in native_result['sliced_plates']),
         'filament_g':sum(f['total_used_g'] for p in native_result['sliced_plates'] for f in p['filaments']),
-        'stls':{str(p.relative_to(ROOT)):sha(p) for p in sorted((ROOT/'print-parts/relieved-assembly').glob('*.stl'))},
-        'rejected_housing_object_layouts':['two-object-probe','stagger-object-probe'],
+        'stls':{str(p.relative_to(ROOT)):sha(p) for p in sorted((ROOT/parts_dir).glob('*.stl'))},
+        'rejected_housing_object_layouts':[] if args.d_grips else ['two-object-probe','stagger-object-probe'],
         'scope':'Digital geometry and native slicing qualification; physical fit, stiffness, wear, loaded torque and dirty trial remain pending.'}
+    if args.d_grips:
+        result['additional_validation']='d-grip-validation.json'
+        result['additional_validation_sha256']=sha(ROOT/'d-grip-validation.json')
+        result['actual_first_plate_order']=first_runs
+        boxes=[p['bounds_mm'] for p in probe['placements'][0]['parts']]
+        x_gap=max(boxes[0][0][0]-boxes[1][1][0],boxes[1][0][0]-boxes[0][1][0])
+        assert x_gap>=float(probe['clearances']['extruder_clearance_max_radius'])
+        result['housing_x_separation_mm']=x_gap
     REPORT.write_text(json.dumps(result,indent=2)+'\n')
     for i in [1,2]:
-        out=ROOT/f'renders/relieved-assembly/plate-{i}.png'
+        out=ROOT/renders_dir/f'plate-{i}.png'
         out.parent.mkdir(parents=True,exist_ok=True)
         out.write_bytes(sliced[f'Metadata/plate_{i}.png'])
-    render(BUILD/'scene.json',ROOT/'renders/relieved-assembly','Relieved housing | accommodating outer locator sockets',
-        'Deeper exterior relief retains fixed servo, drive, cable and continuous outer bed floors',
-        locator_description='7.00 mm pins | inner sockets 7.30 mm round | outer sockets 8.10 X by 7.30 Y | printed fit pending')
+    if args.d_grips:
+        from render_d_grips import main as render_child
+        render_child()
+        result['optional_comfort_sample']=json.loads((BUILD/'comfort-sample.json').read_text())
+        REPORT.write_text(json.dumps(result,indent=2)+'\n')
+    else:
+        render(BUILD/'scene.json',ROOT/renders_dir,'Relieved housing | accommodating outer locator sockets',
+            'Deeper exterior relief retains fixed servo, drive, cable and continuous outer bed floors',
+            locator_description='7.00 mm pins | inner sockets 7.30 mm round | outer sockets 8.10 X by 7.30 Y | printed fit pending')
     print('PASS: final two-plate editable package, actual order, temperature wait and mesh/process preservation',flush=True)
 
 

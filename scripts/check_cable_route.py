@@ -12,9 +12,6 @@ from pathlib import Path
 import subprocess
 import zipfile
 
-import shapely
-from shapely.geometry import LineString, box
-
 from cad_build import Builder
 from cad_client import CadClient
 from cable_routing import route_spec, ROUTE_START, STRAIGHT_END, BEND_CENTER, TURN_END, ROUTE_END
@@ -97,6 +94,10 @@ def old_outlet(c,model):
 
 
 def main():
+    # Native sweep helpers do not need the optional planar-analysis package.
+    import shapely
+    from shapely.geometry import LineString, box
+
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project',type=Path,default=ROOT/'garden-auger-direct-drive.nbcad')
     parser.add_argument('--output',type=Path,default=ROOT/'cable-route-verification.json')
