@@ -37,23 +37,39 @@ def main():
     global BUILD,CAD,TARGET,REPORT
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--d-grips',action='store_true')
+    parser.add_argument('--solid-frame',action='store_true')
     args=parser.parse_args()
+    if args.solid_frame:args.d_grips=True
     review_path=ROOT/('d-grip-geometry-review.json' if args.d_grips else 'geometry-refinement-review.json')
+    validation_path=ROOT/'d-grip-validation.json'
     if args.d_grips:
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
         CAD=ROOT/'experiments/garden-auger-child-d-grips.limo'
         TARGET=ROOT/'garden-auger-child-d-grip-assembly.3mf'
         REPORT=ROOT/'d-grip-print-verification.json'
-        validation=json.loads((ROOT/'d-grip-validation.json').read_text())
+        if args.solid_frame:
+            BUILD=BUILD/'solid-frame'
+            CAD=ROOT/'experiments/garden-auger-solid-frame.limo'
+            TARGET=ROOT/'garden-auger-solid-frame-assembly.3mf'
+            REPORT=ROOT/'solid-frame-print-verification.json'
+            review_path=ROOT/'solid-frame-geometry-review.json'
+            validation_path=ROOT/'solid-frame-validation.json'
+        validation=json.loads(validation_path.read_text())
         assert validation['cad_sha256']==sha(CAD)
     parts_dir='print-parts/d-grip-assembly' if args.d_grips else 'print-parts/relieved-assembly'
     renders_dir='renders/d-grip' if args.d_grips else 'renders/relieved-assembly'
+    if args.solid_frame:
+        parts_dir='print-parts/solid-frame-assembly'
+        renders_dir='renders/solid-frame'
     review=json.loads(review_path.read_text())
     assert sha(CAD)==review['cad_sha256']
     preserved={str(p.relative_to(ROOT)):sha(p) for p in [CAD,ROOT/'garden-auger-current-assembly.3mf',
         ROOT/'garden-auger-upper-servo-sparse-test.3mf',ROOT/'garden-auger-bambu-latest.3mf']}
     if args.d_grips:
         for p in [ROOT/'garden-auger-two-plate-assembly.3mf',ROOT/'experiments/garden-auger-relieved-housing.limo']:
+            preserved[str(p.relative_to(ROOT))]=sha(p)
+    if args.solid_frame:
+        for p in [ROOT/'garden-auger-child-d-grip-assembly.3mf',ROOT/'experiments/garden-auger-child-d-grips.limo',ROOT/'print-parts/grip-comfort-sample.stl']:
             preserved[str(p.relative_to(ROOT))]=sha(p)
     native=BUILD/'native.3mf';canonical=BUILD/'five-refined-parts.3mf'
     with CadClient() as c:
@@ -72,7 +88,8 @@ def main():
         raw=c.call('solid_export_3mf',{'body_ids':[26,46,15,90,216,221],
             'scope':'definition','linear_deflection':.08,'angular_deflection':.2,'slicer_target':'standard'})
         native.write_bytes(base64.b64decode(raw['bytes_base64']))
-    print_notes=('Lower-owned complete D grips and central upper cover; relocated case locators; unchanged drive and constraint-fit bushing.'
+    print_notes=('Continuous frame with exterior rounds and lower D grips; no cosmetic seam recesses; unchanged drive and constraint-fit bushing.' if args.solid_frame else
+                 'Lower-owned complete D grips and central upper cover; relocated case locators; unchanged drive and constraint-fit bushing.'
                  if args.d_grips else 'Relieved current housing; accommodating outer locator sockets; unchanged drive and constraint-fit bushing.')
     parts=pack(native,canonical,print_notes=print_notes,
         individual_dir=parts_dir)
@@ -160,8 +177,8 @@ def main():
         'rejected_housing_object_layouts':[] if args.d_grips else ['two-object-probe','stagger-object-probe'],
         'scope':'Digital geometry and native slicing qualification; physical fit, stiffness, wear, loaded torque and dirty trial remain pending.'}
     if args.d_grips:
-        result['additional_validation']='d-grip-validation.json'
-        result['additional_validation_sha256']=sha(ROOT/'d-grip-validation.json')
+        result['additional_validation']=validation_path.name
+        result['additional_validation_sha256']=sha(validation_path)
         result['actual_first_plate_order']=first_runs
         boxes=[p['bounds_mm'] for p in probe['placements'][0]['parts']]
         x_gap=max(boxes[0][0][0]-boxes[1][1][0],boxes[1][0][0]-boxes[0][1][0])
@@ -174,7 +191,7 @@ def main():
         out.write_bytes(sliced[f'Metadata/plate_{i}.png'])
     if args.d_grips:
         from render_d_grips import main as render_child
-        render_child()
+        render_child(BUILD,ROOT/renders_dir,solid_frame=args.solid_frame)
         result['optional_comfort_sample']=json.loads((BUILD/'comfort-sample.json').read_text())
         REPORT.write_text(json.dumps(result,indent=2)+'\n')
     else:

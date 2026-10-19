@@ -14,19 +14,25 @@ BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
 OUT=ROOT/'renders/d-grip'
 
 
-def main():
-    OUT.mkdir(parents=True,exist_ok=True)
-    scene=json.loads((BUILD/'scene.json').read_text())
+def main(build=BUILD,out=OUT,solid_frame=False):
+    out.mkdir(parents=True,exist_ok=True)
+    scene=json.loads((build/'scene.json').read_text())
     bodies={b['id']:b for b in scene['bodies']}
     meshes={bid:(COLORS[bid],triangles(bodies[bid],(lambda p:(p[0],148.7-p[2],p[1])) if bid==1 else None)) for bid in COLORS}
     for name,direction in [('closed-reverse',(-1.2,1.7,1.2)),('closed-front',(1.2,-1.7,1.1)),('closed-underside',(-1.2,1.7,-1.2))]:
-        p=OUT/(name+'.png');framed(list(meshes.values()),(1400,900),p,margin=65,direction=direction)
-        banner(p,'Closed D-grip assembly | '+name.removeprefix('closed-'),'24 mm rounded width | 18.6 mm grip height | complete grips on lower half')
+        p=out/(name+'.png');framed(list(meshes.values()),(1400,900),p,margin=65,direction=direction)
+        banner(p,('Closed solid-frame assembly' if solid_frame else 'Closed D-grip assembly')+' | '+name.removeprefix('closed-'),
+               'Continuous frame | exterior corner rounds | lower D grips' if solid_frame else '24 mm rounded width | 18.6 mm grip height | complete grips on lower half')
     for bid,label in [(46,'lower-print-face'),(26,'upper-print-face')]:
         transform=(lambda p:(-p[0],p[1],-p[2])) if bid==26 else None
-        p=OUT/(label+'.png');framed([(COLORS[bid],triangles(bodies[bid],transform))],(1400,800),p,margin=65)
+        p=out/(label+'.png');framed([(COLORS[bid],triangles(bodies[bid],transform))],(1400,800),p,margin=65)
         banner(p,'Lower housing and complete D grips' if bid==46 else 'Upper cover | central mechanism only',
                'Flat bed faces retained | four small locating pins on lower | rear cable cheek retained')
+    if solid_frame:
+        # Grip geometry is unchanged; preserve the existing sample and its hash.
+        (build/'comfort-sample.json').write_text((BUILD/'comfort-sample.json').read_text())
+        print('Closed solid-frame and print-face views saved; existing comfort sample retained',flush=True)
+        return
     # Optional comfort sample uses the actual native outer-left-grip mesh.
     raw=bodies[46]['mesh']
     lower=trimesh.Trimesh(np.array(raw['positions']).reshape(-1,3),np.array(raw['indices']).reshape(-1,3),process=True)

@@ -1,4 +1,5 @@
 """Qualify the D-grip clamshell and retain native fit/print witnesses."""
+import argparse
 import itertools
 import json
 import math
@@ -18,7 +19,15 @@ BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
 
 
 def main():
-    proof=json.loads((ROOT/'d-grip-geometry-review.json').read_text())
+    global CAD,REPORT,BUILD
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--solid-frame',action='store_true')
+    args=parser.parse_args()
+    if args.solid_frame:
+        CAD=ROOT/'experiments/garden-auger-solid-frame.limo'
+        REPORT=ROOT/'solid-frame-validation.json'
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip/solid-frame'
+    proof=json.loads((ROOT/('solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json')).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
     sections=[('ear-nest',46,'xy',-.1,164.15),('servo-floor',46,'xz',179.9,-10),

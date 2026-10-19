@@ -1,0 +1,1632 @@
+{
+  "cad_sha256": "a0034a3059d47d016dc4d079f7010ba6858864b5f9fb5e67463fe75b179e7006",
+  "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
+  "printer_command_sent": false,
+  "retained_section_probes": [
+    {
+      "name": "ear-nest",
+      "spans_mm": [
+        [
+          -42.3,
+          -38.2
+        ],
+        [
+          18.2,
+          22.299999999999997
+        ]
+      ]
+    },
+    {
+      "name": "servo-floor",
+      "spans_mm": [
+        [
+          -33.93830444837424,
+          -30.9
+        ],
+        [
+          10.399999999999999,
+          13.45886971455289
+        ]
+      ]
+    },
+    {
+      "name": "rear-wall",
+      "before_full_spans_mm": [
+        [
+          -97.99999999999999,
+          -30.9
+        ],
+        [
+          10.399999999999999,
+          89.00000000000001
+        ]
+      ],
+      "after_full_spans_mm": [
+        [
+          -97.99999999999999,
+          -30.9
+        ],
+        [
+          10.399999999999999,
+          89.00000000000001
+        ]
+      ],
+      "retained_core_spans_mm": [
+        [
+          -43.0,
+          -30.9
+        ],
+        [
+          10.399999999999999,
+          34.0
+        ]
+      ],
+      "scope": "Central case X -43 to +34 unchanged; outer grip ends intentionally shortened."
+    },
+    {
+      "name": "square-socket",
+      "spans_mm": [
+        [
+          -13.994049922892277,
+          -7.2
+        ],
+        [
+          7.2,
+          13.99141828931719
+        ]
+      ]
+    },
+    {
+      "name": "adapter-seat",
+      "spans_mm": [
+        [
+          -12.0,
+          -2.85
+        ],
+        [
+          2.85,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "pla-bushing",
+      "spans_mm": [
+        [
+          -16.99943701786521,
+          -14.297367314414172
+        ],
+        [
+          14.299072473998633,
+          16.998365102582564
+        ]
+      ]
+    }
+  ],
+  "screw_stacks": [
+    {
+      "xy_mm": [
+        -27,
+        118.5
+      ],
+      "head": {
+        "body_id": 26,
+        "face_key": "face:83",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": -27.0,
+            "y": 118.5,
+            "z": 14.000000000000002
+          },
+          "radius": 3.1000000000000014,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:185",
+            "circle": {
+              "center": {
+                "x": -27.0,
+                "y": 118.5,
+                "z": 20.6
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:234",
+            "circle": {
+              "center": {
+                "x": -27.0,
+                "y": 118.5,
+                "z": 14.000000000000002
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      },
+      "insert": {
+        "body_id": 46,
+        "face_key": "face:46",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": -27.0,
+            "y": 118.5,
+            "z": -6.7
+          },
+          "radius": 2.0,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:45",
+            "circle": {
+              "center": {
+                "x": -27.0,
+                "y": 118.5,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:155",
+            "circle": {
+              "center": {
+                "x": -27.0,
+                "y": 118.5,
+                "z": -6.7
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "xy_mm": [
+        27,
+        118.5
+      ],
+      "head": {
+        "body_id": 26,
+        "face_key": "face:84",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": 27.0,
+            "y": 118.5,
+            "z": 14.000000000000002
+          },
+          "radius": 3.1000000000000014,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:186",
+            "circle": {
+              "center": {
+                "x": 27.0,
+                "y": 118.5,
+                "z": 20.6
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:257",
+            "circle": {
+              "center": {
+                "x": 27.0,
+                "y": 118.5,
+                "z": 14.000000000000002
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      },
+      "insert": {
+        "body_id": 46,
+        "face_key": "face:89",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": 27.0,
+            "y": 118.5,
+            "z": -6.7
+          },
+          "radius": 2.0,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:207",
+            "circle": {
+              "center": {
+                "x": 27.0,
+                "y": 118.5,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:257",
+            "circle": {
+              "center": {
+                "x": 27.0,
+                "y": 118.5,
+                "z": -6.7
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "xy_mm": [
+        -36,
+        196.8
+      ],
+      "head": {
+        "body_id": 26,
+        "face_key": "face:85",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": -36.0,
+            "y": 196.8,
+            "z": 14.000000000000002
+          },
+          "radius": 3.1000000000000014,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:187",
+            "circle": {
+              "center": {
+                "x": -36.0,
+                "y": 196.8,
+                "z": 20.6
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:237",
+            "circle": {
+              "center": {
+                "x": -36.0,
+                "y": 196.8,
+                "z": 14.000000000000002
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      },
+      "insert": {
+        "body_id": 46,
+        "face_key": "face:48",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": -36.0,
+            "y": 196.8,
+            "z": -6.7
+          },
+          "radius": 2.0,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:47",
+            "circle": {
+              "center": {
+                "x": -36.0,
+                "y": 196.8,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:159",
+            "circle": {
+              "center": {
+                "x": -36.0,
+                "y": 196.8,
+                "z": -6.7
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "xy_mm": [
+        16,
+        196.8
+      ],
+      "head": {
+        "body_id": 26,
+        "face_key": "face:86",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": 16.0,
+            "y": 196.8,
+            "z": 14.000000000000002
+          },
+          "radius": 3.1000000000000014,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:188",
+            "circle": {
+              "center": {
+                "x": 16.0,
+                "y": 196.8,
+                "z": 20.6
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:240",
+            "circle": {
+              "center": {
+                "x": 16.0,
+                "y": 196.8,
+                "z": 14.000000000000002
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 3.1000000000000014,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      },
+      "insert": {
+        "body_id": 46,
+        "face_key": "face:50",
+        "cylinder": {
+          "axis": {
+            "x": -0.0,
+            "y": -0.0,
+            "z": -1.0
+          },
+          "origin": {
+            "x": 16.0,
+            "y": 196.8,
+            "z": -6.7
+          },
+          "radius": 2.0,
+          "reference": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": -0.0
+          }
+        },
+        "native_boundary_circles": [
+          {
+            "edge_key": "edge:49",
+            "circle": {
+              "center": {
+                "x": 16.0,
+                "y": 196.8,
+                "z": 0.0
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          },
+          {
+            "edge_key": "edge:163",
+            "circle": {
+              "center": {
+                "x": 16.0,
+                "y": 196.8,
+                "z": -6.7
+              },
+              "closed": true,
+              "normal": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "radius": 2.0,
+              "reference": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": -0.0
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "driver_access": [
+    {
+      "xy_mm": [
+        -27,
+        118.5
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": false,
+          "minimum_clearance_mm": 0.8499999999999969,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        27,
+        118.5
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": false,
+          "minimum_clearance_mm": 0.8499999999999969,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36,
+        196.8
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": false,
+          "minimum_clearance_mm": 0.8499999999999742,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16,
+        196.8
+      ],
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": false,
+          "minimum_clearance_mm": 0.8499999999999949,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "grip_section": {
+    "_disclosure": {
+      "active_focus": "document",
+      "advertised": true,
+      "mode": "dynamic",
+      "pack": "document",
+      "state": "active"
+    },
+    "bounds_mm": [
+      181.75839830321658,
+      -20.6,
+      205.7490111218761,
+      -2.004256760386868
+    ],
+    "outcome": "material_section",
+    "probe_spans": [],
+    "request": {
+      "body_id": 46,
+      "deflection_mm": 0.01,
+      "include_cutaway": false,
+      "keep_positive": false,
+      "offset_mm": 75.0,
+      "plane": "yz",
+      "probe_mm": null
+    },
+    "section": [
+      {
+        "points": [
+          [
+            183.72802414690597,
+            -20.6
+          ],
+          [
+            183.24508797450736,
+            -19.800588188852913
+          ],
+          [
+            182.82578578747888,
+            -18.96603904927776
+          ],
+          [
+            182.47265752800857,
+            -18.10140790088212
+          ],
+          [
+            182.18784228668972,
+            -17.21193228641876
+          ],
+          [
+            181.97306534488163,
+            -16.30300024513071
+          ],
+          [
+            181.829627723739,
+            -15.380117674456933
+          ],
+          [
+            181.75839830321658,
+            -14.448874977806629
+          ],
+          [
+            181.75980855878908,
+            -13.514913200434712
+          ],
+          [
+            181.83384994776887,
+            -12.58388985855201
+          ],
+          [
+            181.98007396105353,
+            -11.661444668661892
+          ],
+          [
+            182.19759483999042,
+            -10.753165384719438
+          ],
+          [
+            182.48509494190014,
+            -9.864553950056127
+          ],
+          [
+            182.84083272175744,
+            -9.000993169106291
+          ],
+          [
+            183.26265328167986,
+            -8.167714100822906
+          ],
+          [
+            183.74800142432034,
+            -7.369764371298577
+          ],
+          [
+            184.29393713109195,
+            -6.611977597539465
+          ],
+          [
+            184.89715337146532,
+            -5.898944107609058
+          ],
+          [
+            185.55399613545706,
+            -5.2349831345058355
+          ],
+          [
+            186.26048656796274,
+            -4.624116652211711
+          ],
+          [
+            187.01234507085374,
+            -4.070045012400554
+          ],
+          [
+            187.80501722683863,
+            -3.5761245293885846
+          ],
+          [
+            188.63370138805448,
+            -3.1453471491067795
+          ],
+          [
+            189.49337776226858,
+            -2.780322325251481
+          ],
+          [
+            190.3788388204995,
+            -2.483261212399194
+          ],
+          [
+            191.28472084186237,
+            -2.2559632718365403
+          ],
+          [
+            192.20553640455347,
+            -2.099805371241173
+          ],
+          [
+            193.1357076261591,
+            -2.015733444242784
+          ],
+          [
+            194.0695999519334,
+            -2.004256760386868
+          ],
+          [
+            195.00155628637185,
+            -2.0654448402111303
+          ],
+          [
+            195.9259312613259,
+            -2.198927034121656
+          ],
+          [
+            196.83712543307917,
+            -2.4038947676197875
+          ],
+          [
+            197.72961920123385,
+            -2.679106439279151
+          ],
+          [
+            198.59800624394282,
+            -3.0228949418031235
+          ],
+          [
+            199.4370262669516,
+            -3.4331777606035843
+          ],
+          [
+            200.24159686807158,
+            -3.907469588728338
+          ],
+          [
+            201.0068443240639,
+            -4.442897381721719
+          ],
+          [
+            201.728133113441,
+            -5.036217761222881
+          ],
+          [
+            202.4010939963502,
+            -5.683836661878647
+          ],
+          [
+            203.021650481444,
+            -6.381831102558878
+          ],
+          [
+            203.58604351941312,
+            -7.125972949994217
+          ],
+          [
+            204.0908542735996,
+            -7.911754530886867
+          ],
+          [
+            204.53302482975644,
+            -8.7344159373479
+          ],
+          [
+            204.90987671950302,
+            -9.588973860257134
+          ],
+          [
+            205.21912714526985,
+            -10.470251775886208
+          ],
+          [
+            205.4589028084495,
+            -11.372911302927964
+          ],
+          [
+            205.6277512569885,
+            -12.291484539985557
+          ],
+          [
+            205.72464968368217,
+            -13.220407187635393
+          ],
+          [
+            205.7490111218761,
+            -14.15405225442556
+          ],
+          [
+            205.7006880010435,
+            -15.086764142634074
+          ],
+          [
+            205.57997304070037,
+            -16.01289290731091
+          ],
+          [
+            205.38759747724373,
+            -16.926828481078143
+          ],
+          [
+            205.12472663445365,
+            -17.823034657369806
+          ],
+          [
+            204.79295286449104,
+            -18.696082626256565
+          ],
+          [
+            204.3942859021517,
+            -19.54068385971032
+          ],
+          [
+            203.93114069080565,
+            -20.35172214710477
+          ],
+          [
+            203.77197585309403,
+            -20.6
+          ]
+        ]
+      },
+      {
+        "points": [
+          [
+            183.72802414690597,
+            -20.6
+          ],
+          [
+            203.77197585309403,
+            -20.6
+          ]
+        ]
+      }
+    ],
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"><rect width=\"800\" height=\"600\" fill=\"white\"/><g font-family=\"sans-serif\" fill=\"#203040\"><text x=\"30\" y=\"30\" font-size=\"18\">Body 46 \u00b7 X = 75.0000 mm section</text><g fill=\"none\" stroke=\"#b6c4ce\" stroke-width=\"0.7\"><polyline points=\"543.1711,113.4677 614.4135,184.7101 \"/><polyline points=\"512.3103,95.8760 632.3905,215.9562 \"/><polyline points=\"489.0959,85.9307 641.9501,238.7848 \"/><polyline points=\"469.4588,79.5626 648.2967,258.4005 \"/><polyline points=\"452.0014,75.3743 652.6004,275.9733 \"/><polyline points=\"435.9962,72.6381 655.5045,292.1465 \"/><polyline points=\"421.0232,70.9342 657.0499,306.9608 \"/><polyline points=\"406.8217,70.0018 657.7509,320.9309 \"/><polyline points=\"393.7117,70.1608 657.8687,334.3178 \"/><polyline points=\"381.0408,70.7590 657.2151,346.9332 \"/><polyline points=\"368.8716,71.8589 655.9959,358.9831 \"/><polyline points=\"357.3794,73.6357 654.4658,370.7221 \"/><polyline points=\"346.0900,75.6154 652.1987,381.7240 \"/><polyline points=\"335.4825,78.2769 649.7827,392.5771 \"/><polyline points=\"325.0353,81.0987 646.7734,402.8368 \"/><polyline points=\"315.0996,84.4321 643.5862,412.9187 \"/><polyline points=\"305.3637,87.9653 639.9323,422.5339 \"/><polyline points=\"296.0495,91.9201 636.0845,431.9551 \"/><polyline points=\"286.9316,96.0712 631.8296,440.9693 \"/><polyline points=\"278.2010,100.6097 627.4001,449.8089 \"/><polyline points=\"269.6340,105.3118 622.5771,458.2549 \"/><polyline points=\"261.4589,110.4057 617.6669,466.6137 \"/><polyline points=\"253.3957,115.6116 607.7841,470.0000 \"/><polyline points=\"245.7563,121.2413 594.5150,470.0000 \"/><polyline points=\"238.1651,126.9191 581.2460,470.0000 \"/><polyline points=\"231.0489,133.0720 567.9769,470.0000 \"/><polyline points=\"223.9328,139.2250 554.7078,470.0000 \"/><polyline points=\"217.3114,145.8727 541.4388,470.0000 \"/><polyline points=\"210.7127,152.5429 528.1697,470.0000 \"/><polyline points=\"204.5360,159.6353 514.9007,470.0000 \"/><polyline points=\"198.4550,166.8233 501.6316,470.0000 \"/><polyline points=\"192.7314,174.3688 488.3626,470.0000 \"/><polyline points=\"187.1750,182.0815 475.0935,470.0000 \"/><polyline points=\"181.9241,190.0997 461.8244,470.0000 \"/><polyline points=\"176.9057,198.3503 448.5554,470.0000 \"/><polyline points=\"172.1598,206.8735 435.2863,470.0000 \"/><polyline points=\"167.7003,215.6830 422.0173,470.0000 \"/><polyline points=\"163.5072,224.7590 408.7482,470.0000 \"/><polyline points=\"159.6359,234.1567 395.4792,470.0000 \"/><polyline points=\"156.0636,243.8535 382.2101,470.0000 \"/><polyline points=\"152.8200,253.8789 368.9410,470.0000 \"/><polyline points=\"149.9637,264.2917 355.6720,470.0000 \"/><polyline points=\"147.4000,274.9970 342.4029,470.0000 \"/><polyline points=\"145.3934,286.2596 329.1339,470.0000 \"/><polyline points=\"143.5882,297.7234 315.8648,470.0000 \"/><polyline points=\"142.6107,310.0150 302.5957,470.0000 \"/><polyline points=\"142.0000,322.6734 289.3267,470.0000 \"/><polyline points=\"141.9800,335.9224 276.0576,470.0000 \"/><polyline points=\"142.9300,350.1414 262.7886,470.0000 \"/><polyline points=\"144.6636,365.1441 249.5195,470.0000 \"/><polyline points=\"147.4533,381.2028 236.2505,470.0000 \"/><polyline points=\"151.7385,398.7571 222.9814,470.0000 \"/><polyline points=\"158.2902,418.5778 209.7123,470.0000 \"/><polyline points=\"168.6137,442.1704 196.4433,470.0000 \"/></g><g fill=\"none\" stroke=\"#243b4b\" stroke-width=\"1.4\"><polyline points=\"184.3446,470.0000 173.9565,452.8044 164.9372,434.8530 157.3413,416.2545 151.2148,397.1216 146.5949,377.5702 143.5095,357.7188 141.9774,337.6875 142.0077,317.5977 143.6004,297.5711 146.7457,277.7290 151.4246,258.1916 157.6088,239.0773 165.2609,220.5019 174.3343,202.5778 184.7743,185.4137 196.5176,169.1135 209.4929,153.7759 223.6218,139.4939 238.8186,126.3540 254.9913,114.4357 272.0420,103.8113 289.8672,94.5452 308.3591,86.6934 327.4056,80.3035 346.8914,75.4143 366.6984,72.0553 386.7067,70.2469 406.7950,70.0000 426.8417,71.3162 446.7252,74.1874 466.3253,78.5963 485.5231,84.5162 504.2024,91.9112 522.2499,100.7365 539.5565,110.9387 556.0172,122.4559 571.5323,135.2184 586.0079,149.1489 599.3563,164.1629 611.4965,180.1696 622.3552,197.0720 631.8664,214.7677 639.9726,233.1495 646.6247,252.1061 651.7823,271.5226 655.4143,291.2813 657.4986,311.2628 658.0226,331.3457 656.9832,351.4086 654.3866,371.3300 650.2485,390.9890 644.5941,410.2666 637.4575,429.0462 628.8821,447.2138 618.9197,464.6595 615.4960,470.0000 \"/><polyline points=\"184.3446,470.0000 615.4960,470.0000 \"/></g><text x=\"400\" y=\"504\" text-anchor=\"middle\" font-size=\"14\">Y coordinate (mm): 181.758 to 205.749</text><text x=\"30\" y=\"535\" font-size=\"13\">Z coordinate (mm): -20.600 to -2.004 \u00b7 section extent 23.991 \u00d7 18.596 mm</text><text x=\"30\" y=\"561\" font-size=\"12\">Source-body geometry \u00b7 contour sampling 0.010 mm \u00b7 probe spans use sampled contours</text><text x=\"30\" y=\"584\" font-size=\"12\">Geometric inspection; no structural results or printer toolpaths.</text></g></svg>"
+  },
+  "locator_controls": [
+    {
+      "xy_mm": [
+        -23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -23.0,
+        112.0
+      ],
+      "shift_mm": [
+        -0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0.16,
+        0,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.01863061871546
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0,
+        0.14,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990915,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0,
+        0.16,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 261,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.01863061871533895
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        23.0,
+        112.0
+      ],
+      "shift_mm": [
+        -0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0.16,
+        0,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.018630618715435844
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0,
+        0.14,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990915,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        23.0,
+        112.0
+      ],
+      "shift_mm": [
+        0,
+        0.16,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 262,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.01863061871533895
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36.0,
+        203.0
+      ],
+      "shift_mm": [
+        0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36.0,
+        203.0
+      ],
+      "shift_mm": [
+        -0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36.0,
+        203.0
+      ],
+      "shift_mm": [
+        0.16,
+        0,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.018630618715498884
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36.0,
+        203.0
+      ],
+      "shift_mm": [
+        0,
+        0.14,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990995,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        -36.0,
+        203.0
+      ],
+      "shift_mm": [
+        0,
+        0.16,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 263,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.01863061871752436
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16.0,
+        203.0
+      ],
+      "shift_mm": [
+        0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16.0,
+        203.0
+      ],
+      "shift_mm": [
+        -0.14,
+        0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": false,
+          "minimum_clearance_mm": 0.00999999999999801,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16.0,
+        203.0
+      ],
+      "shift_mm": [
+        0.16,
+        0,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.018630618715509584
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16.0,
+        203.0
+      ],
+      "shift_mm": [
+        0,
+        0.14,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": false,
+          "minimum_clearance_mm": 0.009999999999990995,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        16.0,
+        203.0
+      ],
+      "shift_mm": [
+        0,
+        0.16,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.018630618717524777
+        }
+      ]
+    }
+  ],
+  "closure_samples": [
+    {
+      "upper_lift_mm": 10,
+      "exact": true,
+      "interfering": false
+    },
+    {
+      "upper_lift_mm": 2,
+      "exact": true,
+      "interfering": false
+    },
+    {
+      "upper_lift_mm": 0.5,
+      "exact": true,
+      "interfering": false
+    },
+    {
+      "upper_lift_mm": 0.1,
+      "exact": true,
+      "interfering": false
+    },
+    {
+      "upper_lift_mm": 0,
+      "exact": true,
+      "interfering": false
+    }
+  ],
+  "cable_envelopes": [
+    {
+      "diameter_mm": 4.0,
+      "result": {
+        "translation_mm": [
+          0,
+          0,
+          0
+        ],
+        "exact": true,
+        "housing_pairs": [
+          {
+            "below_clearance": true,
+            "body_a": 46,
+            "body_b": 261,
+            "closest_point_a": [
+              24.999999999999993,
+              195.0,
+              0.0
+            ],
+            "closest_point_b": [
+              26.000000000000004,
+              195.0,
+              0.0
+            ],
+            "interfering": false,
+            "minimum_clearance_mm": 0.9999999999999728,
+            "occurrence_a": 7,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 0.0
+          },
+          {
+            "below_clearance": true,
+            "body_a": 26,
+            "body_b": 261,
+            "closest_point_a": [
+              24.999999999999993,
+              195.0,
+              0.0
+            ],
+            "closest_point_b": [
+              26.000000000000004,
+              195.0,
+              0.0
+            ],
+            "interfering": false,
+            "minimum_clearance_mm": 0.9999999999999728,
+            "occurrence_a": 6,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "diameter_mm": 5.0,
+      "result": {
+        "translation_mm": [
+          0,
+          0,
+          0
+        ],
+        "exact": true,
+        "housing_pairs": [
+          {
+            "below_clearance": true,
+            "body_a": 46,
+            "body_b": 261,
+            "closest_point_a": [
+              24.999999999999993,
+              195.0,
+              0.0
+            ],
+            "closest_point_b": [
+              25.500000000000004,
+              195.0,
+              0.0
+            ],
+            "interfering": false,
+            "minimum_clearance_mm": 0.4999999999999708,
+            "occurrence_a": 7,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 0.0
+          },
+          {
+            "below_clearance": true,
+            "body_a": 26,
+            "body_b": 261,
+            "closest_point_a": [
+              24.999999999999993,
+              195.0,
+              0.0
+            ],
+            "closest_point_b": [
+              25.500000000000004,
+              195.0,
+              0.0
+            ],
+            "interfering": false,
+            "minimum_clearance_mm": 0.4999999999999708,
+            "occurrence_a": 6,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "diameter_mm": 6.2,
+      "result": {
+        "translation_mm": [
+          0,
+          0,
+          0
+        ],
+        "exact": true,
+        "housing_pairs": [
+          {
+            "below_clearance": true,
+            "body_a": 46,
+            "body_b": 261,
+            "closest_point_a": [
+              25.0,
+              206.5,
+              0.0
+            ],
+            "closest_point_b": [
+              25.0,
+              206.5,
+              0.0
+            ],
+            "interfering": true,
+            "minimum_clearance_mm": 0.0,
+            "occurrence_a": 7,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 2.9322985876841248
+          },
+          {
+            "below_clearance": true,
+            "body_a": 26,
+            "body_b": 261,
+            "closest_point_a": [
+              25.0,
+              206.5,
+              0.0
+            ],
+            "closest_point_b": [
+              25.0,
+              206.5,
+              0.0
+            ],
+            "interfering": true,
+            "minimum_clearance_mm": 0.0,
+            "occurrence_a": 6,
+            "occurrence_b": 22,
+            "overlap_volume_mm3": 2.9322985876992895
+          }
+        ]
+      }
+    }
+  ],
+  "sample_counts": {
+    "sections": 6,
+    "driver_approaches": 4,
+    "locator_controls": 20,
+    "closure": 5,
+    "bushing_capture": 4,
+    "auger_rotation_endfloat": 24,
+    "coupled_poses": 9,
+    "continuous_cable_sweeps": 3
+  },
+  "scope": "Nominal sampled geometry, assumed cable/driver envelopes and flat contact. Physical comfort, loaded strength, actual engagement, threads and dirty use remain unqualified."
+}
