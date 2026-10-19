@@ -1,5 +1,7 @@
 # Lower, rounder D grips — 18 October 2026
 
+**Superseded exterior:** the owner subsequently rejected the seam scallops. The [continuous-frame revision](solid-frame-review.md) removes them while retaining these D grips and the functional dimensions. Files below preserve the preceding iteration.
+
 Use [the complete five-part project](../garden-auger-child-d-grip-assembly.3mf) and [matching editable CAD](../experiments/garden-auger-child-d-grips.limo). This supersedes the previous relieved housing and its two-plate layout. Both revised housing pieces are required together.
 
 ![Closed assembly from the reverse side](../renders/d-grip/closed-reverse.png)
