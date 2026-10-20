@@ -14,24 +14,31 @@ BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
 OUT=ROOT/'renders/d-grip'
 
 
-def main(build=BUILD,out=OUT,solid_frame=False):
+def main(build=BUILD,out=OUT,solid_frame=False,outer_envelope=False):
     out.mkdir(parents=True,exist_ok=True)
     scene=json.loads((build/'scene.json').read_text())
     bodies={b['id']:b for b in scene['bodies']}
     meshes={bid:(COLORS[bid],triangles(bodies[bid],(lambda p:(p[0],148.7-p[2],p[1])) if bid==1 else None)) for bid in COLORS}
     for name,direction in [('closed-reverse',(-1.2,1.7,1.2)),('closed-front',(1.2,-1.7,1.1)),('closed-underside',(-1.2,1.7,-1.2))]:
         p=out/(name+'.png');framed(list(meshes.values()),(1400,900),p,margin=65,direction=direction)
-        banner(p,('Closed solid-frame assembly' if solid_frame else 'Closed D-grip assembly')+' | '+name.removeprefix('closed-'),
-               'Continuous frame | exterior corner rounds | lower D grips' if solid_frame else '24 mm rounded width | 18.6 mm grip height | complete grips on lower half')
+        title='Closed rounded-envelope assembly' if outer_envelope else 'Closed solid-frame assembly' if solid_frame else 'Closed D-grip assembly'
+        subtitle='R5 face rounds | slimmer sides | blended plan outline' if outer_envelope else 'Continuous frame | exterior corner rounds | lower D grips' if solid_frame else '24 mm rounded width | 18.6 mm grip height | complete grips on lower half'
+        banner(p,title+' | '+name.removeprefix('closed-'),subtitle)
     for bid,label in [(46,'lower-print-face'),(26,'upper-print-face')]:
         transform=(lambda p:(-p[0],p[1],-p[2])) if bid==26 else None
         p=out/(label+'.png');framed([(COLORS[bid],triangles(bodies[bid],transform))],(1400,800),p,margin=65)
         banner(p,'Lower housing and complete D grips' if bid==46 else 'Upper cover | central mechanism only',
-               'Flat bed faces retained | four small locating pins on lower | rear cable cheek retained')
-    if solid_frame:
+               'Flat bed faces retained | four small locating pins on lower | rear cable roof retained')
+    if outer_envelope:
+        from raster_render import render
+        render([(COLORS[v],triangles(bodies[v])) for v in [26,46]],eye=(-4.5,155.2,600),target=(-4.5,155.2,0),
+               up=(0,1,0),size=(1100,740),path=out/'top.png',scale=3000)
+    if solid_frame or outer_envelope:
         # Grip geometry is unchanged; preserve the existing sample and its hash.
-        (build/'comfort-sample.json').write_text((BUILD/'comfort-sample.json').read_text())
-        print('Closed solid-frame and print-face views saved; existing comfort sample retained',flush=True)
+        sample=json.loads((ROOT/'d-grip-print-verification.json').read_text())['optional_comfort_sample']
+        assert hashlib.sha256((ROOT/sample['file']).read_bytes()).hexdigest()==sample['sha256']
+        (build/'comfort-sample.json').write_text(json.dumps(sample,indent=2)+'\n')
+        print('Closed assembly and print-face views saved; existing comfort sample retained',flush=True)
         return
     # Optional comfort sample uses the actual native outer-left-grip mesh.
     raw=bodies[46]['mesh']

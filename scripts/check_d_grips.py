@@ -22,12 +22,18 @@ def main():
     global CAD,REPORT,BUILD
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--solid-frame',action='store_true')
+    parser.add_argument('--outer-envelope',action='store_true')
     args=parser.parse_args()
     if args.solid_frame:
         CAD=ROOT/'experiments/garden-auger-solid-frame.limo'
         REPORT=ROOT/'solid-frame-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip/solid-frame'
-    proof=json.loads((ROOT/('solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json')).read_text())
+    if args.outer_envelope:
+        CAD=ROOT/'experiments/garden-auger-rounded-envelope.limo'
+        REPORT=ROOT/'outer-envelope-validation.json'
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/outer-envelope'
+    review='outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
+    proof=json.loads((ROOT/review).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
     sections=[('ear-nest',46,'xy',-.1,164.15),('servo-floor',46,'xz',179.9,-10),
@@ -44,7 +50,14 @@ def main():
             after=c.call('solid_section_review',{'body_id':b,'plane':p,'offset_mm':o,'probe_mm':v,'deflection_mm':.01})
             a=[[s['start_mm'],s['end_mm']] for s in before['probe_spans']]
             d=[[s['start_mm'],s['end_mm']] for s in after['probe_spans']]
-            if name=='rear-wall':
+            if args.outer_envelope and name in ['ear-nest','servo-floor','rear-wall']:
+                assert len(a)==len(d)==2,(name,a,d)
+                assert np.allclose([a[0][1],a[1][0]],[d[0][1],d[1][0]],rtol=0,atol=1e-7),(name,a,d)
+                assert min(r-l for l,r in d)>=2.8,(name,d)
+                report['retained_section_probes'].append({'name':name,'before_spans_mm':a,'after_spans_mm':d,
+                    'retained_cavity_limits_mm':[d[0][1],d[1][0]],
+                    'scope':'Functional cavity limits unchanged; outside stock intentionally trimmed/blended.'})
+            elif name=='rear-wall':
                 # The approved grip ends move; retain the actual central
                 # case-wall intervals rather than requiring the old span.
                 clip=lambda spans:[[max(l,-43.),min(r,34.)] for l,r in spans if r>-43 and l<34]

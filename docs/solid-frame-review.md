@@ -1,5 +1,7 @@
 # Continuous frame, exterior rounds — 18 October 2026
 
+**Historical exterior:** the [rounded-envelope revision](rounded-envelope-review.md) supersedes this body after the owner requested trimming/rounding both outer face pairs and blending the plan-view cheeks. The files below preserve the preceding iteration.
+
 The owner rejected the paired curved recesses visible when the housing closed. This revision removes all **eight cosmetic bearing/servo shoulder cuts**. Both housing sides now close into continuous walls. Rounding remains on the exterior front corners, the blended outside profile and the D grips.
 
 ![Closed solid frame, reverse side](../renders/solid-frame/closed-reverse.png)
