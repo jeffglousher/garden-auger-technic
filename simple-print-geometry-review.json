@@ -60,22 +60,22 @@
       ],
       [
         103.3,
-        19.4
+        18.4
       ],
       [
         103.9,
-        20.0
+        19.0
       ],
       [
         106.3,
-        20.0
+        19.0
       ],
       [
         106.3,
         0.0
       ]
     ],
-    "outside_diameter_mm": 40.0,
+    "outside_diameter_mm": 38.0,
     "axial_span_y_mm": [
       103.3,
       106.3
@@ -86,11 +86,11 @@
     "housing_front_y_mm": 107.9,
     "opening_radius_reference_mm": 16.8,
     "nominal_rear_face_gap_mm": 1.6,
-    "nominal_radial_opening_overlap_mm": 3.2,
+    "nominal_radial_opening_overlap_mm": 2.2,
     "conditional_axial_allowance_mm": 0.5,
     "conditional_radial_axis_offset_mm": 0.5,
     "conditional_rear_face_gap_mm": 1.1,
-    "conditional_radial_opening_overlap_mm": 2.7,
+    "conditional_radial_opening_overlap_mm": 1.7,
     "scope": "Conservative opening reference from the retained entrance profile; existing conditional allowances, not new physical readings or a full tolerance stack."
   },
   "printer_command_sent": false,
@@ -98,21 +98,21 @@
   "changed_parts": {
     "15": {
       "before_volume_mm3": 48064.942737824815,
-      "after_volume_mm3": 45885.309325682254,
-      "removed_volume_mm3": 2179.6334121425607,
+      "after_volume_mm3": 45519.48112643376,
+      "removed_volume_mm3": 2545.4616113910524,
       "closed_connected": true,
       "before_native_faces": 29,
       "after_native_faces": 27,
       "bounds_mm": [
         [
-          -19.993783640016325,
+          -18.99409445801551,
           -1.0,
-          -19.97513842437845
+          -18.976381503159526
         ],
         [
-          19.993783640016325,
+          18.99409445801551,
           139.5,
-          20.0
+          19.0
         ]
       ]
     },
@@ -732,18 +732,18 @@
         "body_b": 263,
         "interfering": true,
         "minimum_clearance_mm": 0.0,
-        "overlap_volume_mm3": 175.52706474136835
+        "overlap_volume_mm3": 28.50052855336632
       },
       {
         "body_a": 26,
         "body_b": 263,
         "interfering": true,
         "minimum_clearance_mm": 0.0,
-        "overlap_volume_mm3": 175.52706474136835
+        "overlap_volume_mm3": 28.500528553366223
       }
     ],
     "instruction": "Use the matching simple-print auger and both housing halves. The closer flange collides with the older projecting nose ring."
   },
   "cad": "experiments\\garden-auger-simple-print.limo",
-  "cad_sha256": "c113b0b9f60241c853b4fbd9a6dd1566b59f5f5a06769d75a0a8aa34f7f1cb69"
+  "cad_sha256": "987429dad3fabdc51b38ec5a020d5aae8f609566c952019497e56b6ef1bba3b0"
 }

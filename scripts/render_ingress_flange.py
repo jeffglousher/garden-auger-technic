@@ -27,7 +27,7 @@ def main(build,cad,out,simple_print=False):
     x=lambda y:38+(y-94)*17
     y=lambda z:52+(26-z)*17
     rear,front=(106.3,107.9) if simple_print else (102.3,103.9)
-    outer,opening=(20.,16.8) if simple_print else (24.,20.6)
+    outer,opening=(19.,16.8) if simple_print else (24.,20.6)
     dim_y=102.2 if simple_print else 98.1
     paths=[]
     for bid,color in [(26,'#e5ae3c'),(46,'#e5ae3c'),(90,'#d57e37'),(15,'#d57e37')]:
@@ -47,12 +47,12 @@ def main(build,cad,out,simple_print=False):
 <path class="dim" d="M{x(rear)},{y(24.6)} V{y(25.6)} H{x(front)} V{y(24.6)} M{x((rear+front)/2)},{y(25.6)} L290,48 H515"/>
 <text x="295" y="43" class="small">1.6 mm nominal rear gap</text>
 <path class="dim" d="M{x(dim_y)},{y(opening)} H{x(dim_y-.9)} V{y(outer)} H{x(dim_y) }"/>
-<text x="28" y="{175 if simple_print else 88}" class="small">{'3.2 mm opening' if simple_print else '3.4 mm'}</text><text x="28" y="{192 if simple_print else 105}" class="small">{'overlap' if simple_print else 'overhang'}</text>
+<text x="28" y="{175 if simple_print else 88}" class="small">{'2.2 mm opening' if simple_print else '3.4 mm'}</text><text x="28" y="{192 if simple_print else 105}" class="small">{'overlap' if simple_print else 'overhang'}</text>
 <text x="300" y="117" class="small">{'Direct housing nose' if simple_print else 'Fixed yellow lip'}</text>
 <path class="dim" d="M300,121 L{x(front+.8)},{y(20.6)}"/>
 <text x="40" y="250" class="small">Rotating</text><text x="40" y="267" class="small">orange flange</text>
 <path class="dim" d="M132,255 L{x(rear-1.4)},{y(15)}"/>
-<text x="24" y="558" font-size="15">{'Ø40 disc · 3 mm web · one edge chamfer' if simple_print else 'Ø48 flange · 3.3 mm broad web · beveled edge'}</text>
+<text x="24" y="558" font-size="15">{'Ø38 disc · 3 mm web · one edge chamfer' if simple_print else 'Ø48 flange · 3.3 mm broad web · beveled edge'}</text>
 <text x="24" y="582" class="small">Native section at X0, 0.01 mm deflection. No contact seal.</text>
 <text x="24" y="603" class="small">Gap is 1.1 mm with the existing +0.5 mm axial allowance.</text>
 </svg>'''

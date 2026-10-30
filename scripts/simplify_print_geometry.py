@@ -3,7 +3,7 @@
 Native CAD only; preserve fitted interfaces and continuous bed lands. Owned
 simple-print evidence stays in the existing D project lane, bounded to 90 MiB.
 """
-import copy,json
+import argparse,copy,json
 from pathlib import Path
 import numpy as np
 
@@ -19,7 +19,7 @@ SOURCE=ROOT/'experiments/garden-auger-ingress-flange.limo'
 CAD=ROOT/'experiments/garden-auger-simple-print.limo'
 BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
 REPORT=ROOT/'simple-print-geometry-review.json'
-PROFILE=[(103.3,0.),(103.3,19.4),(103.9,20.),(106.3,20.),(106.3,0.)]
+PROFILE=[(103.3,0.),(103.3,18.4),(103.9,19.),(106.3,19.),(106.3,0.)]
 
 
 def shield_probe(c,name):
@@ -31,6 +31,10 @@ def shield_probe(c,name):
 
 
 def main():
+    global BUILD
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--build-root",type=Path,default=BUILD)
+    BUILD=parser.parse_args().build_root
     BUILD.mkdir(parents=True,exist_ok=True)
     original=read_model(SOURCE);candidate=copy.deepcopy(original)
     previous=json.loads((ROOT/'ingress-flange-geometry-review.json').read_text())
@@ -42,13 +46,13 @@ def main():
     report={'source':str(SOURCE.relative_to(ROOT)),'source_sha256':digest(SOURCE),
         'profile':previous['profile'],'locators':previous['locators'],
         'suppressed_redundant_ring_features':list(range(349,354)),
-        'shield':{'profile_y_radius_mm':PROFILE,'outside_diameter_mm':40.,
+        'shield':{'profile_y_radius_mm':PROFILE,'outside_diameter_mm':38.,
             'axial_span_y_mm':[103.3,106.3],'broad_web_thickness_mm':3.,
             'outer_edge_thickness_mm':2.4,'front_edge_chamfer_mm':.6,
             'housing_front_y_mm':107.9,'opening_radius_reference_mm':16.8,
-            'nominal_rear_face_gap_mm':1.6,'nominal_radial_opening_overlap_mm':3.2,
+            'nominal_rear_face_gap_mm':1.6,'nominal_radial_opening_overlap_mm':2.2,
             'conditional_axial_allowance_mm':.5,'conditional_radial_axis_offset_mm':.5,
-            'conditional_rear_face_gap_mm':1.1,'conditional_radial_opening_overlap_mm':2.7,
+            'conditional_rear_face_gap_mm':1.1,'conditional_radial_opening_overlap_mm':1.7,
             'scope':'Conservative opening reference from the retained entrance profile; existing conditional allowances, not new physical readings or a full tolerance stack.'},
         'printer_command_sent':False}
     with CadClient() as c:
@@ -58,7 +62,7 @@ def main():
         old_mesh={bid:export_mesh(c,bid)[0] for bid in [15,26,46]}
         c.call('cad_load_project_model',{'model_json':json.dumps(candidate)})
         c.call('cad_set_document_name',{'name':'Garden auger - simple printable nose and flange'})
-        c.call('solid_rename_feature',{'feature_id':393,'name':'Simple 40mm auger flange - one edge chamfer'})
+        c.call('solid_rename_feature',{'feature_id':393,'name':'Simple 38mm auger flange - one edge chamfer'})
         scene=c.call('solid_scene');assert not scene['errors']
         bodies={b['id']:b for b in scene['bodies']}
         report['changed_parts']={}
@@ -92,7 +96,7 @@ def main():
                 if v.get('feature_id')==393:continue
                 # Renaming the sketch updates its revolve reference only.
                 if key=='revolves' and v['feature_id']==394:
-                    v=copy.deepcopy(v);v['sketch_name']='Simple 40mm auger flange - one edge chamfer'
+                    v=copy.deepcopy(v);v['sketch_name']='Simple 38mm auger flange - one edge chamfer'
                 assert json.dumps(v,sort_keys=True) in by_id,(key,v.get('feature_id'))
         report['active_feature_count']={'before':sum(not f['suppressed'] for f in original['document']['history']['features']),
             'after':sum(not f['suppressed'] for f in final['document']['history']['features'])}
