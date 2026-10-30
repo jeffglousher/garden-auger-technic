@@ -1,16 +1,16 @@
-"""Slim and round both outer face pairs, blending the plan-view cheek steps.
+"""Slim the envelope with rounded or 45-degree chamfered outer face rims.
 
 Only the installed isolated native engine is used. The existing 90 MiB owned
 output sublane retains successful native evidence and small rejected trials.
 """
-import copy,json
+import argparse,copy,json
 from pathlib import Path
 import numpy as np
 
 from cad_client import CadClient
 from cad_build import Builder,save_project
 from slim_housing import rounded_profile
-from revise_clamshell import export_mesh,model as live_model
+from revise_clamshell import export_mesh,model as live_model,sketch_at
 from build_servo_rear_fit_test import read_model,digest,native_plane
 from print_packer import component_count
 
@@ -38,9 +38,17 @@ def outer_face_edges(body,z):
 
 
 def main():
+    global CAD,BUILD,REPORT
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--chamfer-envelope',action='store_true')
+    args=parser.parse_args()
+    if args.chamfer_envelope:
+        CAD=ROOT/'experiments/garden-auger-chamfer-envelope.limo'
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/chamfer-envelope'
+        REPORT=ROOT/'chamfer-envelope-geometry-review.json'
     BUILD.mkdir(parents=True,exist_ok=True)
     original=read_model(SOURCE);candidate=copy.deepcopy(original)
-    candidate['document']['name']='Garden auger - slim rounded outer envelope'
+    candidate['document']['name']='Garden auger - 45 degree chamfer envelope' if args.chamfer_envelope else 'Garden auger - slim rounded outer envelope'
     rounded_profile(next(s for s in candidate['sketches'] if s['feature_id']==40),OUTLINE,RADII)
     # The new complete outline supplies the rear cable roof and screw stock;
     # the previous pad/cheek additions would protrude through its thinner sides.
@@ -72,37 +80,54 @@ def main():
         c.call('cad_load_project_model',{'model_json':json.dumps(partial)})
         assert not c.call('solid_scene')['errors'],c.call('solid_scene')['errors']
         (BUILD/'unrounded-plan-model.json').write_text(json.dumps(live_model(c)))
-        report['face_round_trials']=[]
+        trial_key='face_chamfer_trials' if args.chamfer_envelope else 'face_round_trials'
+        report[trial_key]=[]
         for bid,z in [(26,20.6),(26,-20.6)]:
             before=live_model(c);body=next(b for b in c.call('solid_scene')['bodies'] if b['id']==bid)
             edges=outer_face_edges(body,z);assert edges
             success=False
-            for radius in [5.,4.,3.,2.]:
+            for radius in ([5.] if args.chamfer_envelope else [5.,4.,3.,2.]):
                 try:
-                    c.call('solid_fillet',{'body_id':bid,'edge_ids':edges,'radius':radius,'tangent_chain':False})
+                    operation='solid_chamfer' if args.chamfer_envelope else 'solid_fillet'
+                    c.call(operation,{'body_id':bid,'edge_ids':edges,
+                        ('distance' if args.chamfer_envelope else 'radius'):radius,'tangent_chain':False})
                     errors=c.call('solid_scene')['errors'];assert not errors,errors
                     mesh,_=export_mesh(c,bid)
                     assert mesh.is_watertight and mesh.is_volume and component_count(mesh)==1,{'watertight':mesh.is_watertight,'volume':mesh.is_volume,'components':component_count(mesh)}
-                    report['face_round_trials'].append({'body':bid,'outer_z_mm':z,'radius_mm':radius,'edge_count':len(edges),'passed':True})
-                    print(f'Outer face round blank Z{z:g} R{radius:g} passes native closed export',flush=True)
+                    report[trial_key].append({'body':bid,'outer_z_mm':z,
+                        ('equal_leg_mm' if args.chamfer_envelope else 'radius_mm'):radius,'operation':operation,'edge_count':len(edges),'passed':True})
+                    print(f'Outer face {operation} blank Z{z:g} size {radius:g} passes native closed export',flush=True)
                     success=True;break
                 except (RuntimeError,AssertionError) as error:
-                    report['face_round_trials'].append({'body':bid,'radius_mm':radius,'passed':False,'error':str(error)})
+                    report[trial_key].append({'body':bid,'radius_mm':radius,'passed':False,'error':str(error)})
                     print('Rejected face round',bid,radius,str(error),flush=True)
                     c.call('cad_load_project_model',{'model_json':json.dumps(before)})
             if not success:
                 (BUILD/'rejected-rounds.json').write_text(json.dumps(report,indent=2)+'\n')
-                raise AssertionError(report['face_round_trials'])
-        # A circular bearing jacket retains the front roof where a global
-        # face round would otherwise consume the existing 2.8 mm cover.
-        # It is added before the original journal/thrust/entry cuts run.
-        Builder(c).revolve('Rounded bearing nose jacket - retained 2.8mm cover',
-            [(107.9,0),(107.9,20.6),(113.9,20.6),(113.9,0)],'join',[26])
+                raise AssertionError(report[trial_key])
+        # Retain the front roof where the perimeter treatment would consume
+        # bearing cover. The chamfer variant also removes the circular
+        # jacket's shallow underside start. Original functional cuts follow.
+        if args.chamfer_envelope:
+            name='Bearing nose jacket - flat base and 45 degree shoulders'
+            points=[(-15.6,-20.6),(15.6,-20.6),(20.6,-15.6),(20.6,15.6),
+                    (15.6,20.6),(-15.6,20.6),(-20.6,15.6),(-20.6,-15.6)]
+            sketch_at(c,name,points,(0,113.9,0))
+            c.call('solid_extrude',{'sketch_name':name,'profile_indices':[0],
+                'operation':'join','extent':{'type':'distance','distance':6.},
+                'taper_angle_deg':0,'flip':False,'target_body_ids':[26]})
+            assert not c.call('solid_scene')['errors']
+            report['bearing_roof_protection']={'outer_xz_polygon_mm':points,'axial_y_mm':[107.9,113.9],
+                'minimum_sampled_cover_target_mm':2.8,'flat_land_width_mm':31.2,
+                'reason':'Flat base and 45 degree side shoulders replace the residual circular underside overhang; original bearing cuts run afterward.'}
+        else:
+            Builder(c).revolve('Rounded bearing nose jacket - retained 2.8mm cover',
+                [(107.9,0),(107.9,20.6),(113.9,20.6),(113.9,0)],'join',[26])
         rounded=live_model(c)
         added=[f for f in rounded['document']['history']['features'] if f['id'] not in {v['id'] for v in partial['document']['history']['features']}]
         candidate['document']['history']['features']=history[:split_index]+added+history[split_index:]
         candidate['document']['history']['rollback_index']=len(candidate['document']['history']['features'])
-        for key in ['fillets','sketches','revolves']:candidate[key]=rounded[key]
+        for key in ['fillets','chamfers','sketches','revolves','extrudes']:candidate[key]=rounded[key]
         candidate['counters']=rounded['counters']
         c.call('cad_load_project_model',{'model_json':json.dumps(candidate)})
         scene=c.call('solid_scene');assert not scene['errors']
@@ -123,6 +148,12 @@ def main():
         assert report['nominal_assembly']['exact'] and not any(p['interfering'] for p in report['nominal_assembly']['pairs'])
         final=save_project(c,CAD);assert final['body_appearances']==original['body_appearances']
         (BUILD/'scene.json').write_text(json.dumps(scene))
+        if args.chamfer_envelope:
+            report['vertical_bevel']={'equal_legs_mm':5.,'angle_to_bed_degrees':45.,
+                'outer_face_z_mm':[-20.6,20.6],'vertical_wall_transition_z_mm':[-15.6,15.6],
+                'scope':'Housing outer perimeter and nose jacket shoulders; plan-view corner radii, bearing cavities and complete D grips retained.'}
+            previous=ROOT/'experiments/garden-auger-rounded-envelope.limo'
+            report['predecessor']={'cad':str(previous.relative_to(ROOT)),'sha256':digest(previous)}
     report['cad']=str(CAD.relative_to(ROOT));report['cad_sha256']=digest(CAD)
     REPORT.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report['housing'],indent=2),flush=True)

@@ -23,7 +23,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--solid-frame',action='store_true')
     parser.add_argument('--outer-envelope',action='store_true')
+    parser.add_argument('--chamfer-envelope',action='store_true')
     args=parser.parse_args()
+    if args.chamfer_envelope:args.outer_envelope=True
     if args.solid_frame:
         CAD=ROOT/'experiments/garden-auger-solid-frame.limo'
         REPORT=ROOT/'solid-frame-validation.json'
@@ -32,7 +34,11 @@ def main():
         CAD=ROOT/'experiments/garden-auger-rounded-envelope.limo'
         REPORT=ROOT/'outer-envelope-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/outer-envelope'
-    review='outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
+    if args.chamfer_envelope:
+        CAD=ROOT/'experiments/garden-auger-chamfer-envelope.limo'
+        REPORT=ROOT/'chamfer-envelope-validation.json'
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/chamfer-envelope'
+    review='chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
     proof=json.loads((ROOT/review).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
