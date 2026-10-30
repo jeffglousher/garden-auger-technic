@@ -25,7 +25,9 @@ def main():
     parser.add_argument('--outer-envelope',action='store_true')
     parser.add_argument('--chamfer-envelope',action='store_true')
     parser.add_argument('--ingress-flange',action='store_true')
+    parser.add_argument('--simple-print',action='store_true')
     args=parser.parse_args()
+    if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:args.outer_envelope=True
     if args.solid_frame:
@@ -44,7 +46,11 @@ def main():
         CAD=ROOT/'experiments/garden-auger-ingress-flange.limo'
         REPORT=ROOT/'ingress-flange-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/ingress-flange'
-    review='ingress-flange-geometry-review.json' if args.ingress_flange else 'chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
+    if args.simple_print:
+        CAD=ROOT/'experiments/garden-auger-simple-print.limo'
+        REPORT=ROOT/'simple-print-validation.json'
+        BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
+    review='simple-print-geometry-review.json' if args.simple_print else 'ingress-flange-geometry-review.json' if args.ingress_flange else 'chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
     proof=json.loads((ROOT/review).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
