@@ -47,7 +47,7 @@ def replace_mesh(obj,mesh):
         ET.SubElement(faces,f'{{{CORE}}}triangle',dict(zip(('v1','v2','v3'),(str(x) for x in face))))
 
 
-def pack(source,target,*,print_notes,individual_dir='print-parts/direct-drive'):
+def pack(source,target,*,print_notes,individual_dir='print-parts/direct-drive',auger_anchor=(214,8)):
     with zipfile.ZipFile(source) as z:
         entries={name:z.read(name) for name in z.namelist()}
     xml=ET.fromstring(entries['3D/3dmodel.model'])
@@ -72,7 +72,7 @@ def pack(source,target,*,print_notes,individual_dir='print-parts/direct-drive'):
     upright=np.array([[1,0,0],[0,0,1],[0,-1,0]])
     rotations=[np.diag([-1,1,-1]),np.eye(3),np.eye(3),
                upright,upright]
-    anchors=[(8,8),(8,116),(214,8),(214,169),(214,207)]
+    anchors=[(8,8),(8,116),auger_anchor,(214,169),(214,207)]
     material_id=max(int(r.get('id','0')) for r in resources)+1
     material=ET.SubElement(resources,f'{{{CORE}}}basematerials',{'id':str(material_id)})
     palette=[('PETG - Chassis yellow','#E5AE3CFF'),('PETG - Auger orange','#D57E37FF'),

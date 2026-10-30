@@ -14,15 +14,15 @@ BUILD=ROOT/'.build/clamshell-detail/current-assembly/d-grip'
 OUT=ROOT/'renders/d-grip'
 
 
-def main(build=BUILD,out=OUT,solid_frame=False,outer_envelope=False,chamfer_envelope=False):
+def main(build=BUILD,out=OUT,solid_frame=False,outer_envelope=False,chamfer_envelope=False,ingress_flange=False):
     out.mkdir(parents=True,exist_ok=True)
     scene=json.loads((build/'scene.json').read_text())
     bodies={b['id']:b for b in scene['bodies']}
     meshes={bid:(COLORS[bid],triangles(bodies[bid],(lambda p:(p[0],148.7-p[2],p[1])) if bid==1 else None)) for bid in COLORS}
     for name,direction in [('closed-reverse',(-1.2,1.7,1.2)),('closed-front',(1.2,-1.7,1.1)),('closed-underside',(-1.2,1.7,-1.2))]:
         p=out/(name+'.png');framed(list(meshes.values()),(1400,900),p,margin=65,direction=direction)
-        title='Closed 45 degree chamfer assembly' if chamfer_envelope else 'Closed rounded-envelope assembly' if outer_envelope else 'Closed solid-frame assembly' if solid_frame else 'Closed D-grip assembly'
-        subtitle='5 mm equal-leg bevels | 45 degree vertical angle | flat bases retained' if chamfer_envelope else 'R5 face rounds | slimmer sides | blended plan outline' if outer_envelope else 'Continuous frame | exterior corner rounds | lower D grips' if solid_frame else '24 mm rounded width | 18.6 mm grip height | complete grips on lower half'
+        title='Closed assembly with rotating dirt flange' if ingress_flange else 'Closed 45 degree chamfer assembly' if chamfer_envelope else 'Closed rounded-envelope assembly' if outer_envelope else 'Closed solid-frame assembly' if solid_frame else 'Closed D-grip assembly'
+        subtitle='Integral orange flange shields fixed yellow lip | noncontact clearance retained' if ingress_flange else '5 mm equal-leg bevels | 45 degree vertical angle | flat bases retained' if chamfer_envelope else 'R5 face rounds | slimmer sides | blended plan outline' if outer_envelope else 'Continuous frame | exterior corner rounds | lower D grips' if solid_frame else '24 mm rounded width | 18.6 mm grip height | complete grips on lower half'
         banner(p,title+' | '+name.removeprefix('closed-'),subtitle)
     for bid,label in [(46,'lower-print-face'),(26,'upper-print-face')]:
         transform=(lambda p:(-p[0],p[1],-p[2])) if bid==26 else None

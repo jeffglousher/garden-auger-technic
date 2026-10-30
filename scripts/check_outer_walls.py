@@ -31,10 +31,15 @@ def main():
     global CAD,REPORT
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--chamfer-envelope",action="store_true")
+    parser.add_argument("--ingress-flange",action="store_true")
     args=parser.parse_args()
+    if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:
         CAD=ROOT/"experiments/garden-auger-chamfer-envelope.limo"
         REPORT=ROOT/"chamfer-envelope-wall-review.json"
+    if args.ingress_flange:
+        CAD=ROOT/'experiments/garden-auger-ingress-flange.limo'
+        REPORT=ROOT/'ingress-flange-wall-review.json'
     source=read_model(ROOT/'experiments/garden-auger-solid-frame.limo');final=read_model(CAD)
     # The component cavities, screw stacks, ear stops, cable path and grip
     # feature definitions remain exact. The exterior sketch is the exception.
