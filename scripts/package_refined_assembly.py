@@ -39,7 +39,9 @@ def main():
     parser.add_argument('--d-grips',action='store_true')
     parser.add_argument('--solid-frame',action='store_true')
     parser.add_argument('--outer-envelope',action='store_true')
+    parser.add_argument('--chamfer-envelope',action='store_true')
     args=parser.parse_args()
+    if args.chamfer_envelope:args.outer_envelope=True
     if args.solid_frame or args.outer_envelope:args.d_grips=True
     review_path=ROOT/('d-grip-geometry-review.json' if args.d_grips else 'geometry-refinement-review.json')
     validation_path=ROOT/'d-grip-validation.json'
@@ -62,10 +64,17 @@ def main():
             REPORT=ROOT/'outer-envelope-print-verification.json'
             review_path=ROOT/'outer-envelope-geometry-review.json'
             validation_path=ROOT/'outer-envelope-validation.json'
+        if args.chamfer_envelope:
+            BUILD=ROOT/'.build/clamshell-detail/current-assembly/chamfer-envelope'
+            CAD=ROOT/'experiments/garden-auger-chamfer-envelope.limo'
+            TARGET=ROOT/'garden-auger-chamfer-envelope-assembly.3mf'
+            REPORT=ROOT/'chamfer-envelope-print-verification.json'
+            review_path=ROOT/'chamfer-envelope-geometry-review.json'
+            validation_path=ROOT/'chamfer-envelope-validation.json'
         validation=json.loads(validation_path.read_text())
         assert validation['cad_sha256']==sha(CAD)
         if args.outer_envelope:
-            wall_path=ROOT/'outer-envelope-wall-review.json'
+            wall_path=ROOT/('chamfer-envelope-wall-review.json' if args.chamfer_envelope else 'outer-envelope-wall-review.json')
             assert json.loads(wall_path.read_text())['cad_sha256']==sha(CAD)
     parts_dir='print-parts/d-grip-assembly' if args.d_grips else 'print-parts/relieved-assembly'
     renders_dir='renders/d-grip' if args.d_grips else 'renders/relieved-assembly'
@@ -75,6 +84,9 @@ def main():
     if args.outer_envelope:
         parts_dir='print-parts/rounded-envelope-assembly'
         renders_dir='renders/rounded-envelope'
+    if args.chamfer_envelope:
+        parts_dir='print-parts/chamfer-envelope-assembly'
+        renders_dir='renders/chamfer-envelope'
     review=json.loads(review_path.read_text())
     assert sha(CAD)==review['cad_sha256']
     preserved={str(p.relative_to(ROOT)):sha(p) for p in [CAD,ROOT/'garden-auger-current-assembly.3mf',
@@ -87,6 +99,9 @@ def main():
             preserved[str(p.relative_to(ROOT))]=sha(p)
     if args.outer_envelope:
         for p in [ROOT/'garden-auger-solid-frame-assembly.3mf',ROOT/'experiments/garden-auger-solid-frame.limo',ROOT/'print-parts/grip-comfort-sample.stl']:
+            preserved[str(p.relative_to(ROOT))]=sha(p)
+    if args.chamfer_envelope:
+        for p in [ROOT/'garden-auger-rounded-envelope-assembly.3mf',ROOT/'experiments/garden-auger-rounded-envelope.limo']:
             preserved[str(p.relative_to(ROOT))]=sha(p)
     native=BUILD/'native.3mf';canonical=BUILD/'five-refined-parts.3mf'
     with CadClient() as c:
@@ -105,7 +120,8 @@ def main():
         raw=c.call('solid_export_3mf',{'body_ids':[26,46,15,90,216,221],
             'scope':'definition','linear_deflection':.08,'angular_deflection':.2,'slicer_target':'standard'})
         native.write_bytes(base64.b64decode(raw['bytes_base64']))
-    print_notes=('Rounded broad outer faces and slimmer blended side walls; fixed fits and lower D grips retained.' if args.outer_envelope else
+    print_notes=('Uniform 5mm equal-leg 45 degree housing bevels; blended plan outline, flat bases and fixed fits retained.' if args.chamfer_envelope else
+                 'Rounded broad outer faces and slimmer blended side walls; fixed fits and lower D grips retained.' if args.outer_envelope else
                  'Continuous frame with exterior rounds and lower D grips; no cosmetic seam recesses; unchanged drive and constraint-fit bushing.' if args.solid_frame else
                  'Lower-owned complete D grips and central upper cover; relocated case locators; unchanged drive and constraint-fit bushing.'
                  if args.d_grips else 'Relieved current housing; accommodating outer locator sockets; unchanged drive and constraint-fit bushing.')
@@ -212,7 +228,7 @@ def main():
         out.write_bytes(sliced[f'Metadata/plate_{i}.png'])
     if args.d_grips:
         from render_d_grips import main as render_child
-        render_child(BUILD,ROOT/renders_dir,solid_frame=args.solid_frame,outer_envelope=args.outer_envelope)
+        render_child(BUILD,ROOT/renders_dir,solid_frame=args.solid_frame,outer_envelope=args.outer_envelope,chamfer_envelope=args.chamfer_envelope)
         result['optional_comfort_sample']=json.loads((BUILD/'comfort-sample.json').read_text())
         REPORT.write_text(json.dumps(result,indent=2)+'\n')
     else:

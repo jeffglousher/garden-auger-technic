@@ -1,5 +1,5 @@
 """Sample native walls/bed contact of the rounded envelope, not global GD&T."""
-import hashlib,json
+import argparse,hashlib,json,math
 from pathlib import Path
 import numpy as np
 from cad_client import CadClient
@@ -28,6 +28,13 @@ def vertical_spans(section,y):
 
 
 def main():
+    global CAD,REPORT
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--chamfer-envelope",action="store_true")
+    args=parser.parse_args()
+    if args.chamfer_envelope:
+        CAD=ROOT/"experiments/garden-auger-chamfer-envelope.limo"
+        REPORT=ROOT/"chamfer-envelope-wall-review.json"
     source=read_model(ROOT/'experiments/garden-auger-solid-frame.limo');final=read_model(CAD)
     # The component cavities, screw stacks, ear stops, cable path and grip
     # feature definitions remain exact. The exterior sketch is the exception.
@@ -45,6 +52,35 @@ def main():
     with CadClient() as c:
         result['engine_sha256']=digest(c.executable)
         c.call('cad_load_project_model',{'model_json':json.dumps(final)})
+        if args.chamfer_envelope:
+            result['vertical_bevel_faces']=[]
+            for body in c.call('solid_scene')['bodies']:
+                if body['id'] not in [26,46]:continue
+                positions=np.array(body['mesh']['positions']).reshape(-1,3)
+                for face in body['faces']:
+                    ids=body['mesh']['indices'][face['first_index']:face['first_index']+face['index_count']]
+                    zs=np.abs(positions[ids,2])
+                    if not len(zs) or zs.min()<15.599 or zs.max()>20.601:continue
+                    plane,cone=face.get('plane'),face.get('cone')
+                    if plane and 1e-7<abs(plane['normal'][2])<1-1e-7:
+                        angle=math.degrees(math.acos(abs(plane['normal'][2])))
+                        kind='plane'
+                    elif cone and abs(cone['axis']['z'])>1-1e-7:
+                        angle=90-math.degrees(abs(cone['semi_angle']))
+                        kind='cone around plan-view corner'
+                    else:continue
+                    assert abs(angle-45)<1e-7,(body['id'],face['key'],angle)
+                    result['vertical_bevel_faces'].append({'body':body['id'],'face_key':face['key'],
+                        'type':kind,'angle_to_bed_degrees':angle})
+            for bid in [26,46]:
+                assert sum(f['body']==bid for f in result['vertical_bevel_faces'])>=16
+            # Unchanged native D profile: R12, circle center 6.6 above bed.
+            # Its steepest outward growth begins at the flat land, then
+            # becomes more vertical up to the widest section.
+            result['grip_underside']={'radius_mm':12.,'center_above_bed_mm':6.6,
+                'minimum_tangent_angle_to_bed_degrees':math.degrees(math.acos(6.6/12)),
+                'scope':'Analytic existing D-profile underside up to its widest section; upper grip arc is not an underside overhang.'}
+            assert result['grip_underside']['minimum_tangent_angle_to_bed_degrees']>45
         for bid,x,ys in [(26,0,[108.5,110,114,121,125,130,140]),(46,0,[108.5,110,114,121,125,130,140]),
                          (26,-10.25,[155,164.15,176,189]),(46,-10.25,[155,164.15,176,189])]:
             section=c.call('solid_section_review',{'body_id':bid,'plane':'yz','offset_mm':x,'deflection_mm':.01})
