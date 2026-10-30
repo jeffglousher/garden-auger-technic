@@ -1,0 +1,9 @@
+{
+  "cad": "experiments\\garden-auger-simple-print.limo",
+  "cad_sha256": "c113b0b9f60241c853b4fbd9a6dd1566b59f5f5a06769d75a0a8aa34f7f1cb69",
+  "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
+  "section_plane": "YZ at X0",
+  "section_deflection_mm": 0.01,
+  "view": "Actual native section, positive-Z half; centerline at bottom. Closeup is a mesh crop.",
+  "section_data_sha256": "de7fc0c9787a0366c66d2cd82be6bc44f30398afe2c866e856bcee92c2bcb51c"
+}

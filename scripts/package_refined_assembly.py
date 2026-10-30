@@ -41,7 +41,9 @@ def main():
     parser.add_argument('--outer-envelope',action='store_true')
     parser.add_argument('--chamfer-envelope',action='store_true')
     parser.add_argument('--ingress-flange',action='store_true')
+    parser.add_argument('--simple-print',action='store_true')
     args=parser.parse_args()
+    if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:args.outer_envelope=True
     if args.solid_frame or args.outer_envelope:args.d_grips=True
@@ -80,10 +82,17 @@ def main():
             REPORT=ROOT/'ingress-flange-print-verification.json'
             review_path=ROOT/'ingress-flange-geometry-review.json'
             validation_path=ROOT/'ingress-flange-validation.json'
+        if args.simple_print:
+            BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
+            CAD=ROOT/'experiments/garden-auger-simple-print.limo'
+            TARGET=ROOT/'garden-auger-simple-print-assembly.3mf'
+            REPORT=ROOT/'simple-print-verification.json'
+            review_path=ROOT/'simple-print-geometry-review.json'
+            validation_path=ROOT/'simple-print-validation.json'
         validation=json.loads(validation_path.read_text())
         assert validation['cad_sha256']==sha(CAD)
         if args.outer_envelope:
-            wall_path=ROOT/('ingress-flange-wall-review.json' if args.ingress_flange else 'chamfer-envelope-wall-review.json' if args.chamfer_envelope else 'outer-envelope-wall-review.json')
+            wall_path=ROOT/('simple-print-wall-review.json' if args.simple_print else 'ingress-flange-wall-review.json' if args.ingress_flange else 'chamfer-envelope-wall-review.json' if args.chamfer_envelope else 'outer-envelope-wall-review.json')
             assert json.loads(wall_path.read_text())['cad_sha256']==sha(CAD)
     parts_dir='print-parts/d-grip-assembly' if args.d_grips else 'print-parts/relieved-assembly'
     renders_dir='renders/d-grip' if args.d_grips else 'renders/relieved-assembly'
@@ -99,6 +108,9 @@ def main():
     if args.ingress_flange:
         parts_dir='print-parts/ingress-flange-assembly'
         renders_dir='renders/ingress-flange'
+    if args.simple_print:
+        parts_dir='print-parts/simple-print-assembly'
+        renders_dir='renders/simple-print'
     review=json.loads(review_path.read_text())
     assert sha(CAD)==review['cad_sha256']
     preserved={str(p.relative_to(ROOT)):sha(p) for p in [CAD,ROOT/'garden-auger-current-assembly.3mf',
@@ -118,6 +130,9 @@ def main():
     if args.ingress_flange:
         for p in [ROOT/'garden-auger-chamfer-envelope-assembly.3mf',ROOT/'experiments/garden-auger-chamfer-envelope.limo']:
             preserved[str(p.relative_to(ROOT))]=sha(p)
+    if args.simple_print:
+        for p in [ROOT/'garden-auger-ingress-flange-assembly.3mf',ROOT/'experiments/garden-auger-ingress-flange.limo']:
+            preserved[str(p.relative_to(ROOT))]=sha(p)
     native=BUILD/'native.3mf';canonical=BUILD/'five-refined-parts.3mf'
     with CadClient() as c:
         c.call('cad_load_project_model',{'model_json':json.dumps(read_model(CAD))})
@@ -135,7 +150,8 @@ def main():
         raw=c.call('solid_export_3mf',{'body_ids':[26,46,15,90,216,221],
             'scope':'definition','linear_deflection':.08,'angular_deflection':.2,'slicer_target':'standard'})
         native.write_bytes(base64.b64decode(raw['bytes_base64']))
-    print_notes=('Integral rotating auger dirt flange ahead of fixed lip; unchanged chamfered housing and fitted interfaces.' if args.ingress_flange else
+    print_notes=('Simple 40mm auger disc, one chamfer, direct housing nose without redundant ring; use matching halves and auger.' if args.simple_print else
+                 'Integral rotating auger dirt flange ahead of fixed lip; unchanged chamfered housing and fitted interfaces.' if args.ingress_flange else
                  'Uniform 5mm equal-leg 45 degree housing bevels; blended plan outline, flat bases and fixed fits retained.' if args.chamfer_envelope else
                  'Rounded broad outer faces and slimmer blended side walls; fixed fits and lower D grips retained.' if args.outer_envelope else
                  'Continuous frame with exterior rounds and lower D grips; no cosmetic seam recesses; unchanged drive and constraint-fit bushing.' if args.solid_frame else
@@ -244,10 +260,10 @@ def main():
         out.write_bytes(sliced[f'Metadata/plate_{i}.png'])
     if args.d_grips:
         from render_d_grips import main as render_child
-        render_child(BUILD,ROOT/renders_dir,solid_frame=args.solid_frame,outer_envelope=args.outer_envelope,chamfer_envelope=args.chamfer_envelope,ingress_flange=args.ingress_flange)
+        render_child(BUILD,ROOT/renders_dir,solid_frame=args.solid_frame,outer_envelope=args.outer_envelope,chamfer_envelope=args.chamfer_envelope,ingress_flange=args.ingress_flange,simple_print=args.simple_print)
         if args.ingress_flange:
             from render_ingress_flange import main as render_entry
-            render_entry(BUILD,CAD,ROOT/renders_dir)
+            render_entry(BUILD,CAD,ROOT/renders_dir,simple_print=args.simple_print)
         result['optional_comfort_sample']=json.loads((BUILD/'comfort-sample.json').read_text())
         REPORT.write_text(json.dumps(result,indent=2)+'\n')
     else:
