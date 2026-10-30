@@ -2,7 +2,7 @@
   "before_report": "ingress-flange-print-verification.json",
   "before_report_sha256": "3d107916ae5901dde29ef27eb4d92493aff59972b815ef36fbc60639c38bac9a",
   "after_report": "simple-print-verification.json",
-  "after_report_sha256": "4f184f5b8be960be2bab200b406f2ea7909adc12c3bbe1d1e2a04f8c1d8798ff",
+  "after_report_sha256": "c5abbe1693c523bcec15a49299bb1686efad3a4b0d4d190ff379d46fe8c74f36",
   "same_saved_global_settings_bytes": true,
   "same_saved_object_metadata": true,
   "same_native_engine_and_slicer": true,
@@ -27,33 +27,33 @@
     {
       "plate": 2,
       "before_seconds": 12793.8369140625,
-      "after_seconds": 12096.9833984375,
+      "after_seconds": 11874.173828125,
       "before_support_role_seconds": {
         "Support": 1215.9876708984375,
         "Support interface": 549.2799682617188,
         "Support transition": 309.033447265625
       },
       "after_support_role_seconds": {
-        "Support": 1054.8558349609375,
-        "Support interface": 497.4664306640625,
-        "Support transition": 307.5843505859375
+        "Support": 974.5469970703125,
+        "Support interface": 495.3311462402344,
+        "Support transition": 311.7589416503906
       },
       "before_support_seconds": 2074.3010864257812,
-      "after_support_seconds": 1859.9066162109375
+      "after_support_seconds": 1781.6370849609375
     }
   ],
   "total": {
     "before_seconds": 32480.8798828125,
-    "after_seconds": 31142.0673828125,
-    "saved_seconds": 1338.8125,
+    "after_seconds": 30919.2578125,
+    "saved_seconds": 1561.6220703125,
     "before_filament_g": 235.1698519140482,
-    "after_filament_g": 229.4465947933495,
-    "saved_filament_g": 5.72325712069869,
+    "after_filament_g": 228.52936371043324,
+    "saved_filament_g": 6.64048820361495,
     "before_support_seconds": 2261.6246395111084,
-    "after_support_seconds": 1944.0184001922607,
-    "support_time_reduction_percent": 14.043278171372597,
+    "after_support_seconds": 1865.7488689422607,
+    "support_time_reduction_percent": 17.50404393606286,
     "before_auger_mesh_height_mm": 47.970165300000005,
-    "after_auger_mesh_height_mm": 39.975137700000005
+    "after_auger_mesh_height_mm": 37.9763813
   },
   "improves_all_measured_print_costs": true,
   "scope": "Native estimates with identical saved settings. Support seconds sum the three named feature roles, not support mass, removal effort or measured print reliability."

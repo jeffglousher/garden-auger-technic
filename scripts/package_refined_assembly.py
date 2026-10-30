@@ -42,6 +42,7 @@ def main():
     parser.add_argument('--chamfer-envelope',action='store_true')
     parser.add_argument('--ingress-flange',action='store_true')
     parser.add_argument('--simple-print',action='store_true')
+    parser.add_argument('--build-root',type=Path)
     args=parser.parse_args()
     if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
@@ -133,6 +134,7 @@ def main():
     if args.simple_print:
         for p in [ROOT/'garden-auger-ingress-flange-assembly.3mf',ROOT/'experiments/garden-auger-ingress-flange.limo']:
             preserved[str(p.relative_to(ROOT))]=sha(p)
+    if args.build_root:BUILD=args.build_root
     native=BUILD/'native.3mf';canonical=BUILD/'five-refined-parts.3mf'
     with CadClient() as c:
         c.call('cad_load_project_model',{'model_json':json.dumps(read_model(CAD))})
@@ -150,7 +152,7 @@ def main():
         raw=c.call('solid_export_3mf',{'body_ids':[26,46,15,90,216,221],
             'scope':'definition','linear_deflection':.08,'angular_deflection':.2,'slicer_target':'standard'})
         native.write_bytes(base64.b64decode(raw['bytes_base64']))
-    print_notes=('Simple 40mm auger disc, one chamfer, direct housing nose without redundant ring; use matching halves and auger.' if args.simple_print else
+    print_notes=('Simple 38mm auger disc, one chamfer, direct housing nose without redundant ring; use matching halves and auger.' if args.simple_print else
                  'Integral rotating auger dirt flange ahead of fixed lip; unchanged chamfered housing and fitted interfaces.' if args.ingress_flange else
                  'Uniform 5mm equal-leg 45 degree housing bevels; blended plan outline, flat bases and fixed fits retained.' if args.chamfer_envelope else
                  'Rounded broad outer faces and slimmer blended side walls; fixed fits and lower D grips retained.' if args.outer_envelope else

@@ -26,6 +26,7 @@ def main():
     parser.add_argument('--chamfer-envelope',action='store_true')
     parser.add_argument('--ingress-flange',action='store_true')
     parser.add_argument('--simple-print',action='store_true')
+    parser.add_argument('--build-root',type=Path)
     args=parser.parse_args()
     if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
@@ -51,6 +52,7 @@ def main():
         REPORT=ROOT/'simple-print-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
     review='simple-print-geometry-review.json' if args.simple_print else 'ingress-flange-geometry-review.json' if args.ingress_flange else 'chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
+    if args.build_root:BUILD=args.build_root
     proof=json.loads((ROOT/review).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
