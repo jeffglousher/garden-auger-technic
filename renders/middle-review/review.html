@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garden auger — middle sections and every piece</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 var(--font-sans,Segoe UI,sans-serif);color:var(--foreground,#e7edf4)}
+h2{font-size:19px;margin:22px 0 8px}p{margin:6px 0 12px}.muted,figcaption,small{color:var(--muted-foreground,#a9b6c5)}
+figure{margin:0}img{display:block;width:100%;border-radius:var(--radius,8px)}figcaption{font-size:13px;margin:7px 0 12px}
+button{font:inherit;color:var(--foreground,#e7edf4);background:var(--secondary,#262d36);border:1px solid var(--border,#45505c);border-radius:var(--radius,8px);padding:8px 12px;cursor:pointer}
+button[aria-pressed=true]{border-color:var(--primary,#8bbcff);background:var(--accent,#344359)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.section{display:none}.section.active{display:block}
+.note{padding:16px;background:var(--card,#202832);border-radius:var(--radius,8px)}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}.gallery figure{min-width:0}.gallery .wide{grid-column:1/-1}
+.gallery button{padding:0;border:0;background:transparent;width:100%;text-align:left}.gallery strong{display:block;font-size:15px;margin-top:7px}
+.gallery figcaption{margin-top:2px}details{border-top:1px solid var(--border,#45505c);margin-top:18px;padding-top:12px}summary{cursor:pointer;font-weight:600}
+dialog{max-width:95%;width:1100px;background:var(--card,#202832);color:var(--foreground,#e7edf4);border:1px solid var(--border,#45505c);border-radius:var(--radius,8px);padding:12px}
+dialog::backdrop{background:#000a}dialog button{float:right;margin-bottom:8px}.legend{font-size:13px}.legend span{margin-right:10px}
+@media(max-width:480px){body{font-size:14px}.gallery{gap:10px}.tabs button{padding:7px 9px}}
+</style></head><body>
+<p><strong>Current Ø38 mm shield assembly</strong> <span class="muted">· Review views only; geometry unchanged</span></p>
+<figure><img src="cutaway.png" alt="Lengthwise half-model cutaway: orange auger at left, teal bushing, gray adapter and servo at right"><figcaption>Middle cutaway at X = 0. The near half is removed to expose the mechanism. These colored regions show the CAD solid envelope, not solid-filled slicer settings.</figcaption></figure>
+<p class="legend"><span>Yellow: housing</span><span>Orange: auger</span><span>Teal: bushing</span><span>Light gray: adapter</span><span>Dark gray: servo reference</span></p>
+<div class="tabs" aria-label="Select a middle section">
+<button aria-pressed="true" onclick="section('axial',this)">A · Lengthwise</button><button aria-pressed="false" onclick="section('bearing',this)">B · Bearing</button><button aria-pressed="false" onclick="section('servo',this)">C · Servo</button>
+</div>
+<div class="section active" id="axial"><img src="axial.svg" alt="Native lengthwise center section through the shield, bushing, adapter and servo"><p class="note"><strong>A — Follow the drive path.</strong> Shield → thrust collar → teal bushing → gray square adapter → servo. Shield-to-housing gap: <strong>1.6 mm nominal</strong>. The broad yellow bands above and below the servo are the first areas worth reviewing.</p></div>
+<div class="section" id="bearing"><img src="bearing.svg" alt="Native cross-section through the concentric auger journal and loose bushing"><p class="note"><strong>B — Preserve the bearing support.</strong> Journal Ø28; bushing bore Ø28.6 / outside Ø34; housing seat Ø35.6. Nominal radial gaps are <strong>0.30 mm inside</strong> and <strong>0.80 mm outside</strong> the loose bushing. Housing stock at the top and bottom is <strong>2.8 mm</strong>; this area has much less room for reduction.</p></div>
+<div class="section" id="servo"><img src="servo.svg" alt="Native cross-section showing thick housing walls surrounding the servo envelope"><p class="note"><strong>C — Best material-reduction candidate.</strong> At this section, top and bottom housing stock is <strong>10.4 mm</strong> each (outer Z ±20.6; cavity Z ±10.2). Explore a simpler local exterior step or bevel while retaining a continuous bed land, ear seats and screw supports. This is an opportunity to test, not an approved thinner wall.</p></div>
+<h2>Every printed piece</h2>
+<p class="muted">Tap any part to enlarge it. Parts are shown at different scales.</p>
+<div class="gallery">
+<figure><button onclick="enlarge(this)"><img src="upper.png" alt="1 Upper yellow PETG cover, inside face upward"></button><strong>1 · Upper cover — PETG</strong><figcaption>Inner pocket, screw recesses and locating sockets.</figcaption></figure>
+<figure><button onclick="enlarge(this)"><img src="lower.png" alt="2 Lower yellow PETG housing with both rounded D grips, inside face upward"></button><strong>2 · Lower housing + grips — PETG</strong><figcaption>Complete D grips, locating pins and insert pockets.</figcaption></figure>
+<figure class="wide"><button onclick="enlarge(this)"><img src="auger.png" alt="3 One-piece orange PETG auger, integral shield and rear journal"></button><strong>3 · One-piece auger — PETG</strong><figcaption>The helical flight, shaft and Ø38 shield print as one part. Helical-flight supports remain a printing improvement to investigate.</figcaption></figure>
+<figure><button onclick="enlarge(this)"><img src="adapter.png" alt="4 Gray PETG square-drive adapter, auger-facing side"></button><strong>4 · Square-drive adapter — PETG</strong><figcaption>Transfers rotation from the servo to the auger.</figcaption></figure>
+<figure><button onclick="enlarge(this)"><img src="bushing.png" alt="5 Teal PLA loose bushing with chamfered ends"></button><strong>5 · Loose bushing — PLA</strong><figcaption>Ø34 outside; Ø28.6 bore; 9.8 mm long.</figcaption></figure>
+</div>
+<details><summary>Exploded assembly, adapter reverse and purchased hardware</summary>
+<figure><img src="exploded.png" alt="Exploded current assembly including all five printed parts and purchased servo"><figcaption>Exploded positions are for visibility; they do not specify an insertion path.</figcaption></figure>
+<div class="gallery"><figure><img src="adapter-back.png" alt="Servo-facing round pilot of the gray adapter"><figcaption>Adapter reverse: plain round pilot and center-screw passage.</figcaption></figure><figure><img src="servo-reference.png" alt="Purchased servo reference envelope"><figcaption>Purchased servo envelope; its internal mechanisms are not modeled.</figcaption></figure></div>
+<p>Hardware: four M3 ×18 housing screws, four RX-M3×5.7 inserts and the factory-compatible servo center screw. Screw and insert solids are not included in these views.</p></details>
+<details><summary>Inspection priorities and evidence</summary>
+<p><strong>1. Servo-region exterior:</strong> investigate reducing the broad 10.4 mm housing bands, keeping the bed land and mounting supports.</p>
+<p><strong>2. Handle roots:</strong> inspect the transition into the body for comfort and a simpler outline. The current grip is 24 mm wide and 18.6 mm high; comfort and strength require a physical check.</p>
+<p><strong>3. Auger printing:</strong> review the supported underside of the helix before changing its working diameter or pitch. The shield already has only one edge chamfer.</p>
+<p class="muted">Read-only views from garden-auger-simple-print.limo, CAD SHA-256 987429dad3fabdc51b38ec5a020d5aae8f609566c952019497e56b6ef1bba3b0. Native 2D section edges use 0.01 mm deflection; the 3D cutaway clips native meshes. The source matches the existing validation report. No new physical fit, strength or ingress result is implied.</p></details>
+<dialog id="zoom"><button onclick="document.getElementById('zoom').close()">Close</button><img id="zoomimage" alt="Enlarged piece"></dialog>
+<script>
+function section(id,button){document.querySelectorAll('.section').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-pressed',b===button?'true':'false'))}
+function enlarge(button){const source=button.querySelector('img');const target=document.getElementById('zoomimage');target.src=source.src;target.alt=source.alt;document.getElementById('zoom').showModal()}
+document.getElementById('zoom').addEventListener('click',function(e){if(e.target===this)this.close()})
+</script></body></html>
