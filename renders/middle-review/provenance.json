@@ -1,0 +1,30 @@
+{
+  "cad": "experiments\\garden-auger-simple-print.limo",
+  "cad_sha256": "987429dad3fabdc51b38ec5a020d5aae8f609566c952019497e56b6ef1bba3b0",
+  "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
+  "native_sections_sha256": "693a00e0044e294c09547c77c9ab69351426b81745d61c2944701631b441bf57",
+  "native_sections": {
+    "axial": "YZ X0, cropped display Y96..210",
+    "bearing": "XZ Y125.75",
+    "servo": "XZ Y175"
+  },
+  "cutaway": "Native tessellated solids clipped/capped at X0; retain X<=0 and Y90..215. Presentation only.",
+  "servo": "Purchased reference envelope; no internal servo mechanisms modeled.",
+  "individual_parts": "Different image scales; core15 and flight90 together are one printed auger.",
+  "geometry_modified": false,
+  "printer_command_sent": false,
+  "images": {
+    "adapter-back.png": "b617c54b7c13ba8e7d6155ed1535c92f6e9d6e3a3782d42259bba08b6c2e19bd",
+    "adapter.png": "2ccb18fee3fe4d11898fd349361405ccc0ca2842418400daa79ca9c9431c6d99",
+    "auger.png": "a3e474c036a3c5be675a00e426132aa6ab1a1c91e8cfae450eec962a408b8958",
+    "axial.svg": "0714050cf6f1abeaf5ebca54feb306ec4cd988bc5cf795a7afa7cef30ce72beb",
+    "bearing.svg": "72423e35b8d7c9d2a3967645c298c801a35d5954b0bcd46fdef2aab3b4e01010",
+    "bushing.png": "72dda41c864eebe4c776f39e861393a2a25ba1d74083d637fafd347bbf257caa",
+    "cutaway.png": "c4f2bce25150049fe7b3e25f2e9e0931effdb0b8285077b536683844af03c49b",
+    "exploded.png": "ed6a898f00227bf1b0cb99ccf0c88fe21aa2567e9e2d218bebd5eac5a487dbab",
+    "lower.png": "0f9df1394aa261df259db3b8ea5e98b45a81521dae00a38aad076e92b8f00cec",
+    "servo-reference.png": "149f10309ae196a41ed6559441c98982623e33c00ca32f943b7063ada4154493",
+    "servo.svg": "c5bfbefdd75fde485a1ba6886d55bcfd16fa624f929eab988a584ea12c5bb9a9",
+    "upper.png": "351ebfb900b9825df668539b40ecccfd78a52a7d830991f7239444a3980e693b"
+  }
+}

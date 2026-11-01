@@ -4,6 +4,8 @@
 
 Printing simplicity is a critical design requirement. The redundant fixed yellow nose ring is removed; the rotating shield is now a **plain Ø38 ×3 mm disc with one edge chamfer**. Nominal horizontal auger print height reduces from48 to38 mm. The smaller disc sits closer to the direct housing nose, retaining a1.6 mm nominal rear gap and2.2 mm overlap of the opening. No nested skirt, groove or extra hardware is introduced. Fitted internals, D grips, flat bed bases, broad 45-degree housing bevels, rear cable exit and materials remain.
 
+[Middle sections and every piece — interactive review](renders/middle-review/review.html). Read-only views of the current model; [view provenance](renders/middle-review/provenance.json).
+
 ![Simpler closed assembly](renders/simple-print/closed-front.png)
 
 [Entrance closeup](renders/simple-print/entrance-closeup.png) - [Underside](renders/simple-print/closed-underside.png) - [Native entrance section](renders/simple-print/entrance-section.svg) - [Editable CAD](experiments/garden-auger-simple-print.limo).
