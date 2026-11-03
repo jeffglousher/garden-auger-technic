@@ -1,3 +1,9 @@
+# Garden auger - tighter, separated locators
+
+Current full print: [garden-auger-locator-fit-assembly.3mf](garden-auger-locator-fit-assembly.3mf). [Revision and validation](docs/locator-fit-review.md) - [CAD](experiments/garden-auger-locator-fit.limo) - [STLs](print-parts/locator-fit-assembly/). Use both new housing halves together. Pins are 5.0 mm, sockets 5.2 mm, and every locator is at least 13.8 mm from an insert axis. Physical tighter-fit acceptance remains pending.
+
+The following simple-print record is the preceding revision; its images show the older locator positions.
+
 # Garden auger - current simpler print candidate
 
 **Complete assembly:** [garden-auger-simple-print-assembly.3mf](garden-auger-simple-print-assembly.3mf), five parts on **two print-by-object plates**. Native slicing passes without warnings, estimating **8 h 35 min /228.5 g** total, plus any bed-cooling wait. [Design review](docs/simple-print-review.md) - [print evidence](simple-print-verification.json) - [before/after comparison](simple-print-comparison.json) - [geometry](simple-print-geometry-review.json) - [walls/angles](simple-print-wall-review.json) - [functional checks](simple-print-validation.json) - [STLs](print-parts/simple-print-assembly/).

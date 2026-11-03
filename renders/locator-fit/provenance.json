@@ -1,0 +1,9 @@
+{
+  "cad": "C:\\Users\\jeffg\\dev\\garden-auger-technic\\experiments\\garden-auger-locator-fit.limo",
+  "cad_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
+  "section_plane": "YZ at X0",
+  "section_deflection_mm": 0.01,
+  "view": "Actual native section, positive-Z half; centerline at bottom. Closeup is a mesh crop.",
+  "section_data_sha256": "cedbdf7e11e4be5b977d203fcba31999925aa7a746f36ec90d83eb890c7452f5"
+}

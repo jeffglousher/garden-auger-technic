@@ -33,7 +33,9 @@ def main():
     parser.add_argument("--chamfer-envelope",action="store_true")
     parser.add_argument("--ingress-flange",action="store_true")
     parser.add_argument('--simple-print',action='store_true')
+    parser.add_argument('--locator-fit',action='store_true')
     args=parser.parse_args()
+    if args.locator_fit:args.simple_print=True
     if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:
@@ -45,6 +47,10 @@ def main():
     if args.simple_print:
         CAD=ROOT/'experiments/garden-auger-simple-print.limo'
         REPORT=ROOT/'simple-print-wall-review.json'
+    if args.locator_fit:
+        CAD=ROOT/'experiments/garden-auger-locator-fit.limo'
+        REPORT=ROOT/'locator-fit-wall-review.json'
+    excluded={40}|(set(range(371,387)) if args.locator_fit else set())
     source=read_model(ROOT/'experiments/garden-auger-solid-frame.limo');final=read_model(CAD)
     # The component cavities, screw stacks, ear stops, cable path and grip
     # feature definitions remain exact. The exterior sketch is the exception.
@@ -52,9 +58,9 @@ def main():
     for key in ['sketches','extrudes','revolves','datum_planes','fillets']:
         by_id={v['feature_id']:v for v in final[key]}
         for item in source[key]:
-            if item['feature_id']==40:continue
+            if item['feature_id'] in excluded:continue
             assert by_id[item['feature_id']]==item,(key,item['feature_id'])
-        retained[key]=[v for v in source[key] if v['feature_id']!=40]
+        retained[key]=[v for v in source[key] if v['feature_id'] not in excluded]
     result={'cad':str(CAD.relative_to(ROOT)),'cad_sha256':digest(CAD),
         'retained_feature_definitions_sha256':hashlib.sha256(json.dumps(retained,sort_keys=True).encode()).hexdigest(),
         'section_deflection_mm':.01,'longitudinal_stock':[],'side_stock':[],'bed_contact':{},

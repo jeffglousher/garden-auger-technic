@@ -27,7 +27,9 @@ def main():
     parser.add_argument('--ingress-flange',action='store_true')
     parser.add_argument('--simple-print',action='store_true')
     parser.add_argument('--build-root',type=Path)
+    parser.add_argument('--locator-fit',action='store_true')
     args=parser.parse_args()
+    if args.locator_fit:args.simple_print=True
     if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:args.outer_envelope=True
@@ -52,7 +54,12 @@ def main():
         REPORT=ROOT/'simple-print-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
     review='simple-print-geometry-review.json' if args.simple_print else 'ingress-flange-geometry-review.json' if args.ingress_flange else 'chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
+    if args.locator_fit and not args.build_root:BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-fit'
     if args.build_root:BUILD=args.build_root
+    if args.locator_fit:
+        CAD=ROOT/'experiments/garden-auger-locator-fit.limo'
+        REPORT=ROOT/'locator-fit-validation.json'
+        review='locator-fit-geometry-review.json'
     proof=json.loads((ROOT/review).read_text())
     assert digest(CAD)==proof['cad_sha256']
     original=read_model(ROOT/proof['source']);final=read_model(CAD)
@@ -112,9 +119,12 @@ def main():
         (BUILD/'grip-section.json').write_text(json.dumps(report['grip_section'],indent=2))
         print('Six retained sections, screw stacks and four driver approaches pass',flush=True)
         report['locator_controls']=[]
+        radius=proof['locators']['pin_diameter_mm']/2
+        clearance=(proof['locators']['socket_diameter_mm']-2*radius)/2
+        clear,blocked_shift=clearance-.01,clearance+.01
         for x,y in proof['locators']['pin_centers_xy_mm']:
-            bid,oid=probe_occurrence(c,f'Inspection 4mm locator {x} {y}',x,y,2,.3,2.2)
-            for shift,blocked in [((.14,0,0),False),((-.14,0,0),False),((.16,0,0),True),((0,.14,0),False),((0,.16,0),True)]:
+            bid,oid=probe_occurrence(c,f'Inspection locator {x} {y}',x,y,radius,.3,2.2)
+            for shift,blocked in [((clear,0,0),False),((-clear,0,0),False),((blocked_shift,0,0),True),((0,clear,0),False),((0,blocked_shift,0),True)]:
                 set_pose(c,oid,shift)
                 test=c.call('assembly_interference_check',{'occurrence_ids':[6,oid],'clearance_threshold_mm':2})
                 ps=pairs(test,{bid},{26});assert any(p['interfering'] for p in ps)==blocked,(x,y,shift,ps)

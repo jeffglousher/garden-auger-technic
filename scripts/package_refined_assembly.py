@@ -43,7 +43,9 @@ def main():
     parser.add_argument('--ingress-flange',action='store_true')
     parser.add_argument('--simple-print',action='store_true')
     parser.add_argument('--build-root',type=Path)
+    parser.add_argument('--locator-fit',action='store_true')
     args=parser.parse_args()
+    if args.locator_fit:args.simple_print=True
     if args.simple_print:args.ingress_flange=True
     if args.ingress_flange:args.chamfer_envelope=True
     if args.chamfer_envelope:args.outer_envelope=True
@@ -90,10 +92,18 @@ def main():
             REPORT=ROOT/'simple-print-verification.json'
             review_path=ROOT/'simple-print-geometry-review.json'
             validation_path=ROOT/'simple-print-validation.json'
+        if args.locator_fit:
+            BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-fit'
+            CAD=ROOT/'experiments/garden-auger-locator-fit.limo'
+            TARGET=ROOT/'garden-auger-locator-fit-assembly.3mf'
+            REPORT=ROOT/'locator-fit-verification.json'
+            review_path=ROOT/'locator-fit-geometry-review.json'
+            validation_path=ROOT/'locator-fit-validation.json'
         validation=json.loads(validation_path.read_text())
         assert validation['cad_sha256']==sha(CAD)
         if args.outer_envelope:
             wall_path=ROOT/('simple-print-wall-review.json' if args.simple_print else 'ingress-flange-wall-review.json' if args.ingress_flange else 'chamfer-envelope-wall-review.json' if args.chamfer_envelope else 'outer-envelope-wall-review.json')
+            if args.locator_fit:wall_path=ROOT/'locator-fit-wall-review.json'
             assert json.loads(wall_path.read_text())['cad_sha256']==sha(CAD)
     parts_dir='print-parts/d-grip-assembly' if args.d_grips else 'print-parts/relieved-assembly'
     renders_dir='renders/d-grip' if args.d_grips else 'renders/relieved-assembly'
@@ -112,6 +122,9 @@ def main():
     if args.simple_print:
         parts_dir='print-parts/simple-print-assembly'
         renders_dir='renders/simple-print'
+    if args.locator_fit:
+        parts_dir='print-parts/locator-fit-assembly'
+        renders_dir='renders/locator-fit'
     review=json.loads(review_path.read_text())
     assert sha(CAD)==review['cad_sha256']
     preserved={str(p.relative_to(ROOT)):sha(p) for p in [CAD,ROOT/'garden-auger-current-assembly.3mf',

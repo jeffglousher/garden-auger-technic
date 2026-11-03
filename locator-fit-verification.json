@@ -1,0 +1,574 @@
+{
+  "cad": "experiments\\garden-auger-locator-fit.limo",
+  "cad_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "geometry_review": "locator-fit-geometry-review.json",
+  "geometry_review_sha256": "f34b02c1aaacb2028710482f4a4e53443ed200ff660f63bffc70a60710a87930",
+  "project": "garden-auger-locator-fit-assembly.3mf",
+  "project_sha256": "2affd012d9f7edc6d778f06d87384425658399dab05e63b1d59bf973ec076b5b",
+  "native_engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
+  "native_slicer_version": "02.08.02.61",
+  "mesh_checks": [
+    {
+      "name": "PETG - Housing upper",
+      "vertices": 2708,
+      "triangles": 5428,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 4.9958259751292644e-11
+    },
+    {
+      "name": "PETG - Housing lower",
+      "vertices": 2404,
+      "triangles": 4804,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 4.999733960175945e-11
+    },
+    {
+      "name": "PETG - Square adapter",
+      "vertices": 987,
+      "triangles": 1974,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 4.942712905631197e-11
+    },
+    {
+      "name": "PETG - One-piece auger",
+      "vertices": 9914,
+      "triangles": 19824,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 4.6754267124526905e-14
+    },
+    {
+      "name": "PLA - Constraint-fit bushing",
+      "vertices": 504,
+      "triangles": 1008,
+      "closed_connected_solid": true,
+      "maximum_shape_difference_mm": 4.980194034942542e-11
+    }
+  ],
+  "parts": [
+    {
+      "name": "PETG - Housing upper",
+      "closed": true,
+      "connected_components": 1,
+      "material": "PETG",
+      "color_name": "Chassis yellow",
+      "color_hex": "#E5AE3C",
+      "volume_mm3": 89009.48287412089,
+      "plate_bounds_mm": [
+        [
+          8.0,
+          8.0,
+          0.0
+        ],
+        [
+          83.3,
+          106.60000000000002,
+          20.600000000000016
+        ]
+      ],
+      "triangle_count": 5428
+    },
+    {
+      "name": "PETG - Housing lower",
+      "closed": true,
+      "connected_components": 1,
+      "material": "PETG",
+      "color_name": "Chassis yellow",
+      "color_hex": "#E5AE3C",
+      "volume_mm3": 133893.62292666157,
+      "plate_bounds_mm": [
+        [
+          8.0,
+          116.0,
+          0.0
+        ],
+        [
+          195.0,
+          214.60000000000002,
+          23.400000000000006
+        ]
+      ],
+      "triangle_count": 4804
+    },
+    {
+      "name": "PETG - One-piece auger",
+      "closed": true,
+      "connected_components": 1,
+      "material": "PETG",
+      "color_name": "Auger orange",
+      "color_hex": "#D57E37",
+      "volume_mm3": 49319.7979687113,
+      "plate_bounds_mm": [
+        [
+          204.0,
+          8.0,
+          0.0
+        ],
+        [
+          241.9881896,
+          152.69999981,
+          37.9763813
+        ]
+      ],
+      "triangle_count": 19824
+    },
+    {
+      "name": "PETG - Square adapter",
+      "closed": true,
+      "connected_components": 1,
+      "material": "PETG",
+      "color_name": "Adapter gray",
+      "color_hex": "#BEC3CA",
+      "volume_mm3": 7673.944626102962,
+      "plate_bounds_mm": [
+        [
+          214.0,
+          169.0,
+          0.0
+        ],
+        [
+          241.98259689706492,
+          196.99129709602283,
+          22.899999999999977
+        ]
+      ],
+      "triangle_count": 1974
+    },
+    {
+      "name": "PLA - Constraint-fit bushing",
+      "closed": true,
+      "connected_components": 1,
+      "material": "PLA",
+      "color_name": "Wear sleeve teal",
+      "color_hex": "#37AAA1",
+      "volume_mm3": 2556.6657273770556,
+      "plate_bounds_mm": [
+        [
+          214.0,
+          207.0,
+          0.0
+        ],
+        [
+          247.98943218802776,
+          240.97886766072168,
+          9.799999999999983
+        ]
+      ],
+      "triangle_count": 1008
+    }
+  ],
+  "native_equal_screw_stacks": [
+    {
+      "xy_mm": [
+        -27,
+        118.5
+      ],
+      "head_pocket_mm": 6.2,
+      "head_seat_z_mm": 14,
+      "insert_pilot_z_mm": [
+        -6.7,
+        0.0
+      ]
+    },
+    {
+      "xy_mm": [
+        27,
+        118.5
+      ],
+      "head_pocket_mm": 6.2,
+      "head_seat_z_mm": 14,
+      "insert_pilot_z_mm": [
+        -6.7,
+        0.0
+      ]
+    },
+    {
+      "xy_mm": [
+        -36,
+        196.8
+      ],
+      "head_pocket_mm": 6.2,
+      "head_seat_z_mm": 14,
+      "insert_pilot_z_mm": [
+        -6.7,
+        0.0
+      ]
+    },
+    {
+      "xy_mm": [
+        16,
+        196.8
+      ],
+      "head_pocket_mm": 6.2,
+      "head_seat_z_mm": 14,
+      "insert_pilot_z_mm": [
+        -6.7,
+        0.0
+      ]
+    }
+  ],
+  "native_sliced_archive_sha256": "4a5514b75fa1cf7a1cff280595124098ea99dc76db2856148828b9aca17f58ba",
+  "sliced_input_sha256": "49dc892c04dc9fb4c8d64dc9f532908308170193ea6fa27920ef34f17541f72e",
+  "final_geometry_and_process_entries_byte_identical_to_sliced_input": true,
+  "gcode_sha256": {
+    "plate_1": "e58baf8fcd62bd55ad940f41cc98634ab0365c5072d67d0b644e98708e626e59",
+    "plate_2": "c962fc87a6c61646427b4dad328018d8a7938e89b8eded90de87b5180f27106a"
+  },
+  "placements": [
+    {
+      "plate": 1,
+      "sequence": "by object",
+      "parts": [
+        {
+          "name": "PETG - Housing upper",
+          "bounds_mm": [
+            [
+              173.0,
+              75.0,
+              0.0
+            ],
+            [
+              248.3,
+              173.60000000000002,
+              20.600000000000016
+            ]
+          ]
+        },
+        {
+          "name": "PETG - Housing lower",
+          "bounds_mm": [
+            [
+              8.0,
+              34.5,
+              0.0
+            ],
+            [
+              106.60000000000002,
+              221.5,
+              23.400000000000006
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "plate": 2,
+      "sequence": "by object",
+      "parts": [
+        {
+          "name": "PETG - Square adapter",
+          "bounds_mm": [
+            [
+              25.0,
+              25.000000000000004,
+              0.0
+            ],
+            [
+              52.98259689706492,
+              52.99129709602286,
+              22.899999999999977
+            ]
+          ]
+        },
+        {
+          "name": "PETG - One-piece auger",
+          "bounds_mm": [
+            [
+              55.0,
+              185.0,
+              0.0
+            ],
+            [
+              199.69999981,
+              222.9881896,
+              37.9763813
+            ]
+          ]
+        },
+        {
+          "name": "PLA - Constraint-fit bushing",
+          "bounds_mm": [
+            [
+              160.0,
+              24.999999999999996,
+              0.0
+            ],
+            [
+              193.98943218802776,
+              58.978867660721676,
+              9.799999999999983
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "native_slice": {
+    "error_string": "Success.",
+    "export_time": 1767,
+    "layer_height": 0.23999999463558197,
+    "plate_index": 0,
+    "prepare_time": 72,
+    "return_code": 0,
+    "sliced_plates": [
+      {
+        "feature_type_times": {
+          "Bottom surface": 332.3540344238281,
+          "Bridge": 515.9086303710938,
+          "Custom": 286.3428039550781,
+          "Flush": 68.0,
+          "Gap infill": 87.35212707519531,
+          "Inner wall": 4340.36572265625,
+          "Internal solid infill": 2856.451171875,
+          "Outer wall": 1292.614501953125,
+          "Sparse infill": 7278.9384765625,
+          "Support": 52.878028869628906,
+          "Support interface": 21.70623016357422,
+          "Support transition": 9.527242660522461,
+          "Top surface": 332.8150329589844,
+          "Travel": 1560.9576416015625,
+          "Undefined": 1554.1656494140625
+        },
+        "filament_change_times": 0,
+        "filaments": [
+          {
+            "filament_id": "GFG00",
+            "id": 1,
+            "main_used_g": 165.36630249023438,
+            "total_used_g": 165.36630249023438
+          },
+          {
+            "filament_id": "GFA12",
+            "id": 4,
+            "main_used_g": 0.03963621333241463,
+            "total_used_g": 0.03963621333241463
+          }
+        ],
+        "generate_support_material_time": 127,
+        "id": 1,
+        "infill_time": 791,
+        "layer_filament_change": 0,
+        "main_predication": 18702.291015625,
+        "make_perimeters_time": 250,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 98.5999984741211,
+              "height": 20.600000381469727,
+              "width": 75.30000305175781,
+              "x": 173.0,
+              "y": 75.0,
+              "z": -1.9073486612342094e-07
+            },
+            "id": 5,
+            "name": "PETG - Housing upper",
+            "triangle_count": 5428
+          },
+          {
+            "bbox": {
+              "depth": 187.0,
+              "height": 23.399999618530273,
+              "width": 98.5999984741211,
+              "x": 8.000000953674316,
+              "y": 34.5,
+              "z": 1.9073486612342094e-07
+            },
+            "id": 9,
+            "name": "PETG - Housing lower",
+            "triangle_count": 4804
+          }
+        ],
+        "sliced_time": 5843,
+        "sliced_time_with_cache": 4438,
+        "total_predication": 19078.841796875,
+        "triangle_count": 10232,
+        "warning_message": ""
+      },
+      {
+        "feature_type_times": {
+          "Bottom surface": 13.232688903808594,
+          "Bridge": 55.40626907348633,
+          "Custom": 287.46966552734375,
+          "Flush": 541.9432983398438,
+          "Gap infill": 365.8660583496094,
+          "Inner wall": 2474.917236328125,
+          "Internal solid infill": 686.246337890625,
+          "Outer wall": 1469.1612548828125,
+          "Sparse infill": 2218.737548828125,
+          "Support": 974.55078125,
+          "Support interface": 495.3311462402344,
+          "Support transition": 311.75799560546875,
+          "Top surface": 107.46607208251953,
+          "Travel": 1881.6575927734375,
+          "Undefined": 1873.6944580078125
+        },
+        "filament_change_times": 1,
+        "filaments": [
+          {
+            "filament_id": "GFG00",
+            "id": 2,
+            "main_used_g": 49.61490249633789,
+            "total_used_g": 49.89240646362305
+          },
+          {
+            "filament_id": "GFG00",
+            "id": 3,
+            "main_used_g": 9.099047660827637,
+            "total_used_g": 9.2140474319458
+          },
+          {
+            "filament_id": "GFA12",
+            "id": 4,
+            "main_used_g": 4.3502421379089355,
+            "total_used_g": 4.3502421379089355
+          }
+        ],
+        "generate_support_material_time": 954,
+        "id": 2,
+        "infill_time": 284,
+        "layer_filament_change": 0,
+        "main_predication": 11023.7177734375,
+        "make_perimeters_time": 247,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 27.991296768188477,
+              "height": 22.899999618530273,
+              "width": 27.98258399963379,
+              "x": 332.20001220703125,
+              "y": 25.0,
+              "z": 1.9073486612342094e-07
+            },
+            "id": 13,
+            "name": "PETG - Square adapter",
+            "triangle_count": 1974
+          },
+          {
+            "bbox": {
+              "depth": 37.988189697265625,
+              "height": 37.97637939453125,
+              "width": 144.69998168945312,
+              "x": 362.20001220703125,
+              "y": 185.0,
+              "z": 9.527343536319677e-07
+            },
+            "id": 17,
+            "name": "PETG - One-piece auger",
+            "triangle_count": 19824
+          },
+          {
+            "bbox": {
+              "depth": 33.97886657714844,
+              "height": 9.800000190734863,
+              "width": 33.98942184448242,
+              "x": 467.20001220703125,
+              "y": 25.0,
+              "z": -9.536743306171047e-08
+            },
+            "id": 21,
+            "name": "PLA - Constraint-fit bushing",
+            "triangle_count": 1008
+          }
+        ],
+        "sliced_time": 5084,
+        "sliced_time_with_cache": 3184,
+        "total_predication": 11874.16796875,
+        "triangle_count": 22806,
+        "warning_message": ""
+      }
+    ],
+    "sparse_infill_density": 15.0,
+    "upward_compatible_machine": [
+      "Bambu Lab A1 0.4 nozzle",
+      "Bambu Lab P2S 0.4 nozzle",
+      "Bambu Lab H2S 0.4 nozzle",
+      "Bambu Lab H2D 0.4 nozzle",
+      "Bambu Lab H2D Pro 0.4 nozzle",
+      "Bambu Lab H2C 0.4 nozzle",
+      "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 2
+  },
+  "actual_second_plate_order": [
+    "PETG - One-piece auger",
+    "PETG - Square adapter",
+    "PLA - Constraint-fit bushing"
+  ],
+  "auger_to_front_parts_y_gap_mm": 126.02113233927832,
+  "saved_clearances": {
+    "extruder_clearance_dist_to_rod": "33",
+    "extruder_clearance_height_to_lid": "133",
+    "extruder_clearance_height_to_rod": "32.8",
+    "extruder_clearance_max_radius": "60"
+  },
+  "temperature_policy": {
+    "bed_temperature_formula": "by_first_filament",
+    "PETG_C": 70,
+    "PLA_C": 55,
+    "wait_for_PLA_before_final_object": true
+  },
+  "prime_tower_actual": {
+    "plate_1": false,
+    "plate_2": false
+  },
+  "object_process_settings_preserved": true,
+  "embedded_gcode": false,
+  "printer_command_sent": false,
+  "preserved_files": {
+    "experiments\\garden-auger-locator-fit.limo": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+    "garden-auger-current-assembly.3mf": "70aa9cf621e94e2356b2b263fc4b5838443c5cc4c0e26b241896ea49d9640524",
+    "garden-auger-upper-servo-sparse-test.3mf": "454546d8f147a2b387f3c717df377e0089c36c8b419c06fc39871cb8981774ab",
+    "garden-auger-bambu-latest.3mf": "e227a6aeabfa5e86ea39d208a1ba90c6b75f3f13ce8d6fcac7578a8066166082",
+    "garden-auger-two-plate-assembly.3mf": "13e54e96a0d07904b47612cba2e1564dd9c1303623f3699b64c633066e9fa6b9",
+    "experiments\\garden-auger-relieved-housing.limo": "00eb2c3fd854887b716beaf5df7571f607267da0723e77df6ee9c1a6c07839ff",
+    "garden-auger-solid-frame-assembly.3mf": "b0b280415c7312bf837bbb7fc445d468d63b0b24604433479489057b8cd4ff9f",
+    "experiments\\garden-auger-solid-frame.limo": "a0034a3059d47d016dc4d079f7010ba6858864b5f9fb5e67463fe75b179e7006",
+    "print-parts\\grip-comfort-sample.stl": "efe62d61caefb6724a15d23ca568925d50e8955403797855e092800528424f48",
+    "garden-auger-rounded-envelope-assembly.3mf": "4130d2c6952e15e1b386f4404907903921f1a91e2361259f82f608fa678d89b3",
+    "experiments\\garden-auger-rounded-envelope.limo": "0335d229762219499e1db51f7e37ef8627f1d6df3b676c48d66ced9d68cf226e",
+    "garden-auger-chamfer-envelope-assembly.3mf": "6a779beb1c105b0c2340eba0d496d87376b0a82c7cf4c803f604bebd6c40d324",
+    "experiments\\garden-auger-chamfer-envelope.limo": "db84ed91d696f2223d633e6956d7dec80d0556250b3c07e362fca0422af065de",
+    "garden-auger-ingress-flange-assembly.3mf": "9c79f40fcb17e64a745bf43843804bae47d4edf07275b9c9ca37bf2aba706d1d",
+    "experiments\\garden-auger-ingress-flange.limo": "325d419132d6e99d2136682b220b4b73434ec37c06985d8037709b9ea825edd1"
+  },
+  "time_seconds": 30953.009765625,
+  "filament_g": 228.86263473704457,
+  "stls": {
+    "print-parts\\locator-fit-assembly\\petg-housing-lower.stl": "cae5d53266939d39909e4cbe1b33a1efffa7720f3c05312b1c4b67d9e8a61b2a",
+    "print-parts\\locator-fit-assembly\\petg-housing-upper.stl": "2f8fbc681eb3b7b8e321fbc3288cd4afe73655617707c5120e236f57d4a0d186",
+    "print-parts\\locator-fit-assembly\\petg-one-piece-auger.stl": "d6ec496216752f3bcf6d4a7839ee21a31dec2d5e77e194fba468fcab3bc7735c",
+    "print-parts\\locator-fit-assembly\\petg-square-adapter.stl": "e787400d807a81733c561d0c75cd553c4ca0321ff53f904800ea94b4f09c4647",
+    "print-parts\\locator-fit-assembly\\pla-constraint-fit-bushing.stl": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d"
+  },
+  "rejected_housing_object_layouts": [],
+  "scope": "Digital geometry and native slicing qualification; physical fit, stiffness, wear, loaded torque and dirty trial remain pending.",
+  "additional_validation": "locator-fit-validation.json",
+  "additional_validation_sha256": "752c58e71252453013821746f60512a2f4bc338bb1d2f4746de8a5928bbb94e0",
+  "actual_first_plate_order": [
+    "102",
+    "104"
+  ],
+  "housing_x_separation_mm": 66.39999999999998,
+  "wall_review": "locator-fit-wall-review.json",
+  "wall_review_sha256": "b3018def918694fdb729d656ae797935fa9a3e4e619060123b22af02ee39d27c",
+  "optional_comfort_sample": {
+    "file": "print-parts\\grip-comfort-sample.stl",
+    "sha256": "efe62d61caefb6724a15d23ca568925d50e8955403797855e092800528424f48",
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        55.0,
+        23.9483642578125,
+        18.59936547279358
+      ]
+    ],
+    "method": "Native lower housing mesh intersected with 55 mm outer grip segment; translated onto its flat bed land.",
+    "included_in_complete_project": false,
+    "purpose": "Optional hand comfort check before printing the full housing; not a load test."
+  }
+}
