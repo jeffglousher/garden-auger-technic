@@ -29,4 +29,3 @@ with CadClient() as c:
  report['locator_revision']={'previous_pin_mm':4,'previous_socket_mm':4.3,'new_diametral_clearance_mm':.2,'pin_section_area_increase_percent':56.25,'nearest_insert_center_mm':min(math.dist(a,b) for a in centers for b in [(-27,118.5),(27,118.5),(-36,196.8),(16,196.8)])}
  (root/'locator-fit-geometry-review.json').write_text(json.dumps(report,indent=2)+'\n')
  print('PASS candidate',report['locator_revision'])
-
