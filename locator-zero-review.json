@@ -1,0 +1,86 @@
+{
+  "before_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "after_sha256": "8666943d6a0f3b79bc473bb8fa789c5aabd6d21033d152d380e2cea627e2d226",
+  "unchanged_body_ids": [
+    1,
+    15,
+    46,
+    90,
+    216,
+    221
+  ],
+  "changed_body_ids": [
+    26
+  ],
+  "previous_socket_diameter_mm": 5.2,
+  "current_socket_diameter_mm": 5.0,
+  "pin_diameter_mm": 5.0,
+  "nominal_radial_clearance_mm": 0.0,
+  "nominal_diametral_clearance_mm": 0.0,
+  "native_cylinder_witnesses": [
+    {
+      "body": 26,
+      "center_xy": [
+        -21,
+        132
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 46,
+      "center_xy": [
+        -21,
+        132
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 26,
+      "center_xy": [
+        21,
+        132
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 46,
+      "center_xy": [
+        21,
+        132
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 26,
+      "center_xy": [
+        -36,
+        183
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 46,
+      "center_xy": [
+        -36,
+        183
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 26,
+      "center_xy": [
+        16,
+        175
+      ],
+      "radius_mm": 2.5
+    },
+    {
+      "body": 46,
+      "center_xy": [
+        16,
+        175
+      ],
+      "radius_mm": 2.5
+    }
+  ]
+}

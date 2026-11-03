@@ -1,6 +1,6 @@
 {
   "cad": "experiments\\garden-auger-locator-fit.limo",
-  "cad_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "cad_sha256": "8666943d6a0f3b79bc473bb8fa789c5aabd6d21033d152d380e2cea627e2d226",
   "retained_feature_definitions_sha256": "a1eb419178ba21f8d71bb76634ba546b206184c51bc9beb2f6567a2d08060755",
   "section_deflection_mm": 0.01,
   "longitudinal_stock": [

@@ -93,7 +93,7 @@ def main():
             review_path=ROOT/'simple-print-geometry-review.json'
             validation_path=ROOT/'simple-print-validation.json'
         if args.locator_fit:
-            BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-fit'
+            BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-zero'
             CAD=ROOT/'experiments/garden-auger-locator-fit.limo'
             TARGET=ROOT/'garden-auger-locator-fit-assembly.3mf'
             REPORT=ROOT/'locator-fit-verification.json'

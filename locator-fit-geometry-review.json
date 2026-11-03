@@ -40,7 +40,7 @@
       ]
     ],
     "pin_diameter_mm": 5.0,
-    "socket_diameter_mm": 5.2,
+    "socket_diameter_mm": 5.0,
     "pin_projection_mm": 2.8,
     "socket_depth_mm": 3.2,
     "all_pins_on_lower": true
@@ -420,11 +420,12 @@
     ]
   },
   "cad": "experiments\\garden-auger-locator-fit.limo",
-  "cad_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "cad_sha256": "8666943d6a0f3b79bc473bb8fa789c5aabd6d21033d152d380e2cea627e2d226",
   "locator_revision": {
     "previous_pin_mm": 4,
     "previous_socket_mm": 4.3,
-    "new_diametral_clearance_mm": 0.2,
+    "new_diametral_clearance_mm": 0.0,
+    "fit_intent": "Zero nominal radial clearance; actual friction/interference depends on the print",
     "pin_section_area_increase_percent": 56.25,
     "nearest_insert_center_mm": 13.800000000000011
   },
@@ -435,8 +436,8 @@
         132
       ],
       "section_z_mm": 1,
-      "left_stock_mm": 9.40616033015704,
-      "right_stock_mm": 3.63382243097422
+      "left_stock_mm": 9.508848954601596,
+      "right_stock_mm": 3.7338224309742216
     },
     {
       "center": [
@@ -444,8 +445,8 @@
         132
       ],
       "section_z_mm": 1,
-      "left_stock_mm": 3.639982761131261,
-      "right_stock_mm": 3.5500000000000185
+      "left_stock_mm": 3.742671385575818,
+      "right_stock_mm": 3.65000000000002
     },
     {
       "center": [
@@ -453,8 +454,8 @@
         183
       ],
       "section_z_mm": 1,
-      "left_stock_mm": 2.70616033015704,
-      "right_stock_mm": 2.5
+      "left_stock_mm": 2.8088489546015936,
+      "right_stock_mm": 2.6000000000000014
     },
     {
       "center": [
@@ -462,8 +463,8 @@
         175
       ],
       "section_z_mm": 1,
-      "left_stock_mm": 3.0061603301570443,
-      "right_stock_mm": 3.1991817032647205
+      "left_stock_mm": 3.1088489546015996,
+      "right_stock_mm": 3.299181703264722
     }
   ]
 }

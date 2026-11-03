@@ -1,6 +1,6 @@
-# Garden auger - tighter, separated locators
+# Garden auger - zero-clearance, separated locators
 
-Current full print: [garden-auger-locator-fit-assembly.3mf](garden-auger-locator-fit-assembly.3mf). [Revision and validation](docs/locator-fit-review.md) - [CAD](experiments/garden-auger-locator-fit.limo) - [STLs](print-parts/locator-fit-assembly/). Use both new housing halves together. Pins are 5.0 mm, sockets 5.2 mm, and every locator is at least 13.8 mm from an insert axis. Physical tighter-fit acceptance remains pending.
+Current full print: [garden-auger-locator-fit-assembly.3mf](garden-auger-locator-fit-assembly.3mf). [Revision and validation](docs/locator-fit-review.md) - [CAD](experiments/garden-auger-locator-fit.limo) - [STLs](print-parts/locator-fit-assembly/). Use the relocated-locator housing pair; the PR22 lower half is unchanged and compatible. Pins and straight sockets are both 5.0 mm (zero nominal radial clearance), and every locator is at least 13.8 mm from an insert axis. Physical tighter-fit acceptance remains pending.
 
 The following simple-print record is the preceding revision; its images show the older locator positions.
 
