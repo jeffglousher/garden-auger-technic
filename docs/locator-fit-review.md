@@ -20,7 +20,7 @@ Reproduce from the repository root with the existing offline numpy/trimesh/manif
 
 Owned native proof uses the existing D project lane, with a 90 MiB ceiling. Retain compressed slicing/source/section evidence while current or needed to reproduce; release verified duplicate G-code after settlement. Physical tight-fit assembly and strength remain to be checked; no printer command is authorized or sent by these scripts.
 
-Native Bambu slicing passed both print-by-object plates with no warnings: approximately 8 h 36 min /228.9 g total, excluding bed cooling. Both new halves are on plate 1; unchanged auger, adapter and bushing are on plate 2. The editable project contains no embedded G-code.
+Native Bambu slicing passed both print-by-object plates with no warnings: approximately 8 h 36 min /228.8 g total, excluding bed cooling. Both new halves are on plate 1; unchanged auger, adapter and bushing are on plate 2. The editable project contains no embedded G-code.
 
 [Zero-clearance comparison](../locator-zero-review.json), [Geometry evidence](../locator-fit-geometry-review.json), [functional checks](../locator-fit-validation.json), [wall checks](../locator-fit-wall-review.json), [native print verification](../locator-fit-verification.json).
 
