@@ -54,7 +54,7 @@ def main():
         REPORT=ROOT/'simple-print-validation.json'
         BUILD=ROOT/'.build/clamshell-detail/current-assembly/simple-print'
     review='simple-print-geometry-review.json' if args.simple_print else 'ingress-flange-geometry-review.json' if args.ingress_flange else 'chamfer-envelope-geometry-review.json' if args.chamfer_envelope else 'outer-envelope-geometry-review.json' if args.outer_envelope else 'solid-frame-geometry-review.json' if args.solid_frame else 'd-grip-geometry-review.json'
-    if args.locator_fit and not args.build_root:BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-fit'
+    if args.locator_fit and not args.build_root:BUILD=ROOT/'.build/clamshell-detail/current-assembly/locator-zero'
     if args.build_root:BUILD=args.build_root
     if args.locator_fit:
         CAD=ROOT/'experiments/garden-auger-locator-fit.limo'
@@ -121,7 +121,8 @@ def main():
         report['locator_controls']=[]
         radius=proof['locators']['pin_diameter_mm']/2
         clearance=(proof['locators']['socket_diameter_mm']-2*radius)/2
-        clear,blocked_shift=clearance-.01,clearance+.01
+        assert clearance>=0, 'Interference designs require explicit deformation-aware checks'
+        clear,blocked_shift=max(0.,clearance-.01),clearance+.01
         for x,y in proof['locators']['pin_centers_xy_mm']:
             bid,oid=probe_occurrence(c,f'Inspection locator {x} {y}',x,y,radius,.3,2.2)
             for shift,blocked in [((clear,0,0),False),((-clear,0,0),False),((blocked_shift,0,0),True),((0,clear,0),False),((0,blocked_shift,0),True)]:

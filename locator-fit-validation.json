@@ -1,5 +1,5 @@
 {
-  "cad_sha256": "0ffbc8fd0b6cf293ab05c450333d22ed347930df48799631b4ffd0f5ddce252b",
+  "cad_sha256": "8666943d6a0f3b79bc473bb8fa789c5aabd6d21033d152d380e2cea627e2d226",
   "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
   "printer_command_sent": false,
   "retained_section_probes": [
@@ -1083,7 +1083,7 @@
         132
       ],
       "shift_mm": [
-        0.0900000000000001,
+        0.0,
         0,
         0
       ],
@@ -1093,7 +1093,7 @@
           "body_a": 26,
           "body_b": 263,
           "interfering": false,
-          "minimum_clearance_mm": 0.010000000000001563,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1104,7 +1104,7 @@
         132
       ],
       "shift_mm": [
-        -0.0900000000000001,
+        -0.0,
         0,
         0
       ],
@@ -1114,7 +1114,7 @@
           "body_a": 26,
           "body_b": 263,
           "interfering": false,
-          "minimum_clearance_mm": 0.00999999999999804,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1125,7 +1125,7 @@
         132
       ],
       "shift_mm": [
-        0.11000000000000008,
+        0.01,
         0,
         0
       ],
@@ -1136,7 +1136,7 @@
           "body_b": 263,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632374419603
+          "overlap_volume_mm3": 0.09499993666584938
         }
       ]
     },
@@ -1147,7 +1147,7 @@
       ],
       "shift_mm": [
         0,
-        0.0900000000000001,
+        0.0,
         0
       ],
       "blocked": false,
@@ -1156,7 +1156,7 @@
           "body_a": 26,
           "body_b": 263,
           "interfering": false,
-          "minimum_clearance_mm": 0.009999999999990905,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1168,7 +1168,7 @@
       ],
       "shift_mm": [
         0,
-        0.11000000000000008,
+        0.01,
         0
       ],
       "blocked": true,
@@ -1178,7 +1178,7 @@
           "body_b": 263,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632375639433
+          "overlap_volume_mm3": 0.094999936666529
         }
       ]
     },
@@ -1188,7 +1188,7 @@
         132
       ],
       "shift_mm": [
-        0.0900000000000001,
+        0.0,
         0,
         0
       ],
@@ -1198,28 +1198,7 @@
           "body_a": 26,
           "body_b": 264,
           "interfering": false,
-          "minimum_clearance_mm": 0.010000000000001563,
-          "overlap_volume_mm3": 0.0
-        }
-      ]
-    },
-    {
-      "xy_mm": [
-        21,
-        132
-      ],
-      "shift_mm": [
-        -0.0900000000000001,
-        0,
-        0
-      ],
-      "blocked": false,
-      "pairs": [
-        {
-          "body_a": 26,
-          "body_b": 264,
-          "interfering": false,
-          "minimum_clearance_mm": 0.00999999999999804,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1230,29 +1209,8 @@
         132
       ],
       "shift_mm": [
-        0.11000000000000008,
+        -0.0,
         0,
-        0
-      ],
-      "blocked": true,
-      "pairs": [
-        {
-          "body_a": 26,
-          "body_b": 264,
-          "interfering": true,
-          "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.02766663237433395
-        }
-      ]
-    },
-    {
-      "xy_mm": [
-        21,
-        132
-      ],
-      "shift_mm": [
-        0,
-        0.0900000000000001,
         0
       ],
       "blocked": false,
@@ -1261,7 +1219,7 @@
           "body_a": 26,
           "body_b": 264,
           "interfering": false,
-          "minimum_clearance_mm": 0.009999999999990905,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1272,8 +1230,8 @@
         132
       ],
       "shift_mm": [
+        0.01,
         0,
-        0.11000000000000008,
         0
       ],
       "blocked": true,
@@ -1283,7 +1241,49 @@
           "body_b": 264,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632375639433
+          "overlap_volume_mm3": 0.09499993666815687
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        21,
+        132
+      ],
+      "shift_mm": [
+        0,
+        0.0,
+        0
+      ],
+      "blocked": false,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": false,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "xy_mm": [
+        21,
+        132
+      ],
+      "shift_mm": [
+        0,
+        0.01,
+        0
+      ],
+      "blocked": true,
+      "pairs": [
+        {
+          "body_a": 26,
+          "body_b": 264,
+          "interfering": true,
+          "minimum_clearance_mm": 0.0,
+          "overlap_volume_mm3": 0.094999936666529
         }
       ]
     },
@@ -1293,7 +1293,7 @@
         183
       ],
       "shift_mm": [
-        0.0900000000000001,
+        0.0,
         0,
         0
       ],
@@ -1303,7 +1303,7 @@
           "body_a": 26,
           "body_b": 265,
           "interfering": false,
-          "minimum_clearance_mm": 0.00999999999999801,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1314,7 +1314,7 @@
         183
       ],
       "shift_mm": [
-        -0.0900000000000001,
+        -0.0,
         0,
         0
       ],
@@ -1324,7 +1324,7 @@
           "body_a": 26,
           "body_b": 265,
           "interfering": false,
-          "minimum_clearance_mm": 0.00999999999999801,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1335,7 +1335,7 @@
         183
       ],
       "shift_mm": [
-        0.11000000000000008,
+        0.01,
         0,
         0
       ],
@@ -1346,7 +1346,7 @@
           "body_b": 265,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.02766663237433417
+          "overlap_volume_mm3": 0.09499993666812223
         }
       ]
     },
@@ -1357,7 +1357,7 @@
       ],
       "shift_mm": [
         0,
-        0.0900000000000001,
+        0.0,
         0
       ],
       "blocked": false,
@@ -1366,7 +1366,7 @@
           "body_a": 26,
           "body_b": 265,
           "interfering": false,
-          "minimum_clearance_mm": 0.009999999999990905,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1378,7 +1378,7 @@
       ],
       "shift_mm": [
         0,
-        0.11000000000000008,
+        0.01,
         0
       ],
       "blocked": true,
@@ -1388,7 +1388,7 @@
           "body_b": 265,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632370479352
+          "overlap_volume_mm3": 0.09499993666652115
         }
       ]
     },
@@ -1398,7 +1398,7 @@
         175
       ],
       "shift_mm": [
-        0.0900000000000001,
+        0.0,
         0,
         0
       ],
@@ -1408,7 +1408,7 @@
           "body_a": 26,
           "body_b": 266,
           "interfering": false,
-          "minimum_clearance_mm": 0.010000000000001563,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1419,7 +1419,7 @@
         175
       ],
       "shift_mm": [
-        -0.0900000000000001,
+        -0.0,
         0,
         0
       ],
@@ -1429,7 +1429,7 @@
           "body_a": 26,
           "body_b": 266,
           "interfering": false,
-          "minimum_clearance_mm": 0.010000000000001563,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1440,7 +1440,7 @@
         175
       ],
       "shift_mm": [
-        0.11000000000000008,
+        0.01,
         0,
         0
       ],
@@ -1451,7 +1451,7 @@
           "body_b": 266,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632374419603
+          "overlap_volume_mm3": 0.09499993666584672
         }
       ]
     },
@@ -1462,7 +1462,7 @@
       ],
       "shift_mm": [
         0,
-        0.0900000000000001,
+        0.0,
         0
       ],
       "blocked": false,
@@ -1471,7 +1471,7 @@
           "body_a": 26,
           "body_b": 266,
           "interfering": false,
-          "minimum_clearance_mm": 0.009999999999990905,
+          "minimum_clearance_mm": 0.0,
           "overlap_volume_mm3": 0.0
         }
       ]
@@ -1483,7 +1483,7 @@
       ],
       "shift_mm": [
         0,
-        0.11000000000000008,
+        0.01,
         0
       ],
       "blocked": true,
@@ -1493,7 +1493,7 @@
           "body_b": 266,
           "interfering": true,
           "minimum_clearance_mm": 0.0,
-          "overlap_volume_mm3": 0.027666632373916505
+          "overlap_volume_mm3": 0.09499993666652723
         }
       ]
     }
