@@ -1,3 +1,11 @@
+# Garden auger - three-wall global print settings
+
+Current full print: [garden-auger-three-wall-assembly.3mf](garden-auger-three-wall-assembly.3mf). Same [labeled CAD](experiments/garden-auger-labeled.limo) and [STLs](print-parts/labeled-assembly/); only slicer settings changed. All object process overrides are removed. Global settings are **three walls, 15% grid infill, 0.24 mm layers, four top layers with a 1 mm minimum top thickness, and three bottom layers**. Automatic tree supports remain enabled. Both plates print by object with the existing material assignments and 55 C bed wait before the PLA bushing.
+
+Native slicing passes without warnings: **5 h 28 min /147.9 g**, plus cooling and plate handling. Housing plate: **2 h 52 min**; remaining parts: **2 h 35 min** (rounded independently). This saves approximately **3 h 12 min /81.4 g** relative to the strong labeled project. Global edits now apply to every part, including the adapter and bushing. No local strengthening is added in this baseline; physical strength remains untested. [Verification and removed overrides](three-wall-verification.json). Reproduce with `python scripts/prepare_three_wall_assembly.py`.
+
+The following records describe preceding print settings and geometry iterations.
+
 # Garden auger - labeled housing
 
 Current full print: [garden-auger-labeled-assembly.3mf](garden-auger-labeled-assembly.3mf). [Label details](docs/labeled-housing-review.md) - [CAD](experiments/garden-auger-labeled.limo) - [STLs](print-parts/labeled-assembly/). Both inner floors have recessed same-color PETG part IDs and hardware dimensions. Mating rims, zero-clearance locators and insert/screw geometry are preserved. Native slicing passes: about 8 h40 min /229.3 g.

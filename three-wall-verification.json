@@ -1,0 +1,267 @@
+{
+  "project": "garden-auger-three-wall-assembly.3mf",
+  "project_sha256": "429f1fe4303e2d125acbfac4b6bee1f86c4817b65ec9e689d8273c6da6bec3bc",
+  "source": "garden-auger-labeled-assembly.3mf",
+  "source_sha256": "b1d10dff2ffdd92d8e119bd633cba5f03eced6da5cb44744d0af8c7b5dbead8a",
+  "removed_object_overrides": {
+    "PETG - Housing upper": {
+      "bottom_shell_layers": "6",
+      "sparse_infill_density": "30%",
+      "sparse_infill_pattern": "gyroid",
+      "top_shell_layers": "6",
+      "wall_loops": "6",
+      "enable_support": "1"
+    },
+    "PETG - Housing lower": {
+      "bottom_shell_layers": "6",
+      "sparse_infill_density": "30%",
+      "sparse_infill_pattern": "gyroid",
+      "top_shell_layers": "6",
+      "wall_loops": "6",
+      "enable_support": "1"
+    },
+    "PETG - Square adapter": {
+      "sparse_infill_density": "100%",
+      "sparse_infill_pattern": "zig-zag",
+      "wall_loops": "6"
+    },
+    "PETG - One-piece auger": {
+      "bottom_shell_layers": "6",
+      "sparse_infill_density": "40%",
+      "sparse_infill_pattern": "gyroid",
+      "top_shell_layers": "6",
+      "wall_loops": "6"
+    },
+    "PLA - Constraint-fit bushing": {
+      "layer_height": ".20",
+      "wall_loops": "4",
+      "sparse_infill_density": "15%",
+      "sparse_infill_pattern": "grid",
+      "top_shell_layers": "4",
+      "bottom_shell_layers": "4",
+      "enable_support": "0"
+    }
+  },
+  "global_process": {
+    "layer_height": "0.24",
+    "wall_loops": "3",
+    "sparse_infill_density": "15%",
+    "sparse_infill_pattern": "grid",
+    "top_shell_layers": "4",
+    "top_shell_thickness": "1",
+    "bottom_shell_layers": "3",
+    "enable_support": "1",
+    "print_sequence": "by object"
+  },
+  "geometry_entries_byte_identical": true,
+  "material_assignments_and_layout_unchanged": true,
+  "object_process_overrides_remaining": 0,
+  "native_slice": {
+    "error_string": "Success.",
+    "export_time": 1174,
+    "layer_height": 0.23999999463558197,
+    "plate_index": 0,
+    "prepare_time": 73,
+    "return_code": 0,
+    "sliced_plates": [
+      {
+        "feature_type_times": {
+          "Bottom surface": 361.62298583984375,
+          "Bridge": 618.2373657226562,
+          "Custom": 286.3428039550781,
+          "Flush": 68.0,
+          "Gap infill": 58.57695388793945,
+          "Inner wall": 1832.19775390625,
+          "Internal solid infill": 1868.082275390625,
+          "Outer wall": 1347.54296875,
+          "Sparse infill": 2229.210205078125,
+          "Support": 52.87799835205078,
+          "Support interface": 21.305866241455078,
+          "Support transition": 9.502880096435547,
+          "Top surface": 309.1938781738281,
+          "Travel": 1276.07470703125,
+          "Undefined": 1269.28271484375
+        },
+        "filament_change_times": 0,
+        "filaments": [
+          {
+            "filament_id": "GFG00",
+            "id": 1,
+            "main_used_g": 103.54784393310547,
+            "total_used_g": 103.54784393310547
+          },
+          {
+            "filament_id": "GFA12",
+            "id": 4,
+            "main_used_g": 0.039636243134737015,
+            "total_used_g": 0.039636243134737015
+          }
+        ],
+        "generate_support_material_time": 120,
+        "id": 1,
+        "infill_time": 387,
+        "layer_filament_change": 0,
+        "main_predication": 9954.7236328125,
+        "make_perimeters_time": 171,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 98.5999984741211,
+              "height": 20.600000381469727,
+              "width": 75.30000305175781,
+              "x": 173.0,
+              "y": 75.0,
+              "z": -1.9073486612342094e-07
+            },
+            "id": 5,
+            "name": "PETG - Housing upper",
+            "triangle_count": 6772
+          },
+          {
+            "bbox": {
+              "depth": 187.0,
+              "height": 23.399999618530273,
+              "width": 98.5999984741211,
+              "x": 8.000000953674316,
+              "y": 34.5,
+              "z": 1.9073486612342094e-07
+            },
+            "id": 9,
+            "name": "PETG - Housing lower",
+            "triangle_count": 6812
+          }
+        ],
+        "sliced_time": 2357,
+        "sliced_time_with_cache": 1566,
+        "total_predication": 10331.2744140625,
+        "triangle_count": 13584,
+        "warning_message": ""
+      },
+      {
+        "feature_type_times": {
+          "Bottom surface": 18.022239685058594,
+          "Bridge": 126.32467651367188,
+          "Custom": 287.46966552734375,
+          "Flush": 541.9432983398438,
+          "Gap infill": 304.6048278808594,
+          "Inner wall": 1606.4228515625,
+          "Internal solid infill": 579.8571166992188,
+          "Outer wall": 1494.228271484375,
+          "Sparse infill": 758.91015625,
+          "Support": 974.5153198242188,
+          "Support interface": 501.8014831542969,
+          "Support transition": 311.93402099609375,
+          "Top surface": 94.9492416381836,
+          "Travel": 1728.32177734375,
+          "Undefined": 1720.358642578125
+        },
+        "filament_change_times": 1,
+        "filaments": [
+          {
+            "filament_id": "GFG00",
+            "id": 2,
+            "main_used_g": 34.391265869140625,
+            "total_used_g": 34.668766021728516
+          },
+          {
+            "filament_id": "GFG00",
+            "id": 3,
+            "main_used_g": 5.175526142120361,
+            "total_used_g": 5.290525913238525
+          },
+          {
+            "filament_id": "GFA12",
+            "id": 4,
+            "main_used_g": 4.337523937225342,
+            "total_used_g": 4.337523937225342
+          }
+        ],
+        "generate_support_material_time": 1019,
+        "id": 2,
+        "infill_time": 288,
+        "layer_filament_change": 0,
+        "main_predication": 8471.634765625,
+        "make_perimeters_time": 197,
+        "obj_cached_cnt": 0,
+        "objects": [
+          {
+            "bbox": {
+              "depth": 27.991296768188477,
+              "height": 22.899999618530273,
+              "width": 27.98258399963379,
+              "x": 332.20001220703125,
+              "y": 25.0,
+              "z": 1.9073486612342094e-07
+            },
+            "id": 13,
+            "name": "PETG - Square adapter",
+            "triangle_count": 1974
+          },
+          {
+            "bbox": {
+              "depth": 37.988189697265625,
+              "height": 37.97637939453125,
+              "width": 144.69998168945312,
+              "x": 362.20001220703125,
+              "y": 185.0,
+              "z": 9.527343536319677e-07
+            },
+            "id": 17,
+            "name": "PETG - One-piece auger",
+            "triangle_count": 19824
+          },
+          {
+            "bbox": {
+              "depth": 33.97886657714844,
+              "height": 9.800000190734863,
+              "width": 33.98942184448242,
+              "x": 467.20001220703125,
+              "y": 25.0,
+              "z": -9.536743306171047e-08
+            },
+            "id": 21,
+            "name": "PLA - Constraint-fit bushing",
+            "triangle_count": 1008
+          }
+        ],
+        "sliced_time": 4472,
+        "sliced_time_with_cache": 2560,
+        "total_predication": 9322.0849609375,
+        "triangle_count": 22806,
+        "warning_message": ""
+      }
+    ],
+    "sparse_infill_density": 15.0,
+    "upward_compatible_machine": [
+      "Bambu Lab A1 0.4 nozzle",
+      "Bambu Lab P2S 0.4 nozzle",
+      "Bambu Lab H2S 0.4 nozzle",
+      "Bambu Lab H2D 0.4 nozzle",
+      "Bambu Lab H2D Pro 0.4 nozzle",
+      "Bambu Lab H2C 0.4 nozzle",
+      "Bambu Lab A2L 0.4 nozzle"
+    ],
+    "wall_loops": 3
+  },
+  "actual_orders": [
+    [
+      "102",
+      "104"
+    ],
+    [
+      "106",
+      "108",
+      "110"
+    ]
+  ],
+  "PLA_55C_bed_wait_verified": true,
+  "prime_tower_generated": false,
+  "time_seconds": 19653.359375,
+  "filament_g": 147.8842960484326,
+  "sliced_archive_sha256": "2b2115d83e4b404d6e3338bb04ce59f1d51c465241fbf21ff72934c1c0d8509c",
+  "evidence_directory": "D:\\CodexTemp\\garden-auger-technic\\build\\clamshell-detail\\current-assembly\\three-wall\\slice-5c_bidk7",
+  "printer_command_sent": false,
+  "embedded_gcode": false,
+  "scope": "Native slice estimate; physical strength and print quality remain untested."
+}
