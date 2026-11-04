@@ -1,3 +1,9 @@
+# Garden auger - labeled housing
+
+Current full print: [garden-auger-labeled-assembly.3mf](garden-auger-labeled-assembly.3mf). [Label details](docs/labeled-housing-review.md) - [CAD](experiments/garden-auger-labeled.limo) - [STLs](print-parts/labeled-assembly/). Both inner floors have recessed same-color PETG part IDs and hardware dimensions. Mating rims, zero-clearance locators and insert/screw geometry are preserved. Native slicing passes: about 8 h40 min /229.3 g.
+
+The following records describe the preceding unlabelled iterations.
+
 # Garden auger - zero-clearance, separated locators
 
 Current full print: [garden-auger-locator-fit-assembly.3mf](garden-auger-locator-fit-assembly.3mf). [Revision and validation](docs/locator-fit-review.md) - [CAD](experiments/garden-auger-locator-fit.limo) - [STLs](print-parts/locator-fit-assembly/). Use the relocated-locator housing pair; the PR22 lower half is unchanged and compatible. Pins and straight sockets are both 5.0 mm (zero nominal radial clearance), and every locator is at least 13.8 mm from an insert axis. Physical tighter-fit acceptance remains pending.
