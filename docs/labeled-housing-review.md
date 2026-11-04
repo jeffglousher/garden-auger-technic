@@ -2,7 +2,7 @@
 
 Current CAD: [garden-auger-labeled.limo](../experiments/garden-auger-labeled.limo). Complete print: [garden-auger-labeled-assembly.3mf](../garden-auger-labeled-assembly.3mf).
 
-The labels are recessed 0.4 mm into the broad inner servo-pocket floors. The rim, zero-clearance locators, screw seats and insert holes retain their dimensions. Lettering cannot hold the halves apart because no material is added. There is 9.8 mm of remaining floor beneath the cuts. The housing stays one yellow PETG body per half; no extra colors, inlays, filament swaps or assembly parts are introduced.
+The labels are recessed 0.4 mm into the broad inner servo-pocket floors. The rim, zero-clearance locators, screw seats and insert holes retain their dimensions. Lettering cannot hold the halves apart because no material is added. There is 10.0 mm of remaining floor beneath the cuts. The housing stays one yellow PETG body per half; no extra colors, inlays, filament swaps or assembly parts are introduced.
 
 Upper marking: `GA-HU-01 / SCREWS / 4XM3X18 / PETG`.
 

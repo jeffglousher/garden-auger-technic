@@ -315,7 +315,7 @@
       }
     ]
   },
-  "minimum_remaining_label_floor_mm": 9.8,
+  "minimum_remaining_label_floor_mm": 10.0,
   "label_checks": [
     {
       "body": 46,

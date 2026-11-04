@@ -124,7 +124,7 @@ def main():
         (BUILD/'scene.json').write_text(json.dumps(scene))
     report['cad_sha256']=digest(TARGET)
     (ROOT/'labeled-geometry-review.json').write_text(json.dumps(report,indent=2)+'\n')
-    focused={'cad_sha256':report['cad_sha256'],'engine_sha256':report['engine_sha256'],'source_sha256':digest(SOURCE),'scope':'Focused engraving check: all original feature definitions retained after native default migration; only shallow material removal inside the servo pockets. Existing locator/motion evidence remains applicable to unchanged interfaces.','nominal_assembly':report['nominal_assembly'],'minimum_remaining_label_floor_mm':9.8,'label_checks':report['labels'],'prior_functional_evidence':'locator-fit-validation.json','prior_functional_evidence_sha256':digest(ROOT/'locator-fit-validation.json')}
+    focused={'cad_sha256':report['cad_sha256'],'engine_sha256':report['engine_sha256'],'source_sha256':digest(SOURCE),'scope':'Focused engraving check: all original feature definitions retained after native default migration; only shallow material removal inside the servo pockets. Existing locator/motion evidence remains applicable to unchanged interfaces.','nominal_assembly':report['nominal_assembly'],'minimum_remaining_label_floor_mm':10.0,'label_checks':report['labels'],'prior_functional_evidence':'locator-fit-validation.json','prior_functional_evidence_sha256':digest(ROOT/'locator-fit-validation.json')}
     for name in ['labeled-validation.json','labeled-wall-review.json']:(ROOT/name).write_text(json.dumps(focused,indent=2)+'\n')
     print('PASS: recessed labels, expected cut volume, unchanged existing features and flat bed faces',flush=True)
 

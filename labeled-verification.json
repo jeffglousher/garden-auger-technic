@@ -544,14 +544,14 @@
   "rejected_housing_object_layouts": [],
   "scope": "Digital geometry and native slicing qualification; physical fit, stiffness, wear, loaded torque and dirty trial remain pending.",
   "additional_validation": "labeled-validation.json",
-  "additional_validation_sha256": "39edd29da56e36801928fae64da3e526f363181a8b762b7f6c58acfcb8b00827",
+  "additional_validation_sha256": "ae931751eed39598a8dabc9eafac1d61e2072a8854303231ee52138102d45450",
   "actual_first_plate_order": [
     "102",
     "104"
   ],
   "housing_x_separation_mm": 66.39999999999998,
   "wall_review": "labeled-wall-review.json",
-  "wall_review_sha256": "39edd29da56e36801928fae64da3e526f363181a8b762b7f6c58acfcb8b00827",
+  "wall_review_sha256": "ae931751eed39598a8dabc9eafac1d61e2072a8854303231ee52138102d45450",
   "optional_comfort_sample": {
     "file": "print-parts\\grip-comfort-sample.stl",
     "sha256": "efe62d61caefb6724a15d23ca568925d50e8955403797855e092800528424f48",
