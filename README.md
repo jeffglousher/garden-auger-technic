@@ -4,6 +4,8 @@ Current full print: [garden-auger-three-wall-assembly.3mf](garden-auger-three-wa
 
 Native slicing passes without warnings: **5 h 28 min /147.9 g**, plus cooling and plate handling. Housing plate: **2 h 52 min**; remaining parts: **2 h 35 min** (rounded independently). This saves approximately **3 h 12 min /81.4 g** relative to the strong labeled project. Global edits now apply to every part, including the adapter and bushing. No local strengthening is added in this baseline; physical strength remains untested. [Verification and removed overrides](three-wall-verification.json). Reproduce with `python scripts/prepare_three_wall_assembly.py`.
 
+Fresh [assembly and plate recheck](assembly-plate-recheck.json): exact nominal interference, five closure positions, 24 rotation/end-float samples and critical native dimensions pass. A compact single-plate arrangement fits the bed outline but fails native print-by-object collision checking. Two plates remain the validated layout; this is not an exhaustive one-plate packing proof. [Physical-feedback issue](https://github.com/jeffglousher/garden-auger-technic/issues/5#issuecomment-6630696891).
+
 The following records describe preceding print settings and geometry iterations.
 
 # Garden auger - labeled housing
