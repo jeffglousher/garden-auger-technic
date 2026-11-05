@@ -1,0 +1,123 @@
+{
+  "model": {
+    "path": "garden-auger.limo",
+    "sha256": "795f0133dfd4bbf6907c7ef4fbfe86f738a58c71bd68f3319eb97694320182b5",
+    "feature_count": 84,
+    "previous_feature_count": 153,
+    "retired_features_removed": 63,
+    "unused_sketches_removed": 6,
+    "native_meshes_exactly_preserved": true,
+    "bounds_mm": {
+      "1": [
+        [
+          -38.0,
+          -10.0,
+          -43.79999923706055
+        ],
+        [
+          18.0,
+          10.0,
+          -4.0
+        ]
+      ],
+      "15": [
+        [
+          -19.0,
+          -1.0,
+          -19.0
+        ],
+        [
+          19.0,
+          139.5,
+          19.0
+        ]
+      ],
+      "26": [
+        [
+          -41.29999923706055,
+          107.9000015258789,
+          -3.2698070037581696e-15
+        ],
+        [
+          34.0,
+          206.5,
+          20.600000381469727
+        ]
+      ],
+      "46": [
+        [
+          -98.0,
+          107.9000015258789,
+          -20.600000381469727
+        ],
+        [
+          89.0,
+          206.5,
+          2.799999952316284
+        ]
+      ],
+      "90": [
+        [
+          -15.134180068969727,
+          -5.199999809265137,
+          -14.95073127746582
+        ],
+        [
+          15.502817153930664,
+          110.0,
+          15.318268775939941
+        ]
+      ],
+      "216": [
+        [
+          -14.0,
+          129.5,
+          -14.0
+        ],
+        [
+          14.0,
+          152.39999389648438,
+          14.0
+        ]
+      ],
+      "221": [
+        [
+          -17.0,
+          120.8499984741211,
+          -17.0
+        ],
+        [
+          17.0,
+          130.64999389648438,
+          17.0
+        ]
+      ]
+    },
+    "engine_sha256": "95eed7b23fe6651b687168d1f3d592763020e74d3a9efb0ed657f374956f65f2"
+  },
+  "manufacturing": {
+    "path": "print/garden-auger.3mf",
+    "sha256": "a9093310dcb051c735fe2fec60b9f90e92acdd1a44244eb324f3e509dfc88164",
+    "normal_print_parts": 5,
+    "modifier_regions": 9,
+    "plates": 2,
+    "sequence": "by object",
+    "native_slicer_version": "02.08.02.61",
+    "native_slice_passed": true,
+    "warnings": [],
+    "seconds": 21495.40234375,
+    "filament_g": 160.4544178880751,
+    "normal_meshes_preserved": true,
+    "modifier_names_and_settings_roundtrip_verified": true,
+    "PLA_55C_wait_and_order_verified": true,
+    "printer_command_sent": false,
+    "embedded_gcode": false
+  },
+  "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
+  "accepted_drive_connection": {
+    "status": "complete",
+    "authority": "Owner confirmation",
+    "date": "2026-11-05"
+  },
+  "scope": "Native naming/geometry preservation, nominal assembly and slicer validation. Current housing physical assembly/durability and soil trial remain pending."
+}

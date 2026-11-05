@@ -1,11 +1,8 @@
+﻿.build/
+__pycache__/
+*.pyc
+*.tmp
 .DS_Store
 Thumbs.db
-*.tmp
-~*
-scripts/__pycache__/
-scripts/_*.json
-scripts/_*.nbcad.jsonc
-scripts/_*.step
-scripts/_*.stl
-scripts/_*.3mf
-.build/
+/t3.json
+/controls/

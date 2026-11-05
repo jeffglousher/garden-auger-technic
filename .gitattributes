@@ -1,4 +1,4 @@
-# Preserve native SVG export bytes for recorded artifact hashes.
-renders/cad-fit-dimensions.svg -text
-renders/cad-fit-clearances.svg -text
-renders/cad-thin-wall-dimensions.svg -text
+﻿*.limo binary
+*.3mf binary
+*.stl binary
+*.png binary

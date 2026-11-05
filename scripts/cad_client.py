@@ -1,4 +1,4 @@
-"""Small local stdio client for the installed noBS CAD engine."""
+"""Small local stdio client for the installed Limo CAD engine."""
 
 from __future__ import annotations
 
@@ -13,8 +13,7 @@ class CadClient:
                  stderr_path: Path | None = None):
         if executable is None:
             local = Path(os.environ['LOCALAPPDATA'])
-            candidates = [local / 'limo-cad/bevy/Limo-CAD.exe',
-                          local / 'nbcad/mcp/nbcad-mcp.exe']
+            candidates = [local / 'limo-cad/bevy/Limo-CAD.exe']
             executable = next((p for p in candidates if p.is_file()), None)
             if executable is None:
                 raise FileNotFoundError('No installed Limo CAD engine; pass executable explicitly')

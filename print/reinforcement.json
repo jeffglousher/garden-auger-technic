@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "coordinate_frame": "Limo CAD body definition coordinates, millimetres",
+  "global": {
+    "wall_loops": "3",
+    "sparse_infill_density": "15%",
+    "sparse_infill_pattern": "grid",
+    "top_shell_layers": "4",
+    "bottom_shell_layers": "3"
+  },
+  "local": {
+    "wall_loops": "5",
+    "sparse_infill_density": "100%",
+    "sparse_infill_pattern": "zig-zag"
+  },
+  "zones": [
+    {
+      "part": "PETG - Housing lower",
+      "name": "Lower front-left insert anchor",
+      "body_id": 46,
+      "center_mm": [
+        -27,
+        118.5,
+        -4.45
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 9.1,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing upper",
+      "name": "Upper front-left screw load path",
+      "body_id": 26,
+      "center_mm": [
+        -27,
+        118.5,
+        8.4
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 17.2,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing lower",
+      "name": "Lower front-right insert anchor",
+      "body_id": 46,
+      "center_mm": [
+        27,
+        118.5,
+        -4.45
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 9.1,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing upper",
+      "name": "Upper front-right screw load path",
+      "body_id": 26,
+      "center_mm": [
+        27,
+        118.5,
+        8.4
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 17.2,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing lower",
+      "name": "Lower rear-left insert anchor",
+      "body_id": 46,
+      "center_mm": [
+        -36,
+        196.8,
+        -4.45
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 9.1,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing upper",
+      "name": "Upper rear-left screw load path",
+      "body_id": 26,
+      "center_mm": [
+        -36,
+        196.8,
+        8.4
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 17.2,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing lower",
+      "name": "Lower rear-right insert anchor",
+      "body_id": 46,
+      "center_mm": [
+        16,
+        196.8,
+        -4.45
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 9.1,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Housing upper",
+      "name": "Upper rear-right screw load path",
+      "body_id": 26,
+      "center_mm": [
+        16,
+        196.8,
+        8.4
+      ],
+      "radius_mm": 6.0,
+      "height_mm": 17.2,
+      "axis": "z"
+    },
+    {
+      "part": "PETG - Square adapter",
+      "name": "Adapter hub and screw seat",
+      "body_id": 216,
+      "center_mm": [
+        0,
+        145.5,
+        0
+      ],
+      "radius_mm": 14.1,
+      "height_mm": 14.0,
+      "axis": "y"
+    }
+  ]
+}
