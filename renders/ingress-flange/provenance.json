@@ -1,9 +1,0 @@
-{
-  "cad": "C:\\Users\\jeffg\\dev\\garden-auger-technic\\experiments\\garden-auger-ingress-flange.limo",
-  "cad_sha256": "325d419132d6e99d2136682b220b4b73434ec37c06985d8037709b9ea825edd1",
-  "engine_sha256": "75204bb41aa2ce1ad97cfd16c99495c74d4c9e3fdcfe8e46ba7e23eef0f461a2",
-  "section_plane": "YZ at X0",
-  "section_deflection_mm": 0.01,
-  "view": "Actual native section, positive-Z half; centerline at bottom. Closeup is a mesh crop.",
-  "section_data_sha256": "f277751b1470b67a99c4b51f047d7a2366e85f4df78760a95011afdcc5911282"
-}
