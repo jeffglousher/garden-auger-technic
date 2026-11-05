@@ -1,3 +1,13 @@
+# Garden auger - local reinforcement on a three-wall baseline
+
+Current full print: [garden-auger-local-strength-assembly.3mf](garden-auger-local-strength-assembly.3mf). Global remains **three walls, 15% grid, 0.24 mm layers**. Nine named local modifiers use **five walls and 100% zig-zag infill**: four lower insert anchors, four opposing upper screw load paths, and the adapter hub/screw seat. The modifiers change internal toolpaths without changing the five original print meshes, fitted surfaces, material assignments or plate placement. [Verification](local-strength-verification.json) checks native modifier import and actual local extrusion against the unreinforced baseline.
+
+Native Bambu slicing passes both print-by-object plates without warnings: approximately **5 h 58 min /160.5 g**, plus bed cooling and handling. The two-plate layout and 55 C wait before the PLA bushing remain verified. Locators retain their matched **Ø5 mm pins/sockets**, short 2.8 mm pin projection and at least 2.6 mm selected socket side stock; the relieved/slot proposal is not adopted. Reproduce with `python scripts/prepare_local_strength_assembly.py` in the existing numpy/trimesh environment.
+
+**Servo-to-adapter connection: proven and complete by owner confirmation on 5 November 2026.** [Recorded feedback](source/references/owner-design-review-20261105.json). The same [labeled CAD](experiments/garden-auger-labeled.limo), [STLs](print-parts/labeled-assembly/) and [fresh interference evidence](assembly-plate-recheck.json) apply because physical geometry is unchanged. The reinforcement itself has native slice validation; long-term clamped-joint durability and dirty trials remain physical checks.
+
+The following records describe preceding print settings and geometry iterations.
+
 # Garden auger - three-wall global print settings
 
 Current full print: [garden-auger-three-wall-assembly.3mf](garden-auger-three-wall-assembly.3mf). Same [labeled CAD](experiments/garden-auger-labeled.limo) and [STLs](print-parts/labeled-assembly/); only slicer settings changed. All object process overrides are removed. Global settings are **three walls, 15% grid infill, 0.24 mm layers, four top layers with a 1 mm minimum top thickness, and three bottom layers**. Automatic tree supports remain enabled. Both plates print by object with the existing material assignments and 55 C bed wait before the PLA bushing.
