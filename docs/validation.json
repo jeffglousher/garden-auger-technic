@@ -1,7 +1,7 @@
 {
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "795f0133dfd4bbf6907c7ef4fbfe86f738a58c71bd68f3319eb97694320182b5",
+    "sha256": "952a2c16c3651f0db68d7ad4386f43133f0ae4726c0610f81be63e45c09ad4ce",
     "feature_count": 84,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -119,5 +119,24 @@
     "authority": "Owner confirmation",
     "date": "2026-11-05"
   },
-  "scope": "Native naming/geometry preservation, nominal assembly and slicer validation. Current housing physical assembly/durability and soil trial remain pending."
+  "scope": "Native naming/geometry preservation, nominal assembly and slicer validation. Current housing physical assembly/durability and soil trial remain pending.",
+  "gallery": {
+    "source": "Native solid_scene meshes and named_view_solution poses; external rendering, callouts and GIF encoding.",
+    "native_saved_views": [
+      "Complete assembly",
+      "Exploded assembly",
+      "Inside the housing",
+      "Lower housing labels",
+      "Upper housing labels"
+    ],
+    "mechanical_model_unchanged": true,
+    "print_project_sha256": "a9093310dcb051c735fe2fec60b9f90e92acdd1a44244eb324f3e509dfc88164",
+    "images": {
+      "exploded.png": "ace862942bcd3777072a0e329f0e21674ce0e39ccf79a3fc05a3654e68f7752a",
+      "exploding-drive.gif": "524461140e7eab93ec5f919ebd577141c19e490b78d572f39ad5505f441bc626",
+      "inside-labels.png": "2b76a6a4c741f88845f7335136a578bc599498f7f024cf98a44968cde99b97bc",
+      "print-plates.png": "b8fb9fc328317a1aad9f5a97bfd8c672201f9792b253d87f3f10eb3088459271",
+      "turntable.gif": "08f5650500e81b9a9816e200de972149c96a1c91f01a8bbde10ee44f8e284226"
+    }
+  }
 }

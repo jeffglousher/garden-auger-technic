@@ -6,6 +6,8 @@ Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), th
 
 The `.limo` model owns fitted solid geometry. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement and local reinforcement volumes. STLs preserve only the five part meshes.
 
+The model also saves **Exploded assembly**, **Inside the housing**, **Lower housing labels** and **Upper housing labels** views. Limo resolves their component offsets and cameras without changing the mechanical assembly. The gallery uses those native meshes and resolved poses; the turntable, rotating-drive explosion GIFs and part callouts are rendered and encoded externally. They illustrate the parts rather than defining an assembly motion constraint. Plate previews and time/material estimates come directly from the saved Bambu project. Asset hashes and source details are recorded in `validation.json`.
+
 ## Current external adjustment example
 
 `print/reinforcement.json` names all nine cylindrical regions and records their dimensions in CAD body-definition coordinates. Four lower zones surround the insert anchors; four upper zones follow the opposing screw load paths; one zone reinforces the adapter hub and screw seat. They request five walls and 100% zig-zag infill. Global remains three walls and 15% grid.
