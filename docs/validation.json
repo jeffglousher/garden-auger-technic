@@ -10,26 +10,26 @@
     "bounds_mm": {
       "1": [
         [
-          -38.0,
-          -10.0,
+          -38,
+          -10,
           -43.79999923706055
         ],
         [
-          18.0,
-          10.0,
-          -4.0
+          18,
+          10,
+          -4
         ]
       ],
       "15": [
         [
-          -19.0,
-          -1.0,
-          -19.0
+          -19,
+          -1,
+          -19
         ],
         [
-          19.0,
+          19,
           139.5,
-          19.0
+          19
         ]
       ],
       "26": [
@@ -39,19 +39,19 @@
           -3.2698070037581696e-15
         ],
         [
-          34.0,
+          34,
           206.5,
           20.600000381469727
         ]
       ],
       "46": [
         [
-          -98.0,
+          -98,
           107.9000015258789,
           -20.600000381469727
         ],
         [
-          89.0,
+          89,
           206.5,
           2.799999952316284
         ]
@@ -64,32 +64,32 @@
         ],
         [
           15.502817153930664,
-          110.0,
+          110,
           15.318268775939941
         ]
       ],
       "216": [
         [
-          -14.0,
+          -14,
           129.5,
-          -14.0
+          -14
         ],
         [
-          14.0,
+          14,
           152.39999389648438,
-          14.0
+          14
         ]
       ],
       "221": [
         [
-          -17.0,
+          -17,
           120.8499984741211,
-          -17.0
+          -17
         ],
         [
-          17.0,
+          17,
           130.64999389648438,
-          17.0
+          17
         ]
       ]
     },
@@ -121,7 +121,7 @@
   },
   "scope": "Native naming/geometry preservation, nominal assembly and slicer validation. Current housing physical assembly/durability and soil trial remain pending.",
   "gallery": {
-    "source": "Native solid_scene meshes and named_view_solution poses; external rendering, callouts and GIF encoding.",
+    "source": "Current native solid_scene meshes and named_view_solution poses; Rust cargo xtask gallery renders callouts, label crops and GIFs.",
     "native_saved_views": [
       "Complete assembly",
       "Exploded assembly",
@@ -132,11 +132,33 @@
     "mechanical_model_unchanged": true,
     "print_project_sha256": "a9093310dcb051c735fe2fec60b9f90e92acdd1a44244eb324f3e509dfc88164",
     "images": {
-      "exploded.png": "ace862942bcd3777072a0e329f0e21674ce0e39ccf79a3fc05a3654e68f7752a",
-      "exploding-drive.gif": "524461140e7eab93ec5f919ebd577141c19e490b78d572f39ad5505f441bc626",
-      "inside-labels.png": "2b76a6a4c741f88845f7335136a578bc599498f7f024cf98a44968cde99b97bc",
-      "print-plates.png": "b8fb9fc328317a1aad9f5a97bfd8c672201f9792b253d87f3f10eb3088459271",
-      "turntable.gif": "08f5650500e81b9a9816e200de972149c96a1c91f01a8bbde10ee44f8e284226"
+      "exploded.png": "af9f4e205c28f02c2bc1288348324a13f148dd5999b8bacab09120aa2c2a8539",
+      "exploding-drive.gif": "84fc1c5d5278de8e64eb0f8623573ef0e21b0d91b7fd1cc7628eb2479a399ed6",
+      "inside-labels.png": "5c71a9b456bcf5334a731f96b6cb9cf55dd1ee358e3ef8ed8754f19788bd2384",
+      "print-plates.png": "38f9bc0484119ea0f8801e29a52d67c65af3fddf045ebff44d533e1bcc4314e5",
+      "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29"
     }
+  },
+  "tooling": {
+    "implementation": "Rust cargo xtask; no Python runtime",
+    "commands": [
+      "verify-model",
+      "build-print",
+      "gallery"
+    ],
+    "regression_tests_passed": 12,
+    "clippy_warnings_denied": true,
+    "legacy_print_rebuild_semantically_equal": true,
+    "modifier_comparison_tolerance_mm": 1e-7,
+    "normal_mesh_bytes_preserved": true,
+    "native_model_verification_passed": true,
+    "native_slice_seconds": 21495.396484375,
+    "native_slice_filament_g": 160.4544178880751,
+    "gallery_frames_per_animation": 48,
+    "gallery_animations_decoded": true,
+    "gallery_stills_and_sampled_frames_visually_reviewed": true,
+    "cad_and_print_source_bytes_unchanged": true,
+    "platform_tested": "Windows x64",
+    "rust_toolchain_tested": "1.99.1"
   }
 }
