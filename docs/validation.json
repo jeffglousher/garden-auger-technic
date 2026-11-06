@@ -146,7 +146,7 @@
       "build-print",
       "gallery"
     ],
-    "regression_tests_passed": 12,
+    "regression_tests_passed": 15,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
@@ -159,6 +159,24 @@
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
     "cad_and_print_source_bytes_unchanged": true,
     "platform_tested": "Windows x64",
-    "rust_toolchain_tested": "1.99.1"
+    "rust_toolchain_tested": "1.99.1",
+    "namespace_regressions": {
+      "review_findings_fixed": 2,
+      "attribute_namespace_aliases_preserved": true,
+      "core_components_qualified_and_canonicalized": true,
+      "nested_namespace_changes_preserved": true,
+      "native_alternate_source_slices": [
+        {
+          "source": "Prefixed core elements without a default namespace",
+          "seconds": 21495.328125,
+          "filament_g": 160.4544178880751
+        },
+        {
+          "source": "Prefixed core elements with production as both default and prefixed namespace",
+          "seconds": 21495.3857421875,
+          "filament_g": 160.4544636644423
+        }
+      ]
+    }
   }
 }
