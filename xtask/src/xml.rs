@@ -48,20 +48,83 @@ impl Node {
             .filter_map(|n| Some((n.attrs.get("key")?.clone(), n.attrs.get("value")?.clone())))
             .collect()
     }
+
+    /// Use a default element namespace while preserving other element and attribute namespaces.
+    pub fn use_default_namespace(&mut self, namespace: &str) -> Result<()> {
+        fn visit(
+            node: &mut Node,
+            namespace: &str,
+            inherited: &BTreeMap<String, String>,
+            output_default: &str,
+        ) -> Result<()> {
+            if node.text.is_some() {
+                return Ok(());
+            }
+            // Resolve names against the original scope before changing any declaration.
+            let mut original = inherited.clone();
+            for (key, value) in &node.attrs {
+                if key == "xmlns" {
+                    original.insert(String::new(), value.clone());
+                } else if let Some(prefix) = key.strip_prefix("xmlns:") {
+                    original.insert(prefix.into(), value.clone());
+                }
+            }
+            let prefix = node.name.split_once(':').map_or("", |(prefix, _)| prefix);
+            let uri = original
+                .get(prefix)
+                .with_context(|| format!("Unbound element prefix {prefix}"))?
+                .clone();
+            if uri == namespace {
+                node.name = node.local().to_owned();
+            }
+            let mut output_default = node
+                .attrs
+                .get("xmlns")
+                .map_or(output_default.to_owned(), Clone::clone);
+            if !node.name.contains(':') && output_default != uri {
+                node.attrs.insert("xmlns".into(), uri.clone());
+                output_default = uri;
+            }
+            for child in &mut node.children {
+                visit(child, namespace, &original, &output_default)?;
+            }
+            Ok(())
+        }
+        let scope = BTreeMap::from([
+            (String::new(), String::new()),
+            ("xml".into(), "http://www.w3.org/XML/1998/namespace".into()),
+        ]);
+        visit(self, namespace, &scope, "")
+    }
 }
 
 pub fn parse(data: &[u8]) -> Result<Node> {
     let document = roxmltree::Document::parse(std::str::from_utf8(data)?)?;
-    fn convert(n: roxmltree::Node<'_, '_>) -> Node {
+    fn convert(n: roxmltree::Node<'_, '_>) -> Result<Node> {
         let qualified = |local: &str, uri: Option<&str>| match uri.and_then(|u| n.lookup_prefix(u))
         {
             Some(prefix) => format!("{prefix}:{local}"),
             None => local.to_owned(),
         };
-        let mut attrs: BTreeMap<_, _> = n
-            .attributes()
-            .map(|a| (qualified(a.name(), a.namespace()), a.value().to_owned()))
-            .collect();
+        let mut attrs = BTreeMap::new();
+        for attribute in n.attributes() {
+            // Unlike elements, attributes never inherit the default namespace.
+            let name = match attribute.namespace() {
+                None => attribute.name().to_owned(),
+                Some(uri) => {
+                    let prefix = if uri == "http://www.w3.org/XML/1998/namespace" {
+                        "xml"
+                    } else {
+                        n.namespaces()
+                            .find(|ns| ns.uri() == uri && ns.name().is_some())
+                            .and_then(|ns| ns.name())
+                            .context("Namespaced XML attribute lacks a prefixed binding")?
+                    };
+                    format!("{prefix}:{}", attribute.name())
+                }
+            };
+            attrs.insert(name, attribute.value().to_owned());
+        }
         for ns in n.namespaces() {
             let inherited = n
                 .parent_element()
@@ -74,29 +137,29 @@ pub fn parse(data: &[u8]) -> Result<Node> {
                 );
             }
         }
-        let children = n
-            .children()
-            .filter_map(|c| {
-                if c.is_element() {
-                    Some(convert(c))
-                } else {
-                    c.text().filter(|_| c.is_text()).map(|s| Node {
-                        name: String::new(),
-                        attrs: BTreeMap::new(),
-                        children: vec![],
-                        text: Some(s.into()),
-                    })
-                }
-            })
-            .collect();
-        Node {
+        let mut children = Vec::new();
+        for child in n.children() {
+            if child.is_element() {
+                children.push(convert(child)?);
+            } else if child.is_text()
+                && let Some(text) = child.text()
+            {
+                children.push(Node {
+                    name: String::new(),
+                    attrs: BTreeMap::new(),
+                    children: vec![],
+                    text: Some(text.into()),
+                });
+            }
+        }
+        Ok(Node {
             name: qualified(n.tag_name().name(), n.tag_name().namespace()),
             attrs,
             children,
             text: None,
-        }
+        })
     }
-    Ok(convert(document.root_element()))
+    convert(document.root_element())
 }
 
 pub fn encode(node: &Node) -> Vec<u8> {
@@ -147,6 +210,69 @@ mod tests {
         assert_eq!(child.attribute(("production", "path")), Some("/mesh&x"));
         assert_eq!(child.attribute("value"), Some("a\nb\"c"));
         assert_eq!(child.tag_name().namespace(), Some("core"));
+        Ok(())
+    }
+
+    #[test]
+    fn attributes_keep_namespace_when_uri_has_default_and_prefixed_bindings() -> Result<()> {
+        for source in [
+            r#"<model xmlns="production" xmlns:p="production"><component p:path="/mesh.model" p:UUID="abc" path="plain" xml:lang="en"/></model>"#,
+            r#"<c:model xmlns:c="core" xmlns="production" xmlns:p="production"><c:component p:path="/mesh.model" p:UUID="abc" path="plain" xml:lang="en"/></c:model>"#,
+        ] {
+            let rebuilt = encode(&parse(source.as_bytes())?);
+            let doc = roxmltree::Document::parse(std::str::from_utf8(&rebuilt)?)?;
+            let component = doc.root_element().first_element_child().unwrap();
+            assert_eq!(
+                component.attribute(("production", "path")),
+                Some("/mesh.model")
+            );
+            assert_eq!(component.attribute(("production", "UUID")), Some("abc"));
+            assert_eq!(
+                component
+                    .attributes()
+                    .find(|a| a.name() == "path" && a.namespace().is_none())
+                    .map(|a| a.value()),
+                Some("plain")
+            );
+            assert_eq!(
+                component.attribute(("http://www.w3.org/XML/1998/namespace", "lang")),
+                Some("en")
+            );
+        }
+        Ok(())
+    }
+
+    #[test]
+    fn canonical_default_namespace_preserves_nested_namespace_changes() -> Result<()> {
+        let source = r#"<c:model xmlns:c="core" xmlns="production" xmlns:p="production" p:path="/mesh"><detail><c:component p:UUID="one"/><plain xmlns=""><c:component xml:lang="en"/></plain></detail></c:model>"#;
+        let before = roxmltree::Document::parse(source)?;
+        let mut model = parse(source.as_bytes())?;
+        model.use_default_namespace("core")?;
+        let rebuilt = encode(&model);
+        let after = roxmltree::Document::parse(std::str::from_utf8(&rebuilt)?)?;
+        for (a, b) in before
+            .descendants()
+            .filter(|n| n.is_element())
+            .zip(after.descendants().filter(|n| n.is_element()))
+        {
+            assert_eq!(
+                (a.tag_name().namespace(), a.tag_name().name()),
+                (b.tag_name().namespace(), b.tag_name().name())
+            );
+            for attribute in a.attributes() {
+                assert_eq!(
+                    b.attributes()
+                        .find(|v| v.name() == attribute.name()
+                            && v.namespace() == attribute.namespace())
+                        .map(|v| v.value()),
+                    Some(attribute.value())
+                );
+            }
+        }
+        assert_eq!(
+            after.root_element().lookup_namespace_uri(None),
+            Some("core")
+        );
         Ok(())
     }
 }

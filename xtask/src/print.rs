@@ -122,6 +122,8 @@ pub fn cylinder(zone: &Zone, offset: [f64; 3]) -> (Vec<[f64; 3]>, Vec<[usize; 3]
 pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     spec.validate()?;
     let mut model = xml::parse(archive::required(&entries, MODEL)?)?;
+    // Bambu's native reader expects the core element names without prefixes.
+    model.use_default_namespace(CORE)?;
     // New attributes use p; keep all existing qualified attributes and bindings intact.
     ensure!(
         model.attrs.get("xmlns:p").is_none_or(|ns| ns == PRODUCTION),
@@ -258,6 +260,8 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         resource.child_mut("components")?.children.push(Node::new(
             "component",
             &[
+                // A source may use prefixed core elements with no default namespace.
+                ("xmlns", CORE),
                 ("p:path", &format!("/{MODIFIERS}")),
                 ("objectid", &number),
                 ("p:UUID", &ident),
@@ -583,6 +587,63 @@ mod tests {
                 .count(),
             9
         );
+        Ok(())
+    }
+
+    #[test]
+    fn prefixed_core_and_aliased_production_sources_preserve_component_namespaces() -> Result<()> {
+        fn prefix_elements(node: &mut Node) {
+            if !node.name.is_empty() && !node.name.contains(':') {
+                node.name = format!("c:{}", node.name);
+            }
+            for child in &mut node.children {
+                prefix_elements(child);
+            }
+        }
+        fn normal_references(doc: &roxmltree::Document<'_>) -> BTreeSet<(String, String, String)> {
+            doc.descendants()
+                .filter(|n| n.tag_name().name() == "component")
+                .filter(|n| n.attribute((PRODUCTION, "path")) != Some(&format!("/{MODIFIERS}")))
+                .map(|n| {
+                    (
+                        n.attribute("objectid").unwrap().into(),
+                        n.attribute((PRODUCTION, "path")).unwrap().into(),
+                        n.attribute((PRODUCTION, "UUID")).unwrap_or("").into(),
+                    )
+                })
+                .collect()
+        }
+        for default in [None, Some(PRODUCTION)] {
+            let mut source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+            let mut model = xml::parse(&source[MODEL])?;
+            prefix_elements(&mut model);
+            model.attrs.remove("xmlns");
+            model.attrs.insert("xmlns:c".into(), CORE.into());
+            if let Some(uri) = default {
+                model.attrs.insert("xmlns".into(), uri.into());
+            }
+            let model = xml::encode(&model);
+            let before = roxmltree::Document::parse(std::str::from_utf8(&model)?)?;
+            let expected = normal_references(&before);
+            assert_eq!(expected.len(), 5);
+            source.insert(MODEL.into(), model);
+            let rebuilt = build(source, &spec())?;
+            let doc = roxmltree::Document::parse(std::str::from_utf8(&rebuilt[MODEL])?)?;
+            assert_eq!(doc.root_element().lookup_namespace_uri(None), Some(CORE));
+            assert!(std::str::from_utf8(&rebuilt[MODEL])?.contains("<model "));
+            let modifiers: Vec<_> = doc
+                .descendants()
+                .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))
+                .collect();
+            assert_eq!(modifiers.len(), 9);
+            assert!(
+                modifiers
+                    .iter()
+                    .all(|n| n.tag_name().namespace() == Some(CORE))
+            );
+            assert_eq!(normal_references(&doc), expected);
+            assert_eq!(rebuilt, build(rebuilt.clone(), &spec())?);
+        }
         Ok(())
     }
     #[test]
