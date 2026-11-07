@@ -10,11 +10,15 @@ The five printed parts are the upper housing, lower housing with both grips, aug
 
 - Four M3 x18 housing screws and four ruthex RX-M3x5.7 heat-set inserts. Nominal insert pilot holes: diameter4.0 mm, depth6.7 mm.
 - Existing compatible servo center screw for the owner-proven adapter connection.
-- Matched diameter5 mm housing pins/sockets; 2.8 mm pin projection. Selected socket side stock is at least 2.6 mm.
+- Matched diameter5 mm housing pins/sockets; 1.8 mm pin projection into 2.2 mm deep sockets, leaving 0.4 mm bottom clearance. All four pairs sit farther from the screw joints. Nominal material between each socket mouth and the inner cavity is at least 3.0 mm; the smallest exterior edge margin is about 2.7 mm in native mesh sections.
 - Diameter28 mm journal; bushing ID28.6 /OD34 /length9.8 mm, captured in the diameter35.6 mm housing seat.
 - 14 mm rounded-square adapter drive and 14.4 mm mating socket.
 
 The owner measured 27 mm from rear case face to rear-facing mounting-ear underside, and 38 mm main case length excluding ears. Other servo dimensions remain drawing references; no missing shaft-relative measurement is inferred. The successful servo-to-adapter connection was confirmed complete on 5 November 2026.
+
+![Upper mating face and locator clearances](images/locator-layout.svg)
+
+Use the matching revised upper and lower halves: all four locator positions changed. The 5 mm locating diameter retains zero nominal radial clearance; printed fit still needs checking.
 
 Install the heat-set inserts before closing the housing. Assemble the proven servo adapter with its compatible center screw, engage the square drive, place the bushing around the auger journal and seat the mechanism in the lower half. Route the cable through the rear exit with its connector outside. Fit the matching upper half and close the four screw joints. The clamshell provides capture without extra servo mounting hardware or clips.
 

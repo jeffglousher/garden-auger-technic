@@ -1,7 +1,7 @@
 {
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "7e03825c02ac560ad0ddfa46575cd410f75ef04242f26d9dcdb18b9978320231",
+    "sha256": "9f2d3dc9f4057f3365f413297931eba134277ec5af2c8a00946db36f3ebaaa68",
     "feature_count": 84,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -53,19 +53,19 @@
         [
           89,
           206.5,
-          2.799999952316284
+          1.7999999523162842
         ]
       ],
       "90": [
         [
-          -15.134180068969727,
+          -15.134180068969728,
           -5.199999809265137,
           -14.95073127746582
         ],
         [
           15.502817153930664,
           110,
-          15.318268775939941
+          15.31826877593994
         ]
       ],
       "216": [
@@ -97,7 +97,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "cbe57e09799ed0827a2c991be817ba51650e62d7fd6bee34b3aefd50f6076a56",
+    "sha256": "b6dca8968e22d5c6145b04085f743844c3ce6463f9838d6f68ede6ed3bf332c8",
     "normal_print_parts": 5,
     "modifier_regions": 9,
     "plates": 2,
@@ -105,8 +105,8 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20162.9853515625,
-    "filament_g": 150.99826335906982,
+    "seconds": 20073.392578125,
+    "filament_g": 150.88423442840576,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -119,7 +119,7 @@
     "authority": "Owner confirmation",
     "date": "2026-11-05"
   },
-  "scope": "Native naming/geometry preservation, nominal assembly and slicer validation. Current housing physical assembly/durability and soil trial remain pending.",
+  "scope": "Native named CAD, exact nominal assembly interference, locator source dimensions/native mesh sections, manifold manufacturing meshes and both plate slices. Physical matching-half fit/durability and soil trial remain pending.",
   "gallery": {
     "source": "Current native solid_scene meshes and named_view_solution poses; Rust cargo xtask gallery renders callouts, label crops and GIFs.",
     "native_saved_views": [
@@ -129,15 +129,16 @@
       "Lower housing labels",
       "Upper housing labels"
     ],
-    "mechanical_model_unchanged": true,
-    "print_project_sha256": "cbe57e09799ed0827a2c991be817ba51650e62d7fd6bee34b3aefd50f6076a56",
+    "mechanical_model_unchanged": false,
+    "print_project_sha256": "b6dca8968e22d5c6145b04085f743844c3ce6463f9838d6f68ede6ed3bf332c8",
     "images": {
-      "exploded.png": "6d93c919f80bfcb3f525692c47e6c8eae4bab53221d4e7e707d1de84f5934f0c",
-      "exploding-drive.gif": "ab7e9cd8c696fc778c9f8fcf8e630e99b26452dae1a0e30d8bb55170ef9fcf14",
-      "housing-lower.png": "c6b54d36338fc76074b242ef6535d32bfd436fe94febfee0e2b71eeb2ae6537a",
-      "housing-upper.png": "201d83aef8e546185b4c64545d606b4c8d3203390786298ec57fbfeeb4615c59",
+      "exploded.png": "559b4ebb4644102926385d44b58c6daaef547a8aaf917b69793e57ae56bd846b",
+      "exploding-drive.gif": "397399cb7f50f6fd83b5bd1fdedcaa53f3f672853da9cdaf3bda6d3da6afdb8c",
+      "housing-lower.png": "5b17323f1f6268aef0fcd801bce000a965a36bc76fd3d8170c7e0a9296a0d407",
+      "housing-upper.png": "ace9f7726a536de3aead6526335d4dc87265a7728bd764226c75720701782104",
       "inside-labels.png": "b85f70f5a448fd917144f43a858620266d45949f8463966553aed83e1814923c",
-      "print-plates.png": "0affb2426ee74463d01b1713dd9e4b6c541f57be5930c39d2cb7e33cf8bc69f2",
+      "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
+      "print-plates.png": "60167a7f77ee99727853c65f1f0f5bd1187fae264ad74cfa9bcd3dc74deef7e7",
       "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
       "sliced-labels.png": "52ed44019c0e29a7e91521b5c75ea99a874f5076b28da675de3457ed51141196"
     }
@@ -155,8 +156,8 @@
     "modifier_comparison_tolerance_mm": 1e-7,
     "normal_mesh_bytes_preserved": false,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20162.9853515625,
-    "native_slice_filament_g": 150.99826335906982,
+    "native_slice_seconds": 20073.392578125,
+    "native_slice_filament_g": 150.88423442840576,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -235,7 +236,8 @@
     "brim_footprint_added_samples": 0,
     "footprint_tolerance_mm": 0.2,
     "physical_strength_confirmation_pending": true,
-    "native_Bambu_Prepare_view_has_no_protruding_regions": true
+    "native_Bambu_Prepare_view_has_no_protruding_regions": true,
+    "historical_comparison_scope": "The cited byte-preservation and baseline footprint comparison preceded the current intentional housing locator revision. All nine modifiers remain contained in the revised meshes."
   },
   "underside_correction": {
     "cause": "Automatic tree supports under upper screw-head recesses created expanded bases; the old unreinforced baseline had them too.",
@@ -255,8 +257,136 @@
     "all_support_paths_belong_to_auger": true,
     "auger_support_paths_present": true,
     "native_Bambu_housing_preview_verified_without_support_bases": true,
-    "native_Bambu_housing_preview_seconds_rounded": 10800,
-    "native_Bambu_housing_preview_grams": 104.94,
-    "recess_overhang_finish_requires_physical_confirmation": true
+    "native_Bambu_housing_preview_seconds_rounded": 10680,
+    "native_Bambu_housing_preview_grams": 104.83,
+    "recess_overhang_finish_requires_physical_confirmation": true,
+    "historical_comparison_scope": "The cited byte-preservation comparison describes cb84f8d. The current revision intentionally changes both housing meshes; support/adhesion guards were rerun on both current plates."
+  },
+  "locator_revision": {
+    "baseline_commit": "cb84f8df9f4663fd6d6b053aca06e3d787800206",
+    "all_four_pairs_relocated": true,
+    "diameter_mm": 5,
+    "nominal_radial_clearance_mm": 0,
+    "previous_pin_height_mm": 2.8,
+    "pin_height_mm": 1.8,
+    "previous_socket_depth_mm": 3.2,
+    "socket_depth_mm": 2.2,
+    "axial_bottom_clearance_mm": 0.4,
+    "pin_lead_chamfer_mm": 0.4,
+    "seam_socket_mouth_diameter_mm": 5.2,
+    "centres_CAD_XY_mm": [
+      [
+        -27,
+        142
+      ],
+      [
+        16,
+        172
+      ],
+      [
+        -20,
+        200.3
+      ],
+      [
+        -6,
+        200.3
+      ]
+    ],
+    "minimum_nominal_inner_edge_material_mm": 3,
+    "minimum_exterior_edge_material_mesh_section_mm": 2.7148437427069516,
+    "previous_critical_inner_edge_material_mm": 0.702729973570607,
+    "all_nearest_screw_centre_distances_increased": true,
+    "clearance_measurements": [
+      {
+        "locator": 1,
+        "centre_mm": [
+          -27,
+          142
+        ],
+        "section_z_mm": 0.05,
+        "nominal_seam_mouth_radius_mm": 2.6,
+        "section_nearest_boundary_point": [
+          -33.32957458496094,
+          140.51695251464844
+        ],
+        "nominal_seam_minimum_ligament_mm": 3.900995636853714,
+        "nominal_seam_inner_ligament_mm": 7.099996948242188,
+        "inner_boundary_point": [
+          -27,
+          151.6999969482422
+        ],
+        "nearest_screw_centre_mm": 23.5
+      },
+      {
+        "locator": 2,
+        "centre_mm": [
+          16,
+          172
+        ],
+        "section_z_mm": 0.05,
+        "nominal_seam_mouth_radius_mm": 2.6,
+        "section_nearest_boundary_point": [
+          21.301732124524605,
+          171.62690418231364
+        ],
+        "nominal_seam_minimum_ligament_mm": 2.7148437427069516,
+        "nominal_seam_inner_ligament_mm": 3.0000003814697283,
+        "inner_boundary_point": [
+          10.399999618530272,
+          172
+        ],
+        "nearest_screw_centre_mm": 24.80000000000001
+      },
+      {
+        "locator": 3,
+        "centre_mm": [
+          -20,
+          200.3
+        ],
+        "section_z_mm": 0.05,
+        "nominal_seam_mouth_radius_mm": 2.6,
+        "section_nearest_boundary_point": [
+          -20,
+          206.5
+        ],
+        "nominal_seam_minimum_ligament_mm": 3.5999999999999885,
+        "nominal_seam_inner_ligament_mm": 3.7000000000000113,
+        "inner_boundary_point": [
+          -20,
+          194
+        ],
+        "nearest_screw_centre_mm": 16.3783393541592
+      },
+      {
+        "locator": 4,
+        "centre_mm": [
+          -6,
+          200.3
+        ],
+        "section_z_mm": 0.05,
+        "nominal_seam_mouth_radius_mm": 2.6,
+        "section_nearest_boundary_point": [
+          -6,
+          206.5
+        ],
+        "nominal_seam_minimum_ligament_mm": 3.5999999999999885,
+        "nominal_seam_inner_ligament_mm": 3.7000000000000113,
+        "inner_boundary_point": [
+          -6,
+          194
+        ],
+        "nearest_screw_centre_mm": 22.276669409945466
+      }
+    ],
+    "clearance_method": "Source sketch boundaries and nominal 2.6 mm seam mouth radius, cross-checked against native solid_scene mesh sections at Z0.05 mm. These are selected seam margins, not complete GD&T or a global minimum-wall certificate.",
+    "native_solid_section_review": "Unavailable: plane-common comparison exceeded the native Boolean budget. Mesh sections used for the edge review; exact 3D assembly interference passed separately.",
+    "exact_nominal_assembly_interference_passed": true,
+    "other_five_native_body_meshes_exactly_preserved": true,
+    "other_three_manufacturing_part_mesh_payloads_byte_preserved": true,
+    "global_settings_and_reinforcement_geometry_preserved": true,
+    "matching_revised_halves_required": true,
+    "physical_fit_pending": true,
+    "desktop_review_uses_separate_copy": true,
+    "native_Bambu_housing_preview_matches_revised_locators": true
   }
 }

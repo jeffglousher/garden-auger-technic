@@ -500,6 +500,159 @@ fn housing(assembly: &Assembly, text: &Text, id: u64) -> Result<RgbImage> {
     Ok(image)
 }
 
+fn locator_layout(assembly: &Assembly, model: &Value) -> Result<String> {
+    use std::fmt::Write;
+    let body = assembly
+        .scene
+        .bodies
+        .iter()
+        .find(|body| body.id == 26)
+        .context("Upper housing missing")?;
+    let mut svg = String::from(
+        r##"<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -215 94 113" role="img" aria-label="Upper housing mating face with locator positions and clearance to the servo pocket"><rect x="-48" y="-215" width="94" height="113" fill="white"/><g fill="#efb82e"><path d=""##,
+    );
+    let mut edges = BTreeMap::new();
+    for face in body.mesh.indices.as_chunks::<3>().0 {
+        let p = face.map(|i| {
+            [
+                body.mesh.positions[i * 3],
+                body.mesh.positions[i * 3 + 1],
+                body.mesh.positions[i * 3 + 2],
+            ]
+        });
+        if p.iter().any(|point| point[2].abs() > 1e-5) {
+            continue;
+        }
+        writeln!(
+            svg,
+            "M{} {}L{} {}L{} {}Z",
+            p[0][0], -p[0][1], p[1][0], -p[1][1], p[2][0], -p[2][1]
+        )?;
+        for (a, b) in [(p[0], p[1]), (p[1], p[2]), (p[2], p[0])] {
+            let mut key = [
+                (a[0] * 1e5).round() as i64,
+                (a[1] * 1e5).round() as i64,
+                (b[0] * 1e5).round() as i64,
+                (b[1] * 1e5).round() as i64,
+            ];
+            if key[..2] > key[2..] {
+                key.swap(0, 2);
+                key.swap(1, 3);
+            }
+            let entry = edges.entry(key).or_insert((0, a, b));
+            entry.0 += 1;
+        }
+    }
+    svg.push_str("\"/></g><g fill=\"none\" stroke=\"#9b6a13\" stroke-width=\".16\">");
+    for (_, a, b) in edges.values().filter(|(count, _, _)| *count == 1) {
+        writeln!(svg, "<path d=\"M{} {}L{} {}\"/>", a[0], -a[1], b[0], -b[1])?;
+    }
+    svg.push_str("</g><g fill=\"#2563eb\" stroke=\"#2563eb\" font-family=\"Arial,sans-serif\">");
+    let sketches = model["sketches"].as_array().context("Missing sketches")?;
+    let sketch = |id| {
+        sketches
+            .iter()
+            .find(|s| s["feature_id"] == id)
+            .context("Locator sketch missing")
+    };
+    let points = |s: &Value| -> Result<Vec<[f64; 2]>> {
+        s["snapshot"]["entities"]
+            .as_array()
+            .context("Missing sketch entities")?
+            .iter()
+            .filter(|e| e[1]["type"] == "point")
+            .map(|e| {
+                Ok([
+                    e[1]["position"]["x"].as_f64().context("Invalid point")?,
+                    e[1]["position"]["y"].as_f64().context("Invalid point")?,
+                ])
+            })
+            .collect()
+    };
+    let pocket = sketch(130)?;
+    let pocket_points = points(pocket)?;
+    let lo = pocket_points
+        .iter()
+        .map(|p| p[0])
+        .fold(f64::INFINITY, f64::min);
+    let hi = pocket_points
+        .iter()
+        .map(|p| p[0])
+        .fold(f64::NEG_INFINITY, f64::max);
+    let rear = pocket["basis"]["origin"][1]
+        .as_f64()
+        .context("Pocket rear missing")?;
+    let length = model["extrudes"]
+        .as_array()
+        .context("Missing extrudes")?
+        .iter()
+        .find(|e| e["feature_id"] == 131)
+        .context("Pocket feature missing")?["extent"]["distance"]
+        .as_f64()
+        .context("Pocket length missing")?;
+    for (number, id) in [(1, 373), (2, 377), (3, 381), (4, 385)] {
+        let s = sketch(id)?;
+        let p = points(s)?;
+        let x = model["revolves"]
+            .as_array()
+            .context("Missing revolves")?
+            .iter()
+            .find(|r| r["feature_id"] == id + 1)
+            .context("Locator revolve missing")?["axis_origin"]["x"]
+            .as_f64()
+            .context("Locator axis missing")?;
+        let c = [
+            x,
+            s["basis"]["origin"][1]
+                .as_f64()
+                .context("Locator plane missing")?,
+        ];
+        let radius = p
+            .windows(2)
+            .filter(|p| p[0][1] * p[1][1] < 0.)
+            .map(|p| p[0][0] + (p[1][0] - p[0][0]) * (-p[0][1]) / (p[1][1] - p[0][1]) - x)
+            .fold(0., f64::max);
+        let q = [c[0].clamp(lo, hi), c[1].clamp(rear - length, rear)];
+        let distance = (q[0] - c[0]).hypot(q[1] - c[1]);
+        ensure!(distance > radius, "Locator overlaps servo pocket");
+        let direction = [(q[0] - c[0]) / distance, (q[1] - c[1]) / distance];
+        let perpendicular = [-direction[1], direction[0]];
+        let a = [c[0] + direction[0] * radius, c[1] + direction[1] * radius];
+        writeln!(
+            svg,
+            "<circle cx=\"{}\" cy=\"{}\" r=\"{}\" fill=\"none\" stroke-width=\".2\"/><text x=\"{}\" y=\"{}\" font-size=\"2.4\" text-anchor=\"middle\" dominant-baseline=\"central\" stroke=\"none\">{number}</text><path d=\"M{} {}L{} {}\" fill=\"none\" stroke-width=\".18\"/>",
+            c[0],
+            -c[1],
+            radius + 0.4,
+            c[0],
+            -c[1],
+            a[0],
+            -a[1],
+            q[0],
+            -q[1]
+        )?;
+        for end in [a, q] {
+            writeln!(
+                svg,
+                "<path d=\"M{} {}L{} {}\" stroke-width=\".18\"/>",
+                end[0] - 0.6 * perpendicular[0],
+                -end[1] + 0.6 * perpendicular[1],
+                end[0] + 0.6 * perpendicular[0],
+                -end[1] - 0.6 * perpendicular[1]
+            )?;
+        }
+        writeln!(
+            svg,
+            "<text x=\"{}\" y=\"{}\" font-size=\"2.2\" text-anchor=\"middle\" dominant-baseline=\"central\" stroke=\"none\">{:.1} mm</text>",
+            (a[0] + q[0]) / 2. + 1.7 * perpendicular[0],
+            -(a[1] + q[1]) / 2. - 1.7 * perpendicular[1],
+            distance - radius
+        )?;
+    }
+    svg.push_str("</g><text x=\"-45\" y=\"-210\" font-family=\"Arial,sans-serif\" font-size=\"2.8\" fill=\"#202b3a\">Upper mating face</text><text x=\"-45\" y=\"-104\" font-family=\"Arial,sans-serif\" font-size=\"2\" fill=\"#202b3a\">Nominal clear material to the servo pocket</text></svg>");
+    Ok(svg)
+}
+
 fn clip_triangle(triangle: [V3; 3], lo: V3, hi: V3) -> Vec<V3> {
     let mut polygon = triangle.to_vec();
     for axis in 0..3 {
@@ -784,6 +937,12 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     labels(&assembly, &text)?.save(stage.path().join("inside-labels.png"))?;
     housing(&assembly, &text, 46)?.save(stage.path().join("housing-lower.png"))?;
     housing(&assembly, &text, 26)?.save(stage.path().join("housing-upper.png"))?;
+    let model = archive::read(&root.join("garden-auger.limo"))?;
+    let model: Value = serde_json::from_slice(archive::required(&model, "model.json")?)?;
+    fs::write(
+        stage.path().join("locator-layout.svg"),
+        locator_layout(&assembly, &model)?,
+    )?;
     plate_image.save(stage.path().join("print-plates.png"))?;
     for mode in ["turntable", "exploding-drive"] {
         let path = stage.path().join(format!("{mode}.gif"));
@@ -798,6 +957,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         "print-plates.png",
         "housing-lower.png",
         "housing-upper.png",
+        "locator-layout.svg",
         "turntable.gif",
         "exploding-drive.gif",
     ] {
