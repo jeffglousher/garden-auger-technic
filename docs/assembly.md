@@ -18,7 +18,9 @@ The owner measured 27 mm from rear case face to rear-facing mounting-ear undersi
 
 Install the heat-set inserts before closing the housing. Assemble the proven servo adapter with its compatible center screw, engage the square drive, place the bushing around the auger journal and seat the mechanism in the lower half. Route the cable through the rear exit with its connector outside. Fit the matching upper half and close the four screw joints. The clamshell provides capture without extra servo mounting hardware or clips.
 
-Recessed part IDs GA-HL-01 and GA-HU-01 identify the housing halves. Hardware lettering is recessed 0.4 mm; the mating rim stays flat. Both exterior bed faces are continuous. The simple diameter38 x3 mm rotating shield has a 1.6 mm nominal rear gap; it is a noncontact dirt deflector whose soil performance remains to be tested.
+Recessed part IDs GA-HL-01 and GA-HU-01 identify the housing halves. The lettering has 5.6 mm capitals, 0.8 mm strokes and a 0.72 mm recess for the 0.4 mm nozzle. Hardware details sit inside the servo pocket, clear of the flat mating rim. Both exterior bed faces are continuous. The simple diameter38 x3 mm rotating shield has a 1.6 mm nominal rear gap; it is a noncontact dirt deflector whose soil performance remains to be tested.
+
+![Actual Bambu toolpaths through the enlarged lettering](images/sliced-labels.png)
 
 ![Finished underside](images/underside.png)
 

@@ -118,6 +118,7 @@ impl Client {
             "Project manifest must use the current Limo CAD identity"
         );
         let model: Value = serde_json::from_slice(archive::required(&archive, "model.json")?)?;
+        validate_labels(&model)?;
         self.call(
             "cad_load_project_model",
             json!({"model_json":serde_json::to_string(&model)?}),
@@ -137,6 +138,55 @@ impl Client {
         }
         Ok(scene)
     }
+}
+
+fn validate_labels(model: &Value) -> Result<()> {
+    for (sketch_id, extrude_id) in [(395, 396), (397, 398)] {
+        let sketch = model["sketches"]
+            .as_array()
+            .context("Missing sketches")?
+            .iter()
+            .find(|s| s["feature_id"] == sketch_id)
+            .context("Missing housing label sketch")?;
+        let points: Vec<_> = sketch["snapshot"]["entities"]
+            .as_array()
+            .context("Missing label entities")?
+            .iter()
+            .filter(|e| e[1]["type"] == "point")
+            .map(|e| &e[1]["position"])
+            .collect();
+        ensure!(!points.is_empty(), "Housing label is empty");
+        for (axis, lo, hi) in [("x", -29.9, 9.4), ("y", 152.7, 193.)] {
+            let mut coordinates = points
+                .iter()
+                .map(|p| p[axis].as_f64().context("Invalid label point"))
+                .collect::<Result<Vec<_>>>()?;
+            coordinates.sort_by(f64::total_cmp);
+            coordinates.dedup_by(|a, b| (*a - *b).abs() < 1e-6);
+            ensure!(
+                coordinates[0] >= lo && coordinates[coordinates.len() - 1] <= hi,
+                "Housing label extends beyond the pocket floor margin"
+            );
+            ensure!(
+                coordinates.windows(2).all(|p| p[1] - p[0] >= 0.799),
+                "Housing label detail is smaller than the 0.8 mm print grid"
+            );
+        }
+        let extrude = model["extrudes"]
+            .as_array()
+            .context("Missing extrudes")?
+            .iter()
+            .find(|e| e["feature_id"] == extrude_id)
+            .context("Missing label engraving")?;
+        ensure!(
+            extrude["operation"] == "cut"
+                && extrude["extent"]["distance"]
+                    .as_f64()
+                    .is_some_and(|d| (d - 0.73).abs() < 1e-6),
+            "Label engraving must preserve the 0.72 mm recess and flat mating rim"
+        );
+    }
+    Ok(())
 }
 
 impl Drop for Client {
@@ -313,6 +363,20 @@ fn validate_interference(check: &Value) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn labels_keep_printable_detail_and_recess_depth() -> Result<()> {
+        let entries = archive::read(&crate::root().join("garden-auger.limo"))?;
+        let mut model: Value = serde_json::from_slice(&entries["model.json"])?;
+        validate_labels(&model)?;
+        model["extrudes"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|e| e["feature_id"] == 396)
+            .unwrap()["extent"]["distance"] = json!(0.41);
+        assert!(validate_labels(&model).is_err());
+        Ok(())
+    }
     #[test]
     fn rejects_incomplete_interference_and_tool_errors() {
         assert!(validate_interference(&json!({"exact":true,"pairs":[]})).is_err());

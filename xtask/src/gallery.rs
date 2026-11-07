@@ -25,7 +25,7 @@ const FRAMES: usize = 48;
 pub struct Options {
     #[arg(long)]
     pub executable: Option<PathBuf>,
-    /// Destination for all five gallery images. Inputs are never modified.
+    /// Destination for the gallery images. Inputs are never modified.
     #[arg(long)]
     pub output: Option<PathBuf>,
     /// TrueType font for callouts; defaults to Segoe UI on Windows or DejaVu Sans on Linux.
@@ -363,8 +363,8 @@ fn exploded(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
 fn labels(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
     let mut sheet = RgbImage::from_pixel(1600, 720, Rgb(BACK));
     for (i, (id, label, lo, hi)) in [
-        (46, "Lower housing", [-28., 165., -11.], [7., 192., -9.8]),
-        (26, "Upper housing", [-29., 173., 9.8], [7., 192., 11.]),
+        (46, "Lower housing", [-31., 164., -11.4], [13., 193., -9.8]),
+        (26, "Upper housing", [-31., 164., 9.8], [13., 193., 11.4]),
     ]
     .into_iter()
     .enumerate()
@@ -384,7 +384,7 @@ fn labels(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
             if polygon.len() < 3 {
                 continue;
             }
-            let engraved = polygon.iter().all(|p| (p[2].abs() - 10.6).abs() < 1e-4);
+            let engraved = polygon.iter().all(|p| (p[2].abs() - 10.92).abs() < 1e-4);
             let first = points.len();
             points.extend(polygon);
             for i in first + 1..points.len() - 1 {
@@ -448,6 +448,56 @@ fn labels(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
         INK,
     );
     Ok(sheet)
+}
+
+fn housing(assembly: &Assembly, text: &Text, id: u64) -> Result<RgbImage> {
+    let body = assembly
+        .scene
+        .bodies
+        .iter()
+        .find(|body| body.id == id)
+        .context("Housing body missing")?;
+    let mut points: Vec<V3> = body.mesh.positions.as_chunks::<3>().0.to_vec();
+    if id == 26 {
+        for p in &mut points {
+            *p = [-p[0], p[1], -p[2]];
+        }
+    }
+    let lo: V3 = std::array::from_fn(|a| points.iter().map(|p| p[a]).fold(f64::INFINITY, f64::min));
+    let hi: V3 = std::array::from_fn(|a| {
+        points
+            .iter()
+            .map(|p| p[a])
+            .fold(f64::NEG_INFINITY, f64::max)
+    });
+    let mut camera = Camera::new((1400, 900), -65., 55., scale(add(lo, hi), 0.5), 1.);
+    let mut sx = 0_f64;
+    let mut sy = 0_f64;
+    for p in &points {
+        let q = camera.project(*p);
+        sx = sx.max((q[0] - 700.).abs());
+        sy = sy.max((q[1] - 450.).abs());
+    }
+    camera.scale = (640. / sx).min(330. / sy);
+    let geometry = [Geometry {
+        points,
+        faces: body.mesh.indices.as_chunks::<3>().0.to_vec(),
+        color: color(id)?,
+    }];
+    let mut image = render(&geometry, &camera);
+    text.draw(
+        &mut image,
+        if id == 46 {
+            "Lower housing and D grips"
+        } else {
+            "Upper housing"
+        },
+        35,
+        25,
+        32.,
+        INK,
+    );
+    Ok(image)
 }
 
 fn clip_triangle(triangle: [V3; 3], lo: V3, hi: V3) -> Vec<V3> {
@@ -732,6 +782,8 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let stage = tempfile::tempdir_in(&options.evidence)?;
     exploded(&assembly, &text)?.save(stage.path().join("exploded.png"))?;
     labels(&assembly, &text)?.save(stage.path().join("inside-labels.png"))?;
+    housing(&assembly, &text, 46)?.save(stage.path().join("housing-lower.png"))?;
+    housing(&assembly, &text, 26)?.save(stage.path().join("housing-upper.png"))?;
     plate_image.save(stage.path().join("print-plates.png"))?;
     for mode in ["turntable", "exploding-drive"] {
         let path = stage.path().join(format!("{mode}.gif"));
@@ -744,6 +796,8 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         "exploded.png",
         "inside-labels.png",
         "print-plates.png",
+        "housing-lower.png",
+        "housing-upper.png",
         "turntable.gif",
         "exploding-drive.gif",
     ] {
@@ -761,7 +815,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         serde_json::to_vec_pretty(&manifest)?,
     )?;
     println!(
-        "PASS: five gallery images generated and both 48-frame animations decoded: {}",
+        "PASS: gallery images generated and both 48-frame animations decoded: {}",
         output.display()
     );
     Ok(())

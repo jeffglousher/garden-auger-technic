@@ -33,6 +33,9 @@ pub struct Options {
     /// Installed Bambu Studio executable. Only local --slice/--export-3mf is invoked.
     #[arg(long)]
     pub slicer: Option<PathBuf>,
+    /// Slice the same parts with only the global strength settings for comparison.
+    #[arg(long)]
+    pub no_reinforcement: bool,
     #[arg(long, default_value = ".build/print")]
     pub evidence: PathBuf,
 }
@@ -56,9 +59,13 @@ pub struct Zone {
 impl Spec {
     fn validate(&self) -> Result<()> {
         ensure!(
-            !self.zones.is_empty() && self.zones.len() < 1000,
-            "Invalid zone count"
+            self.local.keys().all(|key| matches!(
+                key.as_str(),
+                "sparse_infill_density" | "sparse_infill_pattern"
+            )),
+            "Local reinforcement may change infill only; wall and surface settings must stay global"
         );
+        ensure!(self.zones.len() < 1000, "Invalid zone count");
         let mut names = BTreeSet::new();
         for z in &self.zones {
             ensure!(
@@ -222,6 +229,7 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         );
     }
     ensure!(normals.len() == 5, "Expected five printable objects");
+    validate_normal_meshes(&entries, &model)?;
     let mut mod_model = Node::new("model", &[("xmlns", CORE), ("unit", "millimeter")]);
     let mut resources = Node::new("resources", &[]);
     for (i, zone) in spec.zones.iter().enumerate() {
@@ -313,6 +321,80 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     Ok(entries)
 }
 
+fn validate_normal_meshes(entries: &Entries, model: &Node) -> Result<()> {
+    let encoded = xml::encode(model);
+    let document = roxmltree::Document::parse(std::str::from_utf8(&encoded)?)?;
+    for component in document
+        .descendants()
+        .filter(|node| node.has_tag_name((CORE, "component")))
+    {
+        let path = component
+            .attribute((PRODUCTION, "path"))
+            .context("Component path missing")?
+            .trim_start_matches('/');
+        let payload = std::str::from_utf8(archive::required(entries, path)?)?;
+        let mesh_document = roxmltree::Document::parse(payload)?;
+        let object = mesh_document
+            .descendants()
+            .find(|node| {
+                node.has_tag_name((CORE, "object"))
+                    && node.attribute("id") == component.attribute("objectid")
+            })
+            .context("Normal mesh object missing")?;
+        let mut vertices: Vec<[f64; 3]> = Vec::new();
+        for node in object
+            .descendants()
+            .filter(|node| node.has_tag_name((CORE, "vertex")))
+        {
+            let mut point = [0.; 3];
+            for (i, axis) in ["x", "y", "z"].iter().enumerate() {
+                point[i] = node
+                    .attribute(*axis)
+                    .context("Vertex coordinate missing")?
+                    .parse()?;
+            }
+            vertices.push(point);
+        }
+        ensure!(
+            !vertices.is_empty() && vertices.iter().flatten().all(|v| v.is_finite()),
+            "Invalid manufacturing vertices: {path}"
+        );
+        let mut edges: BTreeMap<(usize, usize), (usize, i32)> = BTreeMap::new();
+        for triangle in object
+            .descendants()
+            .filter(|node| node.has_tag_name((CORE, "triangle")))
+        {
+            let mut f = [0usize; 3];
+            for (i, key) in ["v1", "v2", "v3"].iter().enumerate() {
+                f[i] = triangle
+                    .attribute(*key)
+                    .context("Triangle vertex missing")?
+                    .parse()?;
+            }
+            ensure!(
+                f.iter().all(|&i| i < vertices.len())
+                    && f[0] != f[1]
+                    && f[1] != f[2]
+                    && f[2] != f[0],
+                "Invalid manufacturing triangle: {path}"
+            );
+            for (a, b) in [(f[0], f[1]), (f[1], f[2]), (f[2], f[0])] {
+                let edge = edges.entry((a.min(b), a.max(b))).or_default();
+                edge.0 += 1;
+                edge.1 += if a < b { 1 } else { -1 };
+            }
+        }
+        ensure!(
+            !edges.is_empty()
+                && edges
+                    .values()
+                    .all(|&(count, direction)| count == 2 && direction == 0),
+            "Manufacturing mesh must be welded, closed and consistently oriented: {path}"
+        );
+    }
+    Ok(())
+}
+
 fn preview(name: &str) -> bool {
     name.strip_prefix("Metadata/").is_some_and(|s| {
         ["plate_", "plate_no_light_", "top_", "pick_"]
@@ -366,7 +448,10 @@ fn invalidate(entries: &mut Entries) -> Result<()> {
 }
 
 pub fn run(root: &Path, options: &Options) -> Result<()> {
-    let spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
+    let mut spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
+    if options.no_reinforcement {
+        spec.zones.clear();
+    }
     let source = options
         .source
         .clone()
@@ -581,6 +666,37 @@ mod tests {
         assert!(s.validate().is_err());
     }
     #[test]
+    fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_has_no_modifiers() -> Result<()> {
+        let mut spec = spec();
+        for key in ["wall_loops", "top_shell_layers", "brim_type", "line_width"] {
+            spec.local.insert(key.into(), "5".into());
+            assert!(spec.validate().is_err(), "{key} must stay global");
+            spec.local.remove(key);
+        }
+        spec.zones.clear();
+        let source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let baseline = build(source.clone(), &spec)?;
+        let config = xml::parse(&baseline[CONFIG])?;
+        assert!(
+            !config
+                .children
+                .iter()
+                .flat_map(|node| &node.children)
+                .any(|node| node.is("part")
+                    && node
+                        .attrs
+                        .get("subtype")
+                        .is_some_and(|value| value == "modifier_part"))
+        );
+        for (path, data) in source
+            .iter()
+            .filter(|(path, _)| path.starts_with("3D/Objects/") && path.as_str() != MODIFIERS)
+        {
+            assert_eq!(baseline.get(path), Some(data));
+        }
+        Ok(())
+    }
+    #[test]
     fn rebuild_preserves_normal_meshes_and_is_idempotent() -> Result<()> {
         let mut source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
         let mut model = xml::parse(&source[MODEL])?;
@@ -615,6 +731,28 @@ mod tests {
                 .count(),
             9
         );
+        Ok(())
+    }
+    #[test]
+    fn open_manufacturing_mesh_is_rejected_before_slicing() -> Result<()> {
+        let mut source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let path = "3D/Objects/object_1.model";
+        let mut model = xml::parse(&source[path])?;
+        let object = model
+            .child_mut("resources")?
+            .children
+            .iter_mut()
+            .find(|node| node.is("object"))
+            .context("Missing mesh object")?;
+        let triangles = object.child_mut("mesh")?.child_mut("triangles")?;
+        let first = triangles
+            .children
+            .iter()
+            .position(|node| node.is("triangle"))
+            .context("Missing triangle")?;
+        triangles.children.remove(first);
+        source.insert(path.into(), xml::encode(&model));
+        assert!(build(source, &spec()).is_err());
         Ok(())
     }
 
@@ -733,6 +871,7 @@ mod tests {
             source: None,
             output: Some(output.clone()),
             slicer: Some(lane.path().join("missing-slicer")),
+            no_reinforcement: false,
             evidence: lane.path().join("evidence"),
         };
         assert!(run(&crate::root(), &options).is_err());

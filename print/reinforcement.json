@@ -9,7 +9,6 @@
     "bottom_shell_layers": "3"
   },
   "local": {
-    "wall_loops": "5",
     "sparse_infill_density": "100%",
     "sparse_infill_pattern": "zig-zag"
   },
