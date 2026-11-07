@@ -32,7 +32,9 @@ All commands support `--help`. Evidence stays under ignored `.build` directories
 
 ## Current external adjustment example
 
-`print/reinforcement.json` names all nine cylindrical regions and records their dimensions in CAD body-definition coordinates. Four lower zones surround the insert anchors; four upper zones follow the opposing screw load paths; one zone reinforces the adapter hub and screw seat. They request 100% zig-zag infill. All parts keep the global three walls, with 15% grid elsewhere. The rebuild rejects local wall, surface and adhesion overrides.
+`print/reinforcement.json` names nine annular regions and records their dimensions in CAD body-definition coordinates. Four lower rings surround the insert anchors; four upper rings follow the opposing screw load paths; one ring reinforces the adapter hub and screw seat. They request 100% zig-zag infill. All parts keep the global three walls, with 15% grid elsewhere. The rebuild rejects local wall, surface and adhesion overrides.
+
+The housing rings are diameter9 mm outside /5.2 mm inside, with heights of 7.8 mm below the seam and 12.8 mm above it. The adapter ring is diameter18 mm outside /8 mm inside and 10.1 mm high. These regions occupy 73% less volume than the original cylinders. They clear the seam, screw bores, counterbores and outer chamfers; none protrudes. Every rebuild checks complete modifier/part mesh boundaries for at least 0.4 mm separation and rejects regions outside the part or enclosing a void.
 
 `cargo xtask build-print` rebuilds those named Bambu `modifier_part` volumes without altering the original normal-part meshes. It translates each CAD-frame region into the centered manufacturing mesh frame. Existing component/plate transforms position the region with its parent. Modifier volumes do not add mechanical geometry or extra printed parts.
 
@@ -40,7 +42,7 @@ Open the 3MF in Bambu Studio and expand the housings or adapter in the Objects l
 
 Use `build-print --no-reinforcement --output .build/baseline.3mf --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"` for an unreinforced comparison with the same parts, placement and global process. The original five-wall zones generated additional contours; reinforcement now changes infill only. Both corrected plates had zero added outer-wall, brim or skirt footprint samples against that baseline at 0.2 mm comparison tolerance. Inspect the sliced result, including the first layer and the lettering at Z10.28 mm, before printing.
 
-With `--slicer`, the command uses a temporary copy, verifies both plates and modifier readback, checks actual object order and the PLA bed-temperature wait, refreshes previews/statistics and retains evidence under ignored `.build/print`. It never contacts a printer. The published 3MF contains no G-code. Native inspection previously confirmed increased extrusion inside all nine regions against the unreinforced baseline. Physical strength remains a separate question.
+With `--slicer`, the command uses a temporary copy, verifies both plates and modifier readback, checks actual object order and the PLA bed-temperature wait, refreshes previews/statistics and retains evidence under ignored `.build/print`. It never contacts a printer. The published 3MF contains no G-code. Native toolpath inspection confirms increased infill extrusion inside all nine smaller rings against the unreinforced baseline. Physical strength remains a separate question.
 
 ## Existing Limo capabilities and remaining qualification
 

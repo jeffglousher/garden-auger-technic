@@ -97,7 +97,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "b647022729e53e072f07a0decc6b05d8f73a8356f20e504f9151e018ca5a331a",
+    "sha256": "731d796d5725d57312533db78860126f507803108b4c740760d3875e3b278c2f",
     "normal_print_parts": 5,
     "modifier_regions": 9,
     "plates": 2,
@@ -105,8 +105,8 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20817.2138671875,
-    "filament_g": 156.90537299215794,
+    "seconds": 20371.6865234375,
+    "filament_g": 151.34764087945223,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -130,14 +130,14 @@
       "Upper housing labels"
     ],
     "mechanical_model_unchanged": true,
-    "print_project_sha256": "b647022729e53e072f07a0decc6b05d8f73a8356f20e504f9151e018ca5a331a",
+    "print_project_sha256": "731d796d5725d57312533db78860126f507803108b4c740760d3875e3b278c2f",
     "images": {
       "exploded.png": "6d93c919f80bfcb3f525692c47e6c8eae4bab53221d4e7e707d1de84f5934f0c",
       "exploding-drive.gif": "ab7e9cd8c696fc778c9f8fcf8e630e99b26452dae1a0e30d8bb55170ef9fcf14",
       "housing-lower.png": "c6b54d36338fc76074b242ef6535d32bfd436fe94febfee0e2b71eeb2ae6537a",
       "housing-upper.png": "201d83aef8e546185b4c64545d606b4c8d3203390786298ec57fbfeeb4615c59",
       "inside-labels.png": "b85f70f5a448fd917144f43a858620266d45949f8463966553aed83e1814923c",
-      "print-plates.png": "d18d6e710e6596995f5c43f8d7cc64082756981e4a2bb9b0826ca19bb63166ca",
+      "print-plates.png": "c1e2dd20733d70898c6c2fc5a58bed2351926f2c0f07724f04dab5c397bd1868",
       "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
       "sliced-labels.png": "52ed44019c0e29a7e91521b5c75ea99a874f5076b28da675de3457ed51141196"
     }
@@ -149,14 +149,14 @@
       "build-print",
       "gallery"
     ],
-    "regression_tests_passed": 18,
+    "regression_tests_passed": 21,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "normal_mesh_bytes_preserved": false,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20817.2138671875,
-    "native_slice_filament_g": 156.90537299215794,
+    "native_slice_seconds": 20371.6865234375,
+    "native_slice_filament_g": 151.34764087945223,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -214,5 +214,27 @@
     "footprint_tolerance_mm": 0.2,
     "both_plates_compared_to_global_only_baseline": true,
     "physical_label_and_strength_confirmation_pending": true
+  },
+  "reinforcement_containment": {
+    "shape": "Annular cylinders entirely inside the normal part meshes",
+    "regions": 9,
+    "minimum_surface_clearance_mm": 0.4,
+    "complete_mesh_boundary_separation_checked": true,
+    "outside_and_enclosed_void_checks_passed": true,
+    "housing_outer_diameter_mm": 9,
+    "housing_inner_diameter_mm": 5.2,
+    "lower_height_mm": 7.8,
+    "upper_height_mm": 12.8,
+    "adapter_outer_diameter_mm": 18,
+    "adapter_inner_diameter_mm": 8,
+    "adapter_height_mm": 10.1,
+    "region_volume_reduction_percent": 73.09085706806442,
+    "all_five_normal_meshes_and_global_settings_byte_preserved_from": "9bae2bdb2f222b75f46c9688b8dc40341763f4a5",
+    "infill_extrusion_increased_in_all_nine_regions": true,
+    "outer_wall_footprint_added_samples": 0,
+    "brim_footprint_added_samples": 0,
+    "footprint_tolerance_mm": 0.2,
+    "physical_strength_confirmation_pending": true,
+    "native_Bambu_Prepare_view_has_no_protruding_regions": true
   }
 }

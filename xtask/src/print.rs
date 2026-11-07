@@ -24,6 +24,11 @@ const MODIFIERS: &str = "3D/Objects/local_reinforcement.model";
 const CORE: &str = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02";
 const PRODUCTION: &str = "http://schemas.microsoft.com/3dmanufacturing/production/2015/06";
 
+#[path = "print_containment.rs"]
+mod containment;
+
+const REINFORCEMENT_CLEARANCE_MM: f64 = 0.4;
+
 #[derive(Args)]
 pub struct Options {
     #[arg(long)]
@@ -42,6 +47,7 @@ pub struct Options {
 
 #[derive(Deserialize)]
 pub struct Spec {
+    pub minimum_surface_clearance_mm: f64,
     pub global: BTreeMap<String, String>,
     pub local: BTreeMap<String, String>,
     pub zones: Vec<Zone>,
@@ -52,12 +58,18 @@ pub struct Zone {
     pub name: String,
     pub center_mm: [f64; 3],
     pub radius_mm: f64,
+    pub inner_radius_mm: f64,
     pub height_mm: f64,
     pub axis: String,
 }
 
 impl Spec {
     fn validate(&self) -> Result<()> {
+        ensure!(
+            self.minimum_surface_clearance_mm.is_finite()
+                && self.minimum_surface_clearance_mm >= REINFORCEMENT_CLEARANCE_MM,
+            "Reinforcement surface clearance must be at least 0.4 mm"
+        );
         ensure!(
             self.local.keys().all(|key| matches!(
                 key.as_str(),
@@ -75,6 +87,9 @@ impl Spec {
             ensure!(
                 z.radius_mm.is_finite()
                     && z.radius_mm > 0.
+                    && z.inner_radius_mm.is_finite()
+                    && z.inner_radius_mm > 0.
+                    && z.inner_radius_mm < z.radius_mm
                     && z.height_mm.is_finite()
                     && z.height_mm > 0.,
                 "Invalid zone dimensions: {}",
@@ -93,18 +108,16 @@ impl Spec {
     }
 }
 
-pub fn cylinder(zone: &Zone, offset: [f64; 3]) -> (Vec<[f64; 3]>, Vec<[usize; 3]>) {
+pub fn annular_cylinder(zone: &Zone, offset: [f64; 3]) -> (Vec<[f64; 3]>, Vec<[usize; 3]>) {
     let mut points = Vec::new();
-    for z in [-zone.height_mm / 2., zone.height_mm / 2.] {
-        for i in 0..48 {
-            let a = i as f64 * std::f64::consts::TAU / 48.;
-            points.push([zone.radius_mm * a.cos(), zone.radius_mm * a.sin(), z]);
+    for radius in [zone.radius_mm, zone.inner_radius_mm] {
+        for z in [-zone.height_mm / 2., zone.height_mm / 2.] {
+            for i in 0..48 {
+                let a = i as f64 * std::f64::consts::TAU / 48.;
+                points.push([radius * a.cos(), radius * a.sin(), z]);
+            }
         }
     }
-    points.extend([
-        [0., 0., -zone.height_mm / 2.],
-        [0., 0., zone.height_mm / 2.],
-    ]);
     for p in &mut points {
         if zone.axis == "y" {
             *p = [p[0], -p[2], p[1]];
@@ -119,8 +132,12 @@ pub fn cylinder(zone: &Zone, offset: [f64; 3]) -> (Vec<[f64; 3]>, Vec<[usize; 3]
         faces.extend([
             [i, j, 48 + j],
             [i, 48 + j, 48 + i],
-            [96, j, i],
-            [97, 48 + i, 48 + j],
+            [96 + i, 144 + j, 96 + j],
+            [96 + i, 144 + i, 144 + j],
+            [i, 96 + j, j],
+            [i, 96 + i, 96 + j],
+            [48 + i, 48 + j, 144 + j],
+            [48 + i, 144 + j, 144 + i],
         ]);
     }
     (points, faces)
@@ -229,7 +246,7 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         );
     }
     ensure!(normals.len() == 5, "Expected five printable objects");
-    validate_normal_meshes(&entries, &model)?;
+    let normal_meshes = validate_normal_meshes(&entries, &model)?;
     let mut mod_model = Node::new("model", &[("xmlns", CORE), ("unit", "millimeter")]);
     let mut resources = Node::new("resources", &[]);
     for (i, zone) in spec.zones.iter().enumerate() {
@@ -237,7 +254,21 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         let (index, id, offset) = normals
             .get(&zone.part)
             .with_context(|| format!("Unknown part {}", zone.part))?;
-        let (points, triangles) = cylinder(zone, *offset);
+        let (points, triangles) = annular_cylinder(zone, *offset);
+        let modifier = containment::Mesh {
+            points,
+            faces: triangles,
+        };
+        containment::verify(
+            &modifier,
+            &normal_meshes[id],
+            spec.minimum_surface_clearance_mm,
+        )
+        .with_context(|| format!("Invalid reinforcement region: {}", zone.name))?;
+        let containment::Mesh {
+            points,
+            faces: triangles,
+        } = modifier;
         let mut record = Node::new("object", &[("id", &number), ("type", "model")]);
         let mut mesh = Node::new("mesh", &[]);
         let mut vertices = Node::new("vertices", &[]);
@@ -321,7 +352,11 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     Ok(entries)
 }
 
-fn validate_normal_meshes(entries: &Entries, model: &Node) -> Result<()> {
+fn validate_normal_meshes(
+    entries: &Entries,
+    model: &Node,
+) -> Result<BTreeMap<String, containment::Mesh>> {
+    let mut meshes = BTreeMap::new();
     let encoded = xml::encode(model);
     let document = roxmltree::Document::parse(std::str::from_utf8(&encoded)?)?;
     for component in document
@@ -360,6 +395,7 @@ fn validate_normal_meshes(entries: &Entries, model: &Node) -> Result<()> {
             "Invalid manufacturing vertices: {path}"
         );
         let mut edges: BTreeMap<(usize, usize), (usize, i32)> = BTreeMap::new();
+        let mut faces = Vec::new();
         for triangle in object
             .descendants()
             .filter(|node| node.has_tag_name((CORE, "triangle")))
@@ -383,6 +419,7 @@ fn validate_normal_meshes(entries: &Entries, model: &Node) -> Result<()> {
                 edge.0 += 1;
                 edge.1 += if a < b { 1 } else { -1 };
             }
+            faces.push(f);
         }
         ensure!(
             !edges.is_empty()
@@ -391,8 +428,20 @@ fn validate_normal_meshes(entries: &Entries, model: &Node) -> Result<()> {
                     .all(|&(count, direction)| count == 2 && direction == 0),
             "Manufacturing mesh must be welded, closed and consistently oriented: {path}"
         );
+        let id = component
+            .parent()
+            .and_then(|n| n.parent())
+            .and_then(|n| n.attribute("id"))
+            .context("Normal component parent missing")?;
+        meshes.insert(
+            id.to_owned(),
+            containment::Mesh {
+                points: vertices,
+                faces,
+            },
+        );
     }
-    Ok(())
+    Ok(meshes)
 }
 
 fn preview(name: &str) -> bool {
@@ -638,12 +687,12 @@ mod tests {
     #[test]
     fn mesh_winding_and_axis_offset_are_correct() {
         let mut zone = spec().zones.remove(8);
-        let (points, faces) = cylinder(&zone, [1., 2., 3.]);
-        assert_eq!((points.len(), faces.len()), (98, 192));
+        let (points, faces) = annular_cylinder(&zone, [1., 2., 3.]);
+        assert_eq!((points.len(), faces.len()), (192, 384));
         assert_eq!(
-            points[96],
+            points[0],
             [
-                zone.center_mm[0] - 1.,
+                zone.center_mm[0] - 1. + zone.radius_mm,
                 zone.center_mm[1] - 2. + zone.height_mm / 2.,
                 zone.center_mm[2] - 3.
             ]
@@ -657,13 +706,30 @@ mod tests {
                 / 6.;
         }
         assert!(
-            (volume / (std::f64::consts::PI * zone.radius_mm.powi(2) * zone.height_mm) - 1.).abs()
+            (volume
+                / (std::f64::consts::PI
+                    * (zone.radius_mm.powi(2) - zone.inner_radius_mm.powi(2))
+                    * zone.height_mm)
+                - 1.)
+                .abs()
                 < 0.004
         );
         zone.radius_mm = 0.;
         let mut s = spec();
         s.zones = vec![zone];
         assert!(s.validate().is_err());
+    }
+    #[test]
+    fn protruding_regions_and_regions_crossing_holes_are_rejected() -> Result<()> {
+        let source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let mut spec = spec();
+        spec.zones.truncate(1);
+        spec.zones[0].center_mm[2] = -0.5;
+        assert!(build(source.clone(), &spec).is_err());
+        spec.zones[0].center_mm[2] = -4.5;
+        spec.zones[0].inner_radius_mm = 1.;
+        assert!(build(source, &spec).is_err());
+        Ok(())
     }
     #[test]
     fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_has_no_modifiers() -> Result<()> {

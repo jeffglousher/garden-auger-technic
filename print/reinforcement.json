@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "coordinate_frame": "Limo CAD body definition coordinates, millimetres",
   "global": {
     "wall_loops": "3",
@@ -20,11 +20,12 @@
       "center_mm": [
         -27,
         118.5,
-        -4.45
+        -4.5
       ],
-      "radius_mm": 6.0,
-      "height_mm": 9.1,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 7.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing upper",
@@ -33,11 +34,12 @@
       "center_mm": [
         -27,
         118.5,
-        8.4
+        7
       ],
-      "radius_mm": 6.0,
-      "height_mm": 17.2,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 12.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing lower",
@@ -46,11 +48,12 @@
       "center_mm": [
         27,
         118.5,
-        -4.45
+        -4.5
       ],
-      "radius_mm": 6.0,
-      "height_mm": 9.1,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 7.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing upper",
@@ -59,11 +62,12 @@
       "center_mm": [
         27,
         118.5,
-        8.4
+        7
       ],
-      "radius_mm": 6.0,
-      "height_mm": 17.2,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 12.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing lower",
@@ -72,11 +76,12 @@
       "center_mm": [
         -36,
         196.8,
-        -4.45
+        -4.5
       ],
-      "radius_mm": 6.0,
-      "height_mm": 9.1,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 7.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing upper",
@@ -85,11 +90,12 @@
       "center_mm": [
         -36,
         196.8,
-        8.4
+        7
       ],
-      "radius_mm": 6.0,
-      "height_mm": 17.2,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 12.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing lower",
@@ -98,11 +104,12 @@
       "center_mm": [
         16,
         196.8,
-        -4.45
+        -4.5
       ],
-      "radius_mm": 6.0,
-      "height_mm": 9.1,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 7.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Housing upper",
@@ -111,11 +118,12 @@
       "center_mm": [
         16,
         196.8,
-        8.4
+        7
       ],
-      "radius_mm": 6.0,
-      "height_mm": 17.2,
-      "axis": "z"
+      "radius_mm": 4.5,
+      "height_mm": 12.8,
+      "axis": "z",
+      "inner_radius_mm": 2.6
     },
     {
       "part": "PETG - Square adapter",
@@ -123,12 +131,14 @@
       "body_id": 216,
       "center_mm": [
         0,
-        145.5,
+        146.75,
         0
       ],
-      "radius_mm": 14.1,
-      "height_mm": 14.0,
-      "axis": "y"
+      "radius_mm": 9,
+      "height_mm": 10.1,
+      "axis": "y",
+      "inner_radius_mm": 4
     }
-  ]
+  ],
+  "minimum_surface_clearance_mm": 0.4
 }
