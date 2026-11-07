@@ -97,7 +97,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "731d796d5725d57312533db78860126f507803108b4c740760d3875e3b278c2f",
+    "sha256": "cbe57e09799ed0827a2c991be817ba51650e62d7fd6bee34b3aefd50f6076a56",
     "normal_print_parts": 5,
     "modifier_regions": 9,
     "plates": 2,
@@ -105,8 +105,8 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20371.6865234375,
-    "filament_g": 151.34764087945223,
+    "seconds": 20162.9853515625,
+    "filament_g": 150.99826335906982,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -130,14 +130,14 @@
       "Upper housing labels"
     ],
     "mechanical_model_unchanged": true,
-    "print_project_sha256": "731d796d5725d57312533db78860126f507803108b4c740760d3875e3b278c2f",
+    "print_project_sha256": "cbe57e09799ed0827a2c991be817ba51650e62d7fd6bee34b3aefd50f6076a56",
     "images": {
       "exploded.png": "6d93c919f80bfcb3f525692c47e6c8eae4bab53221d4e7e707d1de84f5934f0c",
       "exploding-drive.gif": "ab7e9cd8c696fc778c9f8fcf8e630e99b26452dae1a0e30d8bb55170ef9fcf14",
       "housing-lower.png": "c6b54d36338fc76074b242ef6535d32bfd436fe94febfee0e2b71eeb2ae6537a",
       "housing-upper.png": "201d83aef8e546185b4c64545d606b4c8d3203390786298ec57fbfeeb4615c59",
       "inside-labels.png": "b85f70f5a448fd917144f43a858620266d45949f8463966553aed83e1814923c",
-      "print-plates.png": "c1e2dd20733d70898c6c2fc5a58bed2351926f2c0f07724f04dab5c397bd1868",
+      "print-plates.png": "0affb2426ee74463d01b1713dd9e4b6c541f57be5930c39d2cb7e33cf8bc69f2",
       "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
       "sliced-labels.png": "52ed44019c0e29a7e91521b5c75ea99a874f5076b28da675de3457ed51141196"
     }
@@ -149,14 +149,14 @@
       "build-print",
       "gallery"
     ],
-    "regression_tests_passed": 21,
+    "regression_tests_passed": 22,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "normal_mesh_bytes_preserved": false,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20371.6865234375,
-    "native_slice_filament_g": 151.34764087945223,
+    "native_slice_seconds": 20162.9853515625,
+    "native_slice_filament_g": 150.99826335906982,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -236,5 +236,27 @@
     "footprint_tolerance_mm": 0.2,
     "physical_strength_confirmation_pending": true,
     "native_Bambu_Prepare_view_has_no_protruding_regions": true
+  },
+  "underside_correction": {
+    "cause": "Automatic tree supports under upper screw-head recesses created expanded bases; the old unreinforced baseline had them too.",
+    "earlier_comparison_missed_support_bases": true,
+    "normal_and_reinforcement_mesh_payloads_byte_preserved_from": "118e0a72d1c10e85c0e56eebc7d57b77d3177b95",
+    "global_enable_support": false,
+    "object_support_exceptions": [
+      "PETG - One-piece auger"
+    ],
+    "brim_type": "no_brim",
+    "brim_width_mm": 0,
+    "skirt_loops": 0,
+    "raft_layers": 0,
+    "all_Gcode_feature_markers_checked_including_outside_objects": true,
+    "housing_support_feature_blocks": 0,
+    "housing_brim_skirt_raft_feature_blocks": 0,
+    "all_support_paths_belong_to_auger": true,
+    "auger_support_paths_present": true,
+    "native_Bambu_housing_preview_verified_without_support_bases": true,
+    "native_Bambu_housing_preview_seconds_rounded": 10800,
+    "native_Bambu_housing_preview_grams": 104.94,
+    "recess_overhang_finish_requires_physical_confirmation": true
   }
 }

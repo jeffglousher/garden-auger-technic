@@ -6,7 +6,12 @@
     "sparse_infill_density": "15%",
     "sparse_infill_pattern": "grid",
     "top_shell_layers": "4",
-    "bottom_shell_layers": "3"
+    "bottom_shell_layers": "3",
+    "brim_type": "no_brim",
+    "brim_width": "0",
+    "skirt_loops": "0",
+    "raft_layers": "0",
+    "enable_support": "0"
   },
   "local": {
     "sparse_infill_density": "100%",
@@ -140,5 +145,10 @@
       "inner_radius_mm": 4
     }
   ],
-  "minimum_surface_clearance_mm": 0.4
+  "minimum_surface_clearance_mm": 0.4,
+  "object_settings": {
+    "PETG - One-piece auger": {
+      "enable_support": "1"
+    }
+  }
 }

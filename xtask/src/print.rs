@@ -50,6 +50,8 @@ pub struct Spec {
     pub minimum_surface_clearance_mm: f64,
     pub global: BTreeMap<String, String>,
     pub local: BTreeMap<String, String>,
+    #[serde(default)]
+    pub object_settings: BTreeMap<String, BTreeMap<String, String>>,
     pub zones: Vec<Zone>,
 }
 #[derive(Deserialize)]
@@ -65,6 +67,15 @@ pub struct Zone {
 
 impl Spec {
     fn validate(&self) -> Result<()> {
+        for settings in self.object_settings.values() {
+            ensure!(
+                settings
+                    .iter()
+                    .all(|(key, value)| key == "enable_support"
+                        && ["0", "1"].contains(&value.as_str())),
+                "Only explicit object support enable/disable is allowed; strength settings stay global"
+            );
+        }
         ensure!(
             self.minimum_surface_clearance_mm.is_finite()
                 && self.minimum_surface_clearance_mm >= REINFORCEMENT_CLEARANCE_MM,
@@ -240,12 +251,32 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
             .get("name")
             .context("Object name missing")?
             .clone();
+        // Clear inherited support exceptions before applying the named policy.
+        obj.children.retain(|node| {
+            !node.is("metadata")
+                || node
+                    .attrs
+                    .get("key")
+                    .is_none_or(|key| key != "enable_support")
+        });
+        if let Some(settings) = spec.object_settings.get(&name) {
+            for (key, value) in settings {
+                obj.children
+                    .push(Node::new("metadata", &[("key", key), ("value", value)]));
+            }
+        }
         ensure!(
             normals.insert(name, (index, id, offset)).is_none(),
             "Duplicate object name"
         );
     }
     ensure!(normals.len() == 5, "Expected five printable objects");
+    ensure!(
+        spec.object_settings
+            .keys()
+            .all(|name| normals.contains_key(name)),
+        "Unknown object support policy"
+    );
     let normal_meshes = validate_normal_meshes(&entries, &model)?;
     let mut mod_model = Node::new("model", &[("xmlns", CORE), ("unit", "millimeter")]);
     let mut resources = Node::new("resources", &[]);
@@ -622,6 +653,18 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
             ensure!(settings.get(k) == Some(v), "Modifier {k} changed");
         }
     }
+    for object in config.children.iter().filter(|node| node.is("object")) {
+        let metadata = object.metadata();
+        let name = metadata.get("name").context("Unnamed print object")?;
+        let expected = spec
+            .object_settings
+            .get(name)
+            .and_then(|settings| settings.get("enable_support"));
+        ensure!(
+            metadata.get("enable_support") == expected,
+            "Object support policy changed: {name}"
+        );
+    }
     for (i, expected) in [(1, vec!["102", "104"]), (2, vec!["106", "108", "110"])] {
         let code = std::str::from_utf8(archive::required(
             sliced,
@@ -645,6 +688,34 @@ fn empty_warning(value: &Value) -> bool {
 }
 
 fn validate_gcode(code: &str, expected: &[&str], pla: bool) -> Result<()> {
+    let mut object = None;
+    let mut auger_support = false;
+    // Inspect every feature, including paths emitted before an object starts.
+    for line in code.lines().map(str::trim) {
+        if let Some(id) = line.strip_prefix("; start printing object, unique label id: ") {
+            object = Some(id);
+        } else if line.starts_with("; stop printing object") {
+            object = None;
+        } else if let Some(feature) = line.strip_prefix("; FEATURE: ") {
+            ensure!(
+                !["brim", "skirt", "raft"]
+                    .iter()
+                    .any(|name| feature.to_ascii_lowercase().contains(name)),
+                "Unexpected adhesion path: {feature}"
+            );
+            if feature.starts_with("Support") {
+                ensure!(
+                    object == Some("108"),
+                    "Support is allowed only under the auger, found under {object:?}"
+                );
+                auger_support = true;
+            }
+        }
+    }
+    ensure!(
+        !expected.contains(&"108") || auger_support,
+        "Auger support paths are missing"
+    );
     let mut ids: Vec<&str> = code
         .lines()
         .filter_map(|l| l.strip_prefix("; start printing object, unique label id: "))
@@ -918,6 +989,42 @@ mod tests {
             validate_gcode(
                 &code.replace("wall_loops = 3", "wall_loops = 5"),
                 &["110"],
+                true
+            )
+            .is_err()
+        );
+    }
+
+    #[test]
+    fn adhesion_and_housing_support_fail_even_outside_object_blocks() {
+        let header = "; print_sequence = by object\n; wall_loops = 3\n";
+        let housing = format!("{header}; start printing object, unique label id: 102\n");
+        for feature in [
+            "Brim",
+            "Skirt",
+            "Skirt/Brim",
+            "Raft",
+            "Support",
+            "Support interface",
+            "Support transition",
+        ] {
+            assert!(
+                validate_gcode(&format!("; FEATURE: {feature}\n{housing}"), &["102"], false)
+                    .is_err()
+            );
+            assert!(
+                validate_gcode(&format!("{housing}; FEATURE: {feature}\n"), &["102"], false)
+                    .is_err()
+            );
+        }
+        let drive = format!(
+            "{header}; start printing object, unique label id: 106\n; start printing object, unique label id: 108\n; FEATURE: Support\nM190 S55\n; start printing object, unique label id: 110\n"
+        );
+        assert!(validate_gcode(&drive, &["106", "108", "110"], true).is_ok());
+        assert!(
+            validate_gcode(
+                &drive.replace("; FEATURE: Support\n", ""),
+                &["106", "108", "110"],
                 true
             )
             .is_err()
