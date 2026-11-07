@@ -111,6 +111,12 @@ impl Client {
 
     pub fn load(&mut self, root: &Path) -> Result<()> {
         let archive = archive::read(&root.join("garden-auger.limo"))?;
+        let manifest: Value =
+            serde_json::from_slice(archive::required(&archive, "manifest.json")?)?;
+        ensure!(
+            manifest["format"] == "limo-cad-project" && manifest["application"] == "Limo CAD",
+            "Project manifest must use the current Limo CAD identity"
+        );
         let model: Value = serde_json::from_slice(archive::required(&archive, "model.json")?)?;
         self.call(
             "cad_load_project_model",

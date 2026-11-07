@@ -1,7 +1,7 @@
 {
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "952a2c16c3651f0db68d7ad4386f43133f0ae4726c0610f81be63e45c09ad4ce",
+    "sha256": "95d801c30421946a0e378dbeab9bc9c3ebc6b87099db719e07c4d6fee272bd9b",
     "feature_count": 84,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -97,7 +97,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "a9093310dcb051c735fe2fec60b9f90e92acdd1a44244eb324f3e509dfc88164",
+    "sha256": "fe12629109fdaef6432a566ab6b60284f32ca6adc8fa82225d8bdf79b30704d3",
     "normal_print_parts": 5,
     "modifier_regions": 9,
     "plates": 2,
@@ -130,7 +130,7 @@
       "Upper housing labels"
     ],
     "mechanical_model_unchanged": true,
-    "print_project_sha256": "a9093310dcb051c735fe2fec60b9f90e92acdd1a44244eb324f3e509dfc88164",
+    "print_project_sha256": "fe12629109fdaef6432a566ab6b60284f32ca6adc8fa82225d8bdf79b30704d3",
     "images": {
       "exploded.png": "af9f4e205c28f02c2bc1288348324a13f148dd5999b8bacab09120aa2c2a8539",
       "exploding-drive.gif": "84fc1c5d5278de8e64eb0f8623573ef0e21b0d91b7fd1cc7628eb2479a399ed6",
@@ -157,7 +157,7 @@
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
-    "cad_and_print_source_bytes_unchanged": true,
+    "cad_and_print_geometry_unchanged": true,
     "platform_tested": "Windows x64",
     "rust_toolchain_tested": "1.99.1",
     "namespace_regressions": {
@@ -178,5 +178,16 @@
         }
       ]
     }
+  },
+  "identity": {
+    "application": "Limo CAD",
+    "project_format": "limo-cad-project",
+    "print_job_title": "Garden auger",
+    "model_json_bytes_preserved": true,
+    "all_other_cad_archive_entries_preserved": true,
+    "all_other_print_archive_entries_preserved": true,
+    "legacy_name_scan_passed": true,
+    "native_model_validation_passed": true,
+    "native_two_plate_slice_passed": true
   }
 }

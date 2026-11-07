@@ -124,6 +124,17 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     let mut model = xml::parse(archive::required(&entries, MODEL)?)?;
     // Bambu's native reader expects the core element names without prefixes.
     model.use_default_namespace(CORE)?;
+    // The printer displays this title as the job name. Keep it specific to the part.
+    let title = model.children.iter().position(|node| {
+        node.is("metadata") && node.attrs.get("name").is_some_and(|name| name == "Title")
+    });
+    if let Some(index) = title {
+        model.children[index].set_text("Garden auger");
+    } else {
+        let mut title = Node::new("metadata", &[("name", "Title")]);
+        title.set_text("Garden auger");
+        model.children.insert(0, title);
+    }
     // New attributes use p; keep all existing qualified attributes and bindings intact.
     ensure!(
         model.attrs.get("xmlns:p").is_none_or(|ns| ns == PRODUCTION),
@@ -571,7 +582,17 @@ mod tests {
     }
     #[test]
     fn rebuild_preserves_normal_meshes_and_is_idempotent() -> Result<()> {
-        let source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let mut source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let mut model = xml::parse(&source[MODEL])?;
+        model
+            .children
+            .iter_mut()
+            .find(|node| {
+                node.is("metadata") && node.attrs.get("name").is_some_and(|name| name == "Title")
+            })
+            .context("Missing project title")?
+            .set_text("Stale export title");
+        source.insert(MODEL.into(), xml::encode(&model));
         let rebuilt = build(source.clone(), &spec())?;
         for (name, data) in &source {
             if name.starts_with("3D/Objects/") && name != MODIFIERS {
@@ -581,6 +602,13 @@ mod tests {
         assert_eq!(rebuilt, build(rebuilt.clone(), &spec())?);
         let text = std::str::from_utf8(&rebuilt[MODEL])?;
         let doc = roxmltree::Document::parse(text)?;
+        assert_eq!(
+            doc.descendants()
+                .find(|node| node.has_tag_name((CORE, "metadata"))
+                    && node.attribute("name") == Some("Title"))
+                .and_then(|node| node.text()),
+            Some("Garden auger")
+        );
         assert_eq!(
             doc.descendants()
                 .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))

@@ -34,6 +34,14 @@ impl Node {
     pub fn is(&self, name: &str) -> bool {
         self.text.is_none() && self.local() == name
     }
+    pub fn set_text(&mut self, text: &str) {
+        self.children = vec![Self {
+            name: String::new(),
+            attrs: BTreeMap::new(),
+            children: vec![],
+            text: Some(text.into()),
+        }];
+    }
     pub fn child_mut(&mut self, name: &str) -> Result<&mut Self> {
         let label = self.name.clone();
         self.children
