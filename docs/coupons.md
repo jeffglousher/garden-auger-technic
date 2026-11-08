@@ -1,5 +1,7 @@
 # Fit and lettering coupons
 
+For clearer text trials, use the [larger curved lettering coupons](lettering-coupons.md). The original plate below preserves the locator-fit comparison; its lettering uses the earlier stencil.
+
 Open [the coupon print project](../print/garden-auger-coupons.3mf) for a small test before another housing print. The [editable model](../experiments/garden-auger-coupons.limo) is built in Limo CAD from the current housing profiles.
 
 The plate holds three pins, one common socket and two lettering plaques. Count the notches along each pin's front edge:

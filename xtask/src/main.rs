@@ -4,6 +4,7 @@ mod coupons;
 mod gallery;
 mod lettering;
 mod print;
+mod readability;
 mod xml;
 
 use anyhow::Result;
@@ -31,6 +32,8 @@ enum Task {
     Gallery(gallery::Options),
     /// Build one small plate of locator-fit and flush-lettering test coupons.
     Coupons(coupons::Options),
+    /// Compare larger heavy curved lettering with AMS or a single PETG color.
+    LetteringCoupons(readability::Options),
 }
 
 fn root() -> PathBuf {
@@ -46,6 +49,7 @@ fn main() -> Result<()> {
         Task::BuildPrint(options) => print::run(&root(), &options),
         Task::Gallery(options) => gallery::run(&root(), &options),
         Task::Coupons(options) => coupons::run(&root(), &options),
+        Task::LetteringCoupons(options) => readability::run(&root(), &options),
     }
 }
 

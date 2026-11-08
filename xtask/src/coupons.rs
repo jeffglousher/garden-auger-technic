@@ -22,7 +22,7 @@ const PROD: &str = "http://schemas.microsoft.com/3dmanufacturing/production/2015
 const REL: &str = "http://schemas.openxmlformats.org/package/2006/relationships";
 const REL_MODEL: &str = "http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel";
 const BASE: f64 = 3.8;
-const TEXT_HEIGHT: f64 = 2.72;
+pub(super) const TEXT_HEIGHT: f64 = 2.72;
 
 #[derive(Args)]
 pub struct Options {
@@ -36,14 +36,14 @@ pub struct Options {
     pub evidence: PathBuf,
 }
 
-struct Coupon {
-    name: String,
-    body: u64,
-    origin: [f64; 2],
-    size: [f64; 2],
+pub(super) struct Coupon {
+    pub name: String,
+    pub body: u64,
+    pub origin: [f64; 2],
+    pub size: [f64; 2],
 }
 
-fn canonical(client: &mut Client) -> Result<Value> {
+pub(super) fn canonical(client: &mut Client) -> Result<Value> {
     let v = client.call("cad_project_model", json!({}))?;
     if v.get("format").is_some() {
         Ok(v)
@@ -68,7 +68,7 @@ fn outline(origin: [f64; 2], size: [f64; 2], notches: usize) -> Vec<[f64; 2]> {
         .collect()
 }
 
-fn base(
+pub(super) fn base(
     client: &mut Client,
     name: &str,
     origin: [f64; 2],
@@ -150,7 +150,7 @@ fn map_sketch(sketch: &mut Value, map: impl Fn(f64, f64) -> [f64; 2]) {
     }
 }
 
-fn history(model: &mut Value, id: u64, kind: &str, name: &str) {
+pub(super) fn history(model: &mut Value, id: u64, kind: &str, name: &str) {
     model["document"]["history"]["features"]
         .as_array_mut()
         .unwrap()
@@ -229,7 +229,7 @@ fn add_locators(model: &mut Value, source: &Value, coupons: &[Coupon]) -> Result
     Ok(())
 }
 
-fn mesh_node(points: &[[f64; 3]], faces: &[[usize; 3]]) -> Node {
+pub(super) fn mesh_node(points: &[[f64; 3]], faces: &[[usize; 3]]) -> Node {
     let mut mesh = Node::new("mesh", &[]);
     let mut vertices = Node::new("vertices", &[]);
     let mut triangles = Node::new("triangles", &[]);
@@ -257,7 +257,7 @@ fn mesh_node(points: &[[f64; 3]], faces: &[[usize; 3]]) -> Node {
     mesh
 }
 
-fn check_mesh(mesh: &Node) -> Result<()> {
+pub(super) fn check_mesh(mesh: &Node) -> Result<()> {
     let vertices = mesh
         .children
         .iter()
@@ -328,12 +328,13 @@ fn component(id: &str, path: &str) -> Node {
     )
 }
 
-fn package(
+pub(super) fn package(
     root: &Path,
     client: &mut Client,
     coupons: &[Coupon],
-    letter: &lettering::Region,
+    paints: &BTreeMap<usize, (&lettering::Region, usize)>,
     out: &Path,
+    source_model: &str,
 ) -> Result<Entries> {
     let source = archive::read(&root.join("print/garden-auger.3mf"))?;
     let mut entries = Entries::new();
@@ -450,15 +451,11 @@ fn package(
         let mut part = Node::new("part", &[("id", &normal), ("subtype", "normal_part")]);
         metadata(&mut part, "name", &c.name);
         metadata(&mut part, "matrix", "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
-        metadata(
-            &mut part,
-            "source_file",
-            "experiments/garden-auger-coupons.limo",
-        );
+        metadata(&mut part, "source_file", source_model);
         obj.children.push(part);
-        if i >= 4 {
+        if let Some(&(letter, filament)) = paints.get(&i) {
             let ink = (201 + i).to_string();
-            let ink_path = format!("3D/Objects/lettering_{}.model", i - 3);
+            let ink_path = format!("3D/Objects/lettering_{i}.model");
             let lo: [f64; 2] = std::array::from_fn(|a| {
                 letter
                     .points
@@ -493,13 +490,13 @@ fn package(
             metadata(
                 &mut part,
                 "name",
-                if i == 4 {
+                if filament == 1 {
                     "Same-color flush lettering"
                 } else {
                     "Contrasting-color flush lettering"
                 },
             );
-            for (key, value) in lettering::print_settings(if i == 4 { 1 } else { 3 }) {
+            for (key, value) in lettering::print_settings(filament) {
                 metadata(&mut part, &key, &value);
             }
             obj.children.push(part);
@@ -700,7 +697,15 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         &root.join("experiments/garden-auger-coupons.limo"),
         &cad_entries,
     )?;
-    let mut entries = package(root, &mut client, &coupons, &letter, &out)?;
+    let paints = BTreeMap::from([(4, (&letter, 1)), (5, (&letter, 3))]);
+    let mut entries = package(
+        root,
+        &mut client,
+        &coupons,
+        &paints,
+        &out,
+        "experiments/garden-auger-coupons.limo",
+    )?;
     drop(client);
     archive::write(&out.join("input.3mf"), &entries)?;
     if let Some(slicer) = &options.slicer {

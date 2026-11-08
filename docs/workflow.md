@@ -20,6 +20,7 @@ cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe
 cargo xtask build-print --single-color-lettering --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output print/garden-auger-single-color.3mf
 cargo xtask gallery --output .build/gallery-preview
 cargo xtask coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
+cargo xtask lettering-coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
 ```
 
 `build-print` defaults to replacing `print/garden-auger.3mf` only after a successful rebuild. Use `--output` to keep a separate candidate. Slicing is local and sends no printer commands. It preserves the five normal-part mesh files, replaces the nine reinforcement regions, rebuilds the two lettering masks from the current CAD sketches, and removes cached slice data. A failed native slice leaves the destination untouched and keeps the temporary evidence for inspection.
@@ -33,6 +34,8 @@ The rebuild preserves namespaced component paths and UUIDs, including files with
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
 
 For a small physical trial, use the [fit and lettering coupons](coupons.md). They copy the current locating profiles and compare single-color with contrasting PETG flush lettering on one plate.
+
+The [larger lettering coupons](lettering-coupons.md) compare 7 and 8 mm heavy curved type with wider spacing. They have separate AMS and single-color projects and an actual native surface-path preview. Their text is a trial; production housing lettering stays unchanged pending the printed choice.
 
 ## Flush lettering
 

@@ -1,4 +1,89 @@
 {
+  "lettering_coupon_trials": {
+    "curve_tolerance_mm": 0.015,
+    "font_file": "impact.ttf",
+    "font_file_sha256": "d8bbdb72e3f930157824b2e59677d3a912d4512c14a948e6656a2e3fb0c935ad",
+    "labels": [
+      {
+        "cap_mm": 7,
+        "coupon_size_mm": [
+          31.349969116738723,
+          35.48536133415688,
+          2.72
+        ],
+        "points": 1814,
+        "triangles": 3564
+      },
+      {
+        "cap_mm": 8,
+        "coupon_size_mm": [
+          34.628536133415686,
+          39.52612723903644,
+          2.72
+        ],
+        "points": 1878,
+        "triangles": 3692
+      }
+    ],
+    "lines": [
+      "GA-L1",
+      "M3X18",
+      "D4X6.7",
+      "M3X5.7"
+    ],
+    "physical_readability_confirmed": false,
+    "production_model_changed": false,
+    "slices": [
+      {
+        "cap_heights_mm": [
+          7,
+          8
+        ],
+        "character_gap_mm": 1.2,
+        "filament_cost": 0.14481843972206115,
+        "grams": 8.049941062927246,
+        "mode": "AMS flush color",
+        "printer_command_sent": false,
+        "row_gap_mm": 1.6,
+        "seconds": 2479.26416015625
+      },
+      {
+        "cap_heights_mm": [
+          7,
+          8
+        ],
+        "character_gap_mm": 1.2,
+        "filament_cost": 0.11540750492572784,
+        "grams": 6.4150919914245605,
+        "mode": "single-color texture",
+        "printer_command_sent": false,
+        "row_gap_mm": 1.6,
+        "seconds": 1058.352294921875
+      }
+    ],
+    "artifacts": [
+      {
+        "sha256": "2e74c912241a4e030e4a13ea95e9a56289134cf620e10123c8232b71dd2501fa",
+        "path": "experiments/garden-auger-lettering-coupons.limo"
+      },
+      {
+        "sha256": "0952d195ce8ab337bc910a55a590bfbd75a044b4192e3ed9c1fd666b8a8d84e3",
+        "path": "print/garden-auger-lettering-ams-coupons.3mf"
+      },
+      {
+        "sha256": "81c8dcada27dee57f70c2ea48002119910e6ecc400e8aa0c782096d723c79184",
+        "path": "print/garden-auger-lettering-single-color-coupons.3mf"
+      },
+      {
+        "sha256": "89d5e7402727a61876377f54ccef9d632941905f51f6fcb0ee5631100272cf49",
+        "path": "docs/images/lettering-coupons-ams.svg"
+      },
+      {
+        "sha256": "7b316c6604c05f517b7f3c62d80e9a53cd81af118fc4637289db36df6b17f522",
+        "path": "docs/images/lettering-coupons-single-color.svg"
+      }
+    ]
+  },
   "model": {
     "path": "garden-auger.limo",
     "sha256": "05d858822535cbe2696684428ff84bf3f94abd73ed0f6b1e202263087b1017da",
@@ -172,9 +257,10 @@
       "verify-model",
       "build-print",
       "gallery",
-      "coupons"
+      "coupons",
+      "lettering-coupons"
     ],
-    "regression_tests_passed": 27,
+    "regression_tests_passed": 30,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,

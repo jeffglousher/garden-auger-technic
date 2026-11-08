@@ -41,5 +41,6 @@ We designed and refined the assembly in **[Limo CAD](https://github.com/limo-cad
 - [Editable Limo CAD model](garden-auger.limo)
 - [Bambu Studio print project](print/garden-auger.3mf) · [Single-color textured lettering](print/garden-auger-single-color.3mf)
 - [Individual STL files](print/parts/)
+- [Larger lettering test coupons](docs/lettering-coupons.md)
 
 [Assembly notes](docs/assembly.md) · [Design and print workflow](docs/workflow.md)
