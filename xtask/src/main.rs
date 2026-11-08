@@ -1,5 +1,6 @@
 mod archive;
 mod cad;
+mod coupons;
 mod gallery;
 mod lettering;
 mod print;
@@ -28,6 +29,8 @@ enum Task {
     BuildPrint(print::Options),
     /// Render the gallery from current native meshes and saved named-view poses.
     Gallery(gallery::Options),
+    /// Build one small plate of locator-fit and flush-lettering test coupons.
+    Coupons(coupons::Options),
 }
 
 fn root() -> PathBuf {
@@ -42,6 +45,7 @@ fn main() -> Result<()> {
         Task::VerifyModel(options) => cad::verify(&root(), &options),
         Task::BuildPrint(options) => print::run(&root(), &options),
         Task::Gallery(options) => gallery::run(&root(), &options),
+        Task::Coupons(options) => coupons::run(&root(), &options),
     }
 }
 

@@ -18,6 +18,7 @@ cargo xtask verify-model
 cargo xtask build-print --output .build/rebuilt.3mf
 cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output .build/sliced.3mf
 cargo xtask gallery --output .build/gallery-preview
+cargo xtask coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
 ```
 
 `build-print` defaults to replacing `print/garden-auger.3mf` only after a successful rebuild. Use `--output` to keep a separate candidate. Slicing is local and sends no printer commands. It preserves the five normal-part mesh files, replaces the nine reinforcement regions, rebuilds the two lettering masks from the current CAD sketches, and removes cached slice data. A failed native slice leaves the destination untouched and keeps the temporary evidence for inspection.
@@ -29,6 +30,8 @@ The rebuild preserves namespaced component paths and UUIDs, including files with
 `verify-model` and `gallery` start a private headless CAD process. They accept `--executable`, or `LIMO_CAD_EXE`; Windows defaults to the installed Limo CAD path. The gallery reads the current model, saved poses and saved print previews; it does not depend on archived images or a live desktop session. It renders the two 48-frame loops, exploded callouts, native engraving closeups, both plate estimates and an annotated locator layout. That layout uses the native upper mating-face mesh and source sketch dimensions. Without `--output`, it refreshes the gallery images in `docs/images`. `--font` selects a TrueType font; the defaults are Segoe UI on Windows and DejaVu Sans on Linux. Check the generated `manifest.json` under `.build/gallery-rust` and update the published image hashes in `validation.json` when publishing new images.
 
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
+
+For a small physical trial, use the [fit and lettering coupons](coupons.md). They copy the current locating profiles and compare single-color with contrasting PETG flush lettering on one plate.
 
 ## Flush lettering
 
