@@ -13,7 +13,7 @@ impl Mesh {
         self.faces.iter().map(|face| face.map(|i| self.points[i]))
     }
 
-    fn contains(&self, point: Point) -> bool {
+    pub(crate) fn contains(&self, point: Point) -> bool {
         // An oblique ray avoids the model's axis-aligned edges. Deduplicate shared edges.
         let direction = [1., 0.432353, 0.173397];
         let mut hits: Vec<_> = self

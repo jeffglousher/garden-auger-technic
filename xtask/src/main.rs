@@ -1,6 +1,7 @@
 mod archive;
 mod cad;
 mod gallery;
+mod lettering;
 mod print;
 mod xml;
 

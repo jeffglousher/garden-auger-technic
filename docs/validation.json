@@ -1,8 +1,8 @@
 {
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "9f2d3dc9f4057f3365f413297931eba134277ec5af2c8a00946db36f3ebaaa68",
-    "feature_count": 84,
+    "sha256": "5e08b8a66274f70d6acc4aa2bd271414c675391500600633071376daa24f1ddd",
+    "feature_count": 82,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
     "unused_sketches_removed": 6,
@@ -93,25 +93,44 @@
         ]
       ]
     },
-    "engine_sha256": "95eed7b23fe6651b687168d1f3d592763020e74d3a9efb0ed657f374956f65f2"
+    "engine_sha256": "95eed7b23fe6651b687168d1f3d592763020e74d3a9efb0ed657f374956f65f2",
+    "engraving_features_removed": 2
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "b6dca8968e22d5c6145b04085f743844c3ce6463f9838d6f68ede6ed3bf332c8",
+    "sha256": "cb4b9356c2807b070a07e22cfdeb763fd7863587e3571077e9cb56e19ca3baf9",
     "normal_print_parts": 5,
-    "modifier_regions": 9,
+    "modifier_regions": 11,
     "plates": 2,
     "sequence": "by object",
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20073.392578125,
-    "filament_g": 150.88423442840576,
+    "seconds": 20640.3583984375,
+    "filament_g": 152.25315165519714,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
     "printer_command_sent": false,
-    "embedded_gcode": false
+    "embedded_gcode": false,
+    "reinforcement_regions": 9,
+    "color_regions": 2,
+    "plate_estimates": [
+      {
+        "plate": 1,
+        "seconds": 11258.880859375,
+        "filament_g": 106.19894194602966,
+        "material_cost": 1.9105189656090735
+      },
+      {
+        "plate": 2,
+        "seconds": 9381.4775390625,
+        "filament_g": 46.05420970916748,
+        "material_cost": 0.8458404546833037
+      }
+    ],
+    "total_material_cost": 2.756359420292377,
+    "cost_basis": "Saved filament prices per kg; filament only"
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
   "accepted_drive_connection": {
@@ -121,7 +140,7 @@
   },
   "scope": "Native named CAD, exact nominal assembly interference, locator source dimensions/native mesh sections, manifold manufacturing meshes and both plate slices. Physical matching-half fit/durability and soil trial remain pending.",
   "gallery": {
-    "source": "Current native solid_scene meshes and named_view_solution poses; Rust cargo xtask gallery renders callouts, label crops and GIFs.",
+    "source": "Current native solid_scene meshes and named_view_solution poses, with flush color masks from the saved lettering sketches; external rendering and GIF encoding",
     "native_saved_views": [
       "Complete assembly",
       "Exploded assembly",
@@ -130,18 +149,20 @@
       "Upper housing labels"
     ],
     "mechanical_model_unchanged": false,
-    "print_project_sha256": "b6dca8968e22d5c6145b04085f743844c3ce6463f9838d6f68ede6ed3bf332c8",
+    "print_project_sha256": "cb4b9356c2807b070a07e22cfdeb763fd7863587e3571077e9cb56e19ca3baf9",
     "images": {
-      "exploded.png": "559b4ebb4644102926385d44b58c6daaef547a8aaf917b69793e57ae56bd846b",
-      "exploding-drive.gif": "397399cb7f50f6fd83b5bd1fdedcaa53f3f672853da9cdaf3bda6d3da6afdb8c",
-      "housing-lower.png": "5b17323f1f6268aef0fcd801bce000a965a36bc76fd3d8170c7e0a9296a0d407",
-      "housing-upper.png": "ace9f7726a536de3aead6526335d4dc87265a7728bd764226c75720701782104",
-      "inside-labels.png": "b85f70f5a448fd917144f43a858620266d45949f8463966553aed83e1814923c",
+      "exploded.png": "76364ee44c04a0de6fab3473a6e6e9c53dd0ce63a17a8e3e3919c6a53b2772a3",
+      "exploding-drive.gif": "1165daac7f709fab1e2b47903553463b03067f997a09a3113b402edf1b083892",
+      "housing-lower.png": "b450a190e92b9f6daeceae912d8812e7e46c3f732a8eedb820563b5e1134afeb",
+      "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
+      "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "60167a7f77ee99727853c65f1f0f5bd1187fae264ad74cfa9bcd3dc74deef7e7",
+      "print-plates.png": "ee5055f06f5a63fb6ce540e37d535663bdc6d2269bf88ec73ce2a94229053cde",
       "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
-      "sliced-labels.png": "52ed44019c0e29a7e91521b5c75ea99a874f5076b28da675de3457ed51141196"
-    }
+      "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44"
+    },
+    "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
+    "gallery_stills_and_sampled_frames_visually_reviewed": true
   },
   "tooling": {
     "implementation": "Rust cargo xtask; no Python runtime",
@@ -150,14 +171,14 @@
       "build-print",
       "gallery"
     ],
-    "regression_tests_passed": 22,
+    "regression_tests_passed": 26,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "normal_mesh_bytes_preserved": false,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20073.392578125,
-    "native_slice_filament_g": 150.88423442840576,
+    "native_slice_seconds": 20640.3583984375,
+    "native_slice_filament_g": 152.25315165519714,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -194,7 +215,7 @@
   "print_correction": {
     "label_cap_height_mm": 5.6,
     "label_stroke_mm": 0.8,
-    "label_recess_mm": 0.72,
+    "label_recess_mm": 0,
     "label_grid_and_pocket_margin_checked": true,
     "changed_normal_parts": [
       "housing-upper",
@@ -203,7 +224,7 @@
     "other_three_parts_preserved": true,
     "native_welded_manufacturing_export": true,
     "closed_oriented_manifold_meshes": true,
-    "native_Bambu_project_opened_without_mesh_warnings": true,
+    "native_Bambu_project_opened_without_mesh_warnings": false,
     "local_settings": {
       "sparse_infill_pattern": "zig-zag",
       "sparse_infill_density": "100%"
@@ -213,8 +234,11 @@
     "brim_footprint_added_samples": 0,
     "footprint_sampling_mm": 0.1,
     "footprint_tolerance_mm": 0.2,
-    "both_plates_compared_to_global_only_baseline": true,
-    "physical_label_and_strength_confirmation_pending": true
+    "both_plates_compared_to_global_only_baseline": false,
+    "physical_label_and_strength_confirmation_pending": true,
+    "label_material_depth_mm": 0.72,
+    "current_comparison_scope": "Prior strength footprint comparisons are historical. The current normal housing meshes intentionally restore flat floors and reduce the pins; current native slices retain support/adhesion/order guards.",
+    "current_native_CLI_mesh_warnings": []
   },
   "reinforcement_containment": {
     "shape": "Annular cylinders entirely inside the normal part meshes",
@@ -236,7 +260,7 @@
     "brim_footprint_added_samples": 0,
     "footprint_tolerance_mm": 0.2,
     "physical_strength_confirmation_pending": true,
-    "native_Bambu_Prepare_view_has_no_protruding_regions": true,
+    "native_Bambu_Prepare_view_has_no_protruding_regions": false,
     "historical_comparison_scope": "The cited byte-preservation and baseline footprint comparison preceded the current intentional housing locator revision. All nine modifiers remain contained in the revised meshes."
   },
   "underside_correction": {
@@ -256,17 +280,17 @@
     "housing_brim_skirt_raft_feature_blocks": 0,
     "all_support_paths_belong_to_auger": true,
     "auger_support_paths_present": true,
-    "native_Bambu_housing_preview_verified_without_support_bases": true,
-    "native_Bambu_housing_preview_seconds_rounded": 10680,
-    "native_Bambu_housing_preview_grams": 104.83,
+    "native_Bambu_housing_preview_verified_without_support_bases": false,
+    "native_Bambu_housing_preview_seconds_rounded": null,
+    "native_Bambu_housing_preview_grams": null,
     "recess_overhang_finish_requires_physical_confirmation": true,
-    "historical_comparison_scope": "The cited byte-preservation comparison describes cb84f8d. The current revision intentionally changes both housing meshes; support/adhesion guards were rerun on both current plates."
+    "historical_comparison_scope": "The cited byte-preservation comparison describes cb84f8d. The current revision intentionally changes both housing meshes; support/adhesion guards were rerun on both current plates.",
+    "current_native_CLI_housing_support_and_adhesion_audit_passed": true
   },
   "locator_revision": {
     "baseline_commit": "cb84f8df9f4663fd6d6b053aca06e3d787800206",
     "all_four_pairs_relocated": true,
-    "diameter_mm": 5,
-    "nominal_radial_clearance_mm": 0,
+    "nominal_radial_clearance_mm": 0.1,
     "previous_pin_height_mm": 2.8,
     "pin_height_mm": 1.8,
     "previous_socket_depth_mm": 3.2,
@@ -384,9 +408,87 @@
     "other_five_native_body_meshes_exactly_preserved": true,
     "other_three_manufacturing_part_mesh_payloads_byte_preserved": true,
     "global_settings_and_reinforcement_geometry_preserved": true,
-    "matching_revised_halves_required": true,
+    "matching_revised_halves_required": "Locator centres still require the 194ccec layout; smaller new pins are intended to mate with that upper half.",
     "physical_fit_pending": true,
     "desktop_review_uses_separate_copy": true,
-    "native_Bambu_housing_preview_matches_revised_locators": true
+    "native_Bambu_housing_preview_matches_revised_locators": false,
+    "pin_diameter_mm": 4.8,
+    "socket_diameter_mm": 5,
+    "current_fit_revision": "Pin diameter reduced after the owner reported the zero-clearance print was too tight. Positions, sockets, heights and depth are unchanged from 194ccec.",
+    "fit_feedback": {
+      "authority": "Owner physical print feedback",
+      "date": "2026-11-08",
+      "zero_clearance_fit": "Too tight",
+      "revised_clearance_physical_test": "Pending"
+    }
+  },
+  "flush_lettering": {
+    "owner_feedback": "The recessed writing did not work well on the physical print.",
+    "physical_confirmation_pending": true,
+    "solid_flat_CAD_pocket_floors": true,
+    "removed_engraving_features": [
+      396,
+      398
+    ],
+    "preserved_named_sketches": [
+      395,
+      397
+    ],
+    "region_count": 2,
+    "mask_depth_mm": 0.72,
+    "mask_settings": {
+      "extruder": "3"
+    },
+    "housing_and_lettering_material": "PETG",
+    "default_lettering_color": "Gray",
+    "default_lettering_filament": 3,
+    "same_color_filament": 1,
+    "same_color_visibility": "May blend into the housing; no contrast is promised.",
+    "raised_height_mm": 0,
+    "source_configuration": "print/lettering.json",
+    "geometry_source": "Closed 0.8 mm grid profiles in the saved CAD sketches, including letter counters",
+    "closed_oriented_color_mask_meshes": true,
+    "parent_vertex_and_flush_floor_probes_passed": true,
+    "native_gray_toolpaths_in_both_housings": true,
+    "native_toolpath_evidence": [
+      {
+        "gray_extrusion_segments": 1529,
+        "gray_layers_mm": [
+          8.84,
+          9.08,
+          9.32,
+          9.56,
+          10.04,
+          10.28,
+          10.52
+        ],
+        "object": 102
+      },
+      {
+        "gray_extrusion_segments": 1711,
+        "gray_layers_mm": [
+          8.84,
+          9.08,
+          9.32,
+          9.56,
+          10.04,
+          10.28,
+          10.52
+        ],
+        "object": 104
+      }
+    ],
+    "native_surface_toolpaths_visually_reviewed": true,
+    "native_desktop_preview_verified": false,
+    "print_intent_saved_in_Limo": false,
+    "color_assignment_location": "External Bambu color-only modifiers; gallery overlays the same source masks",
+    "STLs": "Solid flat housing geometry without color data",
+    "same_color_native_slice_passed": true,
+    "same_color_candidate": {
+      "seconds": 19594.4619140625,
+      "filament_g": 149.86935710906982
+    },
+    "owner_feedback_date": "2026-11-08",
+    "engraving_depth_mm": 0
   }
 }

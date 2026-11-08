@@ -2,9 +2,9 @@
 
 ## Demonstration
 
-Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), then recall **Complete assembly**. Its 84 named features describe the servo reference, housing envelope, D grips, cavities, fasteners, drive, matched locators, rotating shield and engravings. Suppressed historical alternatives and unused sketches were removed after exact native mesh comparison. Repository images render that same geometry; they are not screenshots claiming a particular application UI state.
+Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), then recall **Complete assembly**. Its 82 named features describe the servo reference, housing envelope, D grips, cavities, fasteners, drive, locators, rotating shield and flush lettering profiles. The two engraving cuts were removed after physical feedback. Repository images render the native geometry with the manufacturing color masks; they are not screenshots claiming a particular application UI state.
 
-The `.limo` model owns fitted solid geometry. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement and local reinforcement volumes. STLs preserve only the five part meshes.
+The `.limo` model owns fitted solid geometry and the two named lettering sketches. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement, nine reinforcement regions and two color-only lettering masks. STLs preserve only the five solid part meshes.
 
 The model also saves **Exploded assembly**, **Inside the housing**, **Lower housing labels** and **Upper housing labels** views. Limo resolves their component offsets and cameras without changing the mechanical assembly. The gallery uses those native meshes and resolved poses; the turntable, rotating-drive explosion GIFs and part callouts are rendered and encoded externally. They illustrate the parts rather than defining an assembly motion constraint. Plate previews and time/material estimates come directly from the saved Bambu project. Asset hashes and source details are recorded in `validation.json`.
 
@@ -20,7 +20,7 @@ cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe
 cargo xtask gallery --output .build/gallery-preview
 ```
 
-`build-print` defaults to replacing `print/garden-auger.3mf` only after a successful rebuild. Use `--output` to keep a separate candidate. Slicing is local and sends no printer commands. It preserves the five normal-part mesh files, replaces the nine named modifiers, and removes cached slice data before rebuilding. A failed native slice leaves the destination untouched and keeps the temporary evidence for inspection.
+`build-print` defaults to replacing `print/garden-auger.3mf` only after a successful rebuild. Use `--output` to keep a separate candidate. Slicing is local and sends no printer commands. It preserves the five normal-part mesh files, replaces the nine reinforcement regions, rebuilds the two lettering masks from the current CAD sketches, and removes cached slice data. A failed native slice leaves the destination untouched and keeps the temporary evidence for inspection.
 
 The model uses the current Limo CAD project identity. Validation checks that identity, and print rebuilds set the printer job title to **Garden auger**.
 
@@ -30,7 +30,13 @@ The rebuild preserves namespaced component paths and UUIDs, including files with
 
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
 
-## Current external adjustment example
+## Flush lettering
+
+`print/lettering.json` selects the two native lettering sketches, a 0.72 mm material depth and PETG filament3 for contrast. The Rust rebuild follows the sketches' closed 0.8 mm stencil grid, preserving letter counters, and makes closed color masks ending exactly at the pocket floors. It checks that every mask vertex sits in its solid parent, with the exposed face on the floor. These regions set only `extruder`; they add no plastic outside the housing and carry no strength or adhesion overrides.
+
+Set `filament` to1 and rebuild for a single-color version. It remains solid and flush, but the text may blend into the surface. The saved model has flat floors and named sketch profiles; color assignment happens in the manufacturing project. The gallery overlays those same manufacturing masks. This does not claim a new Limo CAD face-painting feature.
+
+## Local reinforcement
 
 `print/reinforcement.json` names nine annular regions and records their dimensions in CAD body-definition coordinates. Four lower rings surround the insert anchors; four upper rings follow the opposing screw load paths; one ring reinforces the adapter hub and screw seat. They request 100% zig-zag infill. All parts keep the global three walls, with 15% grid elsewhere. The rebuild rejects local wall, surface and adhesion overrides.
 
@@ -38,11 +44,11 @@ The housing rings are diameter9 mm outside /5.2 mm inside, with heights of 7.8 m
 
 Supports are off globally, with one named object exception for the horizontal auger. The housing screw-head recesses bridge without automatic support feet. Brims, skirts and rafts are disabled. The auger support exception changes no strength settings.
 
-`cargo xtask build-print` rebuilds those named Bambu `modifier_part` volumes without altering the original normal-part meshes. It translates each CAD-frame region into the centered manufacturing mesh frame. Existing component/plate transforms position the region with its parent. Modifier volumes do not add mechanical geometry or extra printed parts.
+`cargo xtask build-print` rebuilds the named Bambu `modifier_part` volumes without altering the normal-part meshes. It translates each CAD-frame region into the centered manufacturing mesh frame. Existing component/plate transforms position each region with its parent. There are nine strength regions and two color-only masks; none adds a separate printed object.
 
 Open the 3MF in Bambu Studio and expand the housings or adapter in the Objects list to inspect named modifier regions and their local infill settings. Global edits affect the baseline; explicit local regions retain their overrides. To change this scripted example reproducibly, edit `reinforcement.json`, run `cargo xtask build-print`, then slice again. Building without `--slicer` invalidates cached slice statistics/previews and makes no new print-time claim.
 
-Use `build-print --no-reinforcement --output .build/baseline.3mf --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"` for an unreinforced comparison with the same parts, placement and global process. The original five-wall zones generated additional contours; reinforcement now changes infill only. Automatic tree supports had also created wide feet under the upper housing's screw recesses, including in the unreinforced baseline. Comparing ordinary brim paths alone missed those support bases. Inspect the sliced result, including the first layer and the lettering at Z10.28 mm, before printing.
+Use `build-print --no-reinforcement --output .build/baseline.3mf --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"` for an unreinforced comparison with the same parts, lettering, placement and global process. The original five-wall zones generated additional contours; reinforcement now changes infill only. Automatic tree supports had also created wide feet under the upper housing's screw recesses, including in the unreinforced baseline. Comparing ordinary brim paths alone missed those support bases. Inspect the first layer and the flush lettering in the sliced result before printing.
 
 With `--slicer`, the command uses a temporary copy, verifies both plates, modifier readback and the named support exception, checks actual object order and the PLA bed-temperature wait, refreshes previews/statistics and retains evidence under ignored `.build/print`. Its complete G-code feature audit rejects every brim, skirt or raft, rejects support under any part except the auger, and requires the auger's supports to remain. It checks paths outside object blocks too. The published 3MF contains no G-code and the command never contacts a printer. Native toolpath inspection confirms increased infill extrusion inside all nine smaller rings against the unreinforced baseline. Physical strength and the housing recess bridges remain print checks.
 

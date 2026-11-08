@@ -1,0 +1,8 @@
+{
+  "depth_mm": 0.72,
+  "filament": 3,
+  "regions": [
+    { "name": "Lower flush PETG lettering", "part": "PETG - Housing lower", "body_id": 46, "sketch_id": 395 },
+    { "name": "Upper flush PETG lettering", "part": "PETG - Housing upper", "body_id": 26, "sketch_id": 397 }
+  ]
+}

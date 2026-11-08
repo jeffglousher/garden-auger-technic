@@ -47,12 +47,20 @@ pub struct Options {
 
 #[derive(Deserialize)]
 pub struct Spec {
+    #[serde(skip)]
+    pub paint: Vec<crate::lettering::Region>,
     pub minimum_surface_clearance_mm: f64,
     pub global: BTreeMap<String, String>,
     pub local: BTreeMap<String, String>,
     #[serde(default)]
     pub object_settings: BTreeMap<String, BTreeMap<String, String>>,
     pub zones: Vec<Zone>,
+}
+
+fn load_spec(root: &Path) -> Result<Spec> {
+    let mut spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
+    spec.paint = crate::lettering::load(root)?;
+    Ok(spec)
 }
 #[derive(Deserialize)]
 pub struct Zone {
@@ -280,9 +288,9 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     let normal_meshes = validate_normal_meshes(&entries, &model)?;
     let mut mod_model = Node::new("model", &[("xmlns", CORE), ("unit", "millimeter")]);
     let mut resources = Node::new("resources", &[]);
-    for (i, zone) in spec.zones.iter().enumerate() {
-        let number = (101 + i).to_string();
-        let (index, id, offset) = normals
+    let mut regions = Vec::new();
+    for zone in &spec.zones {
+        let (_, id, offset) = normals
             .get(&zone.part)
             .with_context(|| format!("Unknown part {}", zone.part))?;
         let (points, triangles) = annular_cylinder(zone, *offset);
@@ -296,6 +304,51 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
             spec.minimum_surface_clearance_mm,
         )
         .with_context(|| format!("Invalid reinforcement region: {}", zone.name))?;
+        regions.push((&zone.part, &zone.name, modifier, spec.local.clone()));
+    }
+    let settings: Value = serde_json::from_slice(archive::required(&entries, SETTINGS)?)?;
+    for paint in &spec.paint {
+        ensure!(
+            settings["filament_type"][paint.filament - 1] == "PETG",
+            "Flush lettering must use PETG"
+        );
+        let (_, id, offset) = normals
+            .get(&paint.part)
+            .context("Lettering parent missing")?;
+        let points: Vec<_> = paint
+            .points
+            .iter()
+            .map(|p| std::array::from_fn(|i| p[i] - offset[i]))
+            .collect();
+        for p in &points {
+            let surface = paint.surface - offset[2];
+            let inward = paint.surface.signum();
+            let mut inside = *p;
+            inside[2] += inward * 1e-4;
+            ensure!(
+                normal_meshes[id].contains(inside),
+                "Lettering extends outside its solid parent"
+            );
+            let mut outside = *p;
+            outside[2] = surface - inward * 1e-4;
+            ensure!(
+                !normal_meshes[id].contains(outside),
+                "Lettering is not on a flush pocket floor"
+            );
+        }
+        regions.push((
+            &paint.part,
+            &paint.name,
+            containment::Mesh {
+                points,
+                faces: paint.faces.clone(),
+            },
+            BTreeMap::from([("extruder".into(), paint.filament.to_string())]),
+        ));
+    }
+    for (i, (parent, name, modifier, settings)) in regions.into_iter().enumerate() {
+        let number = (101 + i).to_string();
+        let (index, id, _) = &normals[parent];
         let containment::Mesh {
             points,
             faces: triangles,
@@ -329,7 +382,7 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         resources.children.push(record);
         let ident = Uuid::new_v5(
             &Uuid::NAMESPACE_URL,
-            format!("garden-auger/{}", zone.name).as_bytes(),
+            format!("garden-auger/{name}").as_bytes(),
         )
         .to_string();
         let resource = model
@@ -350,11 +403,9 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
             ],
         ));
         let mut part = Node::new("part", &[("id", &number), ("subtype", "modifier_part")]);
-        part.children.push(Node::new(
-            "metadata",
-            &[("key", "name"), ("value", &zone.name)],
-        ));
-        for (key, value) in &spec.local {
+        part.children
+            .push(Node::new("metadata", &[("key", "name"), ("value", name)]));
+        for (key, value) in &settings {
             part.children
                 .push(Node::new("metadata", &[("key", key), ("value", value)]));
         }
@@ -528,7 +579,7 @@ fn invalidate(entries: &mut Entries) -> Result<()> {
 }
 
 pub fn run(root: &Path, options: &Options) -> Result<()> {
-    let mut spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
+    let mut spec = load_spec(root)?;
     if options.no_reinforcement {
         spec.zones.clear();
     }
@@ -633,7 +684,10 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
         .flat_map(|n| &n.children)
         .filter(|n| n.is("part") && n.attrs.get("subtype").is_some_and(|s| s == "modifier_part"))
         .collect();
-    ensure!(mods.len() == spec.zones.len(), "Modifier count changed");
+    ensure!(
+        mods.len() == spec.zones.len() + spec.paint.len(),
+        "Modifier count changed"
+    );
     let names: BTreeSet<_> = mods
         .iter()
         .map(|n| {
@@ -644,12 +698,27 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
         })
         .collect::<Result<_>>()?;
     ensure!(
-        names == spec.zones.iter().map(|z| z.name.clone()).collect(),
+        names
+            == spec
+                .zones
+                .iter()
+                .map(|z| z.name.clone())
+                .chain(spec.paint.iter().map(|p| p.name.clone()))
+                .collect(),
         "Modifier names changed"
     );
     for part in &mods {
         let settings = part.metadata();
-        for (k, v) in &spec.local {
+        let expected = if let Some(p) = spec
+            .paint
+            .iter()
+            .find(|p| settings.get("name") == Some(&p.name))
+        {
+            BTreeMap::from([("extruder".into(), p.filament.to_string())])
+        } else {
+            spec.local.clone()
+        };
+        for (k, v) in &expected {
             ensure!(settings.get(k) == Some(v), "Modifier {k} changed");
         }
     }
@@ -676,7 +745,17 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
         seconds.is_finite() && seconds > 0. && grams.is_finite() && grams > 0.,
         "Invalid native estimates"
     );
-    Ok(json!({"seconds":seconds,"grams":grams,"modifiers":mods.len(),"printer_command_sent":false}))
+    if spec.paint.iter().any(|p| p.filament == 3) {
+        ensure!(
+            plates[0]["filaments"].as_array().is_some_and(|f| f
+                .iter()
+                .any(|f| f["id"] == 3 && f["main_used_g"].as_f64().is_some_and(|g| g > 0.))),
+            "No gray PETG lettering was sliced on the housing plate"
+        );
+    }
+    Ok(
+        json!({"seconds":seconds,"grams":grams,"reinforcement_regions":spec.zones.len(),"color_regions":spec.paint.len(),"printer_command_sent":false}),
+    )
 }
 
 fn empty_warning(value: &Value) -> bool {
@@ -752,8 +831,7 @@ fn validate_gcode(code: &str, expected: &[&str], pla: bool) -> Result<()> {
 mod tests {
     use super::*;
     fn spec() -> Spec {
-        serde_json::from_slice(&fs::read(crate::root().join("print/reinforcement.json")).unwrap())
-            .unwrap()
+        load_spec(&crate::root()).unwrap()
     }
     #[test]
     fn mesh_winding_and_axis_offset_are_correct() {
@@ -803,7 +881,7 @@ mod tests {
         Ok(())
     }
     #[test]
-    fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_has_no_modifiers() -> Result<()> {
+    fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_keeps_only_color() -> Result<()> {
         let mut spec = spec();
         for key in ["wall_loops", "top_shell_layers", "brim_type", "line_width"] {
             spec.local.insert(key.into(), "5".into());
@@ -814,17 +892,27 @@ mod tests {
         let source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
         let baseline = build(source.clone(), &spec)?;
         let config = xml::parse(&baseline[CONFIG])?;
-        assert!(
-            !config
-                .children
-                .iter()
-                .flat_map(|node| &node.children)
-                .any(|node| node.is("part")
+        let parts: Vec<_> = config
+            .children
+            .iter()
+            .flat_map(|node| &node.children)
+            .filter(|node| {
+                node.is("part")
                     && node
                         .attrs
                         .get("subtype")
-                        .is_some_and(|value| value == "modifier_part"))
-        );
+                        .is_some_and(|value| value == "modifier_part")
+            })
+            .collect();
+        assert_eq!(parts.len(), 2);
+        for part in parts {
+            let meta = part.metadata();
+            assert!(matches!(
+                meta.get("extruder").map(String::as_str),
+                Some("1" | "3")
+            ));
+            assert!(!meta.contains_key("sparse_infill_density"));
+        }
         for (path, data) in source
             .iter()
             .filter(|(path, _)| path.starts_with("3D/Objects/") && path.as_str() != MODIFIERS)
@@ -866,7 +954,7 @@ mod tests {
             doc.descendants()
                 .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))
                 .count(),
-            9
+            11
         );
         Ok(())
     }
@@ -938,7 +1026,7 @@ mod tests {
                 .descendants()
                 .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))
                 .collect();
-            assert_eq!(modifiers.len(), 9);
+            assert_eq!(modifiers.len(), 11);
             assert!(
                 modifiers
                     .iter()

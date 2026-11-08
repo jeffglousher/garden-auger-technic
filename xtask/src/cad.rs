@@ -119,6 +119,7 @@ impl Client {
         );
         let model: Value = serde_json::from_slice(archive::required(&archive, "model.json")?)?;
         validate_labels(&model)?;
+        validate_locator_fits(&model)?;
         self.call(
             "cad_load_project_model",
             json!({"model_json":serde_json::to_string(&model)?}),
@@ -141,7 +142,7 @@ impl Client {
 }
 
 fn validate_labels(model: &Value) -> Result<()> {
-    for (sketch_id, extrude_id) in [(395, 396), (397, 398)] {
+    for sketch_id in [395, 397] {
         let sketch = model["sketches"]
             .as_array()
             .context("Missing sketches")?
@@ -172,18 +173,59 @@ fn validate_labels(model: &Value) -> Result<()> {
                 "Housing label detail is smaller than the 0.8 mm print grid"
             );
         }
-        let extrude = model["extrudes"]
+        ensure!(
+            (sketch["basis"]["origin"][2]
+                .as_f64()
+                .context("Missing lettering plane")?
+                .abs()
+                - 10.2)
+                .abs()
+                < 1e-7,
+            "Lettering profiles must sit on the flat pocket floor"
+        );
+    }
+    ensure!(
+        model["extrudes"]
             .as_array()
             .context("Missing extrudes")?
             .iter()
-            .find(|e| e["feature_id"] == extrude_id)
-            .context("Missing label engraving")?;
+            .all(|e| e["feature_id"] != 396 && e["feature_id"] != 398),
+        "Flush lettering must not cut recesses in the housing"
+    );
+    Ok(())
+}
+
+fn validate_locator_fits(model: &Value) -> Result<()> {
+    let sketches = model["sketches"].as_array().context("Missing sketches")?;
+    for id in [371, 375, 379, 383] {
+        let radii = |id| -> Result<Vec<f64>> {
+            let axis = model["revolves"]
+                .as_array()
+                .context("Missing revolves")?
+                .iter()
+                .find(|r| r["feature_id"] == id + 1)
+                .context("Missing locator revolve")?["axis_origin"]["x"]
+                .as_f64()
+                .context("Invalid locator axis")?;
+            let s = sketches
+                .iter()
+                .find(|s| s["feature_id"] == id)
+                .context("Missing locator sketch")?;
+            Ok(s["snapshot"]["entities"]
+                .as_array()
+                .context("Missing locator points")?
+                .iter()
+                .filter(|e| e[1]["type"] == "point")
+                .filter_map(|e| e[1]["position"]["x"].as_f64())
+                .map(|x| x - axis)
+                .filter(|&r| r > 0.1)
+                .collect())
+        };
+        let pin = radii(id)?.into_iter().fold(0., f64::max);
+        let socket = radii(id + 2)?.into_iter().fold(f64::INFINITY, f64::min);
         ensure!(
-            extrude["operation"] == "cut"
-                && extrude["extent"]["distance"]
-                    .as_f64()
-                    .is_some_and(|d| (d - 0.73).abs() < 1e-6),
-            "Label engraving must preserve the 0.72 mm recess and flat mating rim"
+            (pin - 2.4).abs() < 1e-7 && (socket - 2.5).abs() < 1e-7,
+            "Locator must retain 0.10 mm radial clearance: pin radius {pin}, socket radius {socket}"
         );
     }
     Ok(())
@@ -364,17 +406,42 @@ fn validate_interference(check: &Value) -> Result<()> {
 mod tests {
     use super::*;
     #[test]
-    fn labels_keep_printable_detail_and_recess_depth() -> Result<()> {
+    fn labels_keep_printable_detail_without_recesses() -> Result<()> {
         let entries = archive::read(&crate::root().join("garden-auger.limo"))?;
         let mut model: Value = serde_json::from_slice(&entries["model.json"])?;
         validate_labels(&model)?;
-        model["extrudes"]
+        model["sketches"]
             .as_array_mut()
             .unwrap()
             .iter_mut()
-            .find(|e| e["feature_id"] == 396)
-            .unwrap()["extent"]["distance"] = json!(0.41);
+            .find(|e| e["feature_id"] == 395)
+            .unwrap()["basis"]["origin"][2] = json!(-10.19);
         assert!(validate_labels(&model).is_err());
+        Ok(())
+    }
+    #[test]
+    fn zero_clearance_locators_are_rejected() -> Result<()> {
+        let entries = archive::read(&crate::root().join("garden-auger.limo"))?;
+        let mut model: Value = serde_json::from_slice(&entries["model.json"])?;
+        validate_locator_fits(&model)?;
+        let s = model["sketches"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|s| s["feature_id"] == 371)
+            .unwrap();
+        for e in s["snapshot"]["entities"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .filter(|e| e[1]["type"] == "point")
+        {
+            let x = e[1]["position"]["x"].as_f64().unwrap();
+            if x > -26.9 {
+                e[1]["position"]["x"] = json!(x + 0.1);
+            }
+        }
+        assert!(validate_locator_fits(&model).is_err());
         Ok(())
     }
     #[test]

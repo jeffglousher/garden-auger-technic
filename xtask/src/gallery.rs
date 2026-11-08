@@ -50,6 +50,7 @@ struct Assembly {
     scene: Scene,
     base: BTreeMap<u64, Pose>,
     exploded: BTreeMap<u64, Pose>,
+    paint: Vec<crate::lettering::Region>,
 }
 
 fn add(a: V3, b: V3) -> V3 {
@@ -90,6 +91,31 @@ fn color(id: u64) -> Result<[u8; 3]> {
 }
 
 impl Assembly {
+    fn lettering(&self, id: u64) -> Vec<Geometry> {
+        self.paint
+            .iter()
+            .filter(|p| p.body_id == id)
+            .map(|p| Geometry {
+                // Rendering bias only; manufacturing masks end exactly at the floor.
+                points: p
+                    .points
+                    .iter()
+                    .map(|q| [q[0], q[1], q[2] - p.surface.signum() * 1e-4])
+                    .collect(),
+                faces: p
+                    .faces
+                    .iter()
+                    .filter(|f| f.iter().all(|&i| (p.points[i][2] - p.surface).abs() < 1e-7))
+                    .copied()
+                    .collect(),
+                color: if p.filament == 1 {
+                    [239, 184, 46]
+                } else {
+                    [163, 173, 187]
+                },
+            })
+            .collect()
+    }
     fn poses(solution: &Value) -> Result<BTreeMap<u64, Pose>> {
         ensure!(solution["solved"] == true, "Named view is not solved");
         let poses: Vec<Pose> = serde_json::from_value(solution["body_poses"].clone())?;
@@ -146,6 +172,15 @@ impl Assembly {
                     .collect(),
                 color: color(body.id)?,
             });
+            for mut paint in self.lettering(body.id) {
+                for p in &mut paint.points {
+                    *p = add(
+                        add(rotate(*p, pose.rotation), pose.translation),
+                        scale(sub(exploded.translation, pose.translation), amount),
+                    );
+                }
+                result.push(paint);
+            }
         }
         Ok(result)
     }
@@ -375,73 +410,66 @@ fn labels(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
             .iter()
             .find(|b| b.id == id)
             .context("Label body missing")?;
-        let source = body.mesh.positions.as_chunks::<3>().0;
-        let mut points: Vec<V3> = Vec::new();
-        let mut surface = Vec::new();
-        let mut recess = Vec::new();
-        for f in body.mesh.indices.as_chunks::<3>().0.iter() {
-            let polygon = clip_triangle(f.map(|i| source[i]), lo, hi);
-            if polygon.len() < 3 {
-                continue;
-            }
-            let engraved = polygon.iter().all(|p| (p[2].abs() - 10.92).abs() < 1e-4);
-            let first = points.len();
-            points.extend(polygon);
-            for i in first + 1..points.len() - 1 {
-                let tri = [first, i, i + 1];
-                if engraved {
-                    recess.push(tri);
-                } else {
-                    surface.push(tri);
+        let mut sources = vec![Geometry {
+            points: body.mesh.positions.as_chunks::<3>().0.to_vec(),
+            faces: body.mesh.indices.as_chunks::<3>().0.to_vec(),
+            color: color(id)?,
+        }];
+        sources.extend(assembly.lettering(id));
+        let mut geometry = Vec::new();
+        for source in sources {
+            let mut points = Vec::new();
+            let mut faces = Vec::new();
+            for f in source.faces {
+                let polygon = clip_triangle(f.map(|i| source.points[i]), lo, hi);
+                if polygon.len() < 3 {
+                    continue;
+                }
+                let first = points.len();
+                points.extend(polygon);
+                for i in first + 1..points.len() - 1 {
+                    faces.push([first, i, i + 1]);
                 }
             }
-        }
-        ensure!(
-            !recess.is_empty() && !surface.is_empty(),
-            "Engraved label crop empty: {label}"
-        );
-        if id == 26 {
-            for p in &mut points {
-                *p = [-p[0], p[1], -p[2]];
+            ensure!(!faces.is_empty(), "Flush label crop empty: {label}");
+            if id == 26 {
+                for p in &mut points {
+                    *p = [-p[0], p[1], -p[2]];
+                }
             }
+            geometry.push(Geometry {
+                points,
+                faces,
+                color: source.color,
+            });
         }
         let mut bounds = [[f64::INFINITY; 3], [f64::NEG_INFINITY; 3]];
-        for tri in surface.iter().chain(&recess) {
-            for idx in tri {
-                for a in 0..3 {
-                    bounds[0][a] = bounds[0][a].min(points[*idx][a]);
-                    bounds[1][a] = bounds[1][a].max(points[*idx][a]);
+        for g in &geometry {
+            for tri in &g.faces {
+                for idx in tri {
+                    for (a, &value) in g.points[*idx].iter().enumerate() {
+                        bounds[0][a] = bounds[0][a].min(value);
+                        bounds[1][a] = bounds[1][a].max(value);
+                    }
                 }
             }
         }
         let target = scale(add(bounds[0], bounds[1]), 0.5);
         let mut camera = Camera::new((760, 550), -83.66, 69.3, target, 1.);
         let (mut sx, mut sy) = (0_f64, 0_f64);
-        for p in &points {
+        for p in geometry.iter().flat_map(|g| &g.points) {
             let q = camera.project(*p);
             sx = sx.max((q[0] - 380.).abs());
             sy = sy.max((q[1] - 275.).abs());
         }
         camera.scale = (335. / sx).min(230. / sy);
-        let geometry = [
-            Geometry {
-                points: points.clone(),
-                faces: surface,
-                color: color(id)?,
-            },
-            Geometry {
-                points,
-                faces: recess,
-                color: [95, 65, 24],
-            },
-        ];
         let image = render(&geometry, &camera);
         imageops::replace(&mut sheet, &image, 20 + i as i64 * 800, 95);
         text.draw(&mut sheet, label, 35 + i as i32 * 800, 25, 30., INK);
     }
     text.draw(
         &mut sheet,
-        "Recessed part IDs, screw sizes and insert details",
+        "Flush PETG color regions: part IDs, screw sizes and insert details",
         35,
         665,
         24.,
@@ -479,11 +507,20 @@ fn housing(assembly: &Assembly, text: &Text, id: u64) -> Result<RgbImage> {
         sy = sy.max((q[1] - 450.).abs());
     }
     camera.scale = (640. / sx).min(330. / sy);
-    let geometry = [Geometry {
+    let mut geometry = vec![Geometry {
         points,
         faces: body.mesh.indices.as_chunks::<3>().0.to_vec(),
         color: color(id)?,
     }];
+    let mut paint = assembly.lettering(id);
+    if id == 26 {
+        for g in &mut paint {
+            for p in &mut g.points {
+                *p = [-p[0], p[1], -p[2]];
+            }
+        }
+    }
+    geometry.extend(paint);
     let mut image = render(&geometry, &camera);
     text.draw(
         &mut image,
@@ -917,6 +954,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         scene,
         base,
         exploded: exploded_poses,
+        paint: crate::lettering::load(root)?,
     };
     drop(client);
     fs::create_dir_all(&options.evidence)?;
@@ -969,7 +1007,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         temp.as_file().sync_all()?;
         temp.persist(output.join(name)).map_err(|e| e.error)?;
     }
-    let manifest = json!({"renderer":"Rust cargo xtask gallery","source":"Current native solid_scene meshes and named_view_solution poses; external rasterization/callouts/GIF encoding","model_sha256":archive::sha(&fs::read(root.join("garden-auger.limo"))?),"print_sha256":archive::sha(&fs::read(root.join("print/garden-auger.3mf"))?),"frames_per_animation":FRAMES,"images":hashes});
+    let manifest = json!({"renderer":"Rust cargo xtask gallery","source":"Current native solid_scene meshes and named_view_solution poses, with flush color masks from the saved lettering sketches; external rendering and GIF encoding","model_sha256":archive::sha(&fs::read(root.join("garden-auger.limo"))?),"print_sha256":archive::sha(&fs::read(root.join("print/garden-auger.3mf"))?),"lettering_sha256":archive::sha(&fs::read(root.join("print/lettering.json"))?),"frames_per_animation":FRAMES,"images":hashes});
     fs::write(
         options.evidence.join("manifest.json"),
         serde_json::to_vec_pretty(&manifest)?,
