@@ -41,6 +41,9 @@ pub struct Options {
     /// Slice the same parts with only the global strength settings for comparison.
     #[arg(long)]
     pub no_reinforcement: bool,
+    /// Preserve flush lettering in one PETG color through its surface texture.
+    #[arg(long)]
+    pub single_color_lettering: bool,
     #[arg(long, default_value = ".build/print")]
     pub evidence: PathBuf,
 }
@@ -343,7 +346,7 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
                 points,
                 faces: paint.faces.clone(),
             },
-            BTreeMap::from([("extruder".into(), paint.filament.to_string())]),
+            crate::lettering::print_settings(paint.filament),
         ));
     }
     for (i, (parent, name, modifier, settings)) in regions.into_iter().enumerate() {
@@ -580,6 +583,11 @@ fn invalidate(entries: &mut Entries) -> Result<()> {
 
 pub fn run(root: &Path, options: &Options) -> Result<()> {
     let mut spec = load_spec(root)?;
+    if options.single_color_lettering {
+        for paint in &mut spec.paint {
+            paint.filament = 1;
+        }
+    }
     if options.no_reinforcement {
         spec.zones.clear();
     }
@@ -714,7 +722,7 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
             .iter()
             .find(|p| settings.get("name") == Some(&p.name))
         {
-            BTreeMap::from([("extruder".into(), p.filament.to_string())])
+            crate::lettering::print_settings(p.filament)
         } else {
             spec.local.clone()
         };
@@ -751,6 +759,13 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
                 .iter()
                 .any(|f| f["id"] == 3 && f["main_used_g"].as_f64().is_some_and(|g| g > 0.))),
             "No gray PETG lettering was sliced on the housing plate"
+        );
+    } else if !spec.paint.is_empty() {
+        ensure!(
+            plates[0]["filaments"]
+                .as_array()
+                .is_some_and(|f| !f.is_empty() && f.iter().all(|f| f["id"] == 1)),
+            "Single-color housing plate must use only its base PETG"
         );
     }
     Ok(
@@ -881,14 +896,23 @@ mod tests {
         Ok(())
     }
     #[test]
-    fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_keeps_only_color() -> Result<()> {
+    fn reinforcement_cannot_change_walls_or_surfaces_and_baseline_keeps_lettering() -> Result<()> {
         let mut spec = spec();
-        for key in ["wall_loops", "top_shell_layers", "brim_type", "line_width"] {
+        for key in [
+            "wall_loops",
+            "top_shell_layers",
+            "top_surface_pattern",
+            "brim_type",
+            "line_width",
+        ] {
             spec.local.insert(key.into(), "5".into());
             assert!(spec.validate().is_err(), "{key} must stay global");
             spec.local.remove(key);
         }
         spec.zones.clear();
+        for paint in &mut spec.paint {
+            paint.filament = 1;
+        }
         let source = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
         let baseline = build(source.clone(), &spec)?;
         let config = xml::parse(&baseline[CONFIG])?;
@@ -912,6 +936,12 @@ mod tests {
                 Some("1" | "3")
             ));
             assert!(!meta.contains_key("sparse_infill_density"));
+            assert_eq!(
+                meta.get("top_surface_pattern").map(String::as_str),
+                Some("concentric")
+            );
+            assert!(!meta.contains_key("wall_loops"));
+            assert!(!meta.contains_key("top_shell_layers"));
         }
         for (path, data) in source
             .iter()
@@ -1133,6 +1163,7 @@ mod tests {
             output: Some(output.clone()),
             slicer: Some(lane.path().join("missing-slicer")),
             no_reinforcement: false,
+            single_color_lettering: false,
             evidence: lane.path().join("evidence"),
         };
         assert!(run(&crate::root(), &options).is_err());

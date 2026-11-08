@@ -1,7 +1,7 @@
 {
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "5e08b8a66274f70d6acc4aa2bd271414c675391500600633071376daa24f1ddd",
+    "sha256": "05d858822535cbe2696684428ff84bf3f94abd73ed0f6b1e202263087b1017da",
     "feature_count": 82,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -98,7 +98,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "cb4b9356c2807b070a07e22cfdeb763fd7863587e3571077e9cb56e19ca3baf9",
+    "sha256": "50671f95916b17467f32dd025ab9dcd0d7a0d378e846a87a315fc5197a810aad",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
@@ -106,8 +106,8 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20640.3583984375,
-    "filament_g": 152.25315165519714,
+    "seconds": 20641.2294921875,
+    "filament_g": 152.2471398115158,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -118,9 +118,9 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11258.880859375,
-        "filament_g": 106.19894194602966,
-        "material_cost": 1.9105189656090735
+        "seconds": 11259.751953125,
+        "filament_g": 106.19293010234833,
+        "material_cost": 1.9104108125412462
       },
       {
         "plate": 2,
@@ -129,7 +129,7 @@
         "material_cost": 0.8458404546833037
       }
     ],
-    "total_material_cost": 2.756359420292377,
+    "total_material_cost": 2.75625126722455,
     "cost_basis": "Saved filament prices per kg; filament only"
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
@@ -149,17 +149,19 @@
       "Upper housing labels"
     ],
     "mechanical_model_unchanged": false,
-    "print_project_sha256": "cb4b9356c2807b070a07e22cfdeb763fd7863587e3571077e9cb56e19ca3baf9",
+    "print_project_sha256": "50671f95916b17467f32dd025ab9dcd0d7a0d378e846a87a315fc5197a810aad",
     "images": {
-      "exploded.png": "76364ee44c04a0de6fab3473a6e6e9c53dd0ce63a17a8e3e3919c6a53b2772a3",
-      "exploding-drive.gif": "1165daac7f709fab1e2b47903553463b03067f997a09a3113b402edf1b083892",
-      "housing-lower.png": "b450a190e92b9f6daeceae912d8812e7e46c3f732a8eedb820563b5e1134afeb",
+      "exploded.png": "dbf172024fa457c7679ef97c3e0010bc6c7e8f353672752878b149d176441c2e",
+      "exploding-drive.gif": "03e628be4832ee490108ca8ad18b86300f99ba0b939904230eee43864830040f",
+      "housing-lower.png": "3ff45fe4b52efad9578d10429fb965a421fe28f224ee3f9d4a296f9d441b7925",
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "ee5055f06f5a63fb6ce540e37d535663bdc6d2269bf88ec73ce2a94229053cde",
+      "print-plates.png": "a5fef5c28ad65afa489b5ad48277e5404fe126f0a539a73327c855884dbb58ea",
       "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
-      "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44"
+      "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
+      "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
+      "single-color-housing-labels.png": "7bd70240505dda816e26d7b0bd09137a92d0fa270b73a4be5a0b213cc1b8f4ba"
     },
     "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
     "gallery_stills_and_sampled_frames_visually_reviewed": true
@@ -169,16 +171,17 @@
     "commands": [
       "verify-model",
       "build-print",
-      "gallery"
+      "gallery",
+      "coupons"
     ],
-    "regression_tests_passed": 26,
+    "regression_tests_passed": 27,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "normal_mesh_bytes_preserved": false,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20640.3583984375,
-    "native_slice_filament_g": 152.25315165519714,
+    "native_slice_seconds": 20641.2294921875,
+    "native_slice_filament_g": 152.2471398115158,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -290,7 +293,7 @@
   "locator_revision": {
     "baseline_commit": "cb84f8df9f4663fd6d6b053aca06e3d787800206",
     "all_four_pairs_relocated": true,
-    "nominal_radial_clearance_mm": 0.1,
+    "nominal_radial_clearance_mm": 0.15,
     "previous_pin_height_mm": 2.8,
     "pin_height_mm": 1.8,
     "previous_socket_depth_mm": 3.2,
@@ -412,15 +415,20 @@
     "physical_fit_pending": true,
     "desktop_review_uses_separate_copy": true,
     "native_Bambu_housing_preview_matches_revised_locators": false,
-    "pin_diameter_mm": 4.8,
+    "pin_diameter_mm": 4.7,
     "socket_diameter_mm": 5,
-    "current_fit_revision": "Pin diameter reduced after the owner reported the zero-clearance print was too tight. Positions, sockets, heights and depth are unchanged from 194ccec.",
+    "current_fit_revision": "All four pins match the owner-selected three-notch 4.70 mm coupon. Positions, sockets, heights and depth are unchanged from 194ccec.",
     "fit_feedback": {
       "authority": "Owner physical print feedback",
       "date": "2026-11-08",
       "zero_clearance_fit": "Too tight",
-      "revised_clearance_physical_test": "Pending"
-    }
+      "revised_clearance_physical_test": "Owner selected the three-notch 4.70 mm pin in the 5.00 mm coupon socket. Full housing closure remains pending."
+    },
+    "local_coupon_fit_accepted": true,
+    "selected_coupon_notches": 3,
+    "other_six_native_bodies_preserved_from": "7a79d62244d8557359d39642004c828771a5bc55",
+    "only_changed_manufacturing_mesh": "3D/Objects/object_2.model",
+    "upper_socket_mesh_global_settings_and_modifier_geometry_byte_preserved": true
   },
   "flush_lettering": {
     "owner_feedback": "The recessed writing did not work well on the physical print.",
@@ -443,7 +451,7 @@
     "default_lettering_color": "Gray",
     "default_lettering_filament": 3,
     "same_color_filament": 1,
-    "same_color_visibility": "May blend into the housing; no contrast is promised.",
+    "same_color_visibility": "Concentric surface texture preserves the letter-shaped toolpaths at nominally the same height. Physical readability remains pending.",
     "raised_height_mm": 0,
     "source_configuration": "print/lettering.json",
     "geometry_source": "Closed 0.8 mm grid profiles in the saved CAD sketches, including letter counters",
@@ -481,13 +489,28 @@
     "native_surface_toolpaths_visually_reviewed": true,
     "native_desktop_preview_verified": false,
     "print_intent_saved_in_Limo": false,
-    "color_assignment_location": "External Bambu color-only modifiers; gallery overlays the same source masks",
+    "color_assignment_location": "External Bambu modifiers: contrasting color or same-color surface texture. Gallery overlays contrasting source masks.",
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 19594.4619140625,
-      "filament_g": 149.86935710906982
+      "seconds": 19733.416015625,
+      "filament_g": 149.85500621795654,
+      "path": "print/garden-auger-single-color.3mf",
+      "sha256": "c0e55ad3a5695ea90081c20dcb4f4cfee3e7fd02940aca42cf84a10b1d16af6e"
     },
+    "same_color_mask_settings": {
+      "extruder": "1",
+      "top_surface_pattern": "concentric"
+    },
+    "same_color_failure_fixed": "A plain same-color extruder mask merged away; the surface-pattern difference now retains the letter outlines.",
+    "same_color_housing_surface_paths": [
+      { "object": 102, "surface_z_mm": 10.52, "extruding_segments": 3725 },
+      { "object": 104, "surface_z_mm": 10.52, "extruding_segments": 2904 }
+    ],
+    "coupon_comparison_surface_segments": { "before": 120, "after": 1942 },
+    "same_color_no_geometry_relief": true,
+    "same_color_physical_readability_pending": true,
+    "contrast_toolpath_count_baseline_commit": "baa4af48f32ac1deb6c6bbac9575943af3f2b0d6",
     "owner_feedback_date": "2026-11-08",
     "engraving_depth_mm": 0
   }

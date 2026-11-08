@@ -224,8 +224,8 @@ fn validate_locator_fits(model: &Value) -> Result<()> {
         let pin = radii(id)?.into_iter().fold(0., f64::max);
         let socket = radii(id + 2)?.into_iter().fold(f64::INFINITY, f64::min);
         ensure!(
-            (pin - 2.4).abs() < 1e-7 && (socket - 2.5).abs() < 1e-7,
-            "Locator must retain 0.10 mm radial clearance: pin radius {pin}, socket radius {socket}"
+            (pin - 2.35).abs() < 1e-7 && (socket - 2.5).abs() < 1e-7,
+            "Locator must retain the selected 0.15 mm radial clearance: pin radius {pin}, socket radius {socket}"
         );
     }
     Ok(())
@@ -438,7 +438,7 @@ mod tests {
         {
             let x = e[1]["position"]["x"].as_f64().unwrap();
             if x > -26.9 {
-                e[1]["position"]["x"] = json!(x + 0.1);
+                e[1]["position"]["x"] = json!(x + 0.15);
             }
         }
         assert!(validate_locator_fits(&model).is_err());

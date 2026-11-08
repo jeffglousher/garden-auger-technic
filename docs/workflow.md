@@ -17,6 +17,7 @@ cargo test --workspace --locked
 cargo xtask verify-model
 cargo xtask build-print --output .build/rebuilt.3mf
 cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output .build/sliced.3mf
+cargo xtask build-print --single-color-lettering --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output print/garden-auger-single-color.3mf
 cargo xtask gallery --output .build/gallery-preview
 cargo xtask coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
 ```
@@ -37,7 +38,11 @@ For a small physical trial, use the [fit and lettering coupons](coupons.md). The
 
 `print/lettering.json` selects the two native lettering sketches, a 0.72 mm material depth and PETG filament3 for contrast. The Rust rebuild follows the sketches' closed 0.8 mm stencil grid, preserving letter counters, and makes closed color masks ending exactly at the pocket floors. It checks that every mask vertex sits in its solid parent, with the exposed face on the floor. These regions set only `extruder`; they add no plastic outside the housing and carry no strength or adhesion overrides.
 
-Set `filament` to1 and rebuild for a single-color version. It remains solid and flush, but the text may blend into the surface. The saved model has flat floors and named sketch profiles; color assignment happens in the manufacturing project. The gallery overlays those same manufacturing masks. This does not claim a new Limo CAD face-painting feature.
+Use `--single-color-lettering` for the single-color version, or set `filament` to1 in `print/lettering.json`. A plain same-color assignment was merged away by Bambu on the first coupon. The revised mask also sets `top_surface_pattern` to `concentric`, so its letter boundaries survive as distinct surface paths. The surrounding face keeps its global pattern. There is no geometric recess or raised text; nominal surface height, layer count and wall settings stay unchanged. Texture has less contrast than a second color and still needs a physical readability check.
+
+![Actual sliced surface paths before and after preserving the same-color lettering](images/same-color-lettering.png)
+
+The saved model has flat floors and named sketch profiles; color and surface-texture assignment happen in the manufacturing project. The gallery overlays the contrasting manufacturing masks. This does not claim a Limo CAD face-painting feature. Bambu's [region configuration](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.hpp) supports the local top-surface pattern; the installed native slicer was used to check the actual resulting paths.
 
 ## Local reinforcement
 

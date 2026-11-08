@@ -22,6 +22,16 @@ pub struct Region {
     pub faces: Vec<[usize; 3]>,
 }
 
+/// A color-only mask with the same filament is merged away by Bambu. A local
+/// surface pattern keeps the letter outlines in its toolpaths without relief.
+pub fn print_settings(filament: usize) -> BTreeMap<String, String> {
+    let mut settings = BTreeMap::from([("extruder".into(), filament.to_string())]);
+    if filament == 1 {
+        settings.insert("top_surface_pattern".into(), "concentric".into());
+    }
+    settings
+}
+
 #[derive(Deserialize)]
 struct Settings {
     depth_mm: f64,

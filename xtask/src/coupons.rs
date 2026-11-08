@@ -177,6 +177,14 @@ fn add_locators(model: &mut Value, source: &Value, coupons: &[Coupon]) -> Result
             .unwrap()
             .clone();
         let axis = revolve["axis_origin"]["x"].as_f64().unwrap();
+        let source_diameter = sketch["snapshot"]["entities"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|e| e[1]["type"] == "point")
+            .map(|e| e[1]["position"]["x"].as_f64().unwrap() - axis)
+            .fold(0., f64::max)
+            * 2.;
         let x = c.origin[0] + 9.;
         let diameter = if socket { 5.0 } else { [4.9, 4.8, 4.7][i] };
         map_sketch(&mut sketch, |px, z| {
@@ -184,7 +192,7 @@ fn add_locators(model: &mut Value, source: &Value, coupons: &[Coupon]) -> Result
             [
                 x + radius
                     + if !socket && radius > 0.1 {
-                        (diameter - 4.8) / 2.
+                        (diameter - source_diameter) / 2.
                     } else {
                         0.
                     },
@@ -491,7 +499,9 @@ fn package(
                     "Contrasting-color flush lettering"
                 },
             );
-            metadata(&mut part, "extruder", if i == 4 { "1" } else { "3" });
+            for (key, value) in lettering::print_settings(if i == 4 { 1 } else { 3 }) {
+                metadata(&mut part, &key, &value);
+            }
             obj.children.push(part);
         }
         resource.children.push(components);
@@ -752,6 +762,29 @@ fn validate(result: &Value, entries: &Entries) -> Result<Value> {
         p["warning_message"]
     );
     let code = std::str::from_utf8(archive::required(entries, "Metadata/plate_1.gcode")?)?;
+    let config = xml::parse(archive::required(
+        entries,
+        "Metadata/model_settings.config",
+    )?)?;
+    for (name, filament) in [
+        ("Same-color flush lettering", 1),
+        ("Contrasting-color flush lettering", 3),
+    ] {
+        let meta = config
+            .children
+            .iter()
+            .filter(|n| n.is("object"))
+            .flat_map(|o| &o.children)
+            .find(|p| p.is("part") && p.metadata().get("name").is_some_and(|n| n == name))
+            .context("Native lettering region missing")?
+            .metadata();
+        for (key, value) in lettering::print_settings(filament) {
+            ensure!(
+                meta.get(&key) == Some(&value),
+                "Coupon lettering {name}: {key} did not survive slicing"
+            );
+        }
+    }
     let ids: BTreeSet<_> = code
         .lines()
         .filter_map(|l| l.strip_prefix("; start printing object, unique label id: "))
