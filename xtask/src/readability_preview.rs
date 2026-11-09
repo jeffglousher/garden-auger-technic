@@ -4,19 +4,28 @@ use anyhow::{Context, Result, ensure};
 use serde_json::Value;
 use std::{fs, path::Path};
 
-struct Segment {
-    a: [f64; 2],
-    b: [f64; 2],
-    z: f64,
-    object: u32,
-    filament: usize,
+pub(super) struct Segment {
+    pub a: [f64; 2],
+    pub b: [f64; 2],
+    pub z: f64,
+    pub object: u32,
+    pub filament: usize,
+    pub width: f64,
+    pub feature: String,
+    pub extrusion: f64,
+    pub speed: f64,
 }
-fn paths(code: &str) -> Result<Vec<Segment>> {
+pub(super) fn paths(code: &str) -> Result<Vec<Segment>> {
     let (mut xy, mut z, mut object, mut filament, mut relative, mut previous_e) =
         ([0.; 2], 0., 0, 0, true, 0.);
     let mut feature = "";
+    let (mut width, mut speed) = (0.42, 0.);
     let mut segments = vec![];
     for line in code.lines() {
+        if let Some(v) = line.strip_prefix("; LINE_WIDTH: ") {
+            width = v.parse()?;
+            continue;
+        }
         if let Some(v) = line.strip_prefix("; Z_HEIGHT: ") {
             z = v.parse()?;
             continue;
@@ -81,6 +90,7 @@ fn paths(code: &str) -> Result<Vec<Segment>> {
                 }
                 "I" => ij[0] = v,
                 "J" => ij[1] = v,
+                "F" => speed = v / 60.,
                 _ => {}
             }
         }
@@ -110,13 +120,31 @@ fn paths(code: &str) -> Result<Vec<Segment>> {
                     .collect();
             }
             let mut a = xy;
+            let length: f64 = points
+                .iter()
+                .map(|&b| {
+                    let d = (b[0] - a[0]).hypot(b[1] - a[1]);
+                    a = b;
+                    d
+                })
+                .sum();
+            let mut a = xy;
             for b in points {
+                let fraction = if length > 1e-12 {
+                    (b[0] - a[0]).hypot(b[1] - a[1]) / length
+                } else {
+                    0.
+                };
                 segments.push(Segment {
                     a,
                     b,
                     z,
                     object,
                     filament,
+                    width,
+                    feature: feature.into(),
+                    extrusion: e * fraction,
+                    speed,
                 });
                 a = b;
             }
@@ -131,10 +159,13 @@ pub(super) fn write(
     bases: &[coupons::Coupon],
     labels: &[Label],
     summaries: &[Value],
+    finish_trials: bool,
 ) -> Result<()> {
-    let mut body = String::from(
-        "<h2>Heavy lettering for a 0.4 mm nozzle</h2><p>Real curved outlines, 1.2 mm clear gaps between characters. Left: 7 mm capitals. Right: 8 mm capitals. Both stay nominally flush.</p>",
-    );
+    let mut body = String::from(if finish_trials {
+        "<h2>Local top finish trials</h2><p>Both use 8 mm lettering. Left: 5% extra top-skin flow. Right: the same flow plus background-only ironing. Letter texture is kept.</p>"
+    } else {
+        "<h2>Heavy lettering for a 0.4 mm nozzle</h2><p>Real curved outlines, 1.2 mm clear gaps between characters. Left: 7 mm capitals. Right: 8 mm capitals. Both stay nominally flush.</p>"
+    });
     for (i, (mode, title)) in [
         ("ams", "AMS · contrasting PETG"),
         ("single-color", "Single color · PETG texture"),
@@ -161,8 +192,26 @@ pub(super) fn write(
                 .collect();
             ensure!(selected.len() > 100, "Missing text surface paths");
             let x = j as f64 * 52.;
-            svg.push_str(&format!("<g transform='translate({x},6)'><text x='0' y='-2' font-size='3' fill='currentColor'>{} mm caps</text>",l.cap));
-            for filament in [0, 2] {
+            let heading = if finish_trials {
+                if j == 0 {
+                    "105% top flow".to_owned()
+                } else {
+                    "105% + ironing".to_owned()
+                }
+            } else {
+                format!("{} mm caps", l.cap)
+            };
+            svg.push_str(&format!("<g transform='translate({x},6)'><text x='0' y='-2' font-size='3' fill='currentColor'>{heading}</text>"));
+            let mut groups = std::collections::BTreeMap::<(usize, i64), String>::new();
+            for s in selected.iter().filter(|s| s.feature != "Ironing") {
+                let d = groups
+                    .entry((s.filament, (s.width * 10000.).round() as i64))
+                    .or_default();
+                let a = [s.a[0] - c.origin[0], c.size[1] - (s.a[1] - c.origin[1])];
+                let b = [s.b[0] - c.origin[0], c.size[1] - (s.b[1] - c.origin[1])];
+                d.push_str(&format!("M{:.3},{:.3}L{:.3},{:.3}", a[0], a[1], b[0], b[1]));
+            }
+            for ((filament, width), d) in groups {
                 let color = if mode == "single-color" {
                     "#9c7350"
                 } else if filament == 2 {
@@ -170,13 +219,7 @@ pub(super) fn write(
                 } else {
                     "#e58330"
                 };
-                let mut d = String::new();
-                for s in selected.iter().filter(|s| s.filament == filament) {
-                    let a = [s.a[0] - c.origin[0], c.size[1] - (s.a[1] - c.origin[1])];
-                    let b = [s.b[0] - c.origin[0], c.size[1] - (s.b[1] - c.origin[1])];
-                    d.push_str(&format!("M{:.3},{:.3}L{:.3},{:.3}", a[0], a[1], b[0], b[1]));
-                }
-                svg.push_str(&format!("<path d='{d}' fill='none' stroke='{color}' stroke-width='.16' stroke-linecap='round'/>"));
+                svg.push_str(&format!("<path d='{d}' fill='none' stroke='{color}' stroke-width='{}' stroke-linecap='round'/>",width as f64/10000.));
             }
             svg.push_str(&format!("<text x='0' y='{:.2}' font-size='2.5' fill='currentColor'>{:.1} × {:.1} mm</text></g>",c.size[1]+4.,c.size[0],c.size[1]));
         }
@@ -186,9 +229,9 @@ pub(super) fn write(
             .join(format!("{mode}-surface-paths.svg"))
             .to_string_lossy()
             .replace('\\', "/");
-        body.push_str(&format!("<section><h3>{title}</h3><img src='{image}' alt='Actual native surface paths for 7 and 8 mm lettering coupons'><p class='small'>Native slice: about {} min · {:.1} g. {}</p></section>",(summaries[i]["seconds"].as_f64().unwrap()/60.).round(),summaries[i]["grams"].as_f64().unwrap(),if mode=="ams"{"Orange base with blue letter paths. Map both to PETG."}else{"One filament only. Path direction defines the letters; physical contrast depends on lighting."}));
+        body.push_str(&format!("<section><h3>{title}</h3><img src='{image}' alt='Native surface paths for two lettering coupons'><p class='small'>Native slice: about {} min · {:.1} g. {}</p></section>",(summaries[i]["seconds"].as_f64().unwrap()/60.).round(),summaries[i]["grams"].as_f64().unwrap(),if mode=="ams"{"Orange base with blue letter paths. Map both to PETG."}else{"One filament only. Path direction defines the letters; physical contrast depends on lighting."}));
     }
-    body.push_str("<p class='small'>Extrusion centreline diagrams from Bambu Studio, not photos. No engraving, raised text, supports, brim or tower. Text rows: proposed part ID; M3 × 18 screw; Ø4 × 6.7 pilot; M3 × 5.7 insert. The accepted 4.70 mm locators are unchanged. Housing lettering will follow the printed coupon choice.</p>");
+    body.push_str("<p class='small'>Nominal bead-width footprints from Bambu Studio, not photos or a prediction of PETG reflection. The earlier 0.16 mm centerline diagrams exaggerated gaps; these use each path's actual programmed width. Ironing paths are omitted from this coverage picture. No engraving, raised text, supports, brim or tower. Physical finish still needs a print.</p>");
     let html = format!(
         "<!doctype html><html><head><meta charset='utf-8'><style>body{{font-family:var(--font-sans);color:var(--foreground)}}h2{{font-size:22px;margin:0 0 8px}}h3{{font-size:17px;margin:0 0 12px}}p{{line-height:1.5;margin:8px 0 16px}}section{{padding:16px;border:1px solid var(--border);border-radius:var(--radius);margin:16px 0}}img{{width:100%;height:auto;display:block}}.small{{font-size:13px;color:var(--foreground);opacity:.75;margin-bottom:0}}</style></head><body>{body}</body></html>"
     );
@@ -211,6 +254,10 @@ mod tests {
             "Bad arc/travel filtering"
         );
         ensure!(p.last().unwrap().b == [0., 1.], "Wrong arc end");
+        ensure!(
+            (p.iter().map(|s| s.extrusion).sum::<f64>() - 1.).abs() < 1e-10,
+            "Arc extrusion must be conserved"
+        );
         Ok(())
     }
 }

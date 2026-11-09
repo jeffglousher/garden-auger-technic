@@ -18,7 +18,35 @@ Native local estimates for both plaques together: about **41 minutes /8.0 g** wi
 
 ![Actual single-color surface extrusion paths](images/lettering-coupons-single-color.svg)
 
-These are native extrusion centreline diagrams, not photos of printed PETG. The blue paths are the second material. The single-color diagram uses one color for every path.
+These diagrams use the programmed bead widths from the native G-code, not photos of printed PETG. Earlier diagrams used 0.16 mm centre lines and exaggerated the empty space between beads. The blue paths are the second material. A full-width single-color projection cannot predict the reflected-light contrast of printed texture.
+
+## Top finish trial
+
+These new projects compare two **8 mm** samples of the same geometry:
+
+- [AMS finish coupons](../print/garden-auger-lettering-finish-ams-coupons.3mf).
+- [Single-color finish coupons](../print/garden-auger-lettering-finish-single-color-coupons.3mf).
+- [Editable finish coupon model](../experiments/garden-auger-lettering-finish-coupons.limo).
+
+Both use **1.05 top-surface flow** and **40 mm/s top-surface speed**. The left sample stops there. The right adds background-only ironing at **10% flow, 20 mm/s and 0.15 mm spacing**. Ironing is disabled in the letter masks so their concentric texture survives. Keep the samples in left/right order after lifting them from the bed; their geometry is identical.
+
+The top-flow and speed settings apply to the exposed top-surface role across this coupon plate. They do not increase filament calibration flow, wall flow, bottom flow or internal infill flow. Ironing is an object/region override on the right sample. No extra modifier solid, brim or support geometry is added. The housing projects remain unchanged.
+
+Native G-code was compared with a baseline using identical geometry and materials. On both plaques, the final top-surface raster at Z2.84 receives 5% more extrusion, within G-code rounding. All lower layers and wall extrusion match exactly. The single-color left sample has a 0.0009 mm filament difference in final-plane gap fill; other non-top roles match. The extra ironing paths occur only on the right plaque's final plane; their centre lines avoid letter ink in 0.1 mm samples. This checks the commands, not the physical finish.
+
+Ironing is an extra low-flow pass over supported skin. It can smooth small gaps, but a larger missing region needs a toolpath or geometry fix. Small triangular gaps remain near some letter corners in the programmed bead projection; the flow change is not proof that these will close. Increasing ironing flow too far can leave ridges or drag PETG across the letters. These are print trials, not an accepted housing setting. Bambu's [configuration source](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp) defines these surface and ironing controls.
+
+Native estimates for the pair: **51 minutes /8.9 g** with AMS, or **24 minutes /7.1 g** in one color. Filament at $17.99/kg is approximately **$0.16** and **$0.13**, respectively; mapping colors can change the estimate.
+
+![Finish coupon bead footprints with AMS](images/lettering-finish-ams.svg)
+
+Rebuild these trials with:
+
+```powershell
+cargo xtask lettering-coupons --finish-trials --evidence .build/lettering-finish --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
+```
+
+The ignored evidence includes native baseline slices and an extrusion audit. No printer command is sent. Physical gap closure and text readability remain to be checked.
 
 Rebuild with:
 

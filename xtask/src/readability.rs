@@ -11,6 +11,8 @@ use std::{
 };
 use ttf_parser::{Face, OutlineBuilder};
 
+#[path = "readability_finish.rs"]
+mod finish;
 #[path = "readability_preview.rs"]
 mod preview;
 
@@ -31,6 +33,9 @@ pub struct Options {
     /// Heavy sans-serif TrueType font. Windows defaults to Impact.
     #[arg(long)]
     pub font: Option<PathBuf>,
+    /// Compare top-skin flow with background-only ironing on two 8 mm samples.
+    #[arg(long)]
+    pub finish_trials: bool,
     #[arg(long, default_value = ".build/lettering-readability")]
     pub evidence: PathBuf,
 }
@@ -364,11 +369,13 @@ fn native_sketch(template: &Value, label: &Label, c: &coupons::Coupon, id: u64) 
     sketch
 }
 
-fn slice(
+pub(super) fn slice(
     entries: &archive::Entries,
     slicer: &Path,
     out: &Path,
     filament: usize,
+    finish_trials: bool,
+    caps: &[f64],
 ) -> Result<(archive::Entries, Value)> {
     fs::create_dir_all(out)?;
     let out = crate::native_absolute(out)?;
@@ -443,11 +450,14 @@ fn slice(
             ensure!(meta.get(&k) == Some(&v), "Lettering {k} did not roundtrip");
         }
     }
+    if finish_trials {
+        finish::validate(&config)?;
+    }
     let grams: f64 = filaments
         .iter()
         .map(|f| f["total_used_g"].as_f64().unwrap())
         .sum();
-    let summary = json!({"seconds":p["total_predication"],"grams":grams,"filament_cost":grams*17.99/1000.,"cap_heights_mm":[7.,8.],"character_gap_mm":GAP,"row_gap_mm":ROW_GAP,"mode":if filament==1{"single-color texture"}else{"AMS flush color"},"printer_command_sent":false});
+    let summary = json!({"seconds":p["total_predication"],"grams":grams,"filament_cost":grams*17.99/1000.,"cap_heights_mm":caps,"character_gap_mm":GAP,"row_gap_mm":ROW_GAP,"mode":if filament==1{"single-color texture"}else{"AMS flush color"},"finish_trials":finish_trials,"printer_command_sent":false});
     fs::write(
         out.join("summary.json"),
         serde_json::to_vec_pretty(&summary)?,
@@ -472,13 +482,34 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         )
     })?;
     let face = Face::parse(&data, 0)?;
-    let labels = [label(&face, 7.)?, label(&face, 8.)?];
+    let caps = if options.finish_trials {
+        [8., 8.]
+    } else {
+        [7., 8.]
+    };
+    let labels = [label(&face, caps[0])?, label(&face, caps[1])?];
+    let source_model = if options.finish_trials {
+        "experiments/garden-auger-lettering-finish-coupons.limo"
+    } else {
+        "experiments/garden-auger-lettering-coupons.limo"
+    };
     let mut client = Client::start(options.executable.as_deref())?;
     let mut bases = vec![];
     for (i, label) in labels.iter().enumerate() {
         bases.push(coupons::base(
             &mut client,
-            &format!("{} mm heavy text", label.cap),
+            &if options.finish_trials {
+                format!(
+                    "8 mm - {}",
+                    if i == 0 {
+                        "105 percent top flow"
+                    } else {
+                        "105 percent top flow and background ironing"
+                    }
+                )
+            } else {
+                format!("{} mm heavy text", label.cap)
+            },
             [70. + i as f64 * 60., 70.],
             label.size,
             HEIGHT,
@@ -533,10 +564,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         "model.json".into(),
         serde_json::to_vec(&coupons::canonical(&mut client)?)?,
     );
-    archive::write(
-        &root.join("experiments/garden-auger-lettering-coupons.limo"),
-        &cad,
-    )?;
+    archive::write(&root.join(source_model), &cad)?;
     let mut summaries = vec![];
     for (mode, filament) in [("ams", 3), ("single-color", 1)] {
         let paints = labels
@@ -544,14 +572,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
             .enumerate()
             .map(|(i, l)| (i, (&l.region, filament)))
             .collect();
-        let mut entries = coupons::package(
-            root,
-            &mut client,
-            &bases,
-            &paints,
-            &out,
-            "experiments/garden-auger-lettering-coupons.limo",
-        )?;
+        let mut entries = coupons::package(root, &mut client, &bases, &paints, &out, source_model)?;
         let mut model = xml::parse(&entries["3D/3dmodel.model"])?;
         model
             .children
@@ -565,15 +586,44 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
             for m in p.children.iter_mut().filter(|n| {
                 n.is("metadata") && n.attrs.get("key").is_some_and(|k| k == "plater_name")
             }) {
-                m.attrs
-                    .insert("value".into(), format!("{mode} - 7 and 8 mm heavy text"));
+                m.attrs.insert(
+                    "value".into(),
+                    format!(
+                        "{mode} - {}",
+                        if options.finish_trials {
+                            "8 mm top finish trials"
+                        } else {
+                            "7 and 8 mm heavy text"
+                        }
+                    ),
+                );
             }
         }
         entries.insert(
             "Metadata/model_settings.config".into(),
             xml::encode(&metadata),
         );
-        let (sliced, summary) = slice(&entries, &options.slicer, &out.join(mode), filament)?;
+        if options.finish_trials {
+            finish::apply(&mut entries)?;
+        }
+        let (sliced, mut summary) = slice(
+            &entries,
+            &options.slicer,
+            &out.join(mode),
+            filament,
+            options.finish_trials,
+            &caps,
+        )?;
+        if options.finish_trials {
+            summary["finish_audit"] = finish::audit(
+                &entries,
+                &sliced,
+                &options.slicer,
+                &out.join(mode).join("baseline"),
+                filament,
+                &labels,
+            )?;
+        }
         for (name, data) in sliced {
             if name.starts_with("Metadata/")
                 && (name.ends_with(".png") || name == "Metadata/slice_info.config")
@@ -581,7 +631,10 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
                 entries.insert(name, data);
             }
         }
-        let path = root.join(format!("print/garden-auger-lettering-{mode}-coupons.3mf"));
+        let path = root.join(format!(
+            "print/garden-auger-lettering-{}{mode}-coupons.3mf",
+            if options.finish_trials { "finish-" } else { "" }
+        ));
         archive::write(&path, &entries)?;
         summaries.push(summary);
         println!("{}", path.display());
@@ -591,7 +644,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         out.join("summary.json"),
         serde_json::to_vec_pretty(&report)?,
     )?;
-    preview::write(&out, &bases, &labels, &summaries)?;
+    preview::write(&out, &bases, &labels, &summaries, options.finish_trials)?;
     println!("{}", serde_json::to_string(&report)?);
     Ok(())
 }

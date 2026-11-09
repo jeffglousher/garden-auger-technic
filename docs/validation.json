@@ -1,4 +1,105 @@
 {
+  "lettering_finish_trials": {
+    "cap_height_mm": 8,
+    "coupon_size_mm": [
+      34.628536133415686,
+      39.52612723903644,
+      2.72
+    ],
+    "top_surface_flow_ratio": 1.05,
+    "top_surface_speed_mm_s": 40,
+    "top_flow_scope": "Top surface role across coupon plate; no production changes",
+    "right_coupon_ironing": {
+      "spacing_mm": 0.15,
+      "speed_mm_s": 20,
+      "flow_percent": 10,
+      "type": "top"
+    },
+    "letter_ironing": "disabled",
+    "ironing_ink_avoidance_sample_mm": 0.1,
+    "native_slicer": "Bambu Studio 02.08.02.61",
+    "nominal_corner_gaps_remain": true,
+    "physical_gap_closure_confirmed": false,
+    "physical_readability_confirmed": false,
+    "production_model_changed": false,
+    "printer_command_sent": false,
+    "slices": [
+      {
+        "mode": "AMS flush color",
+        "seconds": 3033.2099609375,
+        "grams": 8.924762845039368,
+        "filament_cost_usd": 0.1605564835822582,
+        "top_role_extrusion": [
+          {
+            "object_id": 102,
+            "top_z_mm": 2.84,
+            "top_extrusion_ratio": 1.0500007752982816,
+            "other_roles_min_ratio": 1,
+            "other_roles_max_ratio": 1,
+            "ironing_segments": 0,
+            "ironing_extrusion_mm": 0
+          },
+          {
+            "object_id": 104,
+            "top_z_mm": 2.84,
+            "top_extrusion_ratio": 1.0500007752982816,
+            "other_roles_min_ratio": 1,
+            "other_roles_max_ratio": 1,
+            "ironing_segments": 3549,
+            "ironing_extrusion_mm": 7.376329999999961
+          }
+        ]
+      },
+      {
+        "mode": "single-color texture",
+        "seconds": 1457.883056640625,
+        "grams": 7.109613418579102,
+        "filament_cost_usd": 0.12790194540023803,
+        "top_role_extrusion": [
+          {
+            "object_id": 102,
+            "top_z_mm": 2.84,
+            "top_extrusion_ratio": 1.0500020168701962,
+            "other_roles_min_ratio": 1,
+            "other_roles_max_ratio": 1.001393512425486,
+            "ironing_segments": 0,
+            "ironing_extrusion_mm": 0
+          },
+          {
+            "object_id": 104,
+            "top_z_mm": 2.84,
+            "top_extrusion_ratio": 1.0500020168701962,
+            "other_roles_min_ratio": 1,
+            "other_roles_max_ratio": 1,
+            "ironing_segments": 3549,
+            "ironing_extrusion_mm": 7.376339999999966
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "experiments/garden-auger-lettering-finish-coupons.limo",
+        "sha256": "0be2196e2e03d0d7c72747c0f620bf1baec37bebc09f1dbe040cf3c07ec6b09c"
+      },
+      {
+        "path": "print/garden-auger-lettering-finish-ams-coupons.3mf",
+        "sha256": "33f0f07a4a83802f274329ad19ba7155891339e4bc9fa8e16e100b8b6250e6c2"
+      },
+      {
+        "path": "print/garden-auger-lettering-finish-single-color-coupons.3mf",
+        "sha256": "d4979d3ac14ca57b8bef36d5d7887a1e9136f9442fe81686e7247d898973334f"
+      },
+      {
+        "path": "docs/images/lettering-finish-ams.svg",
+        "sha256": "32abca0053fd206619fc74921e6d0a9004c0da18ef8cdf83f9b3057e83e666b6"
+      },
+      {
+        "path": "docs/images/lettering-finish-single-color.svg",
+        "sha256": "5150e239fead1e6697cc29f14ef675e3d15efb3c6c017328c5a9daa56fe1d715"
+      }
+    ]
+  },
   "lettering_coupon_trials": {
     "curve_tolerance_mm": 0.015,
     "font_file": "impact.ttf",
@@ -75,11 +176,11 @@
         "path": "print/garden-auger-lettering-single-color-coupons.3mf"
       },
       {
-        "sha256": "89d5e7402727a61876377f54ccef9d632941905f51f6fcb0ee5631100272cf49",
+        "sha256": "e19e71f2623bd187851feeb7f459131ac6e6a81762a7eef4d684bc1fe3e2d6e0",
         "path": "docs/images/lettering-coupons-ams.svg"
       },
       {
-        "sha256": "7b316c6604c05f517b7f3c62d80e9a53cd81af118fc4637289db36df6b17f522",
+        "sha256": "a5992fd2accb6b45eb5bfb93124c391a92d6c72d73b3bc052be6cca695cabf1d",
         "path": "docs/images/lettering-coupons-single-color.svg"
       }
     ]
