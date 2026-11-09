@@ -19,6 +19,8 @@
     "ironing_ink_avoidance_sample_mm": 0.1,
     "native_slicer": "Bambu Studio 02.08.02.61",
     "nominal_corner_gaps_remain": true,
+    "owner_reports_holes_in_printed_petg": true,
+    "reported_print_file_identified": false,
     "physical_gap_closure_confirmed": false,
     "physical_readability_confirmed": false,
     "production_model_changed": false,

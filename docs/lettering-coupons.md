@@ -22,6 +22,8 @@ These diagrams use the programmed bead widths from the native G-code, not photos
 
 ## Top finish trial
 
+The owner confirmed that the reported holes are in **printed PETG**. The diagram correction does not explain that physical defect. The exact printed file has not been identified, and these new finish trials have no confirmed physical result yet.
+
 These new projects compare two **8 mm** samples of the same geometry:
 
 - [AMS finish coupons](../print/garden-auger-lettering-finish-ams-coupons.3mf).
