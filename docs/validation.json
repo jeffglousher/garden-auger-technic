@@ -1,106 +1,51 @@
 {
-  "lettering_finish_trials": {
-    "cap_height_mm": 8,
-    "coupon_size_mm": [
-      34.628536133415686,
-      39.52612723903644,
-      2.72
+  "surface_baseline": {
+    "settings_source": "print/reinforcement.json",
+    "baseline_choice": "Five solid top layers within Bambu's recommended 4–6 range; normal top flow and ironing off",
+    "layer_height_mm": 0.24,
+    "top_shell_layers": 5,
+    "top_shell_thickness_mm": 1.2,
+    "top_surface_flow_ratio": 1,
+    "ironing": false,
+    "filament_flow_calibration_values_preserved": true,
+    "geometry_preserved_from": "73a8dc0",
+    "normal_part_meshes": [
+      {
+        "path": "3D/Objects/object_1.model",
+        "sha256": "5f3475463ad902530e25d90d99d579562d5cebe5411607dcfeaec1d5847132b6"
+      },
+      {
+        "path": "3D/Objects/object_2.model",
+        "sha256": "dc17e9e294866493e42c73fbbfa2ed61f6d2cb3a63adaa011e458595963e9363"
+      },
+      {
+        "path": "3D/Objects/object_3.model",
+        "sha256": "7f4e84efa35d42dfdfdbb05ad252c19010799710a49558abc992f440a4b7a206"
+      },
+      {
+        "path": "3D/Objects/object_4.model",
+        "sha256": "109eb350218ab7d0e4e81ab9052eb1ac49edfd8cacf41aed70f3444e253e8363"
+      },
+      {
+        "path": "3D/Objects/object_5.model",
+        "sha256": "7594b4addbb51a453469daa040c545be3fa13a0b5ce06bbb379fa79c2e196874"
+      }
     ],
-    "top_surface_flow_ratio": 1.05,
-    "top_surface_speed_mm_s": 40,
-    "top_flow_scope": "Top surface role across coupon plate; no production changes",
-    "right_coupon_ironing": {
-      "spacing_mm": 0.15,
-      "speed_mm_s": 20,
-      "flow_percent": 10,
-      "type": "top"
-    },
-    "letter_ironing": "disabled",
-    "ironing_ink_avoidance_sample_mm": 0.1,
-    "native_slicer": "Bambu Studio 02.08.02.61",
-    "nominal_corner_gaps_remain": true,
     "owner_reports_holes_in_printed_petg": true,
-    "reported_print_file_identified": false,
+    "physical_flow_calibration_verified": false,
     "physical_gap_closure_confirmed": false,
-    "physical_readability_confirmed": false,
-    "production_model_changed": false,
-    "printer_command_sent": false,
-    "slices": [
-      {
-        "mode": "AMS flush color",
-        "seconds": 3033.2099609375,
-        "grams": 8.924762845039368,
-        "filament_cost_usd": 0.1605564835822582,
-        "top_role_extrusion": [
-          {
-            "object_id": 102,
-            "top_z_mm": 2.84,
-            "top_extrusion_ratio": 1.0500007752982816,
-            "other_roles_min_ratio": 1,
-            "other_roles_max_ratio": 1,
-            "ironing_segments": 0,
-            "ironing_extrusion_mm": 0
-          },
-          {
-            "object_id": 104,
-            "top_z_mm": 2.84,
-            "top_extrusion_ratio": 1.0500007752982816,
-            "other_roles_min_ratio": 1,
-            "other_roles_max_ratio": 1,
-            "ironing_segments": 3549,
-            "ironing_extrusion_mm": 7.376329999999961
-          }
-        ]
-      },
-      {
-        "mode": "single-color texture",
-        "seconds": 1457.883056640625,
-        "grams": 7.109613418579102,
-        "filament_cost_usd": 0.12790194540023803,
-        "top_role_extrusion": [
-          {
-            "object_id": 102,
-            "top_z_mm": 2.84,
-            "top_extrusion_ratio": 1.0500020168701962,
-            "other_roles_min_ratio": 1,
-            "other_roles_max_ratio": 1.001393512425486,
-            "ironing_segments": 0,
-            "ironing_extrusion_mm": 0
-          },
-          {
-            "object_id": 104,
-            "top_z_mm": 2.84,
-            "top_extrusion_ratio": 1.0500020168701962,
-            "other_roles_min_ratio": 1,
-            "other_roles_max_ratio": 1,
-            "ironing_segments": 3549,
-            "ironing_extrusion_mm": 7.376339999999966
-          }
-        ]
-      }
+    "nozzle_setting_mm": [
+      0.4,
+      0.4
     ],
-    "artifacts": [
-      {
-        "path": "experiments/garden-auger-lettering-finish-coupons.limo",
-        "sha256": "0be2196e2e03d0d7c72747c0f620bf1baec37bebc09f1dbe040cf3c07ec6b09c"
-      },
-      {
-        "path": "print/garden-auger-lettering-finish-ams-coupons.3mf",
-        "sha256": "33f0f07a4a83802f274329ad19ba7155891339e4bc9fa8e16e100b8b6250e6c2"
-      },
-      {
-        "path": "print/garden-auger-lettering-finish-single-color-coupons.3mf",
-        "sha256": "d4979d3ac14ca57b8bef36d5d7887a1e9136f9442fe81686e7247d898973334f"
-      },
-      {
-        "path": "docs/images/lettering-finish-ams.svg",
-        "sha256": "32abca0053fd206619fc74921e6d0a9004c0da18ef8cdf83f9b3057e83e666b6"
-      },
-      {
-        "path": "docs/images/lettering-finish-single-color.svg",
-        "sha256": "5150e239fead1e6697cc29f14ef675e3d15efb3c6c017328c5a9daa56fe1d715"
-      }
-    ]
+    "actual_nozzle_size_verified": false,
+    "physical_readability_confirmed": false,
+    "retired_finish_comparison_commit": "6b7b449",
+    "guidance_urls": [
+      "https://csm.bblcdn.com/hub/eff78da43720461787dc8bbe5fa0372d.pdf#page=65",
+      "https://csm.bblcdn.com/hub/eff78da43720461787dc8bbe5fa0372d.pdf#page=141"
+    ],
+    "printer_command_sent": false
   },
   "lettering_coupon_trials": {
     "curve_tolerance_mm": 0.015,
@@ -148,7 +93,7 @@
         "mode": "AMS flush color",
         "printer_command_sent": false,
         "row_gap_mm": 1.6,
-        "seconds": 2479.26416015625
+        "seconds": 2479.532958984375
       },
       {
         "cap_heights_mm": [
@@ -156,12 +101,12 @@
           8
         ],
         "character_gap_mm": 1.2,
-        "filament_cost": 0.11540750492572784,
-        "grams": 6.4150919914245605,
+        "filament_cost": 0.11540777085304259,
+        "grams": 6.415106773376465,
         "mode": "single-color texture",
         "printer_command_sent": false,
         "row_gap_mm": 1.6,
-        "seconds": 1058.352294921875
+        "seconds": 1058.2008056640625
       }
     ],
     "artifacts": [
@@ -170,19 +115,19 @@
         "path": "experiments/garden-auger-lettering-coupons.limo"
       },
       {
-        "sha256": "0952d195ce8ab337bc910a55a590bfbd75a044b4192e3ed9c1fd666b8a8d84e3",
+        "sha256": "cafb642ed2a804d9268521ae9ce17a85a95c444775bdfea8885649b606c283f1",
         "path": "print/garden-auger-lettering-ams-coupons.3mf"
       },
       {
-        "sha256": "81c8dcada27dee57f70c2ea48002119910e6ecc400e8aa0c782096d723c79184",
+        "sha256": "b26a2262bc9a27ddf563980f2ec659e5954aa7f4fd50852507abedaeac8b3d6a",
         "path": "print/garden-auger-lettering-single-color-coupons.3mf"
       },
       {
-        "sha256": "e19e71f2623bd187851feeb7f459131ac6e6a81762a7eef4d684bc1fe3e2d6e0",
+        "sha256": "e4332a5bcf6282a9353c8187e6bcbabfb64d447141a0e48dadd429e5bf388f6d",
         "path": "docs/images/lettering-coupons-ams.svg"
       },
       {
-        "sha256": "a5992fd2accb6b45eb5bfb93124c391a92d6c72d73b3bc052be6cca695cabf1d",
+        "sha256": "316b2c803cbe4d5b0b04155f96a4b853570a98f9dc5f6074ccd397d2475960ab",
         "path": "docs/images/lettering-coupons-single-color.svg"
       }
     ]
@@ -286,7 +231,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "50671f95916b17467f32dd025ab9dcd0d7a0d378e846a87a315fc5197a810aad",
+    "sha256": "b22c2067c5f0325db4652daa6bcc5a7486635fcc95f7bffb3bff90f02f47d990",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
@@ -294,9 +239,9 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20641.2294921875,
-    "filament_g": 152.2471398115158,
-    "normal_meshes_preserved": false,
+    "seconds": 20640.8896484375,
+    "filament_g": 152.247185587883,
+    "normal_meshes_preserved": true,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
     "printer_command_sent": false,
@@ -306,19 +251,20 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11259.751953125,
-        "filament_g": 106.19293010234833,
-        "material_cost": 1.9104108125412462
+        "seconds": 11259.3134765625,
+        "filament_g": 106.19292247295381,
+        "material_cost": 1.9104106752884387
       },
       {
         "plate": 2,
-        "seconds": 9381.4775390625,
-        "filament_g": 46.05420970916748,
-        "material_cost": 0.8458404546833037
+        "seconds": 9381.576171875,
+        "filament_g": 46.0542631149292,
+        "material_cost": 0.8458414154529571
       }
     ],
-    "total_material_cost": 2.75625126722455,
-    "cost_basis": "Saved filament prices per kg; filament only"
+    "total_material_cost": 2.7562520907413957,
+    "cost_basis": "Saved filament prices per kg; filament only",
+    "normal_meshes_preserved_from": "73a8dc0"
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
   "accepted_drive_connection": {
@@ -336,8 +282,8 @@
       "Lower housing labels",
       "Upper housing labels"
     ],
-    "mechanical_model_unchanged": false,
-    "print_project_sha256": "50671f95916b17467f32dd025ab9dcd0d7a0d378e846a87a315fc5197a810aad",
+    "mechanical_model_unchanged": true,
+    "print_project_sha256": "b22c2067c5f0325db4652daa6bcc5a7486635fcc95f7bffb3bff90f02f47d990",
     "images": {
       "exploded.png": "dbf172024fa457c7679ef97c3e0010bc6c7e8f353672752878b149d176441c2e",
       "exploding-drive.gif": "03e628be4832ee490108ca8ad18b86300f99ba0b939904230eee43864830040f",
@@ -367,14 +313,14 @@
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
-    "normal_mesh_bytes_preserved": false,
+    "normal_mesh_bytes_preserved": true,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20641.2294921875,
-    "native_slice_filament_g": 152.2471398115158,
+    "native_slice_seconds": 20640.8896484375,
+    "native_slice_filament_g": 152.247185587883,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
-    "cad_and_print_geometry_unchanged": false,
+    "cad_and_print_geometry_unchanged": true,
     "platform_tested": "Windows x64",
     "rust_toolchain_tested": "1.99.1",
     "namespace_regressions": {
@@ -682,10 +628,10 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 19733.416015625,
-      "filament_g": 149.85500621795654,
+      "seconds": 19733.4169921875,
+      "filament_g": 149.85495281219482,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "c0e55ad3a5695ea90081c20dcb4f4cfee3e7fd02940aca42cf84a10b1d16af6e"
+      "sha256": "bf338563f3315a0990073e3ff2239e2ce7e74df4c4a94a0f90be0df441e26a05"
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -693,10 +639,21 @@
     },
     "same_color_failure_fixed": "A plain same-color extruder mask merged away; the surface-pattern difference now retains the letter outlines.",
     "same_color_housing_surface_paths": [
-      { "object": 102, "surface_z_mm": 10.52, "extruding_segments": 3725 },
-      { "object": 104, "surface_z_mm": 10.52, "extruding_segments": 2904 }
+      {
+        "object": 102,
+        "surface_z_mm": 10.52,
+        "extruding_segments": 3725
+      },
+      {
+        "object": 104,
+        "surface_z_mm": 10.52,
+        "extruding_segments": 2904
+      }
     ],
-    "coupon_comparison_surface_segments": { "before": 120, "after": 1942 },
+    "coupon_comparison_surface_segments": {
+      "before": 120,
+      "after": 1942
+    },
     "same_color_no_geometry_relief": true,
     "same_color_physical_readability_pending": true,
     "contrast_toolpath_count_baseline_commit": "baa4af48f32ac1deb6c6bbac9575943af3f2b0d6",

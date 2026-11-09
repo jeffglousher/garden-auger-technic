@@ -685,6 +685,13 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
         }
     }
     let config = xml::parse(archive::required(sliced, CONFIG)?)?;
+    let process: Value = serde_json::from_slice(archive::required(sliced, SETTINGS)?)?;
+    for (key, expected) in &spec.global {
+        ensure!(
+            process[key].as_str() == Some(expected),
+            "Native global setting changed: {key}"
+        );
+    }
     let mods: Vec<_> = config
         .children
         .iter()
