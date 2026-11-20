@@ -28,7 +28,11 @@ The saved 3MF includes the color assignments; STLs contain solid geometry withou
 
 ![Single-color lettering paths retained on both housing halves](images/single-color-housing-labels.png)
 
-The simple diameter38 x3 mm rotating shield has a 1.6 mm nominal rear gap; it is a noncontact dirt deflector whose soil performance remains to be tested.
+The auger is 240 mm overall, 95.3 mm longer than the previous print. The extended flight keeps a 14 mm pitch and 1.2 mm axial blade thickness. Shallow 0.6 mm flats follow the taper along its upper and lower flight tips to give supports a planar contact land. The flight remains above the bed and still needs support.
+
+The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
+
+![240 mm auger and shallow print flats](images/auger-240.png)
 
 ![Actual Bambu yellow and gray extrusion paths through the flush lettering](images/sliced-labels.png)
 

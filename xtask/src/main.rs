@@ -2,6 +2,7 @@ mod archive;
 mod cad;
 mod coupons;
 mod gallery;
+mod lengthen;
 mod lettering;
 mod print;
 mod readability;
@@ -34,6 +35,8 @@ enum Task {
     Coupons(coupons::Options),
     /// Compare larger heavy curved lettering with AMS or a single PETG color.
     LetteringCoupons(readability::Options),
+    /// Build a longer auger candidate without changing its housing interfaces.
+    LengthenAuger(lengthen::Options),
 }
 
 fn root() -> PathBuf {
@@ -50,6 +53,7 @@ fn main() -> Result<()> {
         Task::Gallery(options) => gallery::run(&root(), &options),
         Task::Coupons(options) => coupons::run(&root(), &options),
         Task::LetteringCoupons(options) => readability::run(&root(), &options),
+        Task::LengthenAuger(options) => lengthen::run(&root(), &options),
     }
 }
 
