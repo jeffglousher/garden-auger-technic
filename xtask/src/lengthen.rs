@@ -205,7 +205,8 @@ fn install(root: &Path, out: &Path) -> Result<()> {
             "1 0 0 0 0 -1 0 1 0 484.194716094 41.9894338304 4.9".into(),
         );
         entries.insert("3D/3dmodel.model".into(), xml::encode(&model));
-        // Rebuild removes stale previews and sliced estimates. Native slicing follows separately.
+        // Geometry is new; an interrupted workflow must not display prior slice estimates.
+        crate::print::invalidate(&mut entries)?;
         let staged = out.join(Path::new(path).file_name().unwrap());
         archive::write(&staged, &entries)?;
     }
