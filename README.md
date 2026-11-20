@@ -9,7 +9,7 @@ A printable housing for a continuous-rotation servo, with an auger for digging i
 - A two-piece housing that holds the servo and drive assembly, secured with four screws.
 - Rounded handles with flat bases for printing.
 - A square drive adapter and replaceable wear bushing.
-- A rotating dirt shield at the housing opening.
+- A 240 mm auger with a rotating dirt shield and shallow flats for support contact.
 - Flush color lettering for part labels and hardware details inside the housing.
 - Reinforcement around the screw holes and drive adapter.
 

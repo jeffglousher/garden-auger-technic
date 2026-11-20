@@ -8,7 +8,6 @@
     "top_surface_flow_ratio": 1,
     "ironing": false,
     "filament_flow_calibration_values_preserved": true,
-    "geometry_preserved_from": "73a8dc0",
     "normal_part_meshes": [
       {
         "path": "3D/Objects/object_1.model",
@@ -17,10 +16,6 @@
       {
         "path": "3D/Objects/object_2.model",
         "sha256": "dc17e9e294866493e42c73fbbfa2ed61f6d2cb3a63adaa011e458595963e9363"
-      },
-      {
-        "path": "3D/Objects/object_3.model",
-        "sha256": "7f4e84efa35d42dfdfdbb05ad252c19010799710a49558abc992f440a4b7a206"
       },
       {
         "path": "3D/Objects/object_4.model",
@@ -45,7 +40,9 @@
       "https://csm.bblcdn.com/hub/eff78da43720461787dc8bbe5fa0372d.pdf#page=65",
       "https://csm.bblcdn.com/hub/eff78da43720461787dc8bbe5fa0372d.pdf#page=141"
     ],
-    "printer_command_sent": false
+    "printer_command_sent": false,
+    "unaffected_meshes_preserved_from": "73a8dc0",
+    "auger_geometry_revised": true
   },
   "lettering_coupon_trials": {
     "curve_tolerance_mm": 0.015,
@@ -134,8 +131,8 @@
   },
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "05d858822535cbe2696684428ff84bf3f94abd73ed0f6b1e202263087b1017da",
-    "feature_count": 82,
+    "sha256": "a101ed25b3aa605cd5889f5838e4105b5d0eb77a1ae82ceb418e9fb701223e7e",
+    "feature_count": 86,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
     "unused_sketches_removed": 6,
@@ -156,13 +153,13 @@
       "15": [
         [
           -19,
-          -1,
-          -19
+          -96.3000030517578,
+          -18.399999618530273
         ],
         [
           19,
           139.5,
-          19
+          18.399999618530273
         ]
       ],
       "26": [
@@ -191,14 +188,14 @@
       ],
       "90": [
         [
-          -15.134180068969728,
-          -5.199999809265137,
-          -14.95073127746582
+          -15.41425895690918,
+          -100.5,
+          -14.738765716552734
         ],
         [
-          15.502817153930664,
-          110,
-          15.31826877593994
+          15.224154472351074,
+          103.9000015258789,
+          14.899999618530272
         ]
       ],
       "216": [
@@ -231,7 +228,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "b22c2067c5f0325db4652daa6bcc5a7486635fcc95f7bffb3bff90f02f47d990",
+    "sha256": "f9f4172a5a6ccdd775444aedbca4ef0a94f0ed7c171b625c397605ce70ed6c7d",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
@@ -239,9 +236,9 @@
     "native_slicer_version": "02.08.02.61",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 20640.8896484375,
-    "filament_g": 152.247185587883,
-    "normal_meshes_preserved": true,
+    "seconds": 23611.3427734375,
+    "filament_g": 174.24894988536835,
+    "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
     "printer_command_sent": false,
@@ -251,20 +248,21 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11259.3134765625,
-        "filament_g": 106.19292247295381,
-        "material_cost": 1.9104106752884387
+        "seconds": 11258.8525390625,
+        "filament_g": 106.19206035137177,
+        "material_cost": 1.910395165721178
       },
       {
         "plate": 2,
-        "seconds": 9381.576171875,
-        "filament_g": 46.0542631149292,
-        "material_cost": 0.8458414154529571
+        "seconds": 12352.490234375,
+        "filament_g": 68.05688953399658,
+        "material_cost": 1.2519638727092741
       }
     ],
-    "total_material_cost": 2.7562520907413957,
+    "total_material_cost": 3.162359038430452,
     "cost_basis": "Saved filament prices per kg; filament only",
-    "normal_meshes_preserved_from": "73a8dc0"
+    "changed_normal_mesh": "3D/Objects/object_3.model",
+    "other_four_normal_meshes_byte_preserved": true
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
   "accepted_drive_connection": {
@@ -282,23 +280,24 @@
       "Lower housing labels",
       "Upper housing labels"
     ],
-    "mechanical_model_unchanged": true,
-    "print_project_sha256": "b22c2067c5f0325db4652daa6bcc5a7486635fcc95f7bffb3bff90f02f47d990",
+    "print_project_sha256": "f9f4172a5a6ccdd775444aedbca4ef0a94f0ed7c171b625c397605ce70ed6c7d",
     "images": {
-      "exploded.png": "dbf172024fa457c7679ef97c3e0010bc6c7e8f353672752878b149d176441c2e",
-      "exploding-drive.gif": "03e628be4832ee490108ca8ad18b86300f99ba0b939904230eee43864830040f",
+      "exploded.png": "41581cd803bcbd518cefe1988e29689e377ee61210d1ffbedde70562fcbd7359",
+      "exploding-drive.gif": "ed5bf9c651543db66c631d04cbb39a5a5b215ebabf679e1b38682319f7256109",
       "housing-lower.png": "3ff45fe4b52efad9578d10429fb965a421fe28f224ee3f9d4a296f9d441b7925",
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "a5fef5c28ad65afa489b5ad48277e5404fe126f0a539a73327c855884dbb58ea",
-      "turntable.gif": "e5eb33fe577773a8fd744207d69025dc23ed8981f193680c48fc642059de1c29",
+      "print-plates.png": "aa613028ee9e8d57864807958076218c1b412b3d85aaeef0046786089cb61791",
+      "turntable.gif": "66ae62dedb9ec79afe5b3a57be6b7584d8b35277befb48d8cc22b728ab3fb44e",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
-      "single-color-housing-labels.png": "7bd70240505dda816e26d7b0bd09137a92d0fa270b73a4be5a0b213cc1b8f4ba"
+      "single-color-housing-labels.png": "7bd70240505dda816e26d7b0bd09137a92d0fa270b73a4be5a0b213cc1b8f4ba",
+      "auger-240.png": "7417e440ecc2f6ee639981c1a32bb092f6d3fdb46deb05992a0f03fad828511d"
     },
     "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
-    "gallery_stills_and_sampled_frames_visually_reviewed": true
+    "gallery_stills_and_sampled_frames_visually_reviewed": true,
+    "rendering_preserves_source_model": true
   },
   "tooling": {
     "implementation": "Rust cargo xtask; no Python runtime",
@@ -307,20 +306,20 @@
       "build-print",
       "gallery",
       "coupons",
-      "lettering-coupons"
+      "lettering-coupons",
+      "lengthen-auger"
     ],
-    "regression_tests_passed": 30,
+    "regression_tests_passed": 32,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
-    "normal_mesh_bytes_preserved": true,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 20640.8896484375,
-    "native_slice_filament_g": 152.247185587883,
+    "native_slice_seconds": 23611.3427734375,
+    "native_slice_filament_g": 174.24894988536835,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
-    "cad_and_print_geometry_unchanged": true,
+    "cad_and_print_geometry_unchanged": false,
     "platform_tested": "Windows x64",
     "rust_toolchain_tested": "1.99.1",
     "namespace_regressions": {
@@ -340,7 +339,8 @@
           "filament_g": 160.4544636644423
         }
       ]
-    }
+    },
+    "build_print_preserves_input_normal_mesh_bytes": true
   },
   "identity": {
     "application": "Limo CAD",
@@ -628,10 +628,10 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 19733.4169921875,
-      "filament_g": 149.85495281219482,
+      "seconds": 22699.40625,
+      "filament_g": 171.85466480255127,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "bf338563f3315a0990073e3ff2239e2ce7e74df4c4a94a0f90be0df441e26a05"
+      "sha256": "067ac5d84eaa9ca7da57cad34a12acf79c2f2e3d899c70a6ae48641aee52b301"
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -659,5 +659,45 @@
     "contrast_toolpath_count_baseline_commit": "baa4af48f32ac1deb6c6bbac9575943af3f2b0d6",
     "owner_feedback_date": "2026-11-08",
     "engraving_depth_mm": 0
+  },
+  "long_auger": {
+    "overall_length_mm": 240,
+    "previous_overall_length_mm": 144.7,
+    "extension_mm": 95.3,
+    "pitch_mm": 14,
+    "axial_flight_thickness_mm": 1.2,
+    "flight_support_land_depth_mm": 0.6,
+    "flight_lands_follow_taper": true,
+    "shield_width_mm": 38,
+    "shield_height_mm": 36.8,
+    "minimum_shield_radius_mm": 18.4,
+    "housing_opening_radius_mm": 17.8,
+    "minimum_nominal_shield_coverage_mm": 0.6,
+    "unchanged_native_body_meshes": [
+      1,
+      26,
+      46,
+      216,
+      221
+    ],
+    "rear_journal_and_drive_profile_unchanged": true,
+    "native_exact_assembly_interference_passed": true,
+    "closed_oriented_manufacturing_mesh": true,
+    "plate_angle_degrees": 25,
+    "plate_count": 2,
+    "sequence": "by object; PETG adapter, PETG auger, PLA bushing",
+    "nozzle_x_minimum_mm": 20.5,
+    "attempted_layouts": [
+      {
+        "layout": "straight across X",
+        "result": "second nozzle unprintable area"
+      },
+      {
+        "layout": "straight along Y",
+        "result": "print-by-object gantry conflict"
+      }
+    ],
+    "physical_support_removal_and_soil_trial_pending": true,
+    "printer_command_sent": false
   }
 }

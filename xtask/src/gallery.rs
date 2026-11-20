@@ -221,9 +221,12 @@ impl Camera {
 }
 
 fn render(geometry: &[Geometry], camera: &Camera) -> RgbImage {
+    render_lit(geometry, camera, unit([-0.35, -0.5, 0.8]))
+}
+
+fn render_lit(geometry: &[Geometry], camera: &Camera, light: V3) -> RgbImage {
     let mut image = RgbImage::from_pixel(camera.width, camera.height, Rgb(BACK));
     let mut depth = vec![f64::NEG_INFINITY; (camera.width * camera.height) as usize];
-    let light = unit([-0.35, -0.5, 0.8]);
     for mesh in geometry {
         let screen: Vec<_> = mesh.points.iter().map(|p| camera.project(*p)).collect();
         for face in &mesh.faces {
@@ -276,6 +279,116 @@ fn render(geometry: &[Geometry], camera: &Camera) -> RgbImage {
         }
     }
     image
+}
+
+fn fit_camera(
+    size: (u32, u32),
+    azimuth: f64,
+    elevation: f64,
+    geometry: &[Geometry],
+    margin: f64,
+) -> Camera {
+    let mut lo = [f64::INFINITY; 3];
+    let mut hi = [f64::NEG_INFINITY; 3];
+    for p in geometry.iter().flat_map(|g| &g.points) {
+        for a in 0..3 {
+            lo[a] = lo[a].min(p[a]);
+            hi[a] = hi[a].max(p[a]);
+        }
+    }
+    let mut camera = Camera::new(size, azimuth, elevation, scale(add(lo, hi), 0.5), 1.);
+    let mut sx = 0_f64;
+    let mut sy = 0_f64;
+    for p in geometry.iter().flat_map(|g| &g.points) {
+        let q = camera.project(*p);
+        sx = sx.max((q[0] - size.0 as f64 / 2.).abs());
+        sy = sy.max((q[1] - size.1 as f64 / 2.).abs());
+    }
+    camera.scale = ((size.0 as f64 / 2. - margin) / sx).min((size.1 as f64 / 2. - margin) / sy);
+    camera
+}
+
+fn auger_review(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
+    let geometry: Vec<_> = assembly
+        .scene
+        .bodies
+        .iter()
+        .filter(|b| [15, 90].contains(&b.id))
+        .map(|b| Geometry {
+            points: b.mesh.positions.as_chunks::<3>().0.to_vec(),
+            faces: b.mesh.indices.as_chunks::<3>().0.to_vec(),
+            color: color(b.id).unwrap(),
+        })
+        .collect();
+    let mut sheet = RgbImage::from_pixel(1400, 900, Rgb(BACK));
+    let side = render(&geometry, &fit_camera((1400, 380), 0., 0., &geometry, 55.));
+    imageops::replace(&mut sheet, &side, 0, 55);
+    text.draw(
+        &mut sheet,
+        "240 mm overall - side profile",
+        35,
+        20,
+        30.,
+        INK,
+    );
+    let shield = render(
+        &geometry,
+        &Camera::new((700, 400), -90., 0., [0., 104.8, 0.], 9.),
+    );
+    imageops::replace(&mut sheet, &shield, 0, 470);
+    let mut closeup = Vec::new();
+    for source in &geometry {
+        let mut points = Vec::new();
+        let mut faces = Vec::new();
+        for f in &source.faces {
+            let polygon = clip_triangle(
+                f.map(|i| source.points[i]),
+                [-25., 100., -25.],
+                [25., 145., 25.],
+            );
+            if polygon.len() < 3 {
+                continue;
+            }
+            let first = points.len();
+            for i in 1..polygon.len() - 1 {
+                faces.push([first, first + i, first + i + 1]);
+            }
+            points.extend(polygon);
+        }
+        closeup.push(Geometry {
+            points,
+            faces,
+            color: source.color,
+        });
+    }
+    let camera = Camera::new((700, 400), 80., -20., [0., 122., 0.], 8.);
+    let underside = render_lit(&closeup, &camera, camera.direction);
+    imageops::replace(&mut sheet, &underside, 700, 470);
+    text.draw(
+        &mut sheet,
+        "Shield: upper and lower flats",
+        35,
+        430,
+        26.,
+        INK,
+    );
+    text.draw(
+        &mut sheet,
+        "Underside and unchanged drive socket",
+        725,
+        430,
+        26.,
+        INK,
+    );
+    text.draw(
+        &mut sheet,
+        "0.6 mm shallow flats; circular journal and drive interfaces retained",
+        35,
+        862,
+        23.,
+        INK,
+    );
+    Ok(sheet)
 }
 
 struct Text {
@@ -355,8 +468,9 @@ fn line(image: &mut RgbImage, a: V3, b: V3, color: [u8; 3]) {
 }
 
 fn exploded(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
-    let camera = Camera::new((1500, 1080), -55., 32., [0., 125., 35.], 3.6);
-    let mut image = render(&assembly.geometry(1., 0.)?, &camera);
+    let geometry = assembly.geometry(1., 0.)?;
+    let camera = fit_camera((1500, 1080), -55., 32., &geometry, 110.);
+    let mut image = render(&geometry, &camera);
     text.draw(&mut image, "How it fits together", 65, 40, 36., INK);
     let callouts = [
         ("Upper housing", [-35., 176., 90.], (60, 150)),
@@ -850,17 +964,22 @@ fn encode_animation(assembly: &Assembly, path: &Path, mode: &str) -> Result<()> 
     let mut lookup = BTreeMap::new();
     for i in 0..FRAMES {
         let t = i as f64 / FRAMES as f64;
-        let (geometry, camera) = if mode == "turntable" {
-            (
-                assembly.geometry(0., 1080. * t)?,
-                Camera::new((900, 600), -55. + 360. * t, 30., [0., 110., 0.], 2.7),
-            )
+        let geometry = if mode == "turntable" {
+            assembly.geometry(0., 1080. * t)?
         } else {
-            (
-                assembly.geometry((1. - (std::f64::consts::TAU * t).cos()) / 2., 1440. * t)?,
-                Camera::new((900, 650), -55., 32., [0., 120., 30.], 2.15),
-            )
+            assembly.geometry((1. - (std::f64::consts::TAU * t).cos()) / 2., 1440. * t)?
         };
+        let camera = fit_camera(
+            (width.into(), height.into()),
+            if mode == "turntable" {
+                -55. + 360. * t
+            } else {
+                -55.
+            },
+            if mode == "turntable" { 30. } else { 32. },
+            &geometry,
+            45.,
+        );
         let image = render(&geometry, &camera);
         let mut pixels = Vec::with_capacity((width as usize) * (height as usize));
         for p in image.pixels() {
@@ -972,6 +1091,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     )?;
     let stage = tempfile::tempdir_in(&options.evidence)?;
     exploded(&assembly, &text)?.save(stage.path().join("exploded.png"))?;
+    auger_review(&assembly, &text)?.save(stage.path().join("auger-240.png"))?;
     labels(&assembly, &text)?.save(stage.path().join("inside-labels.png"))?;
     housing(&assembly, &text, 46)?.save(stage.path().join("housing-lower.png"))?;
     housing(&assembly, &text, 26)?.save(stage.path().join("housing-upper.png"))?;
@@ -991,6 +1111,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let mut hashes = BTreeMap::new();
     for name in [
         "exploded.png",
+        "auger-240.png",
         "inside-labels.png",
         "print-plates.png",
         "housing-lower.png",

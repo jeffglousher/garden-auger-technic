@@ -560,7 +560,7 @@ fn relationship_target(rels: &str, target: &str) -> String {
     parts.join("/")
 }
 
-fn invalidate(entries: &mut Entries) -> Result<()> {
+pub(super) fn invalidate(entries: &mut Entries) -> Result<()> {
     entries.retain(|name, _| !preview(name) && !name.ends_with(".gcode"));
     let mut info = xml::parse(archive::required(entries, INFO)?)?;
     info.children.retain(|n| n.is("header"));

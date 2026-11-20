@@ -2,7 +2,7 @@
 
 ## Demonstration
 
-Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), then recall **Complete assembly**. Its 82 named features describe the servo reference, housing envelope, D grips, cavities, fasteners, drive, locators, rotating shield and flush lettering profiles. The two engraving cuts were removed after physical feedback. Repository images render the native geometry with the manufacturing color masks; they are not screenshots claiming a particular application UI state.
+Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), then recall **Complete assembly**. Its 86 named features describe the servo reference, housing envelope, D grips, cavities, fasteners, drive, locators, rotating shield and flush lettering profiles. The two engraving cuts were removed after physical feedback. Repository images render the native geometry with the manufacturing color masks; they are not screenshots claiming a particular application UI state.
 
 The `.limo` model owns fitted solid geometry and the two named lettering sketches. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement, nine reinforcement regions and two color-only lettering masks. STLs preserve only the five solid part meshes.
 
@@ -15,6 +15,7 @@ Install stable Rust (1.89 or newer), Limo CAD and Bambu Studio. No Python enviro
 ```powershell
 cargo test --workspace --locked
 cargo xtask verify-model
+cargo xtask lengthen-auger --length 240 --evidence .build/long-auger
 cargo xtask build-print --output .build/rebuilt.3mf
 cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output .build/sliced.3mf
 cargo xtask build-print --single-color-lettering --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output print/garden-auger-single-color.3mf
@@ -30,6 +31,8 @@ The model uses the current Limo CAD project identity. Validation checks that ide
 The rebuild preserves namespaced component paths and UUIDs, including files with multiple prefixes for the same namespace. Core model elements are written in Bambu's accepted default-namespace form. Both prefixed-core input and a production namespace declared as default plus prefix were rebuilt and sliced locally.
 
 `verify-model` and `gallery` start a private headless CAD process. They accept `--executable`, or `LIMO_CAD_EXE`; Windows defaults to the installed Limo CAD path. The gallery reads the current model, saved poses and saved print previews; it does not depend on archived images or a live desktop session. It renders the two 48-frame loops, exploded callouts, native engraving closeups, both plate estimates and an annotated locator layout. That layout uses the native upper mating-face mesh and source sketch dimensions. Without `--output`, it refreshes the gallery images in `docs/images`. `--font` selects a TrueType font; the defaults are Segoe UI on Windows and DejaVu Sans on Linux. Check the generated `manifest.json` under `.build/gallery-rust` and update the published image hashes in `validation.json` when publishing new images.
+
+`lengthen-auger` regenerates the extended flight as native per-turn lofts, preserves the rear drive geometry, and exports a candidate under `.build/long-auger`. Its optional `--install` replaces the model, auger STL and auger mesh in both print projects after native checks; rerun both `build-print` commands with `--slicer` afterwards. The auger stays 240 mm overall. Its 25-degree plate placement clears the saved second-nozzle X limit and leaves the rear objects clear of the gantry rod.
 
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
 
