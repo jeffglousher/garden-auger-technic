@@ -141,12 +141,19 @@ fn provenance(
     sliced: &archive::Entries,
     code: &[u8],
 ) -> Result<()> {
-    for path in [
-        "3D/3dmodel.model",
-        "3D/Objects/object_3.model",
+    let meshes = |entries: &archive::Entries| {
+        entries
+            .keys()
+            .filter(|path| path.starts_with("3D/") && path.ends_with(".model"))
+            .cloned()
+            .collect::<std::collections::BTreeSet<_>>()
+    };
+    let paths = meshes(current);
+    ensure!(paths == meshes(input), "Slice input mesh files differ");
+    for path in paths.iter().map(String::as_str).chain([
         "Metadata/model_settings.config",
         "Metadata/project_settings.config",
-    ] {
+    ]) {
         ensure!(
             archive::required(current, path)? == archive::required(input, path)?,
             "Slice input is stale or different: {path}"
@@ -155,6 +162,15 @@ fn provenance(
     ensure!(
         archive::required(sliced, "Metadata/plate_2.gcode")? == code,
         "G-code does not match native sliced archive"
+    );
+    Ok(())
+}
+
+fn archive_pair(proof: &Value, input: &[u8], native: &[u8]) -> Result<()> {
+    ensure!(
+        proof["input_archive_sha256"].as_str() == Some(archive::sha(input).as_str())
+            && proof["native_archive_sha256"].as_str() == Some(archive::sha(native).as_str()),
+        "Missing or mismatched input/output archive hashes; rerun build-print --slicer"
     );
     Ok(())
 }
@@ -206,6 +222,12 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let current = archive::read(&project)?;
     let input = archive::read(&options.slice.join("input.3mf"))?;
     let sliced = archive::read(&options.slice.join("sliced.3mf"))?;
+    let proof: Value = serde_json::from_slice(&fs::read(options.slice.join("summary.json"))?)?;
+    archive_pair(
+        &proof,
+        &fs::read(options.slice.join("input.3mf"))?,
+        &fs::read(options.slice.join("sliced.3mf"))?,
+    )?;
     let code = fs::read(options.slice.join("plate_2.gcode"))?;
     provenance(&current, &input, &sliced, &code)?;
     let native: Value = serde_json::from_slice(&fs::read(options.slice.join("result.json"))?)?;
@@ -278,12 +300,41 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         .collect::<Result<_>>()?;
     let lower = patches(&points, &faces, -1.);
     let upper = patches(&points, &faces, 1.);
+    let print_z = |p: P3| {
+        m[2] * (p[0] - offset[0]) + m[5] * (p[1] - offset[1]) + m[8] * (p[2] - offset[2]) + m[11]
+    };
+    let placed_z_bounds = [
+        points
+            .iter()
+            .map(|p| print_z(*p))
+            .fold(f64::INFINITY, f64::min),
+        points
+            .iter()
+            .map(|p| print_z(*p))
+            .fold(f64::NEG_INFINITY, f64::max),
+    ];
+    let lower_z: Vec<_> = lower
+        .iter()
+        .flat_map(|p| &p.triangles)
+        .flat_map(|t| t.iter())
+        .map(|p| print_z(*p))
+        .collect();
+    let lower_z_bounds = [
+        lower_z.iter().copied().fold(f64::INFINITY, f64::min),
+        lower_z.iter().copied().fold(f64::NEG_INFINITY, f64::max),
+    ];
     ensure!(
         !lower.is_empty() && !upper.is_empty(),
         "Manufacturing mesh lacks flight flats"
     );
     let code = std::str::from_utf8(&code)?;
     let all = gcode::paths(code)?;
+    let top_layer = all
+        .iter()
+        .filter(|s| s.object == 108 && !s.feature.starts_with("Support"))
+        .map(|s| s.z)
+        .reduce(f64::max)
+        .context("No auger model paths")?;
     let paths: Vec<_> = all
         .iter()
         .filter(|s| s.object == 108)
@@ -369,7 +420,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         .lines()
         .find_map(|l| l.strip_prefix("; BambuStudio "))
         .context("Missing slicer version")?;
-    let report = json!({"source_project_sha256":archive::sha(&fs::read(&project)?),"source_gcode_sha256":archive::sha(code.as_bytes()),"source_matches_selected_project":true,"native_slicer_version":slicer,"lower_flight_flat_patches":lower.len(),"upper_flight_flat_patches":upper.len(),"sample_grid_mm":0.2,"interface_gap_window_mm":[-0.12,0.36],"support_type":process["support_type"],"support_interface_filament":process["support_interface_filament"],"support_top_z_distance":process["support_top_z_distance"],"contacts":contacts,"physical_stability_verified":false,"printer_command_sent":false});
+    let report = json!({"source_project_sha256":archive::sha(&fs::read(&project)?),"source_gcode_sha256":archive::sha(code.as_bytes()),"source_matches_selected_project":true,"native_slicer_version":slicer,"placed_mesh_z_bounds_mm":placed_z_bounds,"lower_land_print_z_bounds_mm":lower_z_bounds,"programmed_auger_top_layer_z_mm":top_layer,"lower_flight_flat_patches":lower.len(),"upper_flight_flat_patches":upper.len(),"sample_grid_mm":0.2,"interface_gap_window_mm":[-0.12,0.36],"support_type":process["support_type"],"support_interface_filament":process["support_interface_filament"],"support_top_z_distance":process["support_top_z_distance"],"contacts":contacts,"physical_stability_verified":false,"printer_command_sent":false});
     fs::write(
         options.output.join("summary.json"),
         serde_json::to_vec_pretty(&report)?,
@@ -381,6 +432,15 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn mixed_input_and_native_output_are_rejected() {
+        let input = b"current aligned input";
+        let native = b"aligned native output";
+        let proof = json!({"input_archive_sha256":archive::sha(input),"native_archive_sha256":archive::sha(native)});
+        assert!(archive_pair(&proof, input, native).is_ok());
+        assert!(archive_pair(&proof, input, b"old upright native output").is_err());
+        assert!(archive_pair(&Value::Null, input, native).is_err());
+    }
     #[test]
     fn tilted_placement_roundtrips_all_three_axes() {
         let (s, c) = 25_f64.to_radians().sin_cos();

@@ -228,7 +228,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "9153a3da23eb69f03712cb5a395bb80383ef697876859c33b7680e1dff84d82b",
+    "sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
@@ -236,8 +236,8 @@
     "native_slicer_version": "02.09.01.70",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 23185.7734375,
-    "filament_g": 172.34339940547943,
+    "seconds": 23185.6748046875,
+    "filament_g": 172.34340226650238,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -248,18 +248,18 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11258.771484375,
+        "seconds": 11258.7294921875,
         "filament_g": 106.19206035137177,
         "material_cost": 1.910395165721178
       },
       {
         "plate": 2,
-        "seconds": 11927.001953125,
-        "filament_g": 66.15133905410767,
-        "material_cost": 1.217609203276634
+        "seconds": 11926.9453125,
+        "filament_g": 66.15134191513062,
+        "material_cost": 1.217609254746437
       }
     ],
-    "total_material_cost": 3.1280043689978116,
+    "total_material_cost": 3.128004420467615,
     "cost_basis": "Saved filament prices per kg; filament only",
     "changed_normal_mesh": "3D/Objects/object_3.model",
     "other_four_normal_meshes_byte_preserved": true
@@ -282,7 +282,7 @@
       "Auger top",
       "Auger underside"
     ],
-    "print_project_sha256": "9153a3da23eb69f03712cb5a395bb80383ef697876859c33b7680e1dff84d82b",
+    "print_project_sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
     "images": {
       "exploded.png": "41581cd803bcbd518cefe1988e29689e377ee61210d1ffbedde70562fcbd7359",
       "exploding-drive.gif": "ed5bf9c651543db66c631d04cbb39a5a5b215ebabf679e1b38682319f7256109",
@@ -312,13 +312,13 @@
       "lengthen-auger",
       "review-supports"
     ],
-    "regression_tests_passed": 36,
+    "regression_tests_passed": 37,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 23185.7734375,
-    "native_slice_filament_g": 172.34339940547943,
+    "native_slice_seconds": 23185.6748046875,
+    "native_slice_filament_g": 172.34340226650238,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -631,10 +631,10 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 22273.427734375,
+      "seconds": 22273.771484375,
       "filament_g": 169.94911432266235,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "bb4a7d434abc0e7beb18b508053dc1e76501e07cc25bec18c0e9319f9d967776"
+      "sha256": "ec578ab033558ed6347765b5e1bec1c007b91fdf28de7a3b65f2d3dade45eb6f"
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -704,7 +704,7 @@
     "printer_command_sent": false,
     "print_axis_tilt_degrees": 1.5895355047291682,
     "lower_flat_plane_height_mm": 3.5,
-    "printed_envelope_height_mm": 33.4,
+    "printed_envelope_height_mm": 36.86905649413175,
     "support_interface_material": "Saved teal PLA, filament4; zero nominal top interface gap",
     "editable_flight_source": {
       "path": "cad/auger-flight.limo",
@@ -724,18 +724,18 @@
       },
       "aligned_parts_plate": {
         "plate": 2,
-        "seconds": 11927.001953125,
-        "filament_g": 66.15133905410767,
-        "material_cost": 1.217609203276634
+        "seconds": 11926.9453125,
+        "filament_g": 66.15134191513062,
+        "material_cost": 1.217609254746437
       },
-      "seconds_saved": 425.48828125,
-      "grams_saved": 1.905550479888916,
+      "seconds_saved": 425.544921875,
+      "grams_saved": 1.9055476188659668,
       "part_mesh_geometry_unchanged": true,
       "process_strength_and_material_settings_unchanged": true
     },
     "support_contact_audit": {
-      "gcode_sha256": "6fecbbd9a03286acba388315a0a03d1354dc8aefd64a126730f9e038c1fd5d35",
-      "selected_project_sha256": "9153a3da23eb69f03712cb5a395bb80383ef697876859c33b7680e1dff84d82b",
+      "gcode_sha256": "7f505bcc5bd3840d9d9d35ab017a2ca50314b07350513a80ab213cc774e4c3e8",
+      "selected_project_sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
       "source_matches_selected_project": true,
       "lower_flat_patches": 14,
       "upper_flat_patches": 15,
@@ -747,7 +747,15 @@
         0.36
       ],
       "method": "Nominal programmed bead footprints on the flat mesh faces, sampled; not a physical contact or stability test",
-      "native_slicer_version": "02.09.01.70"
-    }
+      "native_slicer_version": "02.09.01.70",
+      "input_archive_sha256": "8cc212ccedf332606b85503e57338aadb0a945b175aba03364b58425db47fe3e",
+      "native_archive_sha256": "adcf6c4e3a9c4d3846f02e9a287053f514e34151d58b1fd4c9e32a45dc335085",
+      "paired_archive_provenance_verified": true
+    },
+    "programmed_auger_top_layer_z_mm": 36.92,
+    "lower_land_print_z_bounds_mm": [
+      3.515296634648715,
+      3.5152966346584726
+    ]
   }
 }

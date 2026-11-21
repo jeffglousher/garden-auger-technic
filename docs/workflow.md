@@ -38,7 +38,7 @@ The [editable flight source](../cad/auger-flight.limo) contains the native lofts
 
 The print placement adds a small tilt along the auger's axis, calculated from the flight taper. This makes the lower flight lands horizontal and keeps their supports about 3.5 mm tall. The solid geometry, bearing journal and drive socket do not change with print orientation. Both projects retain the saved PLA support-interface material and zero nominal interface gap.
 
-`cargo xtask review-supports --slice PATH_TO_NATIVE_SLICE_DIRECTORY` checks the input mesh, placement and settings against the published print project, verifies the G-code against the native sliced archive, then draws the actual first-layer footprints and interface paths under each flat. `--project` selects a separate trial. Its 0.2 mm samples and nominal bead widths check programmed coverage, not physical bonding or stability.
+`cargo xtask review-supports --slice PATH_TO_NATIVE_SLICE_DIRECTORY` checks every input mesh, placement and settings against the selected print project, the input/output archive hash pair saved during slicing, and the G-code inside that native archive. It then draws the actual first-layer footprints and interface paths under each flat. Mixed folders and older evidence without the paired hashes require a fresh `build-print --slicer` run. `--project` selects a separate trial. Its 0.2 mm samples and nominal bead widths check programmed coverage, not physical bonding or stability.
 
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
 

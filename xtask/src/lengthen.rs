@@ -651,6 +651,7 @@ mod tests {
             .map(str::parse)
             .collect::<std::result::Result<_, _>>()?;
         let mut bottom = f64::INFINITY;
+        let mut top = f64::NEG_INFINITY;
         let mut heights = Vec::new();
         for p in &mesh.child_mut("vertices")?.children {
             if !p.is("vertex") {
@@ -660,6 +661,7 @@ mod tests {
             let z = p.attr("z")?.parse::<f64>()?;
             let height = m[5] * y + m[8] * z + m[11];
             bottom = bottom.min(height);
+            top = top.max(height);
             if y + 19.5 < 104. && (z + flight_land(y + 19.5, 240.)).abs() < 0.002 {
                 heights.push(height);
             }
@@ -667,6 +669,10 @@ mod tests {
         ensure!(
             bottom.abs() < 1e-7 && heights.len() > 40,
             "Missing bed contact or flight lands"
+        );
+        ensure!(
+            (36.8..37.).contains(&top),
+            "Shield print height changed: {top}"
         );
         let lo = heights.iter().copied().fold(f64::INFINITY, f64::min);
         let hi = heights.iter().copied().fold(f64::NEG_INFINITY, f64::max);
