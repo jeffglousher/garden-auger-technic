@@ -131,7 +131,7 @@
   },
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "a101ed25b3aa605cd5889f5838e4105b5d0eb77a1ae82ceb418e9fb701223e7e",
+    "sha256": "1b041f0bfb10d373c90c200c5ada733c83c7d9c15432dec7fbad9bb8c6c9735b",
     "feature_count": 86,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -228,16 +228,16 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "f9f4172a5a6ccdd775444aedbca4ef0a94f0ed7c171b625c397605ce70ed6c7d",
+    "sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
     "sequence": "by object",
-    "native_slicer_version": "02.08.02.61",
+    "native_slicer_version": "02.09.01.70",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 23611.3427734375,
-    "filament_g": 174.24894988536835,
+    "seconds": 23185.6748046875,
+    "filament_g": 172.34340226650238,
     "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -248,18 +248,18 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11258.8525390625,
+        "seconds": 11258.7294921875,
         "filament_g": 106.19206035137177,
         "material_cost": 1.910395165721178
       },
       {
         "plate": 2,
-        "seconds": 12352.490234375,
-        "filament_g": 68.05688953399658,
-        "material_cost": 1.2519638727092741
+        "seconds": 11926.9453125,
+        "filament_g": 66.15134191513062,
+        "material_cost": 1.217609254746437
       }
     ],
-    "total_material_cost": 3.162359038430452,
+    "total_material_cost": 3.128004420467615,
     "cost_basis": "Saved filament prices per kg; filament only",
     "changed_normal_mesh": "3D/Objects/object_3.model",
     "other_four_normal_meshes_byte_preserved": true
@@ -278,9 +278,11 @@
       "Exploded assembly",
       "Inside the housing",
       "Lower housing labels",
-      "Upper housing labels"
+      "Upper housing labels",
+      "Auger top",
+      "Auger underside"
     ],
-    "print_project_sha256": "f9f4172a5a6ccdd775444aedbca4ef0a94f0ed7c171b625c397605ce70ed6c7d",
+    "print_project_sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
     "images": {
       "exploded.png": "41581cd803bcbd518cefe1988e29689e377ee61210d1ffbedde70562fcbd7359",
       "exploding-drive.gif": "ed5bf9c651543db66c631d04cbb39a5a5b215ebabf679e1b38682319f7256109",
@@ -288,7 +290,7 @@
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "aa613028ee9e8d57864807958076218c1b412b3d85aaeef0046786089cb61791",
+      "print-plates.png": "d41d7deb997d67f7a3031ea4ee187b13353877ec64c3a40546d53fbc31779499",
       "turntable.gif": "66ae62dedb9ec79afe5b3a57be6b7584d8b35277befb48d8cc22b728ab3fb44e",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
@@ -307,15 +309,16 @@
       "gallery",
       "coupons",
       "lettering-coupons",
-      "lengthen-auger"
+      "lengthen-auger",
+      "review-supports"
     ],
-    "regression_tests_passed": 32,
+    "regression_tests_passed": 37,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 23611.3427734375,
-    "native_slice_filament_g": 174.24894988536835,
+    "native_slice_seconds": 23185.6748046875,
+    "native_slice_filament_g": 172.34340226650238,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -628,10 +631,10 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 22699.40625,
-      "filament_g": 171.85466480255127,
+      "seconds": 22273.771484375,
+      "filament_g": 169.94911432266235,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "067ac5d84eaa9ca7da57cad34a12acf79c2f2e3d899c70a6ae48641aee52b301"
+      "sha256": "ec578ab033558ed6347765b5e1bec1c007b91fdf28de7a3b65f2d3dade45eb6f"
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -698,6 +701,61 @@
       }
     ],
     "physical_support_removal_and_soil_trial_pending": true,
-    "printer_command_sent": false
+    "printer_command_sent": false,
+    "print_axis_tilt_degrees": 1.5895355047291682,
+    "lower_flat_plane_height_mm": 3.5,
+    "printed_envelope_height_mm": 36.86905649413175,
+    "support_interface_material": "Saved teal PLA, filament4; zero nominal top interface gap",
+    "editable_flight_source": {
+      "path": "cad/auger-flight.limo",
+      "sha256": "723cc2259a73ae1d421cb07b6a2fe82b0a2778b0c6b9d579adb883e869e1f572",
+      "native_lofts": 15,
+      "native_flat_cuts": 2,
+      "construction_sketches_hidden": true
+    },
+    "assembly_construction_profiles_hidden": true,
+    "support_alignment_comparison": {
+      "baseline_commit": "c58d8a5",
+      "baseline_parts_plate": {
+        "plate": 2,
+        "seconds": 12352.490234375,
+        "filament_g": 68.05688953399658,
+        "material_cost": 1.2519638727092741
+      },
+      "aligned_parts_plate": {
+        "plate": 2,
+        "seconds": 11926.9453125,
+        "filament_g": 66.15134191513062,
+        "material_cost": 1.217609254746437
+      },
+      "seconds_saved": 425.544921875,
+      "grams_saved": 1.9055476188659668,
+      "part_mesh_geometry_unchanged": true,
+      "process_strength_and_material_settings_unchanged": true
+    },
+    "support_contact_audit": {
+      "gcode_sha256": "7f505bcc5bd3840d9d9d35ab017a2ca50314b07350513a80ab213cc774e4c3e8",
+      "selected_project_sha256": "989752e955770bf44de1089ec4dd0711619f4d808e4f93f5d8821751c6dd85a2",
+      "source_matches_selected_project": true,
+      "lower_flat_patches": 14,
+      "upper_flat_patches": 15,
+      "minimum_sampled_coverage_fraction": 0.983739837398374,
+      "maximum_sampled_coverage_fraction": 1,
+      "sample_grid_mm": 0.2,
+      "interface_gap_window_mm": [
+        -0.12,
+        0.36
+      ],
+      "method": "Nominal programmed bead footprints on the flat mesh faces, sampled; not a physical contact or stability test",
+      "native_slicer_version": "02.09.01.70",
+      "input_archive_sha256": "8cc212ccedf332606b85503e57338aadb0a945b175aba03364b58425db47fe3e",
+      "native_archive_sha256": "adcf6c4e3a9c4d3846f02e9a287053f514e34151d58b1fd4c9e32a45dc335085",
+      "paired_archive_provenance_verified": true
+    },
+    "programmed_auger_top_layer_z_mm": 36.92,
+    "lower_land_print_z_bounds_mm": [
+      3.515296634648715,
+      3.5152966346584726
+    ]
   }
 }

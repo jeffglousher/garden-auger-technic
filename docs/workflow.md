@@ -34,6 +34,12 @@ The rebuild preserves namespaced component paths and UUIDs, including files with
 
 `lengthen-auger` regenerates the extended flight as native per-turn lofts, preserves the rear drive geometry, and exports a candidate under `.build/long-auger`. Its optional `--install` replaces the model, auger STL and auger mesh in both print projects after native checks; rerun both `build-print` commands with `--slicer` afterwards. The auger stays 240 mm overall. Its 25-degree plate placement clears the saved second-nozzle X limit and leaves the rear objects clear of the gantry rod.
 
+The [editable flight source](../cad/auger-flight.limo) contains the native lofts and named upper/lower flat cuts. Construction sketches are hidden when opened. The complete assembly keeps an embedded STEP copy for faster replay; exporting an edited flight back into that import is a separate step. `lengthen-auger --install` regenerates both files from the Rust dimensions, replacing hand edits to the generated flight source.
+
+The print placement adds a small tilt along the auger's axis, calculated from the flight taper. This makes the lower flight lands horizontal and keeps their supports about 3.5 mm tall. The solid geometry, bearing journal and drive socket do not change with print orientation. Both projects retain the saved PLA support-interface material and zero nominal interface gap.
+
+`cargo xtask review-supports --slice PATH_TO_NATIVE_SLICE_DIRECTORY` checks every input mesh, placement and settings against the selected print project, the input/output archive hash pair saved during slicing, and the G-code inside that native archive. It then draws the actual first-layer footprints and interface paths under each flat. Mixed folders and older evidence without the paired hashes require a fresh `build-print --slicer` run. `--project` selects a separate trial. Its 0.2 mm samples and nominal bead widths check programmed coverage, not physical bonding or stability.
+
 All commands support `--help`. Evidence stays under ignored `.build` directories. The Cargo lockfile pins tool dependencies; `cargo xtask` uses `--locked` automatically.
 
 For a small physical trial, use the [fit and lettering coupons](coupons.md). They copy the current locating profiles and compare single-color with contrasting PETG flush lettering on one plate.

@@ -84,7 +84,7 @@ pub fn load(root: &Path) -> Result<Vec<Region>> {
                 "Lettering must be flush with the pocket floor"
             );
             ensure!(
-                s["basis"]["normal"] == serde_json::json!([0., 0., 1.]),
+                serde_json::from_value::<[f64; 3]>(s["basis"]["normal"].clone())? == [0., 0., 1.],
                 "Lettering plane changed"
             );
             let (cells, origin) = cells(s)?;

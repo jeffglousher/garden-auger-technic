@@ -628,7 +628,9 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         );
         let native: Value = serde_json::from_slice(&fs::read(lane.join("result.json"))?)?;
         let sliced = archive::read(&lane.join("sliced.3mf"))?;
-        let summary = validate_slice(&sliced, &native, &spec)?;
+        let mut summary = validate_slice(&sliced, &native, &spec)?;
+        summary["input_archive_sha256"] = json!(archive::sha(&fs::read(lane.join("input.3mf"))?));
+        summary["native_archive_sha256"] = json!(archive::sha(&fs::read(lane.join("sliced.3mf"))?));
         fs::write(
             lane.join("summary.json"),
             serde_json::to_vec_pretty(&summary)?,

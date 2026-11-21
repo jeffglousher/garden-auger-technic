@@ -353,8 +353,35 @@ pub fn verify(root: &Path, options: &Options) -> Result<()> {
         json!({"occurrence_ids":[3,6,7,8,14,16],"clearance_threshold_mm":2}),
     )?;
     validate_interference(&check)?;
+    let flight_path = root.join("cad/auger-flight.limo");
+    let flight_source = if flight_path.exists() {
+        let flight = archive::read(&flight_path)?;
+        let flight: Value = serde_json::from_slice(archive::required(&flight, "model.json")?)?;
+        client.call(
+            "cad_load_project_model",
+            json!({"model_json":serde_json::to_string(&flight)?}),
+        )?;
+        let scene = client.scene()?;
+        ensure!(
+            scene.bodies.len() == 1,
+            "Editable flight must have one final body"
+        );
+        let document = client.call("cad_document", json!({}))?;
+        let features = document["features"]
+            .as_array()
+            .context("Missing flight features")?;
+        ensure!(
+            features.iter().all(|f| f["name"]
+                .as_str()
+                .is_some_and(|name| !name.is_empty() && !generic_name(name))),
+            "Editable flight has unnamed features"
+        );
+        json!({"path":"cad/auger-flight.limo","feature_count":features.len(),"bodies":1,"sha256":archive::sha(&fs::read(flight_path)?)})
+    } else {
+        Value::Null
+    };
     fs::create_dir_all(&options.evidence)?;
-    let report = json!({"feature_count":features.len(),"bodies":scene.bodies.len(),"exact_nominal_interference":check,"model_sha256":archive::sha(&fs::read(root.join("garden-auger.limo"))?)});
+    let report = json!({"feature_count":features.len(),"bodies":scene.bodies.len(),"exact_nominal_interference":check,"model_sha256":archive::sha(&fs::read(root.join("garden-auger.limo"))?),"editable_flight_source":flight_source});
     fs::write(
         options.evidence.join("summary.json"),
         serde_json::to_vec_pretty(&report)?,

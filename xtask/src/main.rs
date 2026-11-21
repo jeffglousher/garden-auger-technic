@@ -2,10 +2,12 @@ mod archive;
 mod cad;
 mod coupons;
 mod gallery;
+mod gcode;
 mod lengthen;
 mod lettering;
 mod print;
 mod readability;
+mod support_review;
 mod xml;
 
 use anyhow::Result;
@@ -37,6 +39,8 @@ enum Task {
     LetteringCoupons(readability::Options),
     /// Build a longer auger candidate without changing its housing interfaces.
     LengthenAuger(lengthen::Options),
+    /// Inspect actual sliced support contact under the auger flats.
+    ReviewSupports(support_review::Options),
 }
 
 fn root() -> PathBuf {
@@ -54,6 +58,7 @@ fn main() -> Result<()> {
         Task::Coupons(options) => coupons::run(&root(), &options),
         Task::LetteringCoupons(options) => readability::run(&root(), &options),
         Task::LengthenAuger(options) => lengthen::run(&root(), &options),
+        Task::ReviewSupports(options) => support_review::run(&root(), &options),
     }
 }
 

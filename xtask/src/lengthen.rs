@@ -25,6 +25,48 @@ pub struct Options {
 const OLD_LENGTH: f64 = 144.7;
 const PITCH: f64 = 14.;
 const THICKNESS: f64 = 1.2;
+pub fn flight_slope(length: f64) -> f64 {
+    5.5 / (103.9 + length - OLD_LENGTH - 1.)
+}
+pub fn flight_land(y: f64, length: f64) -> f64 {
+    10. + (y + length - OLD_LENGTH - 1.) * flight_slope(length) - 0.6
+}
+
+fn print_transform(mesh: &xml::Node) -> Result<String> {
+    let angle = 25_f64.to_radians();
+    let (s, c) = angle.sin_cos();
+    let (sn, cs) = flight_slope(240.).atan().sin_cos();
+    let min = mesh
+        .children
+        .iter()
+        .find(|n| n.is("vertices"))
+        .context("Missing vertices")?
+        .children
+        .iter()
+        .filter(|n| n.is("vertex"))
+        .map(|p| Ok(sn * p.attr("y")?.parse::<f64>()? + cs * p.attr("z")?.parse::<f64>()?))
+        .collect::<Result<Vec<f64>>>()?
+        .into_iter()
+        .fold(f64::INFINITY, f64::min);
+    Ok([
+        s,
+        c,
+        0.,
+        -c * cs,
+        s * cs,
+        sn,
+        c * sn,
+        -s * sn,
+        cs,
+        445.45,
+        181.,
+        -min,
+    ]
+    .iter()
+    .map(f64::to_string)
+    .collect::<Vec<_>>()
+    .join(" "))
+}
 
 fn binary_stl(mesh: &xml::Node) -> Result<Vec<u8>> {
     let vertices = mesh
@@ -185,13 +227,8 @@ fn install(root: &Path, out: &Path) -> Result<()> {
             .iter_mut()
             .find(|n| n.is("item") && n.attrs.get("objectid").is_some_and(|id| id == "8"))
             .context("Auger build item missing")?;
-        item.attrs.insert(
-            "transform".into(),
-            format!(
-                "0.422618262 0.906307787 0 -0.906307787 0.422618262 0 0 0 1 445.45 181 {}",
-                (bounds[1][2] - bounds[0][2]) / 2.
-            ),
-        );
+        item.attrs
+            .insert("transform".into(), print_transform(&mesh)?);
         // Plate 2 starts at X307.2 in Bambu's saved 1.2-bed-spacing coordinates.
         // A 25-degree angle clears the second nozzle's X20.5 limit and the gantry rod.
         let bushing = model
@@ -212,6 +249,11 @@ fn install(root: &Path, out: &Path) -> Result<()> {
     }
     // All native and package checks above precede replacement of authoritative artifacts.
     fs::copy(out.join("candidate.limo"), root.join("garden-auger.limo"))?;
+    fs::create_dir_all(root.join("cad"))?;
+    fs::copy(
+        out.join("flight-source.limo"),
+        root.join("cad/auger-flight.limo"),
+    )?;
     fs::copy(out.join("auger.stl"), root.join("print/parts/auger.stl"))?;
     for file in ["garden-auger.3mf", "garden-auger-single-color.3mf"] {
         fs::copy(out.join(file), root.join("print").join(file))?;
@@ -334,7 +376,7 @@ fn translate_front(model: &mut Value, move_front: f64) {
 pub fn run(root: &Path, options: &Options) -> Result<()> {
     ensure!(
         options.length.is_finite() && (180. ..=245.).contains(&options.length),
-        "Use 180–245 mm for the straight 256 mm plate layout"
+        "Use 180–245 mm for the 256 mm plate"
     );
     fs::create_dir_all(&options.evidence)?;
     let out = crate::native_absolute(&options.evidence)?;
@@ -412,7 +454,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     for sign in [-1., 1.] {
         let y0 = start - 1.;
         let y1 = end + 1.;
-        let land = |y: f64| 10. + (y + delta - 1.) / (end + delta - 1.) * 5.5 - 0.6;
+        let land = |y: f64| flight_land(y, options.length);
         let polygon = [
             [y0, sign * land(y0)],
             [y1, sign * land(y1)],
@@ -438,10 +480,27 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     );
     let body = scene.bodies[0].id;
     let mut flight_project = original.clone();
-    flight_project.insert(
-        "model.json".into(),
-        serde_json::to_vec(&coupons::canonical(&mut client)?)?,
+    let mut editable = coupons::canonical(&mut client)?;
+    editable["document"]["name"] = json!("Garden auger flight and support flats");
+    editable["visibility"]["hidden_sketch_names"] = json!(
+        editable["sketches"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|s| s["name"].clone())
+            .collect::<Vec<_>>()
     );
+    let mut appearance = source["body_appearances"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|a| a["body_id"] == 15)
+        .context("Missing auger appearance")?
+        .clone();
+    appearance["body_id"] = json!(body);
+    editable["body_appearances"] = json!([appearance]);
+    editable["views"] = json!([{"id":"496ac57c-83a6-4b17-b5d1-a1f760910895","name":"Flight and support flats","camera":{"position":[160.,-170.,180.],"target":[0.,4.,0.],"up":[0.,0.,1.]},"print_layout":false,"visible_body_ids":[body]}]);
+    flight_project.insert("model.json".into(), serde_json::to_vec(&editable)?);
     archive::write(&out.join("flight-source.limo"), &flight_project)?;
     let exported = client.call("solid_export_step", json!({"body_ids":[body]}))?;
     let encoded = exported
@@ -579,6 +638,50 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn print_orientation_levels_native_lands_and_keeps_the_mesh_on_bed() -> Result<()> {
+        let entries = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let mut model = xml::parse(&entries["3D/Objects/object_3.model"])?;
+        let mesh = model
+            .child_mut("resources")?
+            .child_mut("object")?
+            .child_mut("mesh")?;
+        let m: Vec<f64> = print_transform(mesh)?
+            .split_whitespace()
+            .map(str::parse)
+            .collect::<std::result::Result<_, _>>()?;
+        let mut bottom = f64::INFINITY;
+        let mut top = f64::NEG_INFINITY;
+        let mut heights = Vec::new();
+        for p in &mesh.child_mut("vertices")?.children {
+            if !p.is("vertex") {
+                continue;
+            }
+            let y = p.attr("y")?.parse::<f64>()?;
+            let z = p.attr("z")?.parse::<f64>()?;
+            let height = m[5] * y + m[8] * z + m[11];
+            bottom = bottom.min(height);
+            top = top.max(height);
+            if y + 19.5 < 104. && (z + flight_land(y + 19.5, 240.)).abs() < 0.002 {
+                heights.push(height);
+            }
+        }
+        ensure!(
+            bottom.abs() < 1e-7 && heights.len() > 40,
+            "Missing bed contact or flight lands"
+        );
+        ensure!(
+            (36.8..37.).contains(&top),
+            "Shield print height changed: {top}"
+        );
+        let lo = heights.iter().copied().fold(f64::INFINITY, f64::min);
+        let hi = heights.iter().copied().fold(f64::NEG_INFINITY, f64::max);
+        ensure!(
+            hi - lo < 0.003 && (3.4..3.6).contains(&lo),
+            "Flight lands are not level: {lo}..{hi}"
+        );
+        Ok(())
+    }
     #[test]
     fn extension_preserves_rear_interfaces_and_other_parts() -> Result<()> {
         let entries = archive::read(&crate::root().join("garden-auger.limo"))?;
