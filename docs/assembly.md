@@ -16,7 +16,7 @@ The five printed parts are the upper housing, lower housing with both grips, aug
 
 The corrected bushing geometry is unchanged since 14 October 2026. Your existing ring from that revision or later can be reused with the longer auger; its journal and housing seat are unchanged. The two-plate project still includes a replacement ring.
 
-Filament 4 now uses **Bambu PLA Basic** for the bushing and auger support interface. Load plain PLA with the matching profile. Reusing the ring still leaves the auger's PLA interface to print.
+Both housings, the auger and the adapter use PETG. Filament 4 is **Bambu PLA Basic**, used only for the ring. The auger's support bodies use orange PETG (filament 2); their contact layers use **Bambu Support for PLA/PETG** (filament 5). That dedicated interface filament is separate from the ring's PLA. The project assigns it to the auxiliary nozzle; map the saved materials to the loaded spools before printing.
 
 The owner measured 27 mm from rear case face to rear-facing mounting-ear underside, and 38 mm main case length excluding ears. Other servo dimensions remain drawing references; no missing shaft-relative measurement is inferred. The successful servo-to-adapter connection was confirmed complete on 5 November 2026.
 
@@ -34,7 +34,7 @@ The saved 3MF includes the color assignments; STLs contain solid geometry withou
 
 The auger is 240 mm overall, 95.3 mm longer than the previous print. The extended flight keeps a 14 mm pitch and 1.2 mm axial blade thickness. Shallow 0.6 mm flats follow the taper along its upper and lower flight tips to give supports a planar contact land. The flight remains above the bed and still needs support.
 
-The saved plate tilts the auger by about 1.59 degrees to put the lower lands on one horizontal plane, about 3.5 mm above the bed. The shield still supplies direct bed contact. The support interface uses the saved teal PLA, beneath the orange PETG; support removal and bonding need checking on the print.
+The saved plate tilts the auger by about 1.59 degrees to put the lower lands on one horizontal plane, about 3.5 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing, as Bambu recommends for that material. Support removal and bonding still need checking on the print.
 
 The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
 

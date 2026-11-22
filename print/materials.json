@@ -1,0 +1,28 @@
+{
+  "variants_per_filament": 6,
+  "filaments": [
+    { "material": "PETG", "id": "GFG00", "preset": "Bambu PETG Basic @BBL X2D 0.4 nozzle" },
+    { "material": "PETG", "id": "GFG00", "preset": "Bambu PETG Basic @BBL X2D 0.4 nozzle" },
+    { "material": "PETG", "id": "GFG00", "preset": "Bambu PETG Basic @BBL X2D 0.4 nozzle" },
+    { "material": "PLA", "id": "GFA00", "preset": "Bambu PLA Basic @BBL X2D 0.4 nozzle" },
+    { "material": "PLA", "id": "GFS05", "preset": "Bambu Support For PLA/PETG @BBL X2D 0.4 nozzle" }
+  ],
+  "parts": {
+    "PETG - Housing upper": { "filament": 1, "label": 102 },
+    "PETG - Housing lower": { "filament": 1, "label": 104 },
+    "PETG - Square adapter": { "filament": 3, "label": 106 },
+    "PETG - One-piece auger": { "filament": 2, "label": 108 },
+    "PLA - Constraint-fit bushing": { "filament": 4, "label": 110 }
+  },
+  "process": {
+    "filament_map_mode": "Manual",
+    "wall_filament": "0",
+    "sparse_infill_filament": "0",
+    "solid_infill_filament": "0",
+    "support_filament": "2",
+    "support_interface_filament": "5",
+    "support_top_z_distance": "0",
+    "support_bottom_z_distance": "0.2",
+    "support_interface_spacing": "0"
+  }
+}
