@@ -228,7 +228,7 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "d55b17395c7d14b3f18b9c375ebbe39a08c02d6645e530d73136b5036e1e2c42",
+    "sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
     "normal_print_parts": 5,
     "modifier_regions": 11,
     "plates": 2,
@@ -236,8 +236,8 @@
     "native_slicer_version": "02.09.01.70",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 23246.6943359375,
-    "filament_g": 172.34339940547943,
+    "seconds": 24386.466796875,
+    "filament_g": 180.85556149482727,
     "normal_meshes_preserved": true,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
@@ -248,21 +248,21 @@
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 11258.8173828125,
-        "filament_g": 106.19206035137177,
-        "material_cost": 1.910395165721178
+        "seconds": 12458.490234375,
+        "filament_g": 114.27205991744995,
+        "material_cost": 2.0557543579149247
       },
       {
         "plate": 2,
-        "seconds": 11987.876953125,
-        "filament_g": 66.15133905410767,
-        "material_cost": 1.1762892827367781
+        "seconds": 11927.9765625,
+        "filament_g": 66.58350157737732,
+        "material_cost": 1.3589619843959806
       }
     ],
-    "total_material_cost": 3.086684448457956,
+    "total_material_cost": 3.4147163423109053,
     "cost_basis": "Saved filament prices per kg; filament only",
     "changed_normal_mesh": null,
-    "normal_meshes_comparison_base": "b09ad6df0aaee84e76962fde89f5e6d3153e06fe",
+    "normal_meshes_comparison_base": "ba70bc2d0b517ceb89941212bc5537b1d6971301",
     "all_five_normal_meshes_byte_preserved": true
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
@@ -283,7 +283,7 @@
       "Auger top",
       "Auger underside"
     ],
-    "print_project_sha256": "d55b17395c7d14b3f18b9c375ebbe39a08c02d6645e530d73136b5036e1e2c42",
+    "print_project_sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
     "images": {
       "exploded.png": "41581cd803bcbd518cefe1988e29689e377ee61210d1ffbedde70562fcbd7359",
       "exploding-drive.gif": "ed5bf9c651543db66c631d04cbb39a5a5b215ebabf679e1b38682319f7256109",
@@ -291,7 +291,7 @@
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "c6bd38e3f40a703b4a0c0828d4e20dcc8f9987ec42a305cf8f7579adb6a5b07e",
+      "print-plates.png": "44778d7c50e95904a3284ab13dda62771057241888aed8c43705e3bf44a328ed",
       "turntable.gif": "66ae62dedb9ec79afe5b3a57be6b7584d8b35277befb48d8cc22b728ab3fb44e",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
@@ -314,13 +314,13 @@
       "lengthen-auger",
       "review-supports"
     ],
-    "regression_tests_passed": 37,
+    "regression_tests_passed": 42,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 23246.6943359375,
-    "native_slice_filament_g": 172.34339940547943,
+    "native_slice_seconds": 24386.466796875,
+    "native_slice_filament_g": 180.85556149482727,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -634,13 +634,13 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 22334.646484375,
-      "filament_g": 169.94911432266235,
+      "seconds": 22274.576171875,
+      "filament_g": 170.38127207756042,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "88326f895d7f7623e227750752d7eafc8c1c412c197b76e0dd19232895bf0eee",
-      "input_archive_sha256": "e0de8b035f008a4900bb396ccefbbfd94fd466e2c73f64ee06f4d68f19a62840",
-      "native_archive_sha256": "e72f2b8e6933bedda7bac817c2c7c7ae43da88b9cd5827a4c81d8707eafd46cd",
-      "support_gcode_sha256": "79349959181c63f9c870f288bdc9e435b56cf309b565cbb0469fabc38693930c"
+      "sha256": "a9a5df84219c9587d252f0c2d49f4698d898670cccaf2a8777d4d8d8d927cccc",
+      "input_archive_sha256": "10c1e90bef3966c883005f84415bb0bc51a3411bd832691fc1333244a9c817b9",
+      "native_archive_sha256": "1bb870befcfffb2df83a40d1808f061499ce6c9bae50f2eb1ff402a3571ec977",
+      "support_gcode_sha256": "2b5a9e3986d8de92ec4010e27eab1e312b0fc6e0e1d073c67507427e619a21c8"
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -711,7 +711,7 @@
     "print_axis_tilt_degrees": 1.5895355047291682,
     "lower_flat_plane_height_mm": 3.5,
     "printed_envelope_height_mm": 36.86905649413175,
-    "support_interface_material": "Bambu PLA Basic, filament 4; zero nominal top interface gap",
+    "support_interface_material": "Bambu Support for PLA/PETG, dedicated filament 5 on auxiliary nozzle; PETG support bodies in filament 2; zero nominal top interface gap",
     "editable_flight_source": {
       "path": "cad/auger-flight.limo",
       "sha256": "723cc2259a73ae1d421cb07b6a2fe82b0a2778b0c6b9d579adb883e869e1f572",
@@ -742,8 +742,8 @@
       "aligned_commit": "b09ad6df0aaee84e76962fde89f5e6d3153e06fe"
     },
     "support_contact_audit": {
-      "gcode_sha256": "79349959181c63f9c870f288bdc9e435b56cf309b565cbb0469fabc38693930c",
-      "selected_project_sha256": "d55b17395c7d14b3f18b9c375ebbe39a08c02d6645e530d73136b5036e1e2c42",
+      "gcode_sha256": "4746aab843ac02b34501587adaca5e988bc694b462eebae1a45249eeed5c6c0b",
+      "selected_project_sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
       "source_matches_selected_project": true,
       "lower_flat_patches": 14,
       "upper_flat_patches": 15,
@@ -756,8 +756,8 @@
       ],
       "method": "Nominal programmed bead footprints on the flat mesh faces, sampled; not a physical contact or stability test",
       "native_slicer_version": "02.09.01.70",
-      "input_archive_sha256": "9f7cc42863b2861b12694d4a5bc69419be180be125d329c9c44e23a954dfbcc5",
-      "native_archive_sha256": "d81137d7b5c5ed2605222c5cde96a62161a98b23f7dbf49466bd8e3cb6596b7c",
+      "input_archive_sha256": "fb94797d813d60d3aaa71affb61ceae4db73e864822700e1f0941f5c8aa5ca13",
+      "native_archive_sha256": "12c85654b3d53a5a7ab1f2640ae956abfe8cc7c49e8cba323a0af69570e83d2c",
       "paired_archive_provenance_verified": true
     },
     "programmed_auger_top_layer_z_mm": 36.92,
@@ -772,8 +772,7 @@
     "filament_id": "GFA00",
     "filament_number": 4,
     "applies_to": [
-      "bushing",
-      "auger support interface"
+      "bushing"
     ],
     "both_project_variants_natively_sliced": true,
     "both_support_audits_passed": true,
@@ -795,6 +794,90 @@
     "existing_corrected_ring_reusable_by_geometry": true,
     "replacement_ring_included": true,
     "physical_fit_reconfirmed": false,
+    "printer_command_sent": false
+  },
+  "material_contract": {
+    "date": "2026-11-22",
+    "policy": "print/materials.json",
+    "parts": [
+      {
+        "PETG - Housing lower: part": [
+          1,
+          3
+        ],
+        "PETG - Housing upper: part": [
+          1,
+          3
+        ]
+      },
+      {
+        "PETG - One-piece auger: Support": [
+          2
+        ],
+        "PETG - One-piece auger: Support interface": [
+          5
+        ],
+        "PETG - One-piece auger: Support transition": [
+          2
+        ],
+        "PETG - One-piece auger: part": [
+          2
+        ],
+        "PETG - Square adapter: part": [
+          3
+        ],
+        "PLA - Constraint-fit bushing: part": [
+          4
+        ]
+      }
+    ],
+    "single_color_parts": [
+      {
+        "PETG - Housing lower: part": [
+          1
+        ],
+        "PETG - Housing upper: part": [
+          1
+        ]
+      },
+      {
+        "PETG - One-piece auger: Support": [
+          2
+        ],
+        "PETG - One-piece auger: Support interface": [
+          5
+        ],
+        "PETG - One-piece auger: Support transition": [
+          2
+        ],
+        "PETG - One-piece auger: part": [
+          2
+        ],
+        "PETG - Square adapter: part": [
+          3
+        ],
+        "PLA - Constraint-fit bushing: part": [
+          4
+        ]
+      }
+    ],
+    "interface_profile": "Bambu Support For PLA/PETG @BBL X2D 0.4 nozzle",
+    "interface_filament_id": "GFS05",
+    "interface_filament": 5,
+    "interface_native_type": "PLA-S in slice info; PLA in project settings",
+    "ordinary_PLA_Basic_only_in_ring": true,
+    "PETG_support_bodies": true,
+    "interface_temperature_C": 210,
+    "auxiliary_nozzle_group_verified": true,
+    "complete_variant_index_verified": true,
+    "normalized_X2D_nozzle_metadata_verified": true,
+    "both_variants_natively_sliced": true,
+    "both_contact_audits_passed": true,
+    "geometry_unchanged": true,
+    "bushing_stl_sha256": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d",
+    "root_cause": "Ring and support interface inherited the same filament 4; prior validation checked only lettering material, and the summary incorrectly described both complete projects as PLA. Dedicated interface now has its own stock profile and slot.",
+    "rejected_trial": "Adding filament 5 initially omitted its variant index; native temperature readback caught a 250C interface instead of 210C. Rejected trial is not published.",
+    "normalization_scope": "Using Bambu-normalized settings changed nine metadata fields and resolved single-color native Out of Memory failures. A single responsible field was not isolated.",
     "printer_command_sent": false
   }
 }

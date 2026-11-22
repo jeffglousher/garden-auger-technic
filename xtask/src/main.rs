@@ -5,6 +5,7 @@ mod gallery;
 mod gcode;
 mod lengthen;
 mod lettering;
+mod materials;
 mod print;
 mod readability;
 mod support_review;

@@ -16,6 +16,15 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
     let mut width = 0.42;
     let mut segments = vec![];
     for line in code.lines() {
+        // Bambu initializes the preview tool with this virtual-tool marker; a T command
+        // need not appear before the first object's extrusion.
+        if let Some(tool) = line
+            .strip_prefix(";VT")
+            .and_then(|v| v.split_whitespace().next())
+        {
+            filament = tool.parse()?;
+            continue;
+        }
         if let Some(v) = line.strip_prefix("; LINE_WIDTH: ") {
             width = v.parse()?;
             continue;
@@ -129,4 +138,18 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
         xy = end;
     }
     Ok(segments)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn virtual_initial_tool_and_tool_changes_apply_to_moving_extrusion_only() -> Result<()> {
+        let code = ";VT2 H-1\nM83\n; start printing object, unique label id: 106\n; FEATURE: Outer wall\nG1 X10 E1\n; stop printing object\nT4 H-1\nG1 X20 E1\n; start printing object, unique label id: 108\nG1 E.4\n; FEATURE: Support interface\nG1 X21 E1\n";
+        let paths = paths(code)?;
+        assert_eq!(paths.len(), 2);
+        assert_eq!((paths[0].object, paths[0].filament), (106, 2));
+        assert_eq!((paths[1].object, paths[1].filament), (108, 4));
+        Ok(())
+    }
 }

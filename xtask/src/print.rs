@@ -38,6 +38,9 @@ pub struct Options {
     /// Installed Bambu Studio executable. Only local --slice/--export-3mf is invoked.
     #[arg(long)]
     pub slicer: Option<PathBuf>,
+    /// Revalidate a completed native slice whose saved input exactly matches this rebuild.
+    #[arg(long, conflicts_with = "slicer")]
+    pub reuse_slice: Option<PathBuf>,
     /// Slice the same parts with only the global strength settings for comparison.
     #[arg(long)]
     pub no_reinforcement: bool,
@@ -51,6 +54,8 @@ pub struct Options {
 #[derive(Deserialize)]
 pub struct Spec {
     #[serde(skip)]
+    pub materials: Option<crate::materials::Materials>,
+    #[serde(skip)]
     pub paint: Vec<crate::lettering::Region>,
     pub minimum_surface_clearance_mm: f64,
     pub global: BTreeMap<String, String>,
@@ -63,6 +68,7 @@ pub struct Spec {
 fn load_spec(root: &Path) -> Result<Spec> {
     let mut spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
     spec.paint = crate::lettering::load(root)?;
+    spec.materials = Some(crate::materials::Materials::load(root)?);
     Ok(spec)
 }
 #[derive(Deserialize)]
@@ -433,6 +439,11 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
     for (k, v) in &spec.global {
         settings[k] = json!(v);
     }
+    spec.materials
+        .as_ref()
+        .context("Missing material policy")?
+        .apply(&mut config, &mut settings)?;
+    entries.insert(CONFIG.into(), xml::encode(&config));
     entries.insert(SETTINGS.into(), serde_json::to_vec_pretty(&settings)?);
     Ok(entries)
 }
@@ -601,31 +612,61 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         .unwrap_or_else(|| root.join("print/garden-auger.3mf"));
     let mut entries = build(archive::read(&source)?, &spec)?;
     invalidate(&mut entries)?;
-    if let Some(slicer) = &options.slicer {
-        fs::create_dir_all(&options.evidence)?;
-        let lane = tempfile::Builder::new()
-            .prefix("slice-")
-            .tempdir_in(fs::canonicalize(&options.evidence)?)?
-            .keep();
-        let lane = crate::native_absolute(&lane)?;
-        archive::write(&lane.join("input.3mf"), &entries)?;
-        let log = File::create(lane.join("native.log"))?;
-        let mut child = hidden(
-            Command::new(crate::native_absolute(slicer)?)
-                .args(["--slice", "0", "--export-3mf", "sliced.3mf", "--outputdir"])
-                .arg(&lane)
-                .arg(lane.join("input.3mf"))
-                .stdout(Stdio::from(log.try_clone()?))
-                .stderr(Stdio::from(log)),
-        )
-        .spawn()
-        .context("Start local Bambu Studio slice")?;
-        let status = crate::wait(&mut child, Duration::from_secs(600))?;
-        ensure!(
-            status.success(),
-            "Bambu Studio failed: {status}; see {}",
-            lane.display()
-        );
+    if options.slicer.is_some() || options.reuse_slice.is_some() {
+        let lane = if let Some(saved) = &options.reuse_slice {
+            ensure!(
+                archive::read(&saved.join("input.3mf"))? == entries,
+                "Saved slice input differs from this rebuild"
+            );
+            let recorded: Value =
+                serde_json::from_slice(&fs::read(saved.join("native-pair.json"))?)?;
+            ensure!(
+                recorded == native_pair(saved)?,
+                "Saved native slice files changed since slicing"
+            );
+            crate::native_absolute(saved)?
+        } else {
+            let slicer = options.slicer.as_ref().context("Missing slicer")?;
+            fs::create_dir_all(&options.evidence)?;
+            let lane = tempfile::Builder::new()
+                .prefix("slice-")
+                .tempdir_in(fs::canonicalize(&options.evidence)?)?
+                .keep();
+            let lane = crate::native_absolute(&lane)?;
+            archive::write(&lane.join("input.3mf"), &entries)?;
+            let log = File::create(lane.join("native.log"))?;
+            let mut child = hidden(
+                Command::new(crate::native_absolute(slicer)?)
+                    .args([
+                        "--slice",
+                        "0",
+                        "--filament-map-mode",
+                        "Manual",
+                        "--filament-map",
+                        "1,1,1,1,2",
+                        "--export-3mf",
+                        "sliced.3mf",
+                        "--outputdir",
+                    ])
+                    .arg(&lane)
+                    .arg(lane.join("input.3mf"))
+                    .stdout(Stdio::from(log.try_clone()?))
+                    .stderr(Stdio::from(log)),
+            )
+            .spawn()
+            .context("Start local Bambu Studio slice")?;
+            let status = crate::wait(&mut child, Duration::from_secs(600))?;
+            ensure!(
+                status.success(),
+                "Bambu Studio failed: {status}; see {}",
+                lane.display()
+            );
+            fs::write(
+                lane.join("native-pair.json"),
+                serde_json::to_vec_pretty(&native_pair(&lane)?)?,
+            )?;
+            lane
+        };
         let native: Value = serde_json::from_slice(&fs::read(lane.join("result.json"))?)?;
         let sliced = archive::read(&lane.join("sliced.3mf"))?;
         let mut summary = validate_slice(&sliced, &native, &spec)?;
@@ -647,6 +688,14 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     archive::write(&output, &entries)?;
     println!("{}", output.display());
     Ok(())
+}
+
+fn native_pair(lane: &Path) -> Result<Value> {
+    let mut pair = BTreeMap::new();
+    for name in ["input.3mf", "sliced.3mf", "result.json"] {
+        pair.insert(name, archive::sha(&fs::read(lane.join(name))?));
+    }
+    Ok(json!(pair))
 }
 
 fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value> {
@@ -688,6 +737,9 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
     }
     let config = xml::parse(archive::required(sliced, CONFIG)?)?;
     let process: Value = serde_json::from_slice(archive::required(sliced, SETTINGS)?)?;
+    let materials = spec.materials.as_ref().context("Missing material policy")?;
+    materials.validate(&config, &process)?;
+    materials.validate_info(&xml::parse(archive::required(sliced, INFO)?)?)?;
     for (key, expected) in &spec.global {
         ensure!(
             process[key].as_str() == Some(expected),
@@ -751,12 +803,14 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
             "Object support policy changed: {name}"
         );
     }
+    let mut material_paths = vec![];
     for (i, expected) in [(1, vec!["102", "104"]), (2, vec!["106", "108", "110"])] {
         let code = std::str::from_utf8(archive::required(
             sliced,
             &format!("Metadata/plate_{i}.gcode"),
         )?)?;
         validate_gcode(code, &expected, i == 2)?;
+        material_paths.push(materials.validate_paths(code, &expected, &spec.paint)?);
     }
     ensure!(
         seconds.is_finite() && seconds > 0. && grams.is_finite() && grams > 0.,
@@ -778,7 +832,7 @@ fn validate_slice(sliced: &Entries, native: &Value, spec: &Spec) -> Result<Value
         );
     }
     Ok(
-        json!({"seconds":seconds,"grams":grams,"reinforcement_regions":spec.zones.len(),"color_regions":spec.paint.len(),"printer_command_sent":false}),
+        json!({"seconds":seconds,"grams":grams,"reinforcement_regions":spec.zones.len(),"color_regions":spec.paint.len(),"material_paths":material_paths,"printer_command_sent":false}),
     )
 }
 
@@ -1123,6 +1177,21 @@ mod tests {
     }
 
     #[test]
+    fn native_pair_detects_changed_output_or_results() -> Result<()> {
+        let lane = tempfile::tempdir()?;
+        for name in ["input.3mf", "sliced.3mf", "result.json"] {
+            fs::write(lane.path().join(name), name)?;
+        }
+        let original = native_pair(lane.path())?;
+        for name in ["sliced.3mf", "result.json"] {
+            fs::write(lane.path().join(name), b"different job")?;
+            assert_ne!(native_pair(lane.path())?, original);
+            fs::write(lane.path().join(name), name)?;
+        }
+        Ok(())
+    }
+
+    #[test]
     fn adhesion_and_housing_support_fail_even_outside_object_blocks() {
         let header = "; print_sequence = by object\n; wall_loops = 3\n";
         let housing = format!("{header}; start printing object, unique label id: 102\n");
@@ -1167,16 +1236,34 @@ mod tests {
         let lane = tempfile::tempdir()?;
         let output = lane.path().join("existing.3mf");
         fs::write(&output, b"keep this saved candidate")?;
-        let options = Options {
+        let mut options = Options {
             source: None,
             output: Some(output.clone()),
             slicer: Some(lane.path().join("missing-slicer")),
+            reuse_slice: None,
             no_reinforcement: false,
             single_color_lettering: false,
             evidence: lane.path().join("evidence"),
         };
         assert!(run(&crate::root(), &options).is_err());
         assert_eq!(fs::read(output)?, b"keep this saved candidate");
+        let saved = lane.path().join("wrong-slice");
+        fs::create_dir(&saved)?;
+        let mut wrong = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        wrong.insert("unrelated-input".into(), b"wrong job".to_vec());
+        archive::write(&saved.join("input.3mf"), &wrong)?;
+        options.slicer = None;
+        options.reuse_slice = Some(saved);
+        assert!(
+            run(&crate::root(), &options)
+                .unwrap_err()
+                .to_string()
+                .contains("Saved slice input differs")
+        );
+        assert_eq!(
+            fs::read(options.output.unwrap())?,
+            b"keep this saved candidate"
+        );
         Ok(())
     }
 }

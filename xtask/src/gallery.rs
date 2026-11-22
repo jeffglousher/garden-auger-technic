@@ -929,7 +929,7 @@ fn plates(entries: &archive::Entries, text: &Text) -> Result<RgbImage> {
             if i == 0 {
                 "PETG"
             } else {
-                "PETG first  - PLA bushing last"
+                "PETG parts/supports; Bambu interface; PLA ring last"
             },
             x as i32 + 25,
             y as i32 + 630,
