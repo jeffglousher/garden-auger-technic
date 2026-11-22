@@ -31,6 +31,9 @@ pub struct Options {
     /// TrueType font for callouts; defaults to Segoe UI on Windows or DejaVu Sans on Linux.
     #[arg(long)]
     pub font: Option<PathBuf>,
+    /// Refresh only the saved slicer previews and estimates, without starting CAD.
+    #[arg(long)]
+    pub plates_only: bool,
     #[arg(long, default_value = ".build/gallery-rust")]
     pub evidence: PathBuf,
 }
@@ -1057,6 +1060,29 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let print = archive::read(&root.join("print/garden-auger.3mf"))?;
     // Validate slice data before starting the expensive native CAD replay.
     let plate_image = plates(&print, &text)?;
+    if options.plates_only {
+        fs::create_dir_all(&output)?;
+        let path = output.join("print-plates.png");
+        let mut temp = tempfile::NamedTempFile::new_in(&output)?;
+        image::DynamicImage::ImageRgb8(plate_image)
+            .write_to(temp.as_file_mut(), image::ImageFormat::Png)?;
+        temp.as_file().sync_all()?;
+        temp.persist(&path).map_err(|e| e.error)?;
+        fs::create_dir_all(&options.evidence)?;
+        let manifest = json!({
+            "renderer": "Rust cargo xtask gallery --plates-only",
+            "source": "Saved native Bambu slicer previews and estimates",
+            "print_sha256": archive::sha(&fs::read(root.join("print/garden-auger.3mf"))?),
+            "images": {"print-plates.png": archive::sha(&fs::read(&path)?)},
+            "cad_process_started": false,
+        });
+        fs::write(
+            options.evidence.join("plate-manifest.json"),
+            serde_json::to_vec_pretty(&manifest)?,
+        )?;
+        println!("PASS: print plate image generated: {}", path.display());
+        return Ok(());
+    }
     let mut client = Client::start(options.executable.as_deref())?;
     client.load(root)?;
     let scene = client.scene()?;

@@ -13,7 +13,7 @@ A printable housing for a continuous-rotation servo, with an auger for digging i
 - Flush color lettering for part labels and hardware details inside the housing.
 - Reinforcement around the screw holes and drive adapter.
 
-The housing, auger and adapter use PETG. The bushing uses PLA.
+The housing, auger and adapter use PETG. The bushing uses plain PLA.
 
 ## Inside the housing
 

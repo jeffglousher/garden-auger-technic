@@ -6,7 +6,7 @@ Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), th
 
 The `.limo` model owns fitted solid geometry and the two named lettering sketches. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement, nine reinforcement regions and two color-only lettering masks. STLs preserve only the five solid part meshes.
 
-The model also saves **Exploded assembly**, **Inside the housing**, **Lower housing labels** and **Upper housing labels** views. Limo resolves their component offsets and cameras without changing the mechanical assembly. The gallery uses those native meshes and resolved poses; the turntable, rotating-drive explosion GIFs and part callouts are rendered and encoded externally. They illustrate the parts rather than defining an assembly motion constraint. Plate previews and time/material estimates come directly from the saved Bambu project. Asset hashes and source details are recorded in `validation.json`.
+The model also saves **Exploded assembly**, **Inside the housing**, **Lower housing labels** and **Upper housing labels** views. Limo resolves their component offsets and cameras without changing the mechanical assembly. The gallery uses those native meshes and resolved poses; the turntable, rotating-drive explosion GIFs and part callouts are rendered and encoded externally. They illustrate the parts rather than defining an assembly motion constraint. Plate previews and time/material estimates come directly from the saved Bambu project. Asset hashes and source details are recorded in [validation.json](validation.json).
 
 ## Rebuild the tools and images
 
@@ -20,6 +20,7 @@ cargo xtask build-print --output .build/rebuilt.3mf
 cargo xtask build-print --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output .build/sliced.3mf
 cargo xtask build-print --single-color-lettering --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe" --output print/garden-auger-single-color.3mf
 cargo xtask gallery --output .build/gallery-preview
+cargo xtask gallery --plates-only
 cargo xtask coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
 cargo xtask lettering-coupons --slicer "C:/Program Files/Bambu Studio/bambu-studio.exe"
 ```
@@ -30,13 +31,15 @@ The model uses the current Limo CAD project identity. Validation checks that ide
 
 The rebuild preserves namespaced component paths and UUIDs, including files with multiple prefixes for the same namespace. Core model elements are written in Bambu's accepted default-namespace form. Both prefixed-core input and a production namespace declared as default plus prefix were rebuilt and sliced locally.
 
-`verify-model` and `gallery` start a private headless CAD process. They accept `--executable`, or `LIMO_CAD_EXE`; Windows defaults to the installed Limo CAD path. The gallery reads the current model, saved poses and saved print previews; it does not depend on archived images or a live desktop session. It renders the two 48-frame loops, exploded callouts, native engraving closeups, both plate estimates and an annotated locator layout. That layout uses the native upper mating-face mesh and source sketch dimensions. Without `--output`, it refreshes the gallery images in `docs/images`. `--font` selects a TrueType font; the defaults are Segoe UI on Windows and DejaVu Sans on Linux. Check the generated `manifest.json` under `.build/gallery-rust` and update the published image hashes in `validation.json` when publishing new images.
+`verify-model` and the full `gallery` command start a private headless CAD process. They accept `--executable`, or `LIMO_CAD_EXE`; Windows defaults to the installed Limo CAD path. The gallery reads the current model, saved poses and saved print previews; it does not depend on archived images or a live desktop session. It renders the two 48-frame loops, exploded callouts, label closeups, both plate estimates and an annotated locator layout. That layout uses the native upper mating-face mesh and source sketch dimensions. Without `--output`, it refreshes the gallery images in `docs/images`. `--font` selects a TrueType font; the defaults are Segoe UI on Windows and DejaVu Sans on Linux. Check the generated `manifest.json` under `.build/gallery-rust` and update the published image hashes in [validation.json](validation.json) when publishing new images.
+
+After a material or slicing change, `gallery --plates-only` refreshes just `print-plates.png` from the current project's native previews and estimates. It starts no CAD process and writes a separate `plate-manifest.json` in the evidence directory.
 
 `lengthen-auger` regenerates the extended flight as native per-turn lofts, preserves the rear drive geometry, and exports a candidate under `.build/long-auger`. Its optional `--install` replaces the model, auger STL and auger mesh in both print projects after native checks; rerun both `build-print` commands with `--slicer` afterwards. The auger stays 240 mm overall. Its 25-degree plate placement clears the saved second-nozzle X limit and leaves the rear objects clear of the gantry rod.
 
 The [editable flight source](../cad/auger-flight.limo) contains the native lofts and named upper/lower flat cuts. Construction sketches are hidden when opened. The complete assembly keeps an embedded STEP copy for faster replay; exporting an edited flight back into that import is a separate step. `lengthen-auger --install` regenerates both files from the Rust dimensions, replacing hand edits to the generated flight source.
 
-The print placement adds a small tilt along the auger's axis, calculated from the flight taper. This makes the lower flight lands horizontal and keeps their supports about 3.5 mm tall. The solid geometry, bearing journal and drive socket do not change with print orientation. Both projects retain the saved PLA support-interface material and zero nominal interface gap.
+The print placement adds a small tilt along the auger's axis, calculated from the flight taper. This makes the lower flight lands horizontal and keeps their supports about 3.5 mm tall. The solid geometry, bearing journal and drive socket do not change with print orientation. Both projects use plain Bambu PLA Basic for the bushing and support interface, with zero nominal interface gap. The existing corrected bushing can be reused; a replacement remains on plate 2.
 
 `cargo xtask review-supports --slice PATH_TO_NATIVE_SLICE_DIRECTORY` checks every input mesh, placement and settings against the selected print project, the input/output archive hash pair saved during slicing, and the G-code inside that native archive. It then draws the actual first-layer footprints and interface paths under each flat. Mixed folders and older evidence without the paired hashes require a fresh `build-print --slicer` run. `--project` selects a separate trial. Its 0.2 mm samples and nominal bead widths check programmed coverage, not physical bonding or stability.
 
