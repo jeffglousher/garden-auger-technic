@@ -14,6 +14,10 @@ The five printed parts are the upper housing, lower housing with both grips, aug
 - Diameter28 mm journal; bushing ID28.6 /OD34 /length9.8 mm, captured in the diameter35.6 mm housing seat.
 - 14 mm rounded-square adapter drive and 14.4 mm mating socket.
 
+The corrected bushing geometry is unchanged since 14 October 2026. Your existing ring from that revision or later can be reused with the longer auger; its journal and housing seat are unchanged. The two-plate project still includes a replacement ring.
+
+Filament 4 now uses **Bambu PLA Basic** for the bushing and auger support interface. Load plain PLA with the matching profile. Reusing the ring still leaves the auger's PLA interface to print.
+
 The owner measured 27 mm from rear case face to rear-facing mounting-ear underside, and 38 mm main case length excluding ears. Other servo dimensions remain drawing references; no missing shaft-relative measurement is inferred. The successful servo-to-adapter connection was confirmed complete on 5 November 2026.
 
 ![Upper mating face and locator clearances](images/locator-layout.svg)
