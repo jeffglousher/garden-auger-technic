@@ -328,7 +328,7 @@ fn auger_review(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
     imageops::replace(&mut sheet, &side, 0, 55);
     text.draw(
         &mut sheet,
-        "240 mm auger - tapered entry and 24 mm pitch",
+        "240 mm auger - chisel pilot and 24 mm pitch",
         35,
         20,
         30.,
