@@ -73,18 +73,6 @@ fn definition(m: &[f64], offset: P3, p: P3) -> P3 {
     std::array::from_fn(|i| (0..3).map(|k| m[3 * i + k] * q[k]).sum::<f64>() + offset[i])
 }
 
-fn in_zone(zone: &crate::print::Zone, p: P3) -> bool {
-    let axis = if zone.axis == "y" { 1 } else { 2 };
-    let q: P3 = std::array::from_fn(|i| p[i] - zone.center_mm[i]);
-    let radius = (0..3)
-        .filter(|i| *i != axis)
-        .map(|i| q[i] * q[i])
-        .sum::<f64>()
-        .sqrt();
-    q[axis].abs() <= zone.height_mm / 2.
-        && (zone.inner_radius_mm..=zone.radius_mm).contains(&radius)
-}
-
 fn structure_layer(
     root: &Path,
     object: &xml::Node,
@@ -122,7 +110,7 @@ fn structure_layer(
         let b = definition(m, offset, [s.b[0], s.b[1], s.z]);
         let p = std::array::from_fn(|i| (a[i] + b[i]) / 2.);
         let infill = s.feature.to_ascii_lowercase().contains("infill");
-        let (role, color) = if infill && zones.iter().any(|z| in_zone(z, p)) {
+        let (role, color) = if infill && zones.iter().any(|z| z.contains(p)) {
             ("reinforced infill", "#168b8b")
         } else if infill {
             ("bulk infill", "#7963ca")

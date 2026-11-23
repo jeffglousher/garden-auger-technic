@@ -43,9 +43,11 @@ pub fn verify(modifier: &Mesh, parent: &Mesh, clearance: f64) -> Result<()> {
         let local = self::bounds(&triangle);
         for &other in &nearby {
             if boxes_near(local, self::bounds(&other), clearance) {
+                let distance_squared = triangle_distance_squared(triangle, other);
                 ensure!(
-                    triangle_distance_squared(triangle, other) >= clearance.powi(2) - 1e-10,
-                    "Reinforcement must stay at least {clearance} mm inside every part surface"
+                    distance_squared >= clearance.powi(2) - 1e-10,
+                    "Reinforcement must stay at least {clearance} mm inside every part surface; found {:.6} mm between modifier {triangle:?} and parent {other:?} in centered mesh coordinates",
+                    distance_squared.sqrt()
                 );
             }
         }

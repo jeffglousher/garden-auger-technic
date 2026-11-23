@@ -8,6 +8,7 @@ mod lettering;
 mod materials;
 mod print;
 mod readability;
+mod strength_review;
 mod support_review;
 mod xml;
 
@@ -42,6 +43,8 @@ enum Task {
     LengthenAuger(lengthen::Options),
     /// Inspect actual sliced support contact under the auger flats.
     ReviewSupports(support_review::Options),
+    /// Compare local infill with an earlier paired slice of identical geometry/process.
+    ReviewStrength(strength_review::Options),
 }
 
 fn root() -> PathBuf {
@@ -60,6 +63,7 @@ fn main() -> Result<()> {
         Task::LetteringCoupons(options) => readability::run(&root(), &options),
         Task::LengthenAuger(options) => lengthen::run(&root(), &options),
         Task::ReviewSupports(options) => support_review::run(&root(), &options),
+        Task::ReviewStrength(options) => strength_review::run(&root(), &options),
     }
 }
 

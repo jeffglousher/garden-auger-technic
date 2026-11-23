@@ -36,13 +36,15 @@ The auger is 240 mm overall. Its flight has a 24 mm pitch, 3.2 mm axial edges an
 
 Shallow 0.6 mm cuts retain a flat top and underside along the flight taper. The auger prints lengthwise, with a small tilt that levels the lower lands about 2 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing. Support removal and bonding still need checking on the print.
 
-All parts keep three perimeter walls and use 20% gyroid bulk infill. Eleven contained regions use solid infill: the existing housing and adapter regions, plus an auger shaft band below the shield and a torque band around the square socket. These change infill only and stay at least 0.4 mm inside the part surfaces.
+All parts keep three perimeter walls and use 20% gyroid bulk infill. Ten contained regions use solid infill: eight housing screw anchors, one continuous adapter region from the square drive peg to the servo hub, and one connected auger region from the socket through the journal and shoulder into the loaded shaft. The auger region tapers away over one 24 mm flight pitch. Its opening follows the rounded-square socket, placing infill behind the loaded flats; the low-radius shaft center keeps ordinary gyroid. These change infill only and stay at least 0.4 mm inside the part surfaces.
 
 The coarser flight and broad roots are intended to clear garden soil and resist blade bending. They are a design candidate, not a measured optimum. Pitch, tip shape and soil conditions interact; wider spacing can reduce sticky buildup while changing soil carrying behavior, as [AMS describes](https://www.ams-samplers.com/blog/flighted-auger-design-for-cohesive-soil-types/). Actual digging torque, soil removal and durability need a physical trial.
 
 The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
 
 ![240 mm auger and shallow print flats](images/auger-240.png)
+
+![Connected reinforcement follows the actual torque path](images/torque-paths.svg)
 
 ![Actual auger layer paths: walls, gyroid bulk and contained solid zones](images/auger-infill.svg)
 

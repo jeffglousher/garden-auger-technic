@@ -243,42 +243,42 @@
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
+    "sha256": "e6f27104e6af68f476ddf20b68e6688f7e25da354336ebe2be1f503ecdc0d070",
     "normal_print_parts": 5,
-    "modifier_regions": 13,
+    "modifier_regions": 12,
     "plates": 2,
     "sequence": "by object",
     "native_slicer_version": "02.09.01.70",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 30332.3173828125,
-    "filament_g": 203.50936841964722,
-    "normal_meshes_preserved": false,
+    "seconds": 31153.1533203125,
+    "filament_g": 221.60374999046326,
+    "normal_meshes_preserved": true,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
     "printer_command_sent": false,
     "embedded_gcode": false,
-    "reinforcement_regions": 11,
+    "reinforcement_regions": 10,
     "color_regions": 2,
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 16020.3681640625,
+        "seconds": 16020.9013671875,
         "filament_g": 122.21692228317261,
         "material_cost": 2.198682431874275
       },
       {
         "plate": 2,
-        "seconds": 14311.94921875,
-        "filament_g": 81.29244613647461,
-        "material_cost": 1.6125357307958599
+        "seconds": 15132.251953125,
+        "filament_g": 99.38682770729065,
+        "material_cost": 1.9380536662197112
       }
     ],
-    "total_material_cost": 3.8112181626701345,
+    "total_material_cost": 4.136736098093986,
     "cost_basis": "Saved filament prices per kg; filament only",
-    "changed_normal_mesh": "3D/Objects/object_3.model",
-    "normal_meshes_comparison_base": "d7e7ed466d59b718e201eb9c3074be0f5e790933",
-    "all_five_normal_meshes_byte_preserved": false,
+    "changed_normal_mesh": null,
+    "normal_meshes_comparison_base": "4f4015ef297ffde93cc56078dc7e3f613a8faea8",
+    "all_five_normal_meshes_byte_preserved": true,
     "other_four_normal_meshes_byte_preserved": true,
     "normal_part_meshes": [
       {
@@ -293,7 +293,7 @@
       },
       {
         "path": "3D/Objects/object_3.model",
-        "unchanged": false,
+        "unchanged": true,
         "sha256": "2451036321a7fa45cc32d60e52434b20bc40f1a8f600fa506c986ccac11fa8a2"
       },
       {
@@ -307,8 +307,8 @@
         "sha256": "7594b4addbb51a453469daa040c545be3fa13a0b5ce06bbb379fa79c2e196874"
       }
     ],
-    "input_archive_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
-    "native_archive_sha256": "11ed5fe2a5380d06c21b287388d3920b44a4159500390b8fabbf183f383b8969"
+    "input_archive_sha256": "4c54bc9c81004bb16c37b3ebb017482c49f1c264b5e0394138095b8ab8c1c2f3",
+    "native_archive_sha256": "cd8fcccb91578f3cd7af00da1fc92fe5f2870b170758331c33940799c3fd9560"
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
   "accepted_drive_connection": {
@@ -328,7 +328,7 @@
       "Auger top",
       "Auger underside"
     ],
-    "print_project_sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
+    "print_project_sha256": "e6f27104e6af68f476ddf20b68e6688f7e25da354336ebe2be1f503ecdc0d070",
     "images": {
       "exploded.png": "80413200bc917e72b7d640beeacd900d01a36e0fd7bcae626ced1e17dd35fb89",
       "exploding-drive.gif": "ed28e4922c9440cda0877aada8796e8f1e4ec4791ca78859fb06c1e69c4cbe83",
@@ -336,18 +336,19 @@
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "8c449311637ff71dd3b71a3a4ca76a8b834c41dc09eae596610c2633364f1e92",
+      "print-plates.png": "4bab666c601a6a570781226c6a141aba2c1dd0e3fba0230bad55ef12f252c888",
       "turntable.gif": "8fa0c23fc4d8bee7a8a4fd70a054a0dbe4afff7568cc3ebbe01ca5ccb55c4a10",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
       "single-color-housing-labels.png": "7bd70240505dda816e26d7b0bd09137a92d0fa270b73a4be5a0b213cc1b8f4ba",
       "auger-240.png": "51e27233ae4a3a27743878abd97da7b6930cbc9e20e75a2a94c6e5ddae6445b8",
-      "auger-infill.svg": "85f3219d4cd0c984202463cc99adf3e6e34785d0f89e9ef66df51ea61e7cf606"
+      "auger-infill.svg": "f606e99d73a1200f61c90ee9176bf339d9918ae7c77d050b6c1473058dbfcd1d",
+      "torque-paths.svg": "ff7fa244892394ff512d775efb3ede4118ae9e797c27c0c5e4f3053a65b54c7e"
     },
     "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
     "rendering_preserves_source_model": true,
-    "plate_image_update": "Full Rust gallery regenerated from current CAD, saved views and current native slice previews",
+    "plate_image_update": "Plate-only gallery refresh from current paired native slice; CAD geometry and assembly images retained",
     "model_sha256": "98247c1c06e330238c6065dcde1ca7b7ce2b3481a60bd76f3f00dbdc06584045"
   },
   "tooling": {
@@ -359,19 +360,20 @@
       "coupons",
       "lettering-coupons",
       "lengthen-auger",
-      "review-supports"
+      "review-supports",
+      "review-strength"
     ],
-    "regression_tests_passed": 43,
+    "regression_tests_passed": 46,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 30332.3173828125,
-    "native_slice_filament_g": 203.50936841964722,
+    "native_slice_seconds": 31153.1533203125,
+    "native_slice_filament_g": 221.60374999046326,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
-    "cad_and_print_geometry_unchanged": false,
+    "cad_and_print_geometry_unchanged": true,
     "platform_tested": "Windows x64",
     "rust_toolchain_tested": "1.99.1",
     "namespace_regressions": {
@@ -393,7 +395,8 @@
       ]
     },
     "build_print_preserves_input_normal_mesh_bytes": true,
-    "gallery_plate_only_verified_without_cad": true
+    "gallery_plate_only_verified_without_cad": true,
+    "geometry_comparison_base": "4f4015ef297ffde93cc56078dc7e3f613a8faea8"
   },
   "identity": {
     "application": "Limo CAD",
@@ -432,8 +435,8 @@
     "current_native_CLI_mesh_warnings": []
   },
   "reinforcement_containment": {
-    "shape": "Annular cylinders entirely inside the normal part meshes",
-    "regions": 11,
+    "shape": "Eight annular screw-anchor regions and two connected hollow profiles following the adapter/auger load paths",
+    "regions": 10,
     "minimum_surface_clearance_mm": 0.4,
     "complete_mesh_boundary_separation_checked": true,
     "outside_and_enclosed_void_checks_passed": true,
@@ -441,10 +444,6 @@
     "housing_inner_diameter_mm": 5.2,
     "lower_height_mm": 7.8,
     "upper_height_mm": 12.8,
-    "adapter_outer_diameter_mm": 18,
-    "adapter_inner_diameter_mm": 8,
-    "adapter_height_mm": 10.1,
-    "region_volume_reduction_percent": 73.09085706806442,
     "all_five_normal_meshes_and_global_settings_byte_preserved_from": "9bae2bdb2f222b75f46c9688b8dc40341763f4a5",
     "infill_extrusion_increased_in_all_nine_regions": true,
     "outer_wall_footprint_added_samples": 0,
@@ -452,7 +451,14 @@
     "footprint_tolerance_mm": 0.2,
     "physical_strength_confirmation_pending": true,
     "native_Bambu_Prepare_view_has_no_protruding_regions": false,
-    "historical_comparison_scope": "The cited byte-preservation and nine-region footprint comparison precede the housing and auger revisions. All eleven current modifiers pass the complete 0.4 mm boundary-separation guard. The two new auger regions have a separate native comparison under auger_design."
+    "historical_comparison_scope": "Earlier nine-region footprint/volume comparisons and eleven-region auger-band evidence are historical. The current ten regions all pass the complete 0.4 mm surface-separation/void guard; current feed evidence is under reinforcement_revision.",
+    "previous_adapter_ring": {
+      "outer_diameter_mm": 18,
+      "inner_diameter_mm": 8,
+      "height_mm": 10.1,
+      "scope": "Before the continuous adapter profile in reinforcement_revision"
+    },
+    "historical_nine_region_volume_reduction_percent": 73.09085706806442
   },
   "underside_correction": {
     "cause": "Automatic tree supports under upper screw-head recesses created expanded bases; the old unreinforced baseline had them too.",
@@ -681,25 +687,25 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 28280.1181640625,
-      "filament_g": 193.1992859840393,
+      "seconds": 29100.9326171875,
+      "filament_g": 211.2936728000641,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "6ecd57d1e5c01629f1b93439fde89f706048abaaf52fbf08f9b9bcdcfdf1ca9b",
-      "input_archive_sha256": "fed980c85f1b6d765e49250e0bc1436bd5bb1492ebd546299226babb86fa75e0",
-      "native_archive_sha256": "52760b353aefd99f43285b129e1425a05d147d6a38c98c273ad70723547339e5",
-      "support_gcode_sha256": "5a2bdddf8a58b96e0be86e3552f9b7c29b3fda2fd5f32c4014efefd80b7d3e39",
+      "sha256": "a2c671773c5936bc39cc43ca4f888de85b996d2ff1d003ed646726f57fa3915f",
+      "input_archive_sha256": "fe43396bb8952162cd26ac5922991a5cecc1e7f7ceaf0e54ffc118f206f8756b",
+      "native_archive_sha256": "77fc21d96e8e830a40ed251955ad39747a0a3d27e6fc73681ee5d30fadd7faf2",
+      "support_gcode_sha256": "41f46045384abc534296446d4f9708b93fac0c63a05db954185b64d7e88523f3",
       "plate_estimates": [
         {
           "plate": 1,
-          "seconds": 13968.6826171875,
+          "seconds": 13968.6806640625,
           "filament_g": 111.90684509277344,
           "material_cost": 2.013204143218994
         },
         {
           "plate": 2,
-          "seconds": 14311.435546875,
-          "filament_g": 81.29244089126587,
-          "material_cost": 1.6125356364345547
+          "seconds": 15132.251953125,
+          "filament_g": 99.38682770729065,
+          "material_cost": 1.9380536662197112
         }
       ]
     },
@@ -803,8 +809,8 @@
       "aligned_commit": "b09ad6df0aaee84e76962fde89f5e6d3153e06fe"
     },
     "support_contact_audit": {
-      "gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
-      "selected_project_sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
+      "gcode_sha256": "41f46045384abc534296446d4f9708b93fac0c63a05db954185b64d7e88523f3",
+      "selected_project_sha256": "e6f27104e6af68f476ddf20b68e6688f7e25da354336ebe2be1f503ecdc0d070",
       "source_matches_selected_project": true,
       "lower_flat_patches": 8,
       "upper_flat_patches": 8,
@@ -817,8 +823,8 @@
       ],
       "method": "Nominal programmed bead footprints on the flat mesh faces, sampled; not a physical contact or stability test",
       "native_slicer_version": "02.09.01.70",
-      "input_archive_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
-      "native_archive_sha256": "11ed5fe2a5380d06c21b287388d3920b44a4159500390b8fabbf183f383b8969",
+      "input_archive_sha256": "4c54bc9c81004bb16c37b3ebb017482c49f1c264b5e0394138095b8ab8c1c2f3",
+      "native_archive_sha256": "cd8fcccb91578f3cd7af00da1fc92fe5f2870b170758331c33940799c3fd9560",
       "paired_archive_provenance_verified": true
     },
     "programmed_auger_top_layer_z_mm": 36.92,
@@ -938,13 +944,13 @@
     "normalized_X2D_nozzle_metadata_verified": true,
     "both_variants_natively_sliced": true,
     "both_contact_audits_passed": true,
-    "geometry_unchanged": false,
+    "geometry_unchanged": true,
     "bushing_stl_sha256": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d",
     "root_cause": "Ring and support interface inherited the same filament 4; prior validation checked only lettering material, and the summary incorrectly described both complete projects as PLA. Dedicated interface now has its own stock profile and slot.",
     "rejected_trial": "Adding filament 5 initially omitted its variant index; native temperature readback caught a 250C interface instead of 210C. Rejected trial is not published.",
     "normalization_scope": "Using Bambu-normalized settings changed nine metadata fields and resolved single-color native Out of Memory failures. A single responsible field was not isolated.",
     "printer_command_sent": false,
-    "geometry_change": "Auger flight only; ring, housings, adapter, journal and square socket retained",
+    "geometry_change": "None in this reinforcement revision; all CAD, STL and five normal meshes retained",
     "applies_to_current_geometry_revision": true
   },
   "auger_design": {
@@ -989,6 +995,105 @@
     "auger_regions": [
       {
         "part": "PETG - One-piece auger",
+        "name": "Auger continuous socket-to-shaft torque path",
+        "body_id": 15,
+        "center_mm": [
+          0,
+          0,
+          0
+        ],
+        "axis": "y",
+        "inner_square": {
+          "half_width_mm": 7.9,
+          "corner_radius_mm": 1.9
+        },
+        "profile": [
+          {
+            "position_mm": 48,
+            "radius_mm": 4,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 72,
+            "radius_mm": 10.7,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 104,
+            "radius_mm": 11.3,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 111.5,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 124,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 127,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3,
+            "square_blend": 1
+          },
+          {
+            "position_mm": 138.7,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3,
+            "square_blend": 1
+          }
+        ]
+      }
+    ],
+    "real_mesh_root_edge_and_open_channel_probes_passed": true,
+    "exact_nominal_assembly_interference_passed": true,
+    "structure_layer": {
+      "active_auger_zones": [
+        "Auger continuous socket-to-shaft torque path"
+      ],
+      "print_z_mm": 18.44,
+      "segment_counts": {
+        "bulk infill": 2188,
+        "reinforced infill": 870,
+        "walls and skins": 1802
+      },
+      "sparse_infill_density": "20%",
+      "sparse_infill_pattern": "gyroid",
+      "wall_loops": "3"
+    },
+    "local_strength_toolpath_comparison": {
+      "method": "Programmed positive filament feed in infill paths, line/arc segments sampled every0.4mm in CAD coordinates; not physical strength or flow measurement",
+      "geometry_and_placement_identical": true,
+      "process_identical": true,
+      "reinforced_input_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
+      "baseline_input_sha256": "ebb47a7642972c745d08a9700e474ff85db524ba4f73d2f1bdbc16af924e1056",
+      "reinforced_gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
+      "baseline_gcode_sha256": "7f84af93d3336b87ed768690ab372221a21ed8dd9aa58a208176523dac03875c",
+      "zones": [
+        {
+          "name": "Auger shaft below rotating shield",
+          "reinforced_infill_feed_mm": 2942.146943578073,
+          "baseline_infill_feed_mm": 607.4198724903332,
+          "ratio": 4.843679103740381
+        },
+        {
+          "name": "Auger square-socket torque band",
+          "reinforced_infill_feed_mm": 858.9586929596792,
+          "baseline_infill_feed_mm": 229.93115019937622,
+          "ratio": 3.73572128967678
+        }
+      ],
+      "scope": "Historical separated-band comparison before reinforcement_revision"
+    },
+    "physical_strength_soil_performance_and_support_removal_verified": false,
+    "optimal_digging_efficiency_claimed": false,
+    "printer_command_sent": false,
+    "previous_auger_regions": [
+      {
+        "part": "PETG - One-piece auger",
         "name": "Auger shaft below rotating shield",
         "body_id": 15,
         "center_mm": [
@@ -1016,48 +1121,270 @@
         "inner_radius_mm": 10.8
       }
     ],
-    "real_mesh_root_edge_and_open_channel_probes_passed": true,
-    "exact_nominal_assembly_interference_passed": true,
+    "previous_auger_regions_scope": "Separated bands before the continuous load-path revision"
+  },
+  "reinforcement_revision": {
+    "date": "2026-11-23",
+    "baseline_commit": "4f4015ef297ffde93cc56078dc7e3f613a8faea8",
+    "scope": "Manufacturing infill modifiers and validation only; no CAD, STL, normal mesh, placement, global process or material changes",
+    "reason": "Earlier auger bands left a low-density shoulder/journal gap and missed loaded socket flats; earlier adapter region omitted its square drive peg.",
+    "current_region_count": 10,
+    "unchanged_housing_anchor_regions": 8,
+    "connected_profiles": [
+      {
+        "part": "PETG - Square adapter",
+        "name": "Adapter drive peg to servo hub",
+        "body_id": 216,
+        "center_mm": [
+          0,
+          0,
+          0
+        ],
+        "axis": "y",
+        "profile": [
+          {
+            "position_mm": 130.3,
+            "radius_mm": 6.1,
+            "inner_radius_mm": 4
+          },
+          {
+            "position_mm": 141.7,
+            "radius_mm": 6.1,
+            "inner_radius_mm": 4
+          },
+          {
+            "position_mm": 143.7,
+            "radius_mm": 10.8,
+            "inner_radius_mm": 4
+          },
+          {
+            "position_mm": 151.6,
+            "radius_mm": 10.8,
+            "inner_radius_mm": 4
+          }
+        ]
+      },
+      {
+        "part": "PETG - One-piece auger",
+        "name": "Auger continuous socket-to-shaft torque path",
+        "body_id": 15,
+        "center_mm": [
+          0,
+          0,
+          0
+        ],
+        "axis": "y",
+        "inner_square": {
+          "half_width_mm": 7.9,
+          "corner_radius_mm": 1.9
+        },
+        "profile": [
+          {
+            "position_mm": 48,
+            "radius_mm": 4,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 72,
+            "radius_mm": 10.7,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 104,
+            "radius_mm": 11.3,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 111.5,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 124,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3
+          },
+          {
+            "position_mm": 127,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3,
+            "square_blend": 1
+          },
+          {
+            "position_mm": 138.7,
+            "radius_mm": 13.1,
+            "inner_radius_mm": 3,
+            "square_blend": 1
+          }
+        ]
+      }
+    ],
+    "local_infill": "100% zig-zag",
+    "bulk_infill": "20% gyroid",
+    "wall_loops": 3,
+    "auger_axial_taper_length_mm": 24,
+    "minimum_surface_separation_mm": 0.4,
+    "nominal_socket_profile_offset_mm": 0.7,
+    "core_center_keeps_bulk_infill": true,
+    "physical_cavity_or_external_rib_added": false,
+    "all_geometry_files_and_normal_meshes_byte_preserved": true,
+    "all_geometry_file_hashes": [
+      {
+        "path": "garden-auger.limo",
+        "unchanged": true,
+        "sha256": "98247c1c06e330238c6065dcde1ca7b7ce2b3481a60bd76f3f00dbdc06584045"
+      },
+      {
+        "path": "cad/auger-flight.limo",
+        "unchanged": true,
+        "sha256": "16205c9c8b2f839b99ed99cb35ec8016f9b53053c98f00f8e7df28cba967ee4e"
+      },
+      {
+        "path": "print/parts/adapter.stl",
+        "unchanged": true,
+        "sha256": "e787400d807a81733c561d0c75cd553c4ca0321ff53f904800ea94b4f09c4647"
+      },
+      {
+        "path": "print/parts/auger.stl",
+        "unchanged": true,
+        "sha256": "5bf8fe8f280518636201debedfd6ed2e2d1f58a441f763984f66ad47464c40cd"
+      },
+      {
+        "path": "print/parts/bushing.stl",
+        "unchanged": true,
+        "sha256": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d"
+      },
+      {
+        "path": "print/parts/housing-lower.stl",
+        "unchanged": true,
+        "sha256": "6f43859df63842d17faf14859c709cd505097b8c691c371b30d2516d82470b4c"
+      },
+      {
+        "path": "print/parts/housing-upper.stl",
+        "unchanged": true,
+        "sha256": "361863494bb8fdd89a85e5ff774b118bf98cee6ba8c79d2836471d904dbfafb4"
+      }
+    ],
+    "source_matched_native_comparison": {
+      "current_gcode_sha256": "41f46045384abc534296446d4f9708b93fac0c63a05db954185b64d7e88523f3",
+      "current_input_sha256": "4c54bc9c81004bb16c37b3ebb017482c49f1c264b5e0394138095b8ab8c1c2f3",
+      "current_specification_matches_slice_input": true,
+      "identical_normal_meshes_placement_process_and_materials": true,
+      "measurements": [
+        {
+          "CAD_Y_range_mm": [
+            48,
+            72
+          ],
+          "current_infill_feed_mm": 1426.2469396941665,
+          "part": "PETG - One-piece auger",
+          "ratio": 5.070110491727601,
+          "reference_infill_feed_mm": 281.3049029249427,
+          "region": "Shaft taper"
+        },
+        {
+          "CAD_Y_range_mm": [
+            72,
+            104
+          ],
+          "current_infill_feed_mm": 4058.1766647708023,
+          "part": "PETG - One-piece auger",
+          "ratio": 1.2621310281781892,
+          "reference_infill_feed_mm": 3215.3370562710415,
+          "region": "Loaded shaft"
+        },
+        {
+          "CAD_Y_range_mm": [
+            104,
+            124
+          ],
+          "current_infill_feed_mm": 3606.551706348515,
+          "part": "PETG - One-piece auger",
+          "ratio": 4.3106455179256855,
+          "reference_infill_feed_mm": 836.6616302247035,
+          "region": "Shoulder and journal"
+        },
+        {
+          "CAD_Y_range_mm": [
+            124,
+            127
+          ],
+          "current_infill_feed_mm": 457.0877005285839,
+          "part": "PETG - One-piece auger",
+          "ratio": 1.9649267953533633,
+          "reference_infill_feed_mm": 232.62327207787067,
+          "region": "Socket floor transition"
+        },
+        {
+          "CAD_Y_range_mm": [
+            127,
+            138.7
+          ],
+          "current_infill_feed_mm": 1128.7737794633224,
+          "part": "PETG - One-piece auger",
+          "ratio": 1.4996257544715292,
+          "reference_infill_feed_mm": 752.7036502924719,
+          "region": "Socket walls"
+        },
+        {
+          "CAD_Y_range_mm": [
+            130.3,
+            141.7
+          ],
+          "current_infill_feed_mm": 242.32608000000891,
+          "part": "PETG - Square adapter",
+          "ratio": 3.1270098840873355,
+          "reference_infill_feed_mm": 77.49450400945419,
+          "region": "Square drive peg"
+        },
+        {
+          "CAD_Y_range_mm": [
+            141.7,
+            143.7
+          ],
+          "current_infill_feed_mm": 131.05623410621806,
+          "part": "PETG - Square adapter",
+          "ratio": 1.0910566403994157,
+          "reference_infill_feed_mm": 120.11863477430538,
+          "region": "Peg-to-hub transition"
+        },
+        {
+          "CAD_Y_range_mm": [
+            143.7,
+            151.6
+          ],
+          "current_infill_feed_mm": 944.5508199999546,
+          "part": "PETG - Square adapter",
+          "ratio": 1.3078974944261987,
+          "reference_infill_feed_mm": 722.1902511667004,
+          "region": "Servo hub"
+        }
+      ],
+      "method": "Positive moving infill filament feed, including subdivided arcs; 0.4 mm midpoint sampling in CAD coordinates. This measures programmed feed, not physical strength or calibrated deposition.",
+      "physical_strength_verified": false,
+      "reference_gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
+      "reference_input_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee"
+    },
     "structure_layer": {
       "active_auger_zones": [
-        "Auger shaft below rotating shield",
-        "Auger square-socket torque band"
+        "Auger continuous socket-to-shaft torque path"
       ],
       "print_z_mm": 18.44,
       "segment_counts": {
-        "bulk infill": 2802,
-        "reinforced infill": 392,
-        "walls and skins": 1733
+        "bulk infill": 2188,
+        "reinforced infill": 870,
+        "walls and skins": 1802
       },
       "sparse_infill_density": "20%",
       "sparse_infill_pattern": "gyroid",
       "wall_loops": "3"
     },
-    "local_strength_toolpath_comparison": {
-      "method": "Programmed positive filament feed in infill paths, line/arc segments sampled every0.4mm in CAD coordinates; not physical strength or flow measurement",
-      "geometry_and_placement_identical": true,
-      "process_identical": true,
-      "reinforced_input_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
-      "baseline_input_sha256": "ebb47a7642972c745d08a9700e474ff85db524ba4f73d2f1bdbc16af924e1056",
-      "reinforced_gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
-      "baseline_gcode_sha256": "7f84af93d3336b87ed768690ab372221a21ed8dd9aa58a208176523dac03875c",
-      "zones": [
-        {
-          "name": "Auger shaft below rotating shield",
-          "reinforced_infill_feed_mm": 2942.146943578073,
-          "baseline_infill_feed_mm": 607.4198724903332,
-          "ratio": 4.843679103740381
-        },
-        {
-          "name": "Auger square-socket torque band",
-          "reinforced_infill_feed_mm": 858.9586929596792,
-          "baseline_infill_feed_mm": 229.93115019937622,
-          "ratio": 3.73572128967678
-        }
-      ]
+    "diagram": "docs/images/torque-paths.svg",
+    "plate_delta": {
+      "seconds": 820.302734375,
+      "grams": 18.09438157081604
     },
-    "physical_strength_soil_performance_and_support_removal_verified": false,
-    "optimal_digging_efficiency_claimed": false,
+    "physical_strength_or_efficiency_verified": false,
     "printer_command_sent": false
   }
 }

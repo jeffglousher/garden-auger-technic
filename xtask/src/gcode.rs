@@ -8,6 +8,7 @@ pub struct Segment {
     pub filament: usize,
     pub width: f64,
     pub feature: String,
+    pub filament_feed_mm: f64,
 }
 pub fn paths(code: &str) -> Result<Vec<Segment>> {
     let (mut xy, mut z, mut object, mut filament, mut relative, mut previous_e) =
@@ -89,7 +90,7 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
                 }
                 "E" => {
                     e = if relative { v } else { v - previous_e };
-                    previous_e = v
+                    previous_e = if relative { previous_e + v } else { v }
                 }
                 "I" => ij[0] = v,
                 "J" => ij[1] = v,
@@ -122,7 +123,20 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
                     .collect();
             }
             let mut a = xy;
-            for b in points {
+            let lengths: Vec<_> = points
+                .iter()
+                .map(|b| {
+                    let length = (b[0] - a[0]).hypot(b[1] - a[1]);
+                    a = *b;
+                    length
+                })
+                .collect();
+            let total: f64 = lengths.iter().sum();
+            a = xy;
+            for (b, length) in points.into_iter().zip(lengths) {
+                if length < 1e-10 {
+                    continue;
+                }
                 segments.push(Segment {
                     a,
                     b,
@@ -131,6 +145,7 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
                     filament,
                     width,
                     feature: feature.into(),
+                    filament_feed_mm: e * length / total,
                 });
                 a = b;
             }
@@ -143,6 +158,16 @@ pub fn paths(code: &str) -> Result<Vec<Segment>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn feed_is_conserved_across_arcs_and_extrusion_modes() -> Result<()> {
+        let code = "M83\n; start printing object, unique label id: 108\n; FEATURE: Sparse infill\nG1 X10 E2\nG2 X20 I5 E3\nM82\nG1 X21 E6\nG92 E0\nG1 X22 E1\nG1 E0.5\n";
+        let segments = paths(code)?;
+        let feed: f64 = segments.iter().map(|s| s.filament_feed_mm).sum();
+        assert!((feed - 7.).abs() < 1e-9);
+        assert!(segments.len() > 100);
+        assert!(segments.iter().all(|s| s.filament_feed_mm > 0.));
+        Ok(())
+    }
     #[test]
     fn virtual_initial_tool_and_tool_changes_apply_to_moving_extrusion_only() -> Result<()> {
         let code = ";VT2 H-1\nM83\n; start printing object, unique label id: 106\n; FEATURE: Outer wall\nG1 X10 E1\n; stop printing object\nT4 H-1\nG1 X20 E1\n; start printing object, unique label id: 108\nG1 E.4\n; FEATURE: Support interface\nG1 X21 E1\n";
