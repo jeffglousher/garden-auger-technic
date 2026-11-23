@@ -38,7 +38,7 @@ enum Task {
     Coupons(coupons::Options),
     /// Compare larger heavy curved lettering with AMS or a single PETG color.
     LetteringCoupons(readability::Options),
-    /// Build a longer auger candidate without changing its housing interfaces.
+    /// Build the reinforced soil flight without changing the auger's housing interfaces.
     LengthenAuger(lengthen::Options),
     /// Inspect actual sliced support contact under the auger flats.
     ReviewSupports(support_review::Options),

@@ -25,7 +25,7 @@ const CORE: &str = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02";
 const PRODUCTION: &str = "http://schemas.microsoft.com/3dmanufacturing/production/2015/06";
 
 #[path = "print_containment.rs"]
-mod containment;
+pub(crate) mod containment;
 
 const REINFORCEMENT_CLEARANCE_MM: f64 = 0.4;
 
@@ -1047,7 +1047,7 @@ mod tests {
             doc.descendants()
                 .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))
                 .count(),
-            11
+            spec().zones.len() + spec().paint.len()
         );
         Ok(())
     }
@@ -1119,7 +1119,7 @@ mod tests {
                 .descendants()
                 .filter(|n| n.attribute((PRODUCTION, "path")) == Some(&format!("/{MODIFIERS}")))
                 .collect();
-            assert_eq!(modifiers.len(), 11);
+            assert_eq!(modifiers.len(), spec().zones.len() + spec().paint.len());
             assert!(
                 modifiers
                     .iter()

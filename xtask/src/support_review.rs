@@ -73,6 +73,87 @@ fn definition(m: &[f64], offset: P3, p: P3) -> P3 {
     std::array::from_fn(|i| (0..3).map(|k| m[3 * i + k] * q[k]).sum::<f64>() + offset[i])
 }
 
+fn in_zone(zone: &crate::print::Zone, p: P3) -> bool {
+    let axis = if zone.axis == "y" { 1 } else { 2 };
+    let q: P3 = std::array::from_fn(|i| p[i] - zone.center_mm[i]);
+    let radius = (0..3)
+        .filter(|i| *i != axis)
+        .map(|i| q[i] * q[i])
+        .sum::<f64>()
+        .sqrt();
+    q[axis].abs() <= zone.height_mm / 2.
+        && (zone.inner_radius_mm..=zone.radius_mm).contains(&radius)
+}
+
+fn structure_layer(
+    root: &Path,
+    object: &xml::Node,
+    all: &[gcode::Segment],
+    m: &[f64],
+    offset: P3,
+    target: f64,
+) -> Result<(String, Value)> {
+    let z = all
+        .iter()
+        .filter(|s| s.object == 108 && !s.feature.starts_with("Support"))
+        .map(|s| s.z)
+        .min_by(|a, b| (a - target).abs().total_cmp(&(b - target).abs()))
+        .context("No structure layer")?;
+    let spec: crate::print::Spec =
+        serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
+    let names: Vec<_> = object
+        .children
+        .iter()
+        .filter(|n| n.is("part") && n.attrs.get("subtype").is_some_and(|s| s == "modifier_part"))
+        .filter_map(|n| n.metadata().get("name").cloned())
+        .collect();
+    let zones: Vec<_> = spec
+        .zones
+        .iter()
+        .filter(|z| z.part == "PETG - One-piece auger" && names.contains(&z.name))
+        .collect();
+    let mut groups = BTreeMap::<(&str, i64), String>::new();
+    let mut counts = BTreeMap::<&str, usize>::new();
+    for s in all
+        .iter()
+        .filter(|s| s.object == 108 && !s.feature.starts_with("Support") && (s.z - z).abs() < 0.001)
+    {
+        let a = definition(m, offset, [s.a[0], s.a[1], s.z]);
+        let b = definition(m, offset, [s.b[0], s.b[1], s.z]);
+        let p = std::array::from_fn(|i| (a[i] + b[i]) / 2.);
+        let infill = s.feature.to_ascii_lowercase().contains("infill");
+        let (role, color) = if infill && zones.iter().any(|z| in_zone(z, p)) {
+            ("reinforced infill", "#168b8b")
+        } else if infill {
+            ("bulk infill", "#7963ca")
+        } else {
+            ("walls and skins", "#d57e37")
+        };
+        *counts.entry(role).or_default() += 1;
+        groups
+            .entry((color, (s.width * 1000.).round() as i64))
+            .or_default()
+            .push_str(&format!(
+                "M{:.3},{:.3}L{:.3},{:.3}",
+                a[1], -a[0], b[1], -b[0]
+            ));
+    }
+    let mut svg = format!(
+        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-108 -29 255 58' style='background:#fff' role='img' aria-label='Actual auger walls and infill in a horizontal print layer'><text x='-105' y='-23' font-size='3.8' font-family='Arial'>Native extrusion paths through auger, print Z {z:.2} mm</text>"
+    );
+    for ((color, width), d) in groups {
+        svg.push_str(&format!(
+            "<path d='{d}' fill='none' stroke='{color}' stroke-width='{}' stroke-linecap='round'/>",
+            width as f64 / 1000.
+        ));
+    }
+    svg.push_str("<text x='-105' y='25' font-size='3' font-family='Arial'>Orange: walls/skins | Purple: bulk infill | Teal: infill within named solid zones</text></svg>");
+    Ok((
+        svg,
+        json!({"print_z_mm":z,"segment_counts":counts,"active_auger_zones":zones.iter().map(|z| &z.name).collect::<Vec<_>>()}),
+    ))
+}
+
 fn patches(points: &[P3], faces: &[[usize; 3]], sign: f64) -> Vec<Patch> {
     let selected: Vec<_> = faces
         .iter()
@@ -416,11 +497,23 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         &current,
         "Metadata/project_settings.config",
     )?)?;
+    let (structure, mut structure_summary) = structure_layer(
+        root,
+        object,
+        &all,
+        &m,
+        offset,
+        (placed_z_bounds[0] + placed_z_bounds[1]) / 2.,
+    )?;
+    fs::write(options.output.join("structure-layer.svg"), structure)?;
+    structure_summary["wall_loops"] = process["wall_loops"].clone();
+    structure_summary["sparse_infill_pattern"] = process["sparse_infill_pattern"].clone();
+    structure_summary["sparse_infill_density"] = process["sparse_infill_density"].clone();
     let slicer = code
         .lines()
         .find_map(|l| l.strip_prefix("; BambuStudio "))
         .context("Missing slicer version")?;
-    let report = json!({"source_project_sha256":archive::sha(&fs::read(&project)?),"source_gcode_sha256":archive::sha(code.as_bytes()),"source_matches_selected_project":true,"native_slicer_version":slicer,"placed_mesh_z_bounds_mm":placed_z_bounds,"lower_land_print_z_bounds_mm":lower_z_bounds,"programmed_auger_top_layer_z_mm":top_layer,"lower_flight_flat_patches":lower.len(),"upper_flight_flat_patches":upper.len(),"sample_grid_mm":0.2,"interface_gap_window_mm":[-0.12,0.36],"support_type":process["support_type"],"support_interface_filament":process["support_interface_filament"],"support_top_z_distance":process["support_top_z_distance"],"contacts":contacts,"physical_stability_verified":false,"printer_command_sent":false});
+    let report = json!({"source_project_sha256":archive::sha(&fs::read(&project)?),"source_gcode_sha256":archive::sha(code.as_bytes()),"source_matches_selected_project":true,"native_slicer_version":slicer,"placed_mesh_z_bounds_mm":placed_z_bounds,"lower_land_print_z_bounds_mm":lower_z_bounds,"programmed_auger_top_layer_z_mm":top_layer,"lower_flight_flat_patches":lower.len(),"upper_flight_flat_patches":upper.len(),"sample_grid_mm":0.2,"interface_gap_window_mm":[-0.12,0.36],"support_type":process["support_type"],"support_interface_filament":process["support_interface_filament"],"support_top_z_distance":process["support_top_z_distance"],"contacts":contacts,"structure_layer":structure_summary,"physical_stability_verified":false,"printer_command_sent":false});
     fs::write(
         options.output.join("summary.json"),
         serde_json::to_vec_pretty(&report)?,

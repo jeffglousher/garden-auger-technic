@@ -23,13 +23,53 @@ pub struct Options {
 }
 
 const OLD_LENGTH: f64 = 144.7;
-const PITCH: f64 = 14.;
-const THICKNESS: f64 = 1.2;
+const PITCH: f64 = 24.;
+const EDGE_THICKNESS: f64 = 3.2;
+const ROOT_THICKNESS: f64 = 6.4;
+const FRONT_RADIUS: f64 = 11.;
+const REAR_RADIUS: f64 = 17.;
+const LEAD_IN: f64 = 8.;
+const FLAT_DEPTH: f64 = 0.6;
+
+fn flight_start(length: f64) -> f64 {
+    -(length - OLD_LENGTH) - 0.9
+}
+
+fn lead_end(length: f64) -> f64 {
+    flight_start(length) + LEAD_IN
+}
+
 pub fn flight_slope(length: f64) -> f64 {
-    5.5 / (103.9 + length - OLD_LENGTH - 1.)
+    (REAR_RADIUS - FRONT_RADIUS) / (103.9 - lead_end(length))
 }
 pub fn flight_land(y: f64, length: f64) -> f64 {
-    10. + (y + length - OLD_LENGTH - 1.) * flight_slope(length) - 0.6
+    FRONT_RADIUS + (y - lead_end(length)) * flight_slope(length) - FLAT_DEPTH
+}
+
+fn flight_radius(y: f64, length: f64) -> f64 {
+    if y < lead_end(length) {
+        2.7 + (y - flight_start(length)) / LEAD_IN * (FRONT_RADIUS - 2.7)
+    } else {
+        flight_land(y, length) + FLAT_DEPTH
+    }
+}
+
+/// Existing revolved core profile, retained so the drive's torsional section is not reduced.
+fn core_radius(y: f64, length: f64) -> f64 {
+    let delta = length - OLD_LENGTH;
+    let stations = [
+        (-delta - 1., 2.),
+        (-delta + 12., 7.),
+        (-delta + 90., 10.),
+        (105., 12.),
+    ];
+    for pair in stations.windows(2) {
+        let [(a, ra), (b, rb)] = [pair[0], pair[1]];
+        if y <= b {
+            return ra + (rb - ra) * (y - a) / (b - a);
+        }
+    }
+    12.
 }
 
 fn print_transform(mesh: &xml::Node) -> Result<String> {
@@ -318,28 +358,38 @@ fn flat_cut(
     Ok(())
 }
 
-fn section(template: &Value, id: u64, y: f64, radius: f64, theta: f64) -> Value {
+fn section(template: &Value, id: u64, y: f64, radius: f64, theta: f64, length: f64) -> Value {
     let mut s = template.clone();
-    let half = std::f64::consts::PI * THICKNESS / PITCH;
-    let (a, b) = (theta - half, theta + half);
+    let edge_half = std::f64::consts::PI * EDGE_THICKNESS / PITCH;
+    let root_half = std::f64::consts::PI * ROOT_THICKNESS / PITCH;
+    let shoulder = (core_radius(y, length) + 0.6).min(radius - 0.5);
     let mut entities = vec![];
-    for (i, (r, t)) in [(0.05, a), (radius, a), (radius, b), (0.05, b)]
-        .into_iter()
-        .enumerate()
+    for (i, (r, t)) in [
+        (0.05, theta - root_half),
+        (shoulder, theta - root_half),
+        (radius, theta - edge_half),
+        (radius, theta + edge_half),
+        (shoulder, theta + root_half),
+        (0.05, theta + root_half),
+    ]
+    .into_iter()
+    .enumerate()
     {
         entities.push(json!([i+1,{"type":"point","position":{"x":r*t.cos(),"y":r*t.sin()}}]));
     }
     entities.extend([
-        json!([5,{"type":"line","start":1,"end":2}]),
-        json!([6,{"type":"arc","center":{"x":0.,"y":0.},"radius":radius,"start_angle":a,"end_angle":b}]),
-        json!([7,{"type":"line","start":3,"end":4}]),
-        json!([8,{"type":"arc","center":{"x":0.,"y":0.},"radius":0.05,"start_angle":a,"end_angle":b}]),
+        json!([7,{"type":"line","start":1,"end":2}]),
+        json!([8,{"type":"line","start":2,"end":3}]),
+        json!([9,{"type":"arc","center":{"x":0.,"y":0.},"radius":radius,"start_angle":theta-edge_half,"end_angle":theta+edge_half}]),
+        json!([10,{"type":"line","start":4,"end":5}]),
+        json!([11,{"type":"line","start":5,"end":6}]),
+        json!([12,{"type":"arc","center":{"x":0.,"y":0.},"radius":0.05,"start_angle":theta-root_half,"end_angle":theta+root_half}]),
     ]);
     s["feature_id"] = json!(id);
     s["name"] = json!(format!("Flight section {id} at Y {y:.3} mm"));
     s["basis"] = json!({"origin":[0.,y,0.],"u":[1.,0.,0.],"v":[0.,0.,-1.],"normal":[0.,1.,0.]});
-    s["snapshot"] = json!({"constraints":[],"dim_modes":{},"dim_params":{},"dim_placements":{},"entities":entities,"fix_targets":{},"generated_points":[],"next_constraint":0,"next_entity":8,"offset_sides":{},"params":{"next_id":0,"next_name":0,"params":[]},"reference_edges":[]});
-    s["entity_id_high_water"] = json!(8);
+    s["snapshot"] = json!({"constraints":[],"dim_modes":{},"dim_params":{},"dim_placements":{},"entities":entities,"fix_targets":{},"generated_points":[],"next_constraint":0,"next_entity":12,"offset_sides":{},"params":{"next_id":0,"next_name":0,"params":[]},"reference_edges":[]});
+    s["entity_id_high_water"] = json!(12);
     s["profile_identities"] = json!({"next":0,"records":[]});
     s["grid_snap"] = json!(false);
     s
@@ -388,7 +438,6 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         .iter()
         .find(|s| s["feature_id"] == 238)
         .context("Missing auger profile")?;
-    let delta = options.length - OLD_LENGTH;
     let tip = source["sketches"]
         .as_array()
         .unwrap()
@@ -402,7 +451,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         .fold(f64::INFINITY, f64::min);
     let current_length = 139.5 - tip;
     let move_front = options.length - current_length;
-    let start = -delta - 0.9;
+    let start = flight_start(options.length);
     let end = 103.9;
     let steps = ((end - start) / (PITCH / 24.)).ceil() as usize;
     let mut client = Client::start(options.executable.as_deref())?;
@@ -410,14 +459,10 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let mut sections = vec![];
     for i in 0..=steps {
         let y = start + (end - start) * i as f64 / steps as f64;
-        let radius = if y < -delta + 1. {
-            2.7 + (y - start) / 1.9 * 7.3
-        } else {
-            10. + (y + delta - 1.) / (end + delta - 1.) * 5.5
-        };
+        let radius = flight_radius(y, options.length);
         // The existing flight turns clockwise in X/Z as Y increases.
         let theta = (-240.8 + 360. * y / PITCH).to_radians();
-        let sketch = section(template, 1000 + i as u64, y, radius, theta);
+        let sketch = section(template, 1000 + i as u64, y, radius, theta, options.length);
         let name = sketch["name"].as_str().unwrap().to_owned();
         coupons::history(&mut flight, 1000 + i as u64, "sketch", &name);
         flight["sketches"].as_array_mut().unwrap().push(sketch);
@@ -428,7 +473,10 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         let stop = (start_index + 24).min(steps);
         let id = 2000 + chunk as u64;
         let body = chunk as u64 + 1;
-        let name = format!("Helical flight turn {} - 14 mm pitch", chunk + 1);
+        let name = format!(
+            "Soil flight turn {} - 24 mm pitch, 6.4 mm root, 3.2 mm edge",
+            chunk + 1
+        );
         flight["lofts"].as_array_mut().unwrap().push(json!({"feature_id":id,"name":name,"sections":sections[start_index..=stop],"ruled":false,"continuity":"g1","operation":"new_body","target_body_ids":[],"new_body_id":body,"guide_rail":null,"centerline":null}));
         coupons::history(&mut flight, id, "loft", &name);
         bodies.push(body);
@@ -481,7 +529,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     let body = scene.bodies[0].id;
     let mut flight_project = original.clone();
     let mut editable = coupons::canonical(&mut client)?;
-    editable["document"]["name"] = json!("Garden auger flight and support flats");
+    editable["document"]["name"] = json!("Garden auger reinforced soil flight and print flats");
     editable["visibility"]["hidden_sketch_names"] = json!(
         editable["sketches"]
             .as_array()
@@ -525,7 +573,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     import["data_base64"] = json!(encoded);
     import["file_name"] = json!(format!("auger-flight-{}mm.step", options.length));
     let import_name = json!(format!(
-        "Extended auger flight - {} mm assembly",
+        "Reinforced soil flight - {} mm, 24 mm pitch",
         options.length
     ));
     import["name"] = import_name.clone();
@@ -623,7 +671,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
             .context("Missing export bytes")?;
         fs::write(out.join(name), STANDARD.decode(encoded)?)?;
     }
-    let report = json!({"previous_length_mm":current_length,"length_mm":options.length,"extension_mm":move_front,"pitch_mm":PITCH,"axial_blade_thickness_mm":THICKNESS,"bounds_mm":bounds,"loft_sections":steps+1,"candidate_only":!options.install,"printer_command_sent":false});
+    let report = json!({"previous_length_mm":current_length,"length_mm":options.length,"extension_mm":move_front,"pitch_mm":PITCH,"axial_edge_thickness_mm":EDGE_THICKNESS,"axial_root_thickness_mm":ROOT_THICKNESS,"maximum_flight_diameter_mm":REAR_RADIUS*2.,"lead_in_length_mm":LEAD_IN,"flat_depth_mm":FLAT_DEPTH,"core_profile_unchanged":true,"bounds_mm":bounds,"loft_sections":steps+1,"candidate_only":!options.install,"printer_command_sent":false});
     fs::write(
         out.join("candidate-summary.json"),
         serde_json::to_vec_pretty(&report)?,
@@ -638,6 +686,77 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn chunky_flight_has_solid_roots_and_edges_with_open_soil_channels() -> Result<()> {
+        let entries = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
+        let config = xml::parse(&entries["Metadata/model_settings.config"])?;
+        let object = config
+            .children
+            .iter()
+            .find(|n| n.is("object") && n.attrs.get("id").is_some_and(|id| id == "8"))
+            .context("Missing auger")?;
+        let metadata = object
+            .children
+            .iter()
+            .find(|n| n.is("part") && n.attrs.get("subtype").is_some_and(|s| s == "normal_part"))
+            .context("Missing normal auger")?
+            .metadata();
+        let offset: [f64; 3] = ["source_offset_x", "source_offset_y", "source_offset_z"]
+            .map(|key| metadata[key].parse().unwrap());
+        let mut node = xml::parse(&entries["3D/Objects/object_3.model"])?;
+        let node = node
+            .child_mut("resources")?
+            .child_mut("object")?
+            .child_mut("mesh")?;
+        let points = node
+            .child_mut("vertices")?
+            .children
+            .iter()
+            .filter(|n| n.is("vertex"))
+            .map(|n| {
+                Ok([
+                    n.attr("x")?.parse::<f64>()? + offset[0],
+                    n.attr("y")?.parse::<f64>()? + offset[1],
+                    n.attr("z")?.parse::<f64>()? + offset[2],
+                ])
+            })
+            .collect::<Result<_>>()?;
+        let faces = node
+            .child_mut("triangles")?
+            .children
+            .iter()
+            .filter(|n| n.is("triangle"))
+            .map(|n| {
+                Ok([
+                    n.attr("v1")?.parse()?,
+                    n.attr("v2")?.parse()?,
+                    n.attr("v3")?.parse()?,
+                ])
+            })
+            .collect::<Result<_>>()?;
+        let mesh = crate::print::containment::Mesh { points, faces };
+        // Probe the actual fused manufacturing mesh, away from the flats. A thin
+        // flight or a filled-in channel fails independently of the profile constants.
+        for turn in -4..=3 {
+            let y = (240.8 / 360. + f64::from(turn)) * PITCH;
+            for (radius, inside, outside) in [
+                (core_radius(y, 240.) + 0.3, 2.8, 4.),
+                (flight_radius(y, 240.) - 0.25, 1.4, 2.4),
+            ] {
+                for sign in [-1., 1.] {
+                    ensure!(
+                        mesh.contains([radius, y + sign * inside, 0.]),
+                        "Flight lacks required thickness at Y{y}, R{radius}"
+                    );
+                    ensure!(
+                        !mesh.contains([radius, y + sign * outside, 0.]),
+                        "Soil channel is blocked at Y{y}, R{radius}"
+                    );
+                }
+            }
+        }
+        Ok(())
+    }
     #[test]
     fn print_orientation_levels_native_lands_and_keeps_the_mesh_on_bed() -> Result<()> {
         let entries = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
@@ -677,7 +796,7 @@ mod tests {
         let lo = heights.iter().copied().fold(f64::INFINITY, f64::min);
         let hi = heights.iter().copied().fold(f64::NEG_INFINITY, f64::max);
         ensure!(
-            hi - lo < 0.003 && (3.4..3.6).contains(&lo),
+            hi - lo < 0.003 && (1.5..2.5).contains(&lo),
             "Flight lands are not level: {lo}..{hi}"
         );
         Ok(())

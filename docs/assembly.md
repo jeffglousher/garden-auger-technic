@@ -32,13 +32,19 @@ The saved 3MF includes the color assignments; STLs contain solid geometry withou
 
 ![Single-color lettering paths retained on both housing halves](images/single-color-housing-labels.png)
 
-The auger is 240 mm overall, 95.3 mm longer than the previous print. The extended flight keeps a 14 mm pitch and 1.2 mm axial blade thickness. Shallow 0.6 mm flats follow the taper along its upper and lower flight tips to give supports a planar contact land. The flight remains above the bed and still needs support.
+The auger is 240 mm overall. Its flight has a 24 mm pitch, 3.2 mm axial edges and broad 6.4 mm roots that taper out to the edges. The largest flight diameter is 34 mm; the core, journal, drive and pilot tip retain their existing geometry. An 8 mm lead-in brings the flight up to full depth. The wider pitch leaves open soil channels instead of closely packed, thin flanges.
 
-The saved plate tilts the auger by about 1.59 degrees to put the lower lands on one horizontal plane, about 3.5 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing, as Bambu recommends for that material. Support removal and bonding still need checking on the print.
+Shallow 0.6 mm cuts retain a flat top and underside along the flight taper. The auger prints lengthwise, with a small tilt that levels the lower lands about 2 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing. Support removal and bonding still need checking on the print.
+
+All parts keep three perimeter walls and use 20% gyroid bulk infill. Eleven contained regions use solid infill: the existing housing and adapter regions, plus an auger shaft band below the shield and a torque band around the square socket. These change infill only and stay at least 0.4 mm inside the part surfaces.
+
+The coarser flight and broad roots are intended to clear garden soil and resist blade bending. They are a design candidate, not a measured optimum. Pitch, tip shape and soil conditions interact; wider spacing can reduce sticky buildup while changing soil carrying behavior, as [AMS describes](https://www.ams-samplers.com/blog/flighted-auger-design-for-cohesive-soil-types/). Actual digging torque, soil removal and durability need a physical trial.
 
 The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
 
 ![240 mm auger and shallow print flats](images/auger-240.png)
+
+![Actual auger layer paths: walls, gyroid bulk and contained solid zones](images/auger-infill.svg)
 
 ![Actual Bambu yellow and gray extrusion paths through the flush lettering](images/sliced-labels.png)
 
