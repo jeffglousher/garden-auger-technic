@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "coordinate_frame": "Limo CAD body definition coordinates, millimetres",
   "global": {
     "wall_loops": "3",
@@ -134,37 +134,90 @@
     },
     {
       "part": "PETG - Square adapter",
-      "name": "Adapter hub and screw seat",
+      "name": "Adapter drive peg to servo hub",
       "body_id": 216,
       "center_mm": [
         0,
-        146.75,
+        0,
         0
       ],
-      "radius_mm": 9,
-      "height_mm": 10.1,
       "axis": "y",
-      "inner_radius_mm": 4
+      "profile": [
+        {
+          "position_mm": 130.3,
+          "radius_mm": 6.1,
+          "inner_radius_mm": 4
+        },
+        {
+          "position_mm": 141.7,
+          "radius_mm": 6.1,
+          "inner_radius_mm": 4
+        },
+        {
+          "position_mm": 143.7,
+          "radius_mm": 10.8,
+          "inner_radius_mm": 4
+        },
+        {
+          "position_mm": 151.6,
+          "radius_mm": 10.8,
+          "inner_radius_mm": 4
+        }
+      ]
     },
     {
       "part": "PETG - One-piece auger",
-      "name": "Auger shaft below rotating shield",
+      "name": "Auger continuous socket-to-shaft torque path",
       "body_id": 15,
-      "center_mm": [0, 90, 0],
-      "radius_mm": 10.5,
-      "height_mm": 24,
+      "center_mm": [
+        0,
+        0,
+        0
+      ],
       "axis": "y",
-      "inner_radius_mm": 3
-    },
-    {
-      "part": "PETG - One-piece auger",
-      "name": "Auger square-socket torque band",
-      "body_id": 15,
-      "center_mm": [0, 130, 0],
-      "radius_mm": 12.8,
-      "height_mm": 16,
-      "axis": "y",
-      "inner_radius_mm": 10.8
+      "inner_square": {
+        "half_width_mm": 7.9,
+        "corner_radius_mm": 1.9
+      },
+      "profile": [
+        {
+          "position_mm": 48,
+          "radius_mm": 4,
+          "inner_radius_mm": 3
+        },
+        {
+          "position_mm": 72,
+          "radius_mm": 10.7,
+          "inner_radius_mm": 3
+        },
+        {
+          "position_mm": 104,
+          "radius_mm": 11.3,
+          "inner_radius_mm": 3
+        },
+        {
+          "position_mm": 111.5,
+          "radius_mm": 13.1,
+          "inner_radius_mm": 3
+        },
+        {
+          "position_mm": 124,
+          "radius_mm": 13.1,
+          "inner_radius_mm": 3
+        },
+        {
+          "position_mm": 127,
+          "radius_mm": 13.1,
+          "inner_radius_mm": 3,
+          "square_blend": 1
+        },
+        {
+          "position_mm": 138.7,
+          "radius_mm": 13.1,
+          "inner_radius_mm": 3,
+          "square_blend": 1
+        }
+      ]
     }
   ],
   "minimum_surface_clearance_mm": 0.4,

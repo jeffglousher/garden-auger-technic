@@ -27,6 +27,10 @@ const PRODUCTION: &str = "http://schemas.microsoft.com/3dmanufacturing/productio
 #[path = "print_containment.rs"]
 pub(crate) mod containment;
 
+#[path = "print_zones.rs"]
+mod zones;
+pub use zones::Zone;
+
 const REINFORCEMENT_CLEARANCE_MM: f64 = 0.4;
 
 #[derive(Args)]
@@ -65,23 +69,12 @@ pub struct Spec {
     pub zones: Vec<Zone>,
 }
 
-fn load_spec(root: &Path) -> Result<Spec> {
+pub(crate) fn load_spec(root: &Path) -> Result<Spec> {
     let mut spec: Spec = serde_json::from_slice(&fs::read(root.join("print/reinforcement.json"))?)?;
     spec.paint = crate::lettering::load(root)?;
     spec.materials = Some(crate::materials::Materials::load(root)?);
     Ok(spec)
 }
-#[derive(Deserialize)]
-pub struct Zone {
-    pub part: String,
-    pub name: String,
-    pub center_mm: [f64; 3],
-    pub radius_mm: f64,
-    pub inner_radius_mm: f64,
-    pub height_mm: f64,
-    pub axis: String,
-}
-
 impl Spec {
     fn validate(&self) -> Result<()> {
         for settings in self.object_settings.values() {
@@ -112,21 +105,7 @@ impl Spec {
                 !z.name.is_empty() && names.insert(&z.name),
                 "Empty or duplicate zone name"
             );
-            ensure!(
-                z.radius_mm.is_finite()
-                    && z.radius_mm > 0.
-                    && z.inner_radius_mm.is_finite()
-                    && z.inner_radius_mm > 0.
-                    && z.inner_radius_mm < z.radius_mm
-                    && z.height_mm.is_finite()
-                    && z.height_mm > 0.,
-                "Invalid zone dimensions: {}",
-                z.name
-            );
-            ensure!(
-                z.center_mm.iter().all(|x| x.is_finite()) && ["y", "z"].contains(&z.axis.as_str()),
-                "Invalid zone axis/center"
-            );
+            z.validate()?;
         }
         ensure!(
             !self.local.contains_key("name"),
@@ -134,41 +113,6 @@ impl Spec {
         );
         Ok(())
     }
-}
-
-pub fn annular_cylinder(zone: &Zone, offset: [f64; 3]) -> (Vec<[f64; 3]>, Vec<[usize; 3]>) {
-    let mut points = Vec::new();
-    for radius in [zone.radius_mm, zone.inner_radius_mm] {
-        for z in [-zone.height_mm / 2., zone.height_mm / 2.] {
-            for i in 0..48 {
-                let a = i as f64 * std::f64::consts::TAU / 48.;
-                points.push([radius * a.cos(), radius * a.sin(), z]);
-            }
-        }
-    }
-    for p in &mut points {
-        if zone.axis == "y" {
-            *p = [p[0], -p[2], p[1]];
-        }
-        for a in 0..3 {
-            p[a] += zone.center_mm[a] - offset[a];
-        }
-    }
-    let mut faces = Vec::new();
-    for i in 0..48 {
-        let j = (i + 1) % 48;
-        faces.extend([
-            [i, j, 48 + j],
-            [i, 48 + j, 48 + i],
-            [96 + i, 144 + j, 96 + j],
-            [96 + i, 144 + i, 144 + j],
-            [i, 96 + j, j],
-            [i, 96 + i, 96 + j],
-            [48 + i, 48 + j, 144 + j],
-            [48 + i, 144 + j, 144 + i],
-        ]);
-    }
-    (points, faces)
 }
 
 pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
@@ -302,7 +246,7 @@ pub fn build(mut entries: Entries, spec: &Spec) -> Result<Entries> {
         let (_, id, offset) = normals
             .get(&zone.part)
             .with_context(|| format!("Unknown part {}", zone.part))?;
-        let (points, triangles) = annular_cylinder(zone, *offset);
+        let (points, triangles) = zone.mesh(*offset);
         let modifier = containment::Mesh {
             points,
             faces: triangles,
@@ -690,7 +634,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
     Ok(())
 }
 
-fn native_pair(lane: &Path) -> Result<Value> {
+pub(crate) fn native_pair(lane: &Path) -> Result<Value> {
     let mut pair = BTreeMap::new();
     for name in ["input.3mf", "sliced.3mf", "result.json"] {
         pair.insert(name, archive::sha(&fs::read(lane.join(name))?));
@@ -913,14 +857,23 @@ mod tests {
     }
     #[test]
     fn mesh_winding_and_axis_offset_are_correct() {
-        let mut zone = spec().zones.remove(8);
-        let (points, faces) = annular_cylinder(&zone, [1., 2., 3.]);
+        let mut zone = spec().zones.remove(0);
+        let (radius, inner, height) = match zone.shape {
+            zones::Shape::Annulus {
+                radius_mm,
+                inner_radius_mm,
+                height_mm,
+            } => (radius_mm, inner_radius_mm, height_mm),
+            _ => unreachable!(),
+        };
+        zone.axis = "y".into();
+        let (points, faces) = zone.mesh([1., 2., 3.]);
         assert_eq!((points.len(), faces.len()), (192, 384));
         assert_eq!(
             points[0],
             [
-                zone.center_mm[0] - 1. + zone.radius_mm,
-                zone.center_mm[1] - 2. + zone.height_mm / 2.,
+                zone.center_mm[0] - 1. + radius,
+                zone.center_mm[1] - 2. - height / 2.,
                 zone.center_mm[2] - 3.
             ]
         );
@@ -933,15 +886,13 @@ mod tests {
                 / 6.;
         }
         assert!(
-            (volume
-                / (std::f64::consts::PI
-                    * (zone.radius_mm.powi(2) - zone.inner_radius_mm.powi(2))
-                    * zone.height_mm)
-                - 1.)
+            (volume / (std::f64::consts::PI * (radius.powi(2) - inner.powi(2)) * height) - 1.)
                 .abs()
                 < 0.004
         );
-        zone.radius_mm = 0.;
+        if let zones::Shape::Annulus { radius_mm, .. } = &mut zone.shape {
+            *radius_mm = 0.;
+        }
         let mut s = spec();
         s.zones = vec![zone];
         assert!(s.validate().is_err());
@@ -954,7 +905,12 @@ mod tests {
         spec.zones[0].center_mm[2] = -0.5;
         assert!(build(source.clone(), &spec).is_err());
         spec.zones[0].center_mm[2] = -4.5;
-        spec.zones[0].inner_radius_mm = 1.;
+        if let zones::Shape::Annulus {
+            inner_radius_mm, ..
+        } = &mut spec.zones[0].shape
+        {
+            *inner_radius_mm = 1.;
+        }
         assert!(build(source, &spec).is_err());
         Ok(())
     }
