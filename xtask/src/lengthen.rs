@@ -31,6 +31,11 @@ const FRONT_RADIUS: f64 = 15.5;
 const REAR_RADIUS: f64 = 17.;
 const LEAD_IN: f64 = 14.;
 const FLAT_DEPTH: f64 = 0.6;
+const PILOT_HALF_THICKNESS: f64 = 1.4;
+const PILOT_FACE_RADIUS: f64 = 3.4;
+const PILOT_BEVEL_LENGTH: f64 = 9.;
+const PILOT_BLEND_LENGTH: f64 = 17.2;
+const PILOT_BEVELS: [&str; 2] = ["Upper pilot bevel", "Lower pilot bevel"];
 
 fn flight_start(length: f64) -> f64 {
     -(length - OLD_LENGTH) - 0.9
@@ -407,7 +412,10 @@ fn translate_front(model: &mut Value, move_front: f64) {
     }
     for sketch in model["sketches"].as_array_mut().unwrap() {
         let id = sketch["feature_id"].as_u64().unwrap();
-        if ![238, 280, 285].contains(&id) {
+        let pilot_bevel = PILOT_BEVELS
+            .iter()
+            .any(|name| sketch["name"] == format!("{name} profile"));
+        if ![238, 280, 285].contains(&id) && !pilot_bevel {
             continue;
         }
         for entity in sketch["snapshot"]["entities"].as_array_mut().unwrap() {
@@ -419,6 +427,7 @@ fn translate_front(model: &mut Value, move_front: f64) {
             let axis = if id == 280 { "y" } else { "x" };
             let value = p[axis].as_f64().unwrap();
             if id == 280
+                || pilot_bevel
                 || (id == 238 && [1, 2, 3, 4].contains(&entity_id))
                 || (id == 285 && [6, 7, 13].contains(&entity_id))
             {
@@ -427,6 +436,66 @@ fn translate_front(model: &mut Value, move_front: f64) {
         }
         sketch["profile_identities"] = json!({"next":0,"records":[]});
     }
+}
+
+fn set_pilot_blank(model: &mut Value, tip: f64) -> Result<()> {
+    let sketch = model["sketches"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|s| s["feature_id"] == 280)
+        .context("Missing pilot profile")?;
+    // Revolve a thick backing blank. Its rear edge sits inside the existing core.
+    let outline = [
+        [0., tip],
+        [PILOT_FACE_RADIUS, tip],
+        [5.8, tip + PILOT_BEVEL_LENGTH],
+        [7.1, tip + 16.],
+        [6.9, tip + PILOT_BLEND_LENGTH],
+        [0., tip + PILOT_BLEND_LENGTH],
+    ];
+    let mut entities = Vec::new();
+    for (i, [x, y]) in outline.into_iter().enumerate() {
+        entities.push(json!([i+1,{"type":"point","position":{"x":x,"y":y}}]));
+        entities.push(
+            json!([outline.len()+i+1,{"type":"line","start":i+1,"end":(i+1)%outline.len()+1}]),
+        );
+    }
+    entities.sort_by_key(|e| e[0].as_u64());
+    sketch["snapshot"]["entities"] = json!(entities);
+    sketch["snapshot"]["next_entity"] = json!(outline.len() * 2);
+    sketch["entity_id_high_water"] = json!(outline.len() * 2);
+    sketch["profile_identities"] = json!({"next":0,"records":[]});
+    let name = "Chisel pilot backing profile";
+    sketch["name"] = json!(name);
+    let revolve = model["revolves"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|f| f["feature_id"] == 281)
+        .context("Missing pilot revolve")?;
+    revolve["sketch_name"] = json!(name);
+    revolve["name"] = json!("Revolve backed chisel pilot blank");
+    let join = model["body_features"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|f| f["feature_id"] == 282)
+        .context("Missing pilot join")?;
+    join["name"] = json!("Join pilot blank to first flight");
+    for feature in model["document"]["history"]["features"]
+        .as_array_mut()
+        .unwrap()
+    {
+        let name = match feature["id"].as_u64() {
+            Some(280) => name,
+            Some(281) => "Revolve backed chisel pilot blank",
+            Some(282) => "Join pilot blank to first flight",
+            _ => continue,
+        };
+        feature["name"] = json!(name);
+    }
+    Ok(())
 }
 
 pub fn run(root: &Path, options: &Options) -> Result<()> {
@@ -592,11 +661,33 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
         }
     }
     translate_front(&mut model, move_front);
+    let new_tip = 139.5 - options.length;
+    set_pilot_blank(&mut model, new_tip)?;
     println!("Replaying complete assembly candidate");
     client.call(
         "cad_load_project_model",
         json!({"model_json":serde_json::to_string(&model)?}),
     )?;
+    // The paired flats form a finite 2.8 mm land rather than a zero-thickness edge.
+    // Terminate the cuts outside the blank to blend them out before the first full turn.
+    for (name, sign) in PILOT_BEVELS.into_iter().zip([1., -1.]) {
+        if source["document"]["history"]["features"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|f| f["name"] == name)
+        {
+            continue;
+        }
+        let slope = (6.1 - PILOT_HALF_THICKNESS) / PILOT_BEVEL_LENGTH;
+        let points = [
+            [new_tip - 1., sign * (PILOT_HALF_THICKNESS - slope)],
+            [new_tip + PILOT_BEVEL_LENGTH, sign * 6.1],
+            [new_tip + PILOT_BEVEL_LENGTH, sign * 25.],
+            [new_tip - 1., sign * 25.],
+        ];
+        flat_cut(&mut client, template, name, &points, 90)?;
+    }
     let shield_flats_present = source["document"]["history"]["features"]
         .as_array()
         .unwrap()
@@ -693,7 +784,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
 mod tests {
     use super::*;
     #[test]
-    fn chunky_flight_has_solid_roots_and_edges_with_open_soil_channels() -> Result<()> {
+    fn manufacturing_mesh_has_backed_chisel_and_open_flight_channels() -> Result<()> {
         let entries = archive::read(&crate::root().join("print/garden-auger.3mf"))?;
         let config = xml::parse(&entries["Metadata/model_settings.config"])?;
         let object = config
@@ -741,6 +832,27 @@ mod tests {
             })
             .collect::<Result<_>>()?;
         let mesh = crate::print::containment::Mesh { points, faces };
+        // The original cone had negligible section this close to its point.
+        // Check that both bevels leave an intentional flat land and a broad backing.
+        let near_tip = 139.5 - 240. + 0.1;
+        for sign in [-1., 1.] {
+            ensure!(
+                mesh.contains([sign * 3.1, near_tip, 0.]),
+                "Pilot land lacks width"
+            );
+            ensure!(
+                mesh.contains([0., near_tip, sign * 1.3]),
+                "Pilot land lacks thickness"
+            );
+            ensure!(
+                !mesh.contains([0., near_tip, sign * 1.8]),
+                "Pilot bevel missing"
+            );
+            ensure!(
+                mesh.contains([0., near_tip + 8., sign * 5.2]),
+                "Pilot bevel lacks backing"
+            );
+        }
         // Probe the actual fused manufacturing mesh, away from the flats. A thin
         // flight or a filled-in channel fails independently of the profile constants.
         for turn in -4..=3 {
@@ -824,7 +936,11 @@ mod tests {
                 .iter()
                 .find(|s| s["feature_id"] == id)
                 .unwrap();
-            if ![238, 280, 285].contains(&id) {
+            if ![238, 280, 285].contains(&id)
+                && !PILOT_BEVELS
+                    .iter()
+                    .any(|name| sketch["name"] == format!("{name} profile"))
+            {
                 assert_eq!(sketch, old);
             }
             if id == 238 {
