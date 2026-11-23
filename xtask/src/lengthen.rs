@@ -25,10 +25,11 @@ pub struct Options {
 const OLD_LENGTH: f64 = 144.7;
 const PITCH: f64 = 24.;
 const EDGE_THICKNESS: f64 = 3.2;
+const ENTRY_EDGE_THICKNESS: f64 = 2.0;
 const ROOT_THICKNESS: f64 = 6.4;
-const FRONT_RADIUS: f64 = 11.;
+const FRONT_RADIUS: f64 = 15.5;
 const REAR_RADIUS: f64 = 17.;
-const LEAD_IN: f64 = 8.;
+const LEAD_IN: f64 = 14.;
 const FLAT_DEPTH: f64 = 0.6;
 
 fn flight_start(length: f64) -> f64 {
@@ -52,6 +53,11 @@ fn flight_radius(y: f64, length: f64) -> f64 {
     } else {
         flight_land(y, length) + FLAT_DEPTH
     }
+}
+
+fn flight_edge_thickness(y: f64, length: f64) -> f64 {
+    let t = ((y - flight_start(length)) / LEAD_IN).clamp(0., 1.);
+    ENTRY_EDGE_THICKNESS + (EDGE_THICKNESS - ENTRY_EDGE_THICKNESS) * t
 }
 
 /// Existing revolved core profile, retained so the drive's torsional section is not reduced.
@@ -360,7 +366,7 @@ fn flat_cut(
 
 fn section(template: &Value, id: u64, y: f64, radius: f64, theta: f64, length: f64) -> Value {
     let mut s = template.clone();
-    let edge_half = std::f64::consts::PI * EDGE_THICKNESS / PITCH;
+    let edge_half = std::f64::consts::PI * flight_edge_thickness(y, length) / PITCH;
     let root_half = std::f64::consts::PI * ROOT_THICKNESS / PITCH;
     let shoulder = (core_radius(y, length) + 0.6).min(radius - 0.5);
     let mut entities = vec![];
@@ -671,7 +677,7 @@ pub fn run(root: &Path, options: &Options) -> Result<()> {
             .context("Missing export bytes")?;
         fs::write(out.join(name), STANDARD.decode(encoded)?)?;
     }
-    let report = json!({"previous_length_mm":current_length,"length_mm":options.length,"extension_mm":move_front,"pitch_mm":PITCH,"axial_edge_thickness_mm":EDGE_THICKNESS,"axial_root_thickness_mm":ROOT_THICKNESS,"maximum_flight_diameter_mm":REAR_RADIUS*2.,"lead_in_length_mm":LEAD_IN,"flat_depth_mm":FLAT_DEPTH,"core_profile_unchanged":true,"bounds_mm":bounds,"loft_sections":steps+1,"candidate_only":!options.install,"printer_command_sent":false});
+    let report = json!({"previous_length_mm":current_length,"length_mm":options.length,"extension_mm":move_front,"pitch_mm":PITCH,"axial_edge_thickness_mm":EDGE_THICKNESS,"entry_edge_thickness_mm":ENTRY_EDGE_THICKNESS,"axial_root_thickness_mm":ROOT_THICKNESS,"working_flight_start_diameter_mm":FRONT_RADIUS*2.,"maximum_flight_diameter_mm":REAR_RADIUS*2.,"lead_in_length_mm":LEAD_IN,"flat_depth_mm":FLAT_DEPTH,"core_profile_unchanged":true,"bounds_mm":bounds,"loft_sections":steps+1,"candidate_only":!options.install,"printer_command_sent":false});
     fs::write(
         out.join("candidate-summary.json"),
         serde_json::to_vec_pretty(&report)?,
