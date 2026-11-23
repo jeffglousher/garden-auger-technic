@@ -131,7 +131,7 @@
   },
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "1b041f0bfb10d373c90c200c5ada733c83c7d9c15432dec7fbad9bb8c6c9735b",
+    "sha256": "98247c1c06e330238c6065dcde1ca7b7ce2b3481a60bd76f3f00dbdc06584045",
     "feature_count": 86,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
@@ -188,14 +188,14 @@
       ],
       "90": [
         [
-          -15.41425895690918,
+          -16.91183853149414,
           -100.5,
-          -14.738765716552734
+          -16.17443084716797
         ],
         [
-          15.224154472351074,
+          16.539730072021484,
           103.9000015258789,
-          14.899999618530272
+          16.399999618530273
         ]
       ],
       "216": [
@@ -224,46 +224,91 @@
       ]
     },
     "engine_sha256": "95eed7b23fe6651b687168d1f3d592763020e74d3a9efb0ed657f374956f65f2",
-    "engraving_features_removed": 2
+    "engraving_features_removed": 2,
+    "unchanged_body_bounds_in_this_revision": [
+      1,
+      15,
+      26,
+      46,
+      216,
+      221
+    ],
+    "unchanged_source_operations": [
+      "sketches",
+      "extrudes",
+      "revolves",
+      "assembly",
+      "body_appearances"
+    ]
   },
   "manufacturing": {
     "path": "print/garden-auger.3mf",
-    "sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
+    "sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
     "normal_print_parts": 5,
-    "modifier_regions": 11,
+    "modifier_regions": 13,
     "plates": 2,
     "sequence": "by object",
     "native_slicer_version": "02.09.01.70",
     "native_slice_passed": true,
     "warnings": [],
-    "seconds": 24386.466796875,
-    "filament_g": 180.85556149482727,
-    "normal_meshes_preserved": true,
+    "seconds": 30332.3173828125,
+    "filament_g": 203.50936841964722,
+    "normal_meshes_preserved": false,
     "modifier_names_and_settings_roundtrip_verified": true,
     "PLA_55C_wait_and_order_verified": true,
     "printer_command_sent": false,
     "embedded_gcode": false,
-    "reinforcement_regions": 9,
+    "reinforcement_regions": 11,
     "color_regions": 2,
     "plate_estimates": [
       {
         "plate": 1,
-        "seconds": 12458.490234375,
-        "filament_g": 114.27205991744995,
-        "material_cost": 2.0557543579149247
+        "seconds": 16020.3681640625,
+        "filament_g": 122.21692228317261,
+        "material_cost": 2.198682431874275
       },
       {
         "plate": 2,
-        "seconds": 11927.9765625,
-        "filament_g": 66.58350157737732,
-        "material_cost": 1.3589619843959806
+        "seconds": 14311.94921875,
+        "filament_g": 81.29244613647461,
+        "material_cost": 1.6125357307958599
       }
     ],
-    "total_material_cost": 3.4147163423109053,
+    "total_material_cost": 3.8112181626701345,
     "cost_basis": "Saved filament prices per kg; filament only",
-    "changed_normal_mesh": null,
-    "normal_meshes_comparison_base": "ba70bc2d0b517ceb89941212bc5537b1d6971301",
-    "all_five_normal_meshes_byte_preserved": true
+    "changed_normal_mesh": "3D/Objects/object_3.model",
+    "normal_meshes_comparison_base": "d7e7ed466d59b718e201eb9c3074be0f5e790933",
+    "all_five_normal_meshes_byte_preserved": false,
+    "other_four_normal_meshes_byte_preserved": true,
+    "normal_part_meshes": [
+      {
+        "path": "3D/Objects/object_1.model",
+        "unchanged": true,
+        "sha256": "5f3475463ad902530e25d90d99d579562d5cebe5411607dcfeaec1d5847132b6"
+      },
+      {
+        "path": "3D/Objects/object_2.model",
+        "unchanged": true,
+        "sha256": "dc17e9e294866493e42c73fbbfa2ed61f6d2cb3a63adaa011e458595963e9363"
+      },
+      {
+        "path": "3D/Objects/object_3.model",
+        "unchanged": false,
+        "sha256": "2451036321a7fa45cc32d60e52434b20bc40f1a8f600fa506c986ccac11fa8a2"
+      },
+      {
+        "path": "3D/Objects/object_4.model",
+        "unchanged": true,
+        "sha256": "109eb350218ab7d0e4e81ab9052eb1ac49edfd8cacf41aed70f3444e253e8363"
+      },
+      {
+        "path": "3D/Objects/object_5.model",
+        "unchanged": true,
+        "sha256": "7594b4addbb51a453469daa040c545be3fa13a0b5ce06bbb379fa79c2e196874"
+      }
+    ],
+    "input_archive_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
+    "native_archive_sha256": "11ed5fe2a5380d06c21b287388d3920b44a4159500390b8fabbf183f383b8969"
   },
   "reinforcement_location": "External Bambu modifiers; saved Limo print intent remains empty.",
   "accepted_drive_connection": {
@@ -283,25 +328,27 @@
       "Auger top",
       "Auger underside"
     ],
-    "print_project_sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
+    "print_project_sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
     "images": {
-      "exploded.png": "41581cd803bcbd518cefe1988e29689e377ee61210d1ffbedde70562fcbd7359",
-      "exploding-drive.gif": "ed5bf9c651543db66c631d04cbb39a5a5b215ebabf679e1b38682319f7256109",
+      "exploded.png": "80413200bc917e72b7d640beeacd900d01a36e0fd7bcae626ced1e17dd35fb89",
+      "exploding-drive.gif": "ed28e4922c9440cda0877aada8796e8f1e4ec4791ca78859fb06c1e69c4cbe83",
       "housing-lower.png": "3ff45fe4b52efad9578d10429fb965a421fe28f224ee3f9d4a296f9d441b7925",
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "44778d7c50e95904a3284ab13dda62771057241888aed8c43705e3bf44a328ed",
-      "turntable.gif": "66ae62dedb9ec79afe5b3a57be6b7584d8b35277befb48d8cc22b728ab3fb44e",
+      "print-plates.png": "8c449311637ff71dd3b71a3a4ca76a8b834c41dc09eae596610c2633364f1e92",
+      "turntable.gif": "8fa0c23fc4d8bee7a8a4fd70a054a0dbe4afff7568cc3ebbe01ca5ccb55c4a10",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
       "single-color-housing-labels.png": "7bd70240505dda816e26d7b0bd09137a92d0fa270b73a4be5a0b213cc1b8f4ba",
-      "auger-240.png": "7417e440ecc2f6ee639981c1a32bb092f6d3fdb46deb05992a0f03fad828511d"
+      "auger-240.png": "51e27233ae4a3a27743878abd97da7b6930cbc9e20e75a2a94c6e5ddae6445b8",
+      "auger-infill.svg": "85f3219d4cd0c984202463cc99adf3e6e34785d0f89e9ef66df51ea61e7cf606"
     },
     "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
     "rendering_preserves_source_model": true,
-    "plate_image_update": "Rust cargo xtask gallery --plates-only; native CAD geometry and other gallery assets unchanged"
+    "plate_image_update": "Full Rust gallery regenerated from current CAD, saved views and current native slice previews",
+    "model_sha256": "98247c1c06e330238c6065dcde1ca7b7ce2b3481a60bd76f3f00dbdc06584045"
   },
   "tooling": {
     "implementation": "Rust cargo xtask; no Python runtime",
@@ -314,13 +361,13 @@
       "lengthen-auger",
       "review-supports"
     ],
-    "regression_tests_passed": 42,
+    "regression_tests_passed": 43,
     "clippy_warnings_denied": true,
     "legacy_print_rebuild_semantically_equal": true,
     "modifier_comparison_tolerance_mm": 1e-7,
     "native_model_verification_passed": true,
-    "native_slice_seconds": 24386.466796875,
-    "native_slice_filament_g": 180.85556149482727,
+    "native_slice_seconds": 30332.3173828125,
+    "native_slice_filament_g": 203.50936841964722,
     "gallery_frames_per_animation": 48,
     "gallery_animations_decoded": true,
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
@@ -386,7 +433,7 @@
   },
   "reinforcement_containment": {
     "shape": "Annular cylinders entirely inside the normal part meshes",
-    "regions": 9,
+    "regions": 11,
     "minimum_surface_clearance_mm": 0.4,
     "complete_mesh_boundary_separation_checked": true,
     "outside_and_enclosed_void_checks_passed": true,
@@ -405,7 +452,7 @@
     "footprint_tolerance_mm": 0.2,
     "physical_strength_confirmation_pending": true,
     "native_Bambu_Prepare_view_has_no_protruding_regions": false,
-    "historical_comparison_scope": "The cited byte-preservation and baseline footprint comparison preceded the current intentional housing locator revision. All nine modifiers remain contained in the revised meshes."
+    "historical_comparison_scope": "The cited byte-preservation and nine-region footprint comparison precede the housing and auger revisions. All eleven current modifiers pass the complete 0.4 mm boundary-separation guard. The two new auger regions have a separate native comparison under auger_design."
   },
   "underside_correction": {
     "cause": "Automatic tree supports under upper screw-head recesses created expanded bases; the old unreinforced baseline had them too.",
@@ -634,13 +681,27 @@
     "STLs": "Solid flat housing geometry without color data",
     "same_color_native_slice_passed": true,
     "same_color_candidate": {
-      "seconds": 22274.576171875,
-      "filament_g": 170.38127207756042,
+      "seconds": 28280.1181640625,
+      "filament_g": 193.1992859840393,
       "path": "print/garden-auger-single-color.3mf",
-      "sha256": "a9a5df84219c9587d252f0c2d49f4698d898670cccaf2a8777d4d8d8d927cccc",
-      "input_archive_sha256": "10c1e90bef3966c883005f84415bb0bc51a3411bd832691fc1333244a9c817b9",
-      "native_archive_sha256": "1bb870befcfffb2df83a40d1808f061499ce6c9bae50f2eb1ff402a3571ec977",
-      "support_gcode_sha256": "2b5a9e3986d8de92ec4010e27eab1e312b0fc6e0e1d073c67507427e619a21c8"
+      "sha256": "6ecd57d1e5c01629f1b93439fde89f706048abaaf52fbf08f9b9bcdcfdf1ca9b",
+      "input_archive_sha256": "fed980c85f1b6d765e49250e0bc1436bd5bb1492ebd546299226babb86fa75e0",
+      "native_archive_sha256": "52760b353aefd99f43285b129e1425a05d147d6a38c98c273ad70723547339e5",
+      "support_gcode_sha256": "5a2bdddf8a58b96e0be86e3552f9b7c29b3fda2fd5f32c4014efefd80b7d3e39",
+      "plate_estimates": [
+        {
+          "plate": 1,
+          "seconds": 13968.6826171875,
+          "filament_g": 111.90684509277344,
+          "material_cost": 2.013204143218994
+        },
+        {
+          "plate": 2,
+          "seconds": 14311.435546875,
+          "filament_g": 81.29244089126587,
+          "material_cost": 1.6125356364345547
+        }
+      ]
     },
     "same_color_mask_settings": {
       "extruder": "1",
@@ -673,8 +734,7 @@
     "overall_length_mm": 240,
     "previous_overall_length_mm": 144.7,
     "extension_mm": 95.3,
-    "pitch_mm": 14,
-    "axial_flight_thickness_mm": 1.2,
+    "pitch_mm": 24,
     "flight_support_land_depth_mm": 0.6,
     "flight_lands_follow_taper": true,
     "shield_width_mm": 38,
@@ -708,16 +768,17 @@
     ],
     "physical_support_removal_and_soil_trial_pending": true,
     "printer_command_sent": false,
-    "print_axis_tilt_degrees": 1.5895355047291682,
-    "lower_flat_plane_height_mm": 3.5,
-    "printed_envelope_height_mm": 36.86905649413175,
+    "print_axis_tilt_degrees": 1.7889794540578738,
+    "lower_flat_plane_height_mm": 2.0177562723041387,
+    "printed_envelope_height_mm": 36.87571860128075,
     "support_interface_material": "Bambu Support for PLA/PETG, dedicated filament 5 on auxiliary nozzle; PETG support bodies in filament 2; zero nominal top interface gap",
     "editable_flight_source": {
       "path": "cad/auger-flight.limo",
-      "sha256": "723cc2259a73ae1d421cb07b6a2fe82b0a2778b0c6b9d579adb883e869e1f572",
-      "native_lofts": 15,
+      "sha256": "16205c9c8b2f839b99ed99cb35ec8016f9b53053c98f00f8e7df28cba967ee4e",
+      "native_lofts": 9,
       "native_flat_cuts": 2,
-      "construction_sketches_hidden": true
+      "construction_sketches_hidden": true,
+      "feature_count": 216
     },
     "assembly_construction_profiles_hidden": true,
     "support_alignment_comparison": {
@@ -738,16 +799,16 @@
       "grams_saved": 1.9055476188659668,
       "part_mesh_geometry_unchanged": true,
       "process_strength_and_material_settings_unchanged": true,
-      "scope": "Historical same-material orientation comparison before the plain-PLA profile update",
+      "scope": "Historical orientation comparison before the plain-PLA material update and current chunky flight redesign",
       "aligned_commit": "b09ad6df0aaee84e76962fde89f5e6d3153e06fe"
     },
     "support_contact_audit": {
-      "gcode_sha256": "4746aab843ac02b34501587adaca5e988bc694b462eebae1a45249eeed5c6c0b",
-      "selected_project_sha256": "80fbb9a2e035147bfe4fe77aef29c8ed8e9f3048f4564248b0b0eb25f790e495",
+      "gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
+      "selected_project_sha256": "b2ad4246a74357eeda6b642b86048659a5a5b4555655b1529108a27dccc9b230",
       "source_matches_selected_project": true,
-      "lower_flat_patches": 14,
-      "upper_flat_patches": 15,
-      "minimum_sampled_coverage_fraction": 0.983739837398374,
+      "lower_flat_patches": 8,
+      "upper_flat_patches": 8,
+      "minimum_sampled_coverage_fraction": 1,
       "maximum_sampled_coverage_fraction": 1,
       "sample_grid_mm": 0.2,
       "interface_gap_window_mm": [
@@ -756,15 +817,18 @@
       ],
       "method": "Nominal programmed bead footprints on the flat mesh faces, sampled; not a physical contact or stability test",
       "native_slicer_version": "02.09.01.70",
-      "input_archive_sha256": "fb94797d813d60d3aaa71affb61ceae4db73e864822700e1f0941f5c8aa5ca13",
-      "native_archive_sha256": "12c85654b3d53a5a7ab1f2640ae956abfe8cc7c49e8cba323a0af69570e83d2c",
+      "input_archive_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
+      "native_archive_sha256": "11ed5fe2a5380d06c21b287388d3920b44a4159500390b8fabbf183f383b8969",
       "paired_archive_provenance_verified": true
     },
     "programmed_auger_top_layer_z_mm": 36.92,
     "lower_land_print_z_bounds_mm": [
-      3.515296634648715,
-      3.5152966346584726
-    ]
+      2.0177562723041387,
+      2.0177562723128766
+    ],
+    "axial_edge_thickness_mm": 3.2,
+    "axial_root_thickness_mm": 6.4,
+    "maximum_flight_diameter_mm": 34
   },
   "plain_pla_revision": {
     "date": "2026-11-22",
@@ -794,10 +858,11 @@
     "existing_corrected_ring_reusable_by_geometry": true,
     "replacement_ring_included": true,
     "physical_fit_reconfirmed": false,
-    "printer_command_sent": false
+    "printer_command_sent": false,
+    "scope": "Historical material-only revision; current geometry redesign is recorded under auger_design"
   },
   "material_contract": {
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "policy": "print/materials.json",
     "parts": [
       {
@@ -873,11 +938,126 @@
     "normalized_X2D_nozzle_metadata_verified": true,
     "both_variants_natively_sliced": true,
     "both_contact_audits_passed": true,
-    "geometry_unchanged": true,
+    "geometry_unchanged": false,
     "bushing_stl_sha256": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d",
     "root_cause": "Ring and support interface inherited the same filament 4; prior validation checked only lettering material, and the summary incorrectly described both complete projects as PLA. Dedicated interface now has its own stock profile and slot.",
     "rejected_trial": "Adding filament 5 initially omitted its variant index; native temperature readback caught a 250C interface instead of 210C. Rejected trial is not published.",
     "normalization_scope": "Using Bambu-normalized settings changed nine metadata fields and resolved single-color native Out of Memory failures. A single responsible field was not isolated.",
+    "printer_command_sent": false,
+    "geometry_change": "Auger flight only; ring, housings, adapter, journal and square socket retained",
+    "applies_to_current_geometry_revision": true
+  },
+  "auger_design": {
+    "date": "2026-11-23",
+    "baseline_commit": "d7e7ed466d59b718e201eb9c3074be0f5e790933",
+    "orientation": "Lengthwise, flat side down; 25-degree plate angle with taper-compensating axial tilt",
+    "overall_length_mm": 240,
+    "pitch_mm": 24,
+    "axial_edge_mm": 3.2,
+    "axial_root_mm": 6.4,
+    "max_flight_diameter_mm": 34,
+    "lead_in_mm": 8,
+    "flat_cut_depth_mm": 0.6,
+    "native_loft_sections": 202,
+    "previous": {
+      "pitch_mm": 14,
+      "axial_flight_mm": 1.2,
+      "max_flight_diameter_mm": 31,
+      "lead_in_mm": 1.9
+    },
+    "retained": "Core, pilot, journal, square socket, rotating shield, adapter, ring, housings and assembly",
+    "unchanged_source_operations": [
+      "sketches",
+      "extrudes",
+      "revolves",
+      "assembly",
+      "body_appearances"
+    ],
+    "other_four_manufacturing_meshes_byte_preserved_in_both_variants": true,
+    "bushing_stl_sha256": "a09938206879fe51b8aaaf072617a302fd05bd870f8ff7c1cff9528dd19b2a3d",
+    "process": {
+      "layer_height_mm": 0.24,
+      "wall_loops": 3,
+      "sparse_infill_density": "20%",
+      "sparse_infill_pattern": "gyroid",
+      "top_layers": 5,
+      "bottom_layers": 3,
+      "local_infill": "100% zig-zag",
+      "local_wall_surface_adhesion_overrides": false,
+      "minimum_modifier_surface_separation_mm": 0.4
+    },
+    "auger_regions": [
+      {
+        "part": "PETG - One-piece auger",
+        "name": "Auger shaft below rotating shield",
+        "body_id": 15,
+        "center_mm": [
+          0,
+          90,
+          0
+        ],
+        "radius_mm": 10.5,
+        "height_mm": 24,
+        "axis": "y",
+        "inner_radius_mm": 3
+      },
+      {
+        "part": "PETG - One-piece auger",
+        "name": "Auger square-socket torque band",
+        "body_id": 15,
+        "center_mm": [
+          0,
+          130,
+          0
+        ],
+        "radius_mm": 12.8,
+        "height_mm": 16,
+        "axis": "y",
+        "inner_radius_mm": 10.8
+      }
+    ],
+    "real_mesh_root_edge_and_open_channel_probes_passed": true,
+    "exact_nominal_assembly_interference_passed": true,
+    "structure_layer": {
+      "active_auger_zones": [
+        "Auger shaft below rotating shield",
+        "Auger square-socket torque band"
+      ],
+      "print_z_mm": 18.44,
+      "segment_counts": {
+        "bulk infill": 2802,
+        "reinforced infill": 392,
+        "walls and skins": 1733
+      },
+      "sparse_infill_density": "20%",
+      "sparse_infill_pattern": "gyroid",
+      "wall_loops": "3"
+    },
+    "local_strength_toolpath_comparison": {
+      "method": "Programmed positive filament feed in infill paths, line/arc segments sampled every0.4mm in CAD coordinates; not physical strength or flow measurement",
+      "geometry_and_placement_identical": true,
+      "process_identical": true,
+      "reinforced_input_sha256": "dcf504b1e6aaf7bc38f08316de58768910e35259b25c9ace44f0b9cd8021a3ee",
+      "baseline_input_sha256": "ebb47a7642972c745d08a9700e474ff85db524ba4f73d2f1bdbc16af924e1056",
+      "reinforced_gcode_sha256": "1b2bee01b34ad1355e5ef8161a334606b7711997c1e6b509192db8baf9b5e245",
+      "baseline_gcode_sha256": "7f84af93d3336b87ed768690ab372221a21ed8dd9aa58a208176523dac03875c",
+      "zones": [
+        {
+          "name": "Auger shaft below rotating shield",
+          "reinforced_infill_feed_mm": 2942.146943578073,
+          "baseline_infill_feed_mm": 607.4198724903332,
+          "ratio": 4.843679103740381
+        },
+        {
+          "name": "Auger square-socket torque band",
+          "reinforced_infill_feed_mm": 858.9586929596792,
+          "baseline_infill_feed_mm": 229.93115019937622,
+          "ratio": 3.73572128967678
+        }
+      ]
+    },
+    "physical_strength_soil_performance_and_support_removal_verified": false,
+    "optimal_digging_efficiency_claimed": false,
     "printer_command_sent": false
   }
 }
