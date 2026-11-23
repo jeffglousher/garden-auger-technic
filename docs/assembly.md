@@ -32,19 +32,19 @@ The saved 3MF includes the color assignments; STLs contain solid geometry withou
 
 ![Single-color lettering paths retained on both housing halves](images/single-color-housing-labels.png)
 
-The auger is 240 mm overall. Its flight has a 24 mm pitch, 3.2 mm axial edges and broad 6.4 mm roots that taper out to the edges. The largest flight diameter is 34 mm; the core, journal, drive and pilot tip retain their existing geometry. An 8 mm lead-in brings the flight up to full depth. The wider pitch leaves open soil channels instead of closely packed, thin flanges.
+The auger is 240 mm overall. The pilot centers the hole, then a 14 mm entry ramp opens the flight to 31 mm diameter. The working flight grows gently to 34 mm. This brings most of the cutting diameter into play near the tip and leaves deeper channels behind it for loose soil. Pitch is 24 mm and the roots are 6.4 mm thick. The outer edge starts at 2.0 mm through the entry and grows to 3.2 mm for the working flight.
 
 Shallow 0.6 mm cuts retain a flat top and underside along the flight taper. The auger prints lengthwise, with a small tilt that levels the lower lands about 2 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing. Support removal and bonding still need checking on the print.
 
 All parts keep three perimeter walls and use 20% gyroid bulk infill. Ten contained regions use solid infill: eight housing screw anchors, one continuous adapter region from the square drive peg to the servo hub, and one connected auger region from the socket through the journal and shoulder into the loaded shaft. The auger region tapers away over one 24 mm flight pitch. Its opening follows the rounded-square socket, placing infill behind the loaded flats; the low-radius shaft center keeps ordinary gyroid. These change infill only and stay at least 0.4 mm inside the part surfaces.
 
-The coarser flight and broad roots are intended to clear garden soil and resist blade bending. They are a design candidate, not a measured optimum. Pitch, tip shape and soil conditions interact; wider spacing can reduce sticky buildup while changing soil carrying behavior, as [AMS describes](https://www.ams-samplers.com/blog/flighted-auger-design-for-cohesive-soil-types/). Actual digging torque, soil removal and durability need a physical trial.
+Small commercial planting augers use a pilot and a working flight behind it. The cutting end starts and shapes the hole, while the channels carry loose soil upward. Keeping the pitch fixed lets a print trial focus on the new entry and channel depth. The larger diameter near the tip can increase the torque needed to start a hole, particularly in compacted soil. Compare both designs at the same speed, soil moisture and target depth, and record stalls, time to depth and how much soil comes out. [Power Planter planting auger](https://powerplanter.com/collections/planting-grass-plugs/products/207-planting-auger) · [AMS flighted auger guide](https://www.ams-samplers.com/blog/flighted-auger-design-for-cohesive-soil-types/)
 
 The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
 
 ![240 mm auger and shallow print flats](images/auger-240.png)
 
-![Connected reinforcement follows the actual torque path](images/torque-paths.svg)
+The load path is illustrated in the [reinforcement section from the earlier flight revision](images/torque-paths.svg).
 
 ![Actual auger layer paths: walls, gyroid bulk and contained solid zones](images/auger-infill.svg)
 

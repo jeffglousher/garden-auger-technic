@@ -328,7 +328,7 @@ fn auger_review(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
     imageops::replace(&mut sheet, &side, 0, 55);
     text.draw(
         &mut sheet,
-        "240 mm reinforced auger - open 24 mm pitch",
+        "240 mm auger - tapered entry and 24 mm pitch",
         35,
         20,
         30.,
@@ -385,7 +385,7 @@ fn auger_review(assembly: &Assembly, text: &Text) -> Result<RgbImage> {
     );
     text.draw(
         &mut sheet,
-        "3.2 mm flight edges / 6.4 mm roots; flat top and underside; journal and drive retained",
+        "2.0 to 3.2 mm entry edge / 6.4 mm roots; 31 to 34 mm working diameter",
         35,
         862,
         23.,
