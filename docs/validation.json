@@ -396,7 +396,12 @@
     },
     "build_print_preserves_input_normal_mesh_bytes": true,
     "gallery_plate_only_verified_without_cad": true,
-    "geometry_comparison_base": "4f4015ef297ffde93cc56078dc7e3f613a8faea8"
+    "geometry_comparison_base": "4f4015ef297ffde93cc56078dc7e3f613a8faea8",
+    "normal_component_comparison_guard": {
+      "mesh_references_compared": true,
+      "nonidentity_component_transforms_rejected": true,
+      "translated_reference_regression_passed": true
+    }
   },
   "identity": {
     "application": "Limo CAD",
@@ -1385,6 +1390,14 @@
       "grams": 18.09438157081604
     },
     "physical_strength_or_efficiency_verified": false,
-    "printer_command_sent": false
+    "printer_command_sent": false,
+    "adversarial_review": {
+      "kind": "General read-only review",
+      "supported_findings": 1,
+      "fixed_findings": 1,
+      "finding": "Comparison guard ignored normal component references/transforms",
+      "current_native_evidence_affected": false,
+      "repair": "Compare normal references and reject nonidentity component transforms; regression rejects a reference moved5mm and identical nonidentity inputs"
+    }
   }
 }

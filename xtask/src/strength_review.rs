@@ -34,6 +34,10 @@ fn job(lane: &Path) -> Result<(archive::Entries, archive::Entries)> {
 }
 
 fn comparable(a: &archive::Entries, b: &archive::Entries) -> Result<()> {
+    ensure!(
+        normal_references(a)? == normal_references(b)?,
+        "Comparison normal component references changed"
+    );
     for i in 1..=5 {
         let name = format!("3D/Objects/object_{i}.model");
         ensure!(
@@ -68,6 +72,68 @@ fn comparable(a: &archive::Entries, b: &archive::Entries) -> Result<()> {
         );
     }
     Ok(())
+}
+
+fn normal_references(
+    entries: &archive::Entries,
+) -> Result<std::collections::BTreeMap<String, (String, String)>> {
+    let doc = roxmltree::Document::parse(std::str::from_utf8(archive::required(
+        entries,
+        "3D/3dmodel.model",
+    )?)?)?;
+    let mut references = std::collections::BTreeMap::new();
+    for component in doc.descendants().filter(|n| {
+        n.has_tag_name((
+            "http://schemas.microsoft.com/3dmanufacturing/core/2015/02",
+            "component",
+        ))
+    }) {
+        let path = component
+            .attribute((
+                "http://schemas.microsoft.com/3dmanufacturing/production/2015/06",
+                "path",
+            ))
+            .context("Missing component path")?
+            .trim_start_matches('/');
+        if path == "3D/Objects/local_reinforcement.model" {
+            continue;
+        }
+        ensure!(
+            (1..=5).any(|i| path == format!("3D/Objects/object_{i}.model")),
+            "Unsupported normal component reference"
+        );
+        let transform = component
+            .attribute("transform")
+            .unwrap_or("1 0 0 0 1 0 0 0 1 0 0 0")
+            .split_whitespace()
+            .map(str::parse::<f64>)
+            .collect::<std::result::Result<Vec<_>, _>>()?;
+        let identity = [1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 0.];
+        ensure!(
+            transform.len() == identity.len()
+                && transform
+                    .iter()
+                    .zip(identity)
+                    .all(|(a, b)| a.is_finite() && (a - b).abs() < 1e-10),
+            "Feed comparison requires identity normal component transforms"
+        );
+        let parent = component
+            .parent()
+            .and_then(|n| n.parent())
+            .and_then(|n| n.attribute("id"))
+            .context("Missing component parent")?;
+        let object = component
+            .attribute("objectid")
+            .context("Missing normal mesh reference")?;
+        ensure!(
+            references
+                .insert(parent.to_owned(), (path.to_owned(), object.to_owned()))
+                .is_none(),
+            "Expected one normal component per object"
+        );
+    }
+    ensure!(references.len() == 5, "Expected five normal components");
+    Ok(references)
 }
 
 fn placement(input: &archive::Entries, id: &str) -> Result<(Vec<f64>, [f64; 3])> {
@@ -402,6 +468,26 @@ mod tests {
             .push(b' ');
         assert!(comparable(&entries, &original).is_err());
         comparable(&original, &original)?;
+        let mut moved = original.clone();
+        let mut model = xml::parse(&moved["3D/3dmodel.model"])?;
+        let parent = model
+            .child_mut("resources")?
+            .children
+            .iter_mut()
+            .find(|n| n.attrs.get("id").is_some_and(|id| id == "8"))
+            .context("Missing auger resource")?;
+        let normal = parent
+            .child_mut("components")?
+            .children
+            .iter_mut()
+            .find(|n| n.attrs.get("objectid").is_some_and(|id| id == "7"))
+            .context("Missing auger normal component")?;
+        normal
+            .attrs
+            .insert("transform".into(), "1 0 0 0 1 0 0 0 1 5 0 0".into());
+        moved.insert("3D/3dmodel.model".into(), xml::encode(&model));
+        assert!(comparable(&original, &moved).is_err());
+        assert!(comparable(&moved, &moved).is_err());
         Ok(())
     }
 }
