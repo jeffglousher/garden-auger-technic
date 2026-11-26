@@ -9,7 +9,7 @@ The five printed parts are the upper housing, lower housing with both grips, aug
 ## Hardware and fit
 
 - Four M3 x18 housing screws and four ruthex RX-M3x5.7 heat-set inserts. Nominal insert pilot holes: diameter4.0 mm, depth6.7 mm.
-- The upper housing uses a 0.6 mm, 45° exterior chamfer. The Ø6.2 mm screw-head recesses have closed rims with at least 1.6 mm of nominal material at the exterior face. Screw and insert centers match the existing lower housing.
+- Both housing halves use matching 0.6 mm, 45° exterior chamfers. The Ø6.2 mm upper screw-head recesses have closed rims with at least 1.6 mm of nominal material at the exterior face. The screws and lower inserts use the original centers.
 - Existing compatible servo center screw for the owner-proven adapter connection.
 - Diameter4.70 mm locating pins in diameter5.00 mm sockets: 0.30 mm diametral clearance, or 0.15 mm per side. This is the owner's selected three-notch coupon fit. The pins project 1.8 mm into 2.2 mm deep sockets, leaving 0.4 mm bottom clearance. Nominal material between each socket mouth and the inner cavity is at least 3.0 mm; the smallest exterior edge margin is about 2.7 mm in native mesh sections.
 - Diameter28 mm journal; bushing ID28.6 /OD34 /length9.8 mm, captured in the diameter35.6 mm housing seat.
