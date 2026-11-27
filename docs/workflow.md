@@ -2,9 +2,11 @@
 
 ## Demonstration
 
-Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD), then recall **Complete assembly**. Its 86 named features describe the servo reference, housing envelope, D grips, cavities, fasteners, drive, locators, rotating shield and flush lettering profiles. The two engraving cuts were removed after physical feedback. Repository images render the native geometry with the manufacturing color masks; they are not screenshots claiming a particular application UI state.
+Open `garden-auger.limo` in [Limo CAD](https://github.com/limo-cad/Limo-CAD) and choose **Complete assembly**. The named features cover the servo reference, housing and grips, fasteners, drive, locators, auger flats and lettering. The gallery renders the assembly with the manufacturing color masks.
 
 The `.limo` model owns fitted solid geometry and the two named lettering sketches. `print/garden-auger.3mf` contains the saved printer, materials, support settings, two-plate placement, ten reinforcement regions and two color-only lettering masks. STLs preserve only the five solid part meshes.
+
+For an auger geometry change, fuse the shaft and flight in a CAD export copy, then replace the auger STL and matching mesh in both full projects. Rebuild the modifiers and slice both variants. To refresh the [auger-only plate](../print/auger-only.3mf), bring over the same normal mesh and the rebuilt auger reinforcement, retain its standalone placement and slice it separately.
 
 The model also saves **Exploded assembly**, **Inside the housing**, **Lower housing labels** and **Upper housing labels** views. Limo resolves their component offsets and cameras without changing the mechanical assembly. The gallery uses those native meshes and resolved poses; the turntable, rotating-drive explosion GIFs and part callouts are rendered and encoded externally. They illustrate the parts rather than defining an assembly motion constraint. Plate previews and time/material estimates come directly from the saved Bambu project. Asset hashes and source details are recorded in [validation.json](validation.json).
 
@@ -40,7 +42,7 @@ After a material or slicing change, `gallery --plates-only` refreshes just `prin
 
 The [editable flight source](../cad/auger-flight.limo) contains the native lofts and named upper/lower flat cuts. Construction sketches are hidden when opened. The complete assembly keeps an embedded STEP copy for faster replay; exporting an edited flight back into that import is a separate step. `lengthen-auger --install` regenerates both files from the Rust dimensions, replacing hand edits to the generated flight source.
 
-The print placement tilts the auger just under half a degree along its axis to level the lower flight lands about 2 mm above the bed. The 14 mm entry ramp reaches 31 mm diameter, then the working flight grows to 34 mm at a 24 mm pitch. The entry edge thickens from 2.0 to 3.2 mm, with a 6.4 mm root. Both projects use PETG for the housings, auger, adapter and support bodies, PLA Basic for the ring, and Bambu Support for PLA/PETG for the interface. The existing ring and adapter fit this revision.
+The print placement tilts the auger just under half a degree along its axis to level the lower flight lands about 2 mm above the bed. The tapered shaft and pilot transition have an underside flat. The drive journal has paired 0.6 mm flats within the same 28 mm diameter across the circular sides. If you change the auger length, review the shaft and pilot flat profiles against the revised taper before installing the exports. Both projects use PETG for the housings, auger, adapter and support bodies, PLA Basic for the ring, and Bambu Support for PLA/PETG for the interface.
 
 `print/materials.json` defines the part assignments and support policy. `build-print` replaces inherited object and normal-volume material overrides, checks the saved filament types and exact preset IDs, and verifies the material of every parsed native extrusion path by object and support role. Both plate maps use manual nozzle assignment, with filament 5 on the auxiliary nozzle. The checks also require a complete filament variant index and the interface's native 210°C temperature wait. Filament 5 uses the installed Bambu Support for PLA/PETG profile, with zero top gap and interface spacing. This follows [Bambu's guidance for dedicated support material](https://csm.bblcdn.com/hub/4668d0ca43994ff3bff4b37f1a65c2e7.pdf). Bambu classifies this dedicated support profile as PLA internally; its GFS05 ID and support flag distinguish it from the ring's ordinary PLA Basic.
 
@@ -74,7 +76,7 @@ The housing rings remain diameter9 mm outside /5.2 mm inside, 7.8 mm high below 
 
 The profiles in `reinforcement.json` define axial stations and inner/outer radii. The auger inner contour blends to a rounded square before the socket floor, with a 0.7 mm nominal offset from the socket profile. This replaces the former circular band that missed the loaded flats. Every rebuild checks complete modifier/part mesh boundaries for at least 0.4 mm separation and rejects exterior regions or enclosed part voids. The zones alter internal infill; they create no rib, cavity, brim or support foot.
 
-Supports are off globally, with one named object exception for the horizontal auger. The housing screw-head recesses bridge without automatic support feet. Brims, skirts and rafts are disabled. The auger support exception changes no strength settings.
+Supports are enabled only for the horizontal auger. It uses normal Snug supports, a 45° threshold and the small overhang filter turned off. The housing screw-head recesses bridge. Brims, skirts and rafts are disabled.
 
 `cargo xtask build-print` rebuilds the named Bambu `modifier_part` volumes without altering the normal-part meshes. It translates each CAD-frame region into the centered manufacturing mesh frame. Existing component/plate transforms position each region with its parent. There are ten strength regions and two color-only masks; none adds a separate printed object.
 

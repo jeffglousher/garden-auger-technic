@@ -15,7 +15,7 @@ The five printed parts are the upper housing, lower housing with both grips, aug
 - Diameter28 mm journal; bushing ID28.6 /OD34 /length9.8 mm, captured in the diameter35.6 mm housing seat.
 - 14 mm rounded-square adapter drive and 14.4 mm mating socket.
 
-The corrected bushing geometry is unchanged since 14 October 2026. Your existing ring from that revision or later can be reused with the longer auger; its journal and housing seat are unchanged. The two-plate project still includes a replacement ring.
+The existing 28.6 mm bore bushing fits the revised journal at nominal dimensions. The journal has a shallow flat on the top and bottom and keeps its 28 mm diameter across the round sides. Use the [auger-only plate](../print/auger-only.3mf) to keep a ring and adapter you already have.
 
 Both housings, the auger and the adapter use PETG. Filament 4 is **Bambu PLA Basic**, used only for the ring. The auger's support bodies use orange PETG (filament 2); their contact layers use **Bambu Support for PLA/PETG** (filament 5). That dedicated interface filament is separate from the ring's PLA. The project assigns it to the auxiliary nozzle; map the saved materials to the loaded spools before printing.
 
@@ -35,13 +35,13 @@ The saved 3MF includes the color assignments; STLs contain solid geometry withou
 
 The auger is 240 mm overall. The short chisel pilot has a 6.8 mm wide, 2.8 mm thick contact face. Two bevels back it with a widening shoulder that merges into the core and first flight. The flight then opens to 31 mm over its 14 mm entry ramp and grows gently to 34 mm. Pitch is 24 mm. The flight edge thickens from 2.0 to 3.2 mm along the entry, with a 6.4 mm root.
 
-Shallow 0.6 mm cuts retain a flat top and underside along the flight taper. The auger prints lengthwise, with a small tilt that levels the lower lands about 2 mm above the bed. The shield still supplies direct bed contact. The dedicated Bambu interface material uses zero nominal top gap and interface spacing. Support removal and bonding still need checking on the print.
+The auger prints lengthwise, underside down. Shallow flats run along the flight edges and tapered core underneath. Paired 0.6 mm flats through the journal and drive end give the support a flat landing about 8 mm wide. The shield supplies direct bed contact. Use Snug supports with the dedicated Bambu interface at zero nominal top gap and interface spacing. Check adhesion and support removal on the print.
 
 All parts keep three perimeter walls and use 20% gyroid bulk infill. Ten contained regions use solid infill: eight housing screw anchors, one continuous adapter region from the square drive peg to the servo hub, and one connected auger region from the socket through the journal and shoulder into the loaded shaft. The auger region tapers away over one 24 mm flight pitch. Its opening follows the rounded-square socket, placing infill behind the loaded flats; the low-radius shaft center keeps ordinary gyroid. These change infill only and stay at least 0.4 mm inside the part surfaces.
 
 Earth augers use the pilot to center the hole, cutting edges to break the soil and the flight to lift it. Commercial units treat the pilot and cutting teeth as separate wear parts. This printed chisel is a candidate for ordinary garden soil. For abrasive soil, a replaceable steel pilot is the next design to evaluate. A matched trial should record time to depth, stalls, soil removed and loss of tip length after the same number of holes. A wider face may require more starting pressure in packed soil. [Digga auger guide](https://diggaeurope.com/about-augers/) · [Auger Torque operator manual](https://www.augertorque.com.au/wp-content/uploads/2023/05/99-95200001-REV-09-4-EARTH-DRILL-OPERATORS-MANUAL-ENGLISH.pdf)
 
-The rotating shield remains 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, retaining 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap remains 1.6 mm. The diameter28 mm journal and rounded-square drive socket are unchanged. Soil exclusion, support removal and the longer auger's durability still need a physical trial.
+The rotating shield is 38 mm wide and 3 mm thick, with upper and lower flats reducing its height to 36.8 mm. Its minimum radius is 18.4 mm, with 0.6 mm nominal coverage beyond the 17.8 mm housing opening. The rear gap is 1.6 mm. The rounded-square socket is 14.4 mm wide and 12 mm deep. Check soil exclusion, support removal and durability in the physical trial.
 
 ![240 mm auger and shallow print flats](images/auger-240.png)
 
