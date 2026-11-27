@@ -1,4 +1,34 @@
 {
+  "auger_support_flats": {
+    "length_mm": 240,
+    "drive_flat_depth_mm": 0.6,
+    "drive_flat_width_mm": 8.11,
+    "minimum_nominal_bushing_clearance_mm": 0.3,
+    "assembly_pairs_without_interference": 13,
+    "mesh_triangles": 42316,
+    "mesh_sha256": "6b8581f9b34f978c0df8699e1715387a51c9cdc1da283ba7e910f920ccc584e3",
+    "print_projects": {
+      "garden-auger.3mf": {
+        "sha256": "1c57e5b738231d489d298a9936dfb8a4f912277e8b999311eb03d843686406fa",
+        "plate_total_seconds": [16022, 14922]
+      },
+      "garden-auger-single-color.3mf": {
+        "sha256": "b4c5dd47bade345a01d468284418deffb287b7ce2b58459867bc1cba19b73bde",
+        "plate_total_seconds": [13976, 14922]
+      },
+      "auger-only.3mf": {
+        "sha256": "db44acf634a340508d02691527cd00d3984c0cf13f938dccc800901c5437f188",
+        "plate_total_seconds": [12746],
+        "petg_g": 87.72,
+        "support_interface_g": 2.11,
+        "sampled_interface_paths": {
+          "journal": { "covered": 1116, "sampled": 1116 },
+          "drive_end": { "covered": 1017, "sampled": 1023 }
+        }
+      }
+    },
+    "physical_retry_confirmed": false
+  },
   "surface_baseline": {
     "settings_source": "print/reinforcement.json",
     "baseline_choice": "Five solid top layers within Bambu's recommended 4–6 range; normal top flow and ironing off",
@@ -131,8 +161,8 @@
   },
   "model": {
     "path": "garden-auger.limo",
-    "sha256": "1cb703fee9f9fa7dfac145d74c049fe8bf61b7747bd42f7c2d9445f8e80b8331",
-    "feature_count": 90,
+    "sha256": "0d0bd9456726f8623c6956bbba4c855b23ebc05a33d6967548f87410f113a500",
+    "feature_count": 98,
     "previous_feature_count": 153,
     "retired_features_removed": 63,
     "unused_sketches_removed": 6,
@@ -328,7 +358,7 @@
       "Auger top",
       "Auger underside"
     ],
-    "print_project_sha256": "245c19e5daef1daae658a00343271935da67d85baa4b7639326ea78ba07985bc",
+    "print_project_sha256": "1c57e5b738231d489d298a9936dfb8a4f912277e8b999311eb03d843686406fa",
     "images": {
       "exploded.png": "8751944b0160effd19806a1e771ba3fb1b57dfad79c87c75c7b110c7c3c12233",
       "exploding-drive.gif": "c3cb7685ba47ffab36f2ac52df6eb0a1bb3da7accf3f754f9fa5aa5203e4af5e",
@@ -336,7 +366,7 @@
       "housing-upper.png": "7cd1bf8b674ca6c8a71a19ee51d76e5638cff81477306f8ee37440fab5694fff",
       "inside-labels.png": "db9bf8c6b10e4ffb321d5c97fb7843319578074506c08d8d6d4ceff38ca5bb3d",
       "locator-layout.svg": "d4f8d55557484ea5ac2415a6f3bd2a8b60eb83b836e5043c8590e2e1470a02c0",
-      "print-plates.png": "12553ee15f0b3315bb519d4d3d63ea65740732ad94c2776dcfb01ef20d48733b",
+      "print-plates.png": "00888ede6ff89901290ee83eb544f8ed155bada261e3f0fe47433a2d04ed378f",
       "turntable.gif": "b619d7bae6a06cd8c8d38f567b2c001a500fbc9ffb3022e7f770cb25b415ec21",
       "sliced-labels.png": "71b8fa6a52f7546bcb8662480933d0b62575705a667928c67da6009b6e444e44",
       "same-color-lettering.png": "bede0bb7f959d57023abc905c77c223dd030ad926a0c1a4c74209700eb127eda",
@@ -348,7 +378,7 @@
     "lettering_configuration_sha256": "922a7b0d78bc01ddc3d32495e9cc019d6762ae64557b31aef9bfb9156e0e499e",
     "gallery_stills_and_sampled_frames_visually_reviewed": true,
     "rendering_preserves_source_model": true,
-    "plate_image_update": "Full gallery refreshed from the chisel pilot revision",
+    "plate_image_update": "Print plate image refreshed from native slices of the paired drive flats revision",
     "model_sha256": "1cb703fee9f9fa7dfac145d74c049fe8bf61b7747bd42f7c2d9445f8e80b8331"
   },
   "tooling": {

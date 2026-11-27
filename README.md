@@ -1,19 +1,27 @@
 ﻿# Garden auger
 
-A printable housing for a continuous-rotation servo, with an auger for digging in the dirt. Print the parts, add the servo, and hook it up to power and controls.
+A printable garden auger driven by a continuous-rotation servo. The two-piece housing holds the servo and drive, with rounded grips and a replaceable wear bushing.
+
+[Print in Bambu Studio](print/garden-auger.3mf) · [Open in Limo CAD](garden-auger.limo) · [Assembly guide](docs/assembly.md)
 
 ![Garden auger turning, with the auger rotating](docs/images/turntable.gif)
 
-## The parts
+## What you'll print
 
-- A two-piece housing that holds the servo and drive assembly, secured with four screws.
-- Rounded handles with flat bases for printing.
-- A square drive adapter and replaceable wear bushing.
-- A 240 mm auger with chunky, widely spaced flights, a rotating dirt shield and flat print lands.
-- Flush color lettering for part labels and hardware details inside the housing.
-- Three-wall shells, gyroid infill and local reinforcement at fasteners and drive load paths.
+- **Housing.** Two halves with flat print bases, four screw joints and flush part and hardware labels inside.
+- **Auger.** A 240 mm screw with a backed chisel tip, thick flights and a rotating dirt shield. Shallow flats help support the shaft and drive journal during printing.
+- **Drive.** A square adapter connects the servo to the auger. A round PLA bushing guides the journal.
 
-The housing, auger and adapter use PETG. The ring uses PLA Basic. PETG supports use Bambu Support for PLA/PETG only at the contact interface.
+## Print files
+
+The two-plate projects print both housing halves together. The second plate holds the auger, adapter and bushing. Use PETG for the housing, auger, adapter and support body. The bushing uses PLA Basic, and the support contact layers use Bambu Support for PLA/PETG.
+
+- [Two plates with contrasting PETG lettering](print/garden-auger.3mf)
+- [Two plates with same-color textured lettering](print/garden-auger-single-color.3mf)
+- [Auger-only plate](print/auger-only.3mf) for reprinting the screw when you already have the other parts
+- [Individual STLs](print/parts/)
+
+![Both print plates with Bambu Studio slicing estimates](docs/images/print-plates.png)
 
 ## Inside the housing
 
@@ -30,17 +38,6 @@ The housing, auger and adapter use PETG. The ring uses PLA Basic. PETG supports 
 
 ## How we made it
 
-We designed and refined the assembly in **[Limo CAD](https://github.com/limo-cad/Limo-CAD)**, exported the parts, then prepared the print plates and local reinforcement for Bambu Studio. The CAD model and print settings are included so you can adapt the design to your own setup.
+We modeled the assembly in [Limo CAD](https://github.com/limo-cad/Limo-CAD), exported the parts and prepared the plates in Bambu Studio. The print projects use three walls and gyroid infill, with extra infill around the fasteners and along the drive.
 
-## Print plates
-
-![Both print plates with their native slicing estimates](docs/images/print-plates.png)
-
-## Make your own
-
-- [Editable Limo CAD assembly](garden-auger.limo) · [Native flight source](cad/auger-flight.limo)
-- [Bambu Studio print project](print/garden-auger.3mf) · [Single-color textured lettering](print/garden-auger-single-color.3mf)
-- [Individual STL files](print/parts/)
-- [Larger lettering test coupons](docs/lettering-coupons.md)
-
-[Assembly notes](docs/assembly.md) · [Design and print workflow](docs/workflow.md)
+[Editable flight](cad/auger-flight.limo) · [Design and print workflow](docs/workflow.md)
